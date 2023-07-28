@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure;
+﻿using System;
+using CodeBase.Infrastructure;
 using UnityEngine;
 
 namespace CodeBase.Modules.Gameplay
@@ -7,12 +8,12 @@ namespace CodeBase.Modules.Gameplay
     {
         [SerializeField] private GameplayWindow _window;
         
-        private IGameplayModel _model;
+        private GameplayModel _model;
         private GameplayWindowPresenter _presenter;
 
         private void OnEnable()
         {
-            _model = ModelsContainer.Resolve<IGameplayModel>();
+            _model = ModelsContainer.Resolve<GameplayModel>();
             _presenter = new GameplayWindowPresenter(_model, _window);
         }
     }

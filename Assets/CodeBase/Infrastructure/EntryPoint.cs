@@ -28,16 +28,17 @@ namespace CodeBase.Infrastructure
         private void CheckForSingleton()
         {
             if (_instance == null)
+            {
                 DontDestroyOnLoad(this);
+                DontDestroyOnLoad(_windowsService);
+            }
         }
 
         private void BindServices()
         {
             ServiceLocator.Clear();
 
-            var sceneLoader = new SceneLoader(this);
-            ServiceLocator.Bind(sceneLoader);
-
+            ServiceLocator.Bind(new SceneLoader(this));
             ServiceLocator.Bind(_windowsService);
         }
 

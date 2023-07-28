@@ -4,7 +4,6 @@ namespace CodeBase.StateMachine
 {
     public class LoadLevelState : IState, IExitableState
     {
-        private const string MenuSceneName = "Menu";
         private const string GameplaySceneName = "Gameplay";
 
         private readonly GameStateMachine _gameStateMachine;
@@ -23,7 +22,7 @@ namespace CodeBase.StateMachine
 
         public void Exit()
         {
-            _sceneLoader.Unload(MenuSceneName);
+            
         }
     }
 }

@@ -2,10 +2,10 @@
 {
     public class GameplayWindowPresenter
     {
-        private readonly IGameplayModel _model;
+        private readonly GameplayModel _model;
         private readonly GameplayWindow _window;
 
-        public GameplayWindowPresenter(IGameplayModel model, GameplayWindow window)
+        public GameplayWindowPresenter(GameplayModel model, GameplayWindow window)
         {
             _model = model;
             _window = window;

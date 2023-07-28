@@ -27,11 +27,14 @@ namespace CodeBase.Infrastructure
             Container.Binds.Add(typeof(T), service);
         }
 
-        public static T Resolve<T>() where T : class, IModel
+        public static T Resolve<T>() where T : class, IModel, new()
         {
             if (Container.Binds.TryGetValue(typeof(T), out var model))
                 return (T)model;
-            return null;
+            
+            // else try load from save file
+            
+            return new T();
         }
 
         public static void Clear() =>

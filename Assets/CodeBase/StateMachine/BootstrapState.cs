@@ -1,4 +1,5 @@
-﻿using CodeBase.Services;
+﻿using CodeBase.Infrastructure;
+using CodeBase.Services;
 
 namespace CodeBase.StateMachine
 {
@@ -17,6 +18,7 @@ namespace CodeBase.StateMachine
 
         public void Enter()
         {
+            ModelsContainer.Clear();
             _sceneLoader.Load(MenuSceneName, () => _gameStateMachine.Enter<MenuState>());
         }
     }
