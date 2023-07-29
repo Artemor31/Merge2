@@ -5,7 +5,7 @@ namespace CodeBase.Units
     [Serializable]
     public class EnemyAmount
     {
-        public Unit _unit;
+        public Unit Unit;
         public int Amount;
     }
 }

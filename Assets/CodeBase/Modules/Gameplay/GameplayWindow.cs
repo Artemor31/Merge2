@@ -2,6 +2,7 @@
 using CodeBase.Databases;
 using CodeBase.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeBase.Modules.Gameplay
 {
@@ -11,6 +12,8 @@ namespace CodeBase.Modules.Gameplay
         [SerializeField] private UnitCard _cardPrefab;
         [SerializeField] private PlayerUnitsDatabase _unitsDatabase;
         [SerializeField] private LayerMask _layerMask;
+        
+        public Button StartWave;
 
         private UnitCard _clickedCard;
         private Camera _camera;

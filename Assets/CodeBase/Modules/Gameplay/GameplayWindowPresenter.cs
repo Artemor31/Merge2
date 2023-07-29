@@ -9,6 +9,14 @@
         {
             _model = model;
             _window = window;
+            
+            _window.StartWave.onClick.AddListener(WaveStarted);
+        }
+
+        private void WaveStarted()
+        {
+            _model.State = GameState.Processing;
+            _window.StartWave.gameObject.SetActive(false);
         }
     }
 }

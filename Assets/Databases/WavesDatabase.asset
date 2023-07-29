@@ -15,5 +15,7 @@ MonoBehaviour:
   Datas:
   - Wave: 0
     Enemies:
-    - Enemy: {fileID: 5938305559527738975, guid: 0e495ea126c36fc4fb02641be98d25b3, type: 3}
-      Amount: 5
+    - _unit: {fileID: 5938305559527738975, guid: 0e495ea126c36fc4fb02641be98d25b3, type: 3}
+      Amount: 3
+    - _unit: {fileID: 5938305559527738975, guid: 0e495ea126c36fc4fb02641be98d25b3, type: 3}
+      Amount: 1

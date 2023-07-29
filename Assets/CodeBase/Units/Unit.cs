@@ -12,5 +12,9 @@ namespace CodeBase.Units
             Agent.SetDestination(target.position);
         }
 
+        public void SetIdle()
+        {
+            
+        }
     }
 }

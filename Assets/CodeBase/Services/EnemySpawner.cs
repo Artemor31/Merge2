@@ -1,37 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CodeBase.Databases;
-using CodeBase.Infrastructure;
-using CodeBase.Units;
-using UnityEngine;
+﻿using CodeBase.Databases;
+using CodeBase.Modules.Gameplay;
 
 namespace CodeBase.Services
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemiesController
     {
-        [SerializeField] private EnemyDatabase _enemyDatabase;
-        [SerializeField] private WavesDatabase _wavesDatabase;
-        [SerializeField] private LevelStaticData _levelStaticData;
+        private readonly WaveBuilder _waveBuilder;
+        private readonly GameplayModel _gameplayModel;
+        private readonly LevelStaticData _levelStaticData;
+        private int _currentWave;
 
-        private List<Unit> _spawnedEnemies;
-
-        private IEnumerator Start()
+        public EnemiesController(WaveBuilder waveBuilder, 
+                                 GameplayModel gameplayModel,
+                                 LevelStaticData levelStaticData)
         {
-            var prefab = _enemyDatabase.VariantOne;
-            int amount = _wavesDatabase.Datas[0].Enemies[0].Amount;
-        
-            _spawnedEnemies = new(amount);
+            _waveBuilder = waveBuilder;
+            _gameplayModel = gameplayModel;
+            _levelStaticData = levelStaticData;
+        }
 
-            for (int i = 0; i < amount; i++)
-            {
-                yield return new WaitForSeconds(2);
-            
-                var position = _levelStaticData.EnemyPositions.Random();
-                var enemy = Instantiate(prefab, position, Quaternion.identity);
-                enemy.SetDestination(_levelStaticData.PlayerBase);
-
-                _spawnedEnemies.Add(enemy);
-            }
+        public void PrepareNextWave()
+        {
+            _gameplayModel.EnemyUnits = new();
+            _waveBuilder.BuildWave(_currentWave, _levelStaticData);
         }
     }
 }
