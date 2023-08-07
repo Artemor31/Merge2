@@ -1,4 +1,5 @@
-﻿using CodeBase.Models;
+﻿using CodeBase.Databases;
+using CodeBase.Models;
 using CodeBase.UI.GameplayWindow;
 
 namespace CodeBase.Services.StateMachine
@@ -24,8 +25,11 @@ namespace CodeBase.Services.StateMachine
 
         public void Enter()
         {
+            var database = _databaseProvider.GetDatabase<BrainsDatabase>();
+            var conductor = new BattleBrainConductor(_model, database);
+
+            _battleProcessor = new BattleProcessor(_model, conductor);
             _windowsService.Show<GameplayWindow>();
-            _battleProcessor = new BattleProcessor(_model, _databaseProvider);
         }
     }
 }
