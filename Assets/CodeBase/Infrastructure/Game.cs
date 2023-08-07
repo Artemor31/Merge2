@@ -1,5 +1,5 @@
 ﻿using CodeBase.Services;
-using CodeBase.StateMachine;
+using CodeBase.Services.StateMachine;
 using CodeBase.UI;
 
 namespace CodeBase.Infrastructure

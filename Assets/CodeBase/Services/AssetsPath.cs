@@ -2,6 +2,6 @@
 {
     public static class AssetsPath
     {
-        public static string WavesDB = "Databases/WavesDatabase.asset";
+        public static string DatabasesFolder = "Databases/";
     }
 }

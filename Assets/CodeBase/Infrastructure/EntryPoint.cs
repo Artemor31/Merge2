@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.Databases;
 using CodeBase.Services;
 using CodeBase.UI;
 using UnityEngine;
@@ -10,36 +11,34 @@ namespace CodeBase.Infrastructure
         public event Action Tick;
         
         [SerializeField] private WindowsService _windowsService;
+        
         private static EntryPoint _instance;
         private Game _game;
 
-        private void Start()
-        {
+        private void Start() => 
             CreateGame();
-        }
 
         public void CreateGame()
         {
-            BindServices();
-            CheckForSingleton();
-            _game = new Game(ServiceLocator.Resolve<SceneLoader>(), ServiceLocator.Resolve<WindowsService>());
-        }
+            ServiceLocator.Clear();
+            ModelsContainer.Clear();
 
-        private void CheckForSingleton()
-        {
+            var assetsProvider = new AssetsProvider();
+            var sceneLoader = new SceneLoader(this);
+            
+            ServiceLocator.Bind(sceneLoader);
+            ServiceLocator.Bind(_windowsService);
+            ServiceLocator.Bind(assetsProvider);
+            ServiceLocator.Bind(this as ICoroutineRunner);
+            ServiceLocator.Bind(new DatabaseProvider(assetsProvider));
+
             if (_instance == null)
             {
                 DontDestroyOnLoad(this);
                 DontDestroyOnLoad(_windowsService);
             }
-        }
 
-        private void BindServices()
-        {
-            ServiceLocator.Clear();
-
-            ServiceLocator.Bind(new SceneLoader(this));
-            ServiceLocator.Bind(_windowsService);
+            _game = new Game(sceneLoader, _windowsService);
         }
 
         private void Update()
