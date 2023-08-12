@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CodeBase.Databases
 {
     [CreateAssetMenu(menuName = "Create UnitsDatabase", fileName = "UnitsDatabase", order = 0)]
-    public class UnitsDatabase : ScriptableObject
+    public class UnitsDatabase : Database
     {
         public List<UnitData> Units;
     }

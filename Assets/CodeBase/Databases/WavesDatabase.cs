@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CodeBase.Databases
 {
     [CreateAssetMenu(menuName = "Create WavesDatabase", fileName = "WavesDatabase", order = 0)]
-    public class WavesDatabase : ScriptableObject
+    public class WavesDatabase : Database
     {
         public List<WaveData> WavesData;
     }
@@ -21,7 +21,7 @@ namespace CodeBase.Databases
     [Serializable]
     public class EnemyAmount
     {
-        public Unit Unit;
+        public UnitId Unit;
         public int Amount;
     }
 

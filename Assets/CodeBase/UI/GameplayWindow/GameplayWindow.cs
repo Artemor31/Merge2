@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Databases;
+using CodeBase.Gameplay.Units;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +17,14 @@ namespace CodeBase.UI.GameplayWindow
 
         private UnitCard _clickedCard;
         private Camera _camera;
-        private Dictionary<UnitCard, GameObject> _cards;
-        private GameObject _instanceOfUnit;
+        private Dictionary<UnitCard, Unit> _cards;
+        private Unit _instanceOfUnit;
 
         private void Start()
         {
             _cards = new();
             _camera = Camera.main;
+            
             foreach (var unitData in _unitsDatabase.Units)
             {
                 var unitCard = Instantiate(_cardPrefab, _unitsParent);
@@ -35,7 +37,8 @@ namespace CodeBase.UI.GameplayWindow
         private void UnitCardOnClicked(UnitCard card)
         {
             _clickedCard = card;
-            _instanceOfUnit = Instantiate(_cards[_clickedCard]);
+            var original = _cards[_clickedCard];
+            _instanceOfUnit = Instantiate(original);
         }
 
         private void Update()

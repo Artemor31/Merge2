@@ -8,11 +8,13 @@ namespace CodeBase.Gameplay.Units
 {
     public class WaveBuilder
     {
+        private readonly UnitsDatabase _unitsDatabase;
         private readonly WavesDatabase _wavesDatabase;
         private readonly GameplayModel _model;
 
-        public WaveBuilder(WavesDatabase wavesDatabase, GameplayModel model)
+        public WaveBuilder(UnitsDatabase unitsDatabase, WavesDatabase wavesDatabase, GameplayModel model)
         {
+            _unitsDatabase = unitsDatabase;
             _wavesDatabase = wavesDatabase;
             _model = model;
         }
@@ -26,7 +28,8 @@ namespace CodeBase.Gameplay.Units
                 for (var i = 0; i < data.Amount; i++)
                 {
                     var position = staticData.EnemyPositions.Random();
-                    var enemy = Object.Instantiate(data.Unit, position, Quaternion.identity);
+                    var prefab = _unitsDatabase.Units.First(u => u.Id == data.Unit).Prefab;
+                    var enemy = Object.Instantiate(prefab, position, Quaternion.identity);
                     enemy.SetDestination(staticData.PlayerBase);
 
                     _model.EnemyUnits.Add(enemy);

@@ -6,9 +6,9 @@ namespace CodeBase.Gameplay.Units
     [Serializable]
     public class UnitData
     {
-        public UnitId _id;
+        public UnitId Id;
         public Sprite Icon;
-        public GameObject Prefab;
+        public Unit Prefab;
     }
 
     public enum UnitId

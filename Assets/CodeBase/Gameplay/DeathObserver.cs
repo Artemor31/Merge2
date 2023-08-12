@@ -27,7 +27,7 @@ namespace CodeBase.Gameplay
         {
             foreach (var unitData in _unitsDatabase.Units)
             {
-                if (unitData._id == unit.Id)
+                if (unitData.Id == unit.Id)
                 {
                 
                     return;
