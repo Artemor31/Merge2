@@ -1,12 +1,10 @@
-﻿using System;
-using CodeBase.Databases;
-using CodeBase.Services;
-using CodeBase.UI;
+﻿using CodeBase.Services;
 using UnityEngine;
+using System;
 
 namespace CodeBase.Infrastructure
 {
-    public class EntryPoint : MonoBehaviour, ICoroutineRunner
+    public class EntryPoint : MonoBehaviour, ICoroutineRunner, IUpdateable
     {
         public event Action Tick;
         
@@ -31,6 +29,8 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(new DatabaseProvider(assetsProvider));
+            ServiceLocator.Bind(this as IUpdateable);
+            ServiceLocator.Bind(new InputService(this));
 
             if (_instance == null)
             {

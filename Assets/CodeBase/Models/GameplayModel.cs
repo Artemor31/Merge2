@@ -7,8 +7,9 @@ namespace CodeBase.Models
 {
     public class GameplayModel : IModel
     {
-        public event Action<GameState> StateChanged; 
-        
+        public event Action<GameState> StateChanged;
+
+        private GameState _state;
         public GameState State
         {
             get => _state;
@@ -21,7 +22,6 @@ namespace CodeBase.Models
             }
         }
 
-        private GameState _state;
         public List<Unit> EnemyUnits { get; set; }
         public List<Unit> PlayerUnits { get; set; }
         public int CurrentWave { get; set; }

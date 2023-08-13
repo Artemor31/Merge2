@@ -1,5 +1,7 @@
-﻿using CodeBase.Infrastructure;
+﻿using CodeBase.Databases;
+using CodeBase.Infrastructure;
 using CodeBase.Models;
+using CodeBase.Services;
 using UnityEngine;
 
 namespace CodeBase.UI.GameplayWindow
@@ -13,8 +15,15 @@ namespace CodeBase.UI.GameplayWindow
 
         private void OnEnable()
         {
+            if (_presenter != null) return;
+            
+            var windowsService = ServiceLocator.Resolve<WindowsService>();
+            var assetsProvider = ServiceLocator.Resolve<AssetsProvider>();
+            var unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
+            var inputService = ServiceLocator.Resolve<InputService>();
+
             _model = ModelsContainer.Resolve<GameplayModel>();
-            _presenter = new GameplayWindowPresenter(_model, _window);
+            _presenter = new GameplayWindowPresenter(_model, _window, windowsService, assetsProvider, unitsDatabase, inputService);
         }
     }
 }
