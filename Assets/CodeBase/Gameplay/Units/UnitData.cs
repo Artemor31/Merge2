@@ -9,6 +9,7 @@ namespace CodeBase.Gameplay.Units
         public UnitId Id;
         public Sprite Icon;
         public Unit Prefab;
+        public string Name;
     }
 
     public enum UnitId

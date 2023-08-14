@@ -18,12 +18,12 @@ namespace CodeBase.UI.GameplayWindow
         private readonly UnitsDatabase _unitsDatabase;
         private readonly InputService _inputService;
 
-        private readonly Dictionary<UnitCard, Unit> _cards;
+        private Dictionary<UnitCard, UnitId> _cards;
         private readonly Camera _camera;
 
         private UnitCard _clickedCard;
         private Unit _instanceOfUnit;
-        private UnitCard _prefab;
+        private UnitCard _cardPrefab;
 
         public GameplayWindowPresenter(GameplayModel model,
                                        GameplayWindow window,
@@ -39,24 +39,36 @@ namespace CodeBase.UI.GameplayWindow
             _inputService = inputService;
 
             _camera = Camera.main;
-            _prefab = assetsProvider.Load<UnitCard>(AssetsPath.UnitCard);
+            _cardPrefab = assetsProvider.Load<UnitCard>(AssetsPath.UnitCard);
 
             _window.StartWave.onClick.AddListener(StartWave);
             _inputService.LeftButtonDown += InputServiceOnLeftButtonDown;
             _inputService.LeftButtonUp += InputServiceOnLeftButtonUp;
 
-            _cards = new Dictionary<UnitCard, Unit>();
             CreatePlayerCards();
         }
 
         private void CreatePlayerCards()
         {
-            var units = _unitsDatabase.Units.Select(u => u.Prefab);
-            foreach (var unit in units)
+            _cards = new Dictionary<UnitCard, UnitId>();
+            foreach (var unitData in _unitsDatabase.Units)
             {
-                var createdUnit = Object.Instantiate(unit, _window.UnitsParent);
-                _model.PlayerUnits.Add(createdUnit);
+                var card = Object.Instantiate(_cardPrefab, _window.UnitsParent);
+                
+                card.SetIcon(unitData.Icon);
+                card.SetTitle(unitData.Name);
+                card.Clicked += CardOnClicked;
+                _cards.Add(card, unitData.Id);
             }
+        }
+
+        private void CardOnClicked(UnitCard card)
+        {
+            _clickedCard = card;
+            var unitId = _cards[card];
+            var unitPrefab = _unitsDatabase.Units.First(u => u.Id == unitId).Prefab;
+            var unit = Object.Instantiate(unitPrefab);
+            _model.PlayerUnits.Add(unit);
         }
 
         private void InputServiceOnLeftButtonDown(Vector3 vector3)
@@ -72,13 +84,6 @@ namespace CodeBase.UI.GameplayWindow
         private void InputServiceOnLeftButtonUp(Vector3 vector3)
         {
             Object.Instantiate(_instanceOfUnit, _instanceOfUnit.transform.position, Quaternion.identity);
-        }
-
-        private void UnitCardOnClicked(UnitCard card)
-        {
-            _clickedCard = card;
-            var original = _cards[_clickedCard];
-            _instanceOfUnit = Object.Instantiate(original);
         }
 
         private void StartWave()

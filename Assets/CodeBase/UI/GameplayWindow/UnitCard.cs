@@ -23,5 +23,10 @@ namespace CodeBase.UI.GameplayWindow
         {
             Clicked?.Invoke(this);
         }
+
+        public void SetTitle(string cardDataName)
+        {
+            
+        }
     }
 }
