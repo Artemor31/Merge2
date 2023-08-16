@@ -8,7 +8,8 @@ namespace CodeBase.Infrastructure
     {
         public event Action<Vector3> LeftButtonDown;
         public event Action<Vector3> LeftButtonUp;
-            
+
+        public Vector3 MousePosition => Input.mousePosition;
         private readonly IUpdateable _updateable;
         private bool _clicked;
 

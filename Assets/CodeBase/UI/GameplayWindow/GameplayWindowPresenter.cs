@@ -7,6 +7,8 @@ using CodeBase.Infrastructure;
 using CodeBase.Models;
 using CodeBase.Services;
 using UnityEngine;
+using UnityEngine.Events;
+using Unit = CodeBase.Gameplay.Units.Unit;
 
 namespace CodeBase.UI.GameplayWindow
 {
@@ -17,73 +19,83 @@ namespace CodeBase.UI.GameplayWindow
         private readonly WindowsService _windowsService;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly InputService _inputService;
+        private readonly IUpdateable _updateable;
 
-        private Dictionary<UnitCard, UnitId> _cards;
         private readonly Camera _camera;
+        private readonly UnitCard _cardPrefab;
 
+        private Dictionary<UnitCard, UnitId> _unitCards;
         private UnitCard _clickedCard;
         private Unit _instanceOfUnit;
-        private UnitCard _cardPrefab;
 
         public GameplayWindowPresenter(GameplayModel model,
                                        GameplayWindow window,
                                        WindowsService windowsService,
                                        AssetsProvider assetsProvider,
                                        UnitsDatabase unitsDatabase,
-                                       InputService inputService)
+                                       InputService inputService,
+                                       IUpdateable updateable)
         {
             _model = model;
             _window = window;
             _windowsService = windowsService;
             _unitsDatabase = unitsDatabase;
             _inputService = inputService;
+            _updateable = updateable;
 
             _camera = Camera.main;
             _cardPrefab = assetsProvider.Load<UnitCard>(AssetsPath.UnitCard);
 
             _window.StartWave.onClick.AddListener(StartWave);
-            _inputService.LeftButtonDown += InputServiceOnLeftButtonDown;
-            _inputService.LeftButtonUp += InputServiceOnLeftButtonUp;
-
+            _inputService.LeftButtonDown += InputServiceOnLeftButtonUp;
+            _updateable.Tick += Update;
+            
             CreatePlayerCards();
+        }
+
+        private void InputServiceOnLeftButtonUp(Vector3 vector3)
+        {
+            if (_instanceOfUnit == null) return;
+            Object.Instantiate(_instanceOfUnit, _instanceOfUnit.transform.position, Quaternion.identity);
+            _instanceOfUnit = null;
+            _clickedCard = null;
+        }
+
+        private void Update()
+        {
+            if (_instanceOfUnit != null)
+            {
+                var position = _inputService.MousePosition;
+                var ray = _camera.ScreenPointToRay(position);
+                
+                bool collided = Physics.Raycast(ray, out var hits, 999f, _window.Ground);
+                if (collided == false) return;
+                
+                position = new Vector3((int)position.x, (int)position.y, (int)position.z);
+                _instanceOfUnit.transform.position = position;
+            }
         }
 
         private void CreatePlayerCards()
         {
-            _cards = new Dictionary<UnitCard, UnitId>();
+            _unitCards = new Dictionary<UnitCard, UnitId>();
             foreach (var unitData in _unitsDatabase.Units)
             {
                 var card = Object.Instantiate(_cardPrefab, _window.UnitsParent);
                 
                 card.SetIcon(unitData.Icon);
                 card.SetTitle(unitData.Name);
-                card.Clicked += CardOnClicked;
-                _cards.Add(card, unitData.Id);
+                card.Button.onClick.AddListener(() => CardOnClicked(card)); 
+                _unitCards.Add(card, unitData.Id);
             }
         }
 
         private void CardOnClicked(UnitCard card)
         {
             _clickedCard = card;
-            var unitId = _cards[card];
-            var unitPrefab = _unitsDatabase.Units.First(u => u.Id == unitId).Prefab;
-            var unit = Object.Instantiate(unitPrefab);
-            _model.PlayerUnits.Add(unit);
-        }
-
-        private void InputServiceOnLeftButtonDown(Vector3 vector3)
-        {
-            var ray = _camera.ScreenPointToRay(vector3);
-            bool collided = Physics.Raycast(ray, out var hits, 999f, _window.LayerMask);
-            if (collided)
-            {
-                _instanceOfUnit.transform.position = hits.point;
-            }
-        }
-
-        private void InputServiceOnLeftButtonUp(Vector3 vector3)
-        {
-            Object.Instantiate(_instanceOfUnit, _instanceOfUnit.transform.position, Quaternion.identity);
+            
+            var unitPrefab = _unitsDatabase.Units.First(u => u.Id == _unitCards[card]).Prefab;
+            _instanceOfUnit = Object.Instantiate(unitPrefab);
         }
 
         private void StartWave()

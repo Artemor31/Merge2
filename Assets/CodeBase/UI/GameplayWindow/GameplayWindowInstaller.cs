@@ -21,9 +21,11 @@ namespace CodeBase.UI.GameplayWindow
             var assetsProvider = ServiceLocator.Resolve<AssetsProvider>();
             var unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             var inputService = ServiceLocator.Resolve<InputService>();
-
+            var updateable = ServiceLocator.Resolve<IUpdateable>();
+            
             _model = ModelsContainer.Resolve<GameplayModel>();
-            _presenter = new GameplayWindowPresenter(_model, _window, windowsService, assetsProvider, unitsDatabase, inputService);
+            _presenter = new GameplayWindowPresenter(_model, _window, windowsService,
+                assetsProvider, unitsDatabase, inputService, updateable);
         }
     }
 }

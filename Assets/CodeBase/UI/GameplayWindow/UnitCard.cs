@@ -1,17 +1,16 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using TMPro;
 using UnityEngine.UI;
+using UnityEngine;
 
 namespace CodeBase.UI.GameplayWindow
 {
-    public class UnitCard : MonoBehaviour, IPointerClickHandler
+    public class UnitCard : MonoBehaviour
     {
-        public event Action<UnitCard> Clicked; 
+        [field:SerializeField] public Button Button { get; private set; }
         
         [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _title;
 
-        private bool _clicked;
         private GameObject _cube;
 
         public void SetIcon(Sprite icon)
@@ -19,14 +18,9 @@ namespace CodeBase.UI.GameplayWindow
             _icon.sprite = icon;
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public void SetTitle(string title)
         {
-            Clicked?.Invoke(this);
-        }
-
-        public void SetTitle(string cardDataName)
-        {
-            
+          //  _title.text = title;
         }
     }
 }
