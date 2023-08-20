@@ -14,8 +14,9 @@ namespace CodeBase.Gameplay.Units
 
     public enum UnitId
     {
-        Eblan = 0,
-        Hyesos = 1,
-        Rusich = 2,
+        None = 0,
+        Eblan = 1,
+        Hyesos = 2,
+        Rusich = 3,
     }
 }

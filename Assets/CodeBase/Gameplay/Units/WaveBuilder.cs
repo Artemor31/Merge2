@@ -30,7 +30,6 @@ namespace CodeBase.Gameplay.Units
                     var position = staticData.EnemyPositions.Random();
                     var prefab = _unitsDatabase.Units.First(u => u.Id == data.Unit).Prefab;
                     var enemy = Object.Instantiate(prefab, position, Quaternion.identity);
-                    enemy.SetDestination(staticData.PlayerBase);
 
                     _model.EnemyUnits.Add(enemy);
                 }

@@ -7,7 +7,6 @@ namespace CodeBase.UI.GameplayWindow
     {
         [field:SerializeField] public Transform UnitsParent { get; private set; }
         [field:SerializeField] public LayerMask Ground { get; private set; }
-        [field:SerializeField] public LayerMask UI { get; private set; }
         [field:SerializeField] public Button StartWave { get; private set; }
         
         public void SetBattleState()

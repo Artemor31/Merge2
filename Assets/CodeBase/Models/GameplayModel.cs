@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
 using CodeBase.UI.GameplayWindow;
+using UnityEngine;
 
 namespace CodeBase.Models
 {
@@ -24,9 +25,15 @@ namespace CodeBase.Models
         }
 
         public List<Unit> EnemyUnits { get; set; }
-        public List<Unit> PlayerUnits { get; set; }
+        public List<PlayerTile> PlayerUnits { get; set; }
         public int CurrentWave { get; set; }
         public int Money { get; set; }
         public List<UnitCard> PlayerCards { get; set; }
+    }
+
+    public class PlayerTile
+    {
+        public Unit Unit;
+        public Vector3 Position;
     }
 }

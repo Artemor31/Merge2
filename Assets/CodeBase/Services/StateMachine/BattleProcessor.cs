@@ -40,7 +40,7 @@ namespace CodeBase.Services.StateMachine
 
         private void SetIdle()
         {
-            var allUnits = _gameplayModel.EnemyUnits.Concat(_gameplayModel.PlayerUnits);
+            var allUnits = _gameplayModel.EnemyUnits.Concat(_gameplayModel.PlayerUnits.Select(u => u.Unit).ToList());
             foreach (var unit in allUnits)
             {
                 unit.SetIdle();

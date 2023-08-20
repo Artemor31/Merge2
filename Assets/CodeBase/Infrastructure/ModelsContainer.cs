@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Models;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -23,7 +24,10 @@ namespace CodeBase.Infrastructure
         public static void Bind<T>(T service) where T : IModel
         {
             if (Container.Binds.ContainsKey(typeof(T)))
-                throw new Exception();
+            {
+                Container.Binds[typeof(T)] = service;
+                Debug.LogError("Changed instance for type = " + typeof(T).Name);
+            }
 
             Container.Binds.Add(typeof(T), service);
         }

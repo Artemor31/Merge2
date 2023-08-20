@@ -19,8 +19,10 @@ namespace CodeBase.Services.StateMachine
 
         public void StartBattle()
         {
-            FindBestTargets(_gameplayModel.PlayerUnits, _gameplayModel.EnemyUnits);
-            FindBestTargets(_gameplayModel.EnemyUnits, _gameplayModel.PlayerUnits);
+            var units = _gameplayModel.PlayerUnits.Select(u => u.Unit).ToList();
+            
+            FindBestTargets(units, _gameplayModel.EnemyUnits);
+            FindBestTargets(_gameplayModel.EnemyUnits, units);
         }
 
         private void FindBestTargets(List<Unit> seekers, List<Unit> candidates)

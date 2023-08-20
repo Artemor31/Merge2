@@ -20,12 +20,11 @@ namespace CodeBase.UI.GameplayWindow
             var windowsService = ServiceLocator.Resolve<WindowsService>();
             var assetsProvider = ServiceLocator.Resolve<AssetsProvider>();
             var unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            var inputService = ServiceLocator.Resolve<InputService>();
-            var updateable = ServiceLocator.Resolve<IUpdateable>();
-            
+            var levelStaticData = ModelsContainer.Resolve<LevelStaticData>();
+
             _model = ModelsContainer.Resolve<GameplayModel>();
             _presenter = new GameplayWindowPresenter(_model, _window, windowsService,
-                assetsProvider, unitsDatabase, inputService, updateable);
+                assetsProvider, unitsDatabase, levelStaticData);
         }
     }
 }
