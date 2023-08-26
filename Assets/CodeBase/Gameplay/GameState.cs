@@ -2,8 +2,7 @@
 {
     public enum GameState
     {
-        Waiting,
-        Processing,
-        Shopping
+        Waiting = 0,
+        Processing = 1
     }
 }

@@ -18,6 +18,12 @@ namespace CodeBase.Infrastructure
             return collection[range];
         }
         
+        public static T Random<T>(this IReadOnlyList<T> collection)
+        {
+            int range = UnityEngine.Random.Range(0, collection.Count);
+            return collection[range];
+        }
+        
         public static Vector3 ToV3(this Vector2 vector2)
         {
             return new Vector3(vector2.x, 0, vector2.y);

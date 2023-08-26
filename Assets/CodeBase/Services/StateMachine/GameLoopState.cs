@@ -1,4 +1,6 @@
 ﻿using CodeBase.Databases;
+using CodeBase.Gameplay.Units;
+using CodeBase.Infrastructure;
 using CodeBase.Models;
 using CodeBase.UI.GameplayWindow;
 
@@ -10,25 +12,31 @@ namespace CodeBase.Services.StateMachine
         private readonly WindowsService _windowsService;
         private readonly GameplayModel _model;
         private readonly DatabaseProvider _databaseProvider;
-        private BattleProcessor _battleProcessor;
+        private BattleConductor _conductor;
+        private UnitsFactory _factory;
+        private WaveBuilder _waveBuilder;
 
         public GameLoopState(GameStateMachine gameStateMachine,
                              WindowsService windowsService,
                              GameplayModel model,
                              DatabaseProvider databaseProvider)
         {
-            _gameStateMachine = gameStateMachine;
-            _windowsService = windowsService;
             _model = model;
+            _windowsService = windowsService;
+            _gameStateMachine = gameStateMachine;
             _databaseProvider = databaseProvider;
         }
 
         public void Enter()
         {
-            var database = _databaseProvider.GetDatabase<BrainsDatabase>();
-            var conductor = new BattleBrainConductor(_model, database);
-
-            _battleProcessor = new BattleProcessor(_model, conductor);
+            var updatable = ServiceLocator.Resolve<IUpdateable>();
+            var database = _databaseProvider.GetDatabase<UnitsDatabase>();
+            var wavesDatabase = _databaseProvider.GetDatabase<WavesDatabase>();
+            
+            _factory = new UnitsFactory(database);
+            _waveBuilder = new WaveBuilder(_factory, wavesDatabase, _model);
+            _conductor = new BattleConductor(_model, updatable);
+            
             _windowsService.Show<GameplayWindow>();
         }
     }
