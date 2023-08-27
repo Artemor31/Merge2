@@ -8,7 +8,7 @@ namespace CodeBase.Gameplay.Units
     {
         public UnitId Id;
         public Sprite Icon;
-        public Damageable Prefab;
+        public Unit Prefab;
         public string Name;
     }
 

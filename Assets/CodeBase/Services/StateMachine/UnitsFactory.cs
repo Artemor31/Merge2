@@ -14,7 +14,7 @@ namespace CodeBase.Services.StateMachine
             _database = database;
         }
 
-        public Damageable CreateUnit(UnitId id)
+        public Unit CreateUnit(UnitId id)
         {
             var unitData = _database.Units.First(u => u.Id == id);
             return Object.Instantiate(unitData.Prefab);

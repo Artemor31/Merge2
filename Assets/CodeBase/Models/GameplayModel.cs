@@ -24,8 +24,8 @@ namespace CodeBase.Models
             }
         }
 
-        public List<Damageable> EnemyUnits { get; set; }
-        public List<Damageable> PlayerUnits { get; set; }
+        public List<Unit> EnemyUnits { get; set; }
+        public List<Unit> PlayerUnits { get; set; }
         public int CurrentWave { get; set; }
         public int Money { get; set; }
         public List<UnitCard> PlayerCards { get; set; }

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using CodeBase.Gameplay;
-using CodeBase.Gameplay.Units;
+﻿using CodeBase.Gameplay;
 using CodeBase.Infrastructure;
 using CodeBase.Models;
 
@@ -36,13 +34,10 @@ namespace CodeBase.Services.StateMachine
         private void StartBattle()
         {
             var enemies = _gameplayModel.EnemyUnits;
+            
             foreach (var unit in enemies)
             {
-                var targetSearch = unit.GetComponent<ITargetSearch>();
-                targetSearch.Construct(_gameplayModel.PlayerUnits);
-                targetSearch.SearchTarget();
-                
-                
+                        
             }
         }
 
