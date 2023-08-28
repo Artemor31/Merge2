@@ -42,6 +42,12 @@ namespace CodeBase.Gameplay.Units
 
         private void CleanUp()
         {
+            if (_model.EnemyUnits == null)
+            {
+                _model.EnemyUnits = new();
+                return;
+            }
+            
             _model.EnemyUnits.ForEach(Object.Destroy);
             _model.EnemyUnits.Clear();
         }

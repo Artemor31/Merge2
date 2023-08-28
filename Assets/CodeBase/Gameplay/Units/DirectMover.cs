@@ -13,6 +13,9 @@ namespace CodeBase.Gameplay.Units
 
         public override void MoveTo(Vector3 target) =>
             _agent.destination = target;
+        
+        public override void MoveTo(Unit target) =>
+            _agent.destination = target.transform.position;
 
         public override void Stop() =>
             _agent.destination = transform.position;

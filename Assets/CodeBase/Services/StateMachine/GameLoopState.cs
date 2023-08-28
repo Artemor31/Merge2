@@ -35,7 +35,9 @@ namespace CodeBase.Services.StateMachine
             
             _factory = new UnitsFactory(database);
             _waveBuilder = new WaveBuilder(_factory, wavesDatabase, _model);
-            _conductor = new BattleConductor(_model, updatable);
+            _conductor = new BattleConductor(_model, updatable, _waveBuilder);
+            
+            _waveBuilder.BuildWave(0, ModelsContainer.Resolve<LevelStaticData>());
             
             _windowsService.Show<GameplayWindow>();
         }

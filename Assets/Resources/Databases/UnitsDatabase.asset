@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: UnitsDatabase
   m_EditorClassIdentifier: 
   Units:
-  - Id: 0
-    Icon: {fileID: 21300000, guid: a8166ea434d337349818825bff42d2f6, type: 3}
-    Prefab: {fileID: 5938305559527738975, guid: 0e495ea126c36fc4fb02641be98d25b3, type: 3}
-    Name: Eblan4ik
   - Id: 1
+    Icon: {fileID: 21300000, guid: a8166ea434d337349818825bff42d2f6, type: 3}
+    Prefab: {fileID: 706842926059796714, guid: 0e495ea126c36fc4fb02641be98d25b3, type: 3}
+    Name: Eblan4ik
+  - Id: 2
     Icon: {fileID: 21300006, guid: a50747b7090647445a1aa71f3aefd771, type: 3}
-    Prefab: {fileID: 5938305559527738975, guid: c771b23c97436e54fabb8342dd0c84a2, type: 3}
+    Prefab: {fileID: 3228716023292121826, guid: c771b23c97436e54fabb8342dd0c84a2, type: 3}
     Name: Doter
