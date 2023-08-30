@@ -29,7 +29,7 @@ namespace CodeBase.Services.StateMachine
 
         public void Enter()
         {
-            var updatable = ServiceLocator.Resolve<IUpdateable>();
+            var updatable = ServiceLocator.Resolve<IUpdateable>(); 
             var database = _databaseProvider.GetDatabase<UnitsDatabase>();
             var wavesDatabase = _databaseProvider.GetDatabase<WavesDatabase>();
             
