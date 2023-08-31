@@ -32,12 +32,13 @@ namespace CodeBase.Services.StateMachine
             var updatable = ServiceLocator.Resolve<IUpdateable>(); 
             var database = _databaseProvider.GetDatabase<UnitsDatabase>();
             var wavesDatabase = _databaseProvider.GetDatabase<WavesDatabase>();
-            
+            var levelStaticData = ModelsContainer.Resolve<LevelStaticData>();
+
             _factory = new UnitsFactory(database);
-            _waveBuilder = new WaveBuilder(_factory, wavesDatabase, _model);
+            _waveBuilder = new WaveBuilder(_factory, wavesDatabase, _model, levelStaticData);
             _conductor = new BattleConductor(_model, updatable, _waveBuilder);
             
-            _waveBuilder.BuildWave(0, ModelsContainer.Resolve<LevelStaticData>());
+            _waveBuilder.BuildWave(0);
             
             _windowsService.Show<GameplayWindow>();
         }

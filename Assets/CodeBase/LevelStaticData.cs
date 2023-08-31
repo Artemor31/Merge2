@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CodeBase.Infrastructure;
 using CodeBase.Models;
 using NaughtyAttributes;
@@ -20,6 +19,9 @@ namespace CodeBase
 
         public IReadOnlyList<Vector3> EnemyPositions => _enemyPositions;
         public IReadOnlyList<Vector3> PlayerPositions => _playerPositions;
+
+        private void Awake() => 
+            ModelsContainer.Bind(this);
 
         [Button]
         public void FillPositions()
@@ -60,21 +62,6 @@ namespace CodeBase
                 {
                     Gizmos.DrawWireSphere(position, _delta / 2);
                 }
-            }
-        }
-
-        private void Awake()
-        {
-            ModelsContainer.Bind(this);
-
-            foreach (var position in _playerPositions)
-            {
-                var primitive = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-                primitive.transform.position = position;
-            }       foreach (var position in _enemyPositions)
-            {
-                var primitive = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-                primitive.transform.position = position;
             }
         }
     }

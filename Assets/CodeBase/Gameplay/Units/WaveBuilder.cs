@@ -12,15 +12,20 @@ namespace CodeBase.Gameplay.Units
         private readonly UnitsFactory _factory;
         private readonly WavesDatabase _wavesDatabase;
         private readonly GameplayModel _model;
+        private readonly LevelStaticData _levelStaticData;
 
-        public WaveBuilder(UnitsFactory factory, WavesDatabase wavesDatabase, GameplayModel model)
+        public WaveBuilder(UnitsFactory factory,
+                           WavesDatabase wavesDatabase,
+                           GameplayModel model,
+                           LevelStaticData levelStaticData)
         {
             _wavesDatabase = wavesDatabase;
             _factory = factory;
             _model = model;
+            _levelStaticData = levelStaticData;
         }
 
-        public void BuildWave(int wave, LevelStaticData staticData)
+        public void BuildWave(int wave)
         {
             CleanUp();
             
@@ -31,7 +36,7 @@ namespace CodeBase.Gameplay.Units
                 for (var i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateUnit(data.Unit);
-                    enemy.transform.position = staticData.EnemyPositions.Random();
+                    enemy.transform.position = _levelStaticData.EnemyPositions.Random();
                     _model.EnemyUnits.Add(enemy);
                 }
             }

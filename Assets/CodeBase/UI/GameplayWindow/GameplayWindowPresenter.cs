@@ -59,6 +59,9 @@ namespace CodeBase.UI.GameplayWindow
         private void CardOnClicked(UnitCard card)
         {
             var unitPrefab = _unitsDatabase.Units.First(u => u.Id == _unitCards[card]).Prefab;
+            var position = _levelStaticData.PlayerPositions.First();
+            var unit = Object.Instantiate(unitPrefab, position, Quaternion.AngleAxis(180, Vector3.up));
+            _model.PlayerUnits.Add(unit);
         }
 
         private void StartWave()
