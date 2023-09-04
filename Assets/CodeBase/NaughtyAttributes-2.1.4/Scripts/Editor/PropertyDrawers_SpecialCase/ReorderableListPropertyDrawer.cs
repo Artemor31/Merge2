@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes_SpecialCase;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.Utility;
 using UnityEditor;
 using UnityEditorInternal;
-using System.Collections.Generic;
+using UnityEngine;
 
-namespace NaughtyAttributes.Editor
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyDrawers_SpecialCase
 {
     public class ReorderableListPropertyDrawer : SpecialCasePropertyDrawerBase
     {

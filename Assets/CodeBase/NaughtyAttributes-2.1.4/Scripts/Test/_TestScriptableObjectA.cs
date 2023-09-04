@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes;
+using UnityEngine;
 
-namespace NaughtyAttributes.Test
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Test
 {
     //[CreateAssetMenu(fileName = "TestScriptableObjectA", menuName = "NaughtyAttributes/TestScriptableObjectA")]
     public class _TestScriptableObjectA : ScriptableObject

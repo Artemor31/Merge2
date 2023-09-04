@@ -1,7 +1,11 @@
 ﻿using System;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes_SpecialCase;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.MetaAttributes;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.Utility;
 using UnityEngine;
 
-namespace NaughtyAttributes.Test
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Test
 {
     public class HideIfTest : MonoBehaviour
     {

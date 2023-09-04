@@ -1,20 +1,23 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CodeBase.Databases;
+using CodeBase.Gameplay.Units;
 using CodeBase.Infrastructure;
+using CodeBase.LevelData;
 using CodeBase.Models;
-using CodeBase.Services.StateMachine;
+using CodeBase.Services;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Units
+namespace CodeBase.Gameplay
 {
     public class WaveBuilder
     {
-        private readonly UnitsFactory _factory;
+        private readonly GameplayFactory _factory;
         private readonly WavesDatabase _wavesDatabase;
         private readonly GameplayModel _model;
         private readonly LevelStaticData _levelStaticData;
 
-        public WaveBuilder(UnitsFactory factory,
+        public WaveBuilder(GameplayFactory factory,
                            WavesDatabase wavesDatabase,
                            GameplayModel model,
                            LevelStaticData levelStaticData)
@@ -47,12 +50,7 @@ namespace CodeBase.Gameplay.Units
 
         private void CleanUp()
         {
-            if (_model.EnemyUnits == null)
-            {
-                _model.EnemyUnits = new();
-                return;
-            }
-            
+            _model.EnemyUnits ??= new List<Unit>();
             _model.EnemyUnits.ForEach(Object.Destroy);
             _model.EnemyUnits.Clear();
         }

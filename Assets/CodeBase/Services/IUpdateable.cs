@@ -1,7 +1,6 @@
 ﻿using System;
-using CodeBase.Services;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Services
 {
     public interface IUpdateable : IService
     {

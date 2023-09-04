@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase
+namespace CodeBase.LevelData
 {
     public class GameplayMap : MonoBehaviour
     {

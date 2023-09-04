@@ -1,7 +1,8 @@
 ﻿using System;
+using CodeBase.Gameplay.Units;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Units
+namespace CodeBase.Databases.Data
 {
     [Serializable]
     public class UnitData

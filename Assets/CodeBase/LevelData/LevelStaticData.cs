@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Infrastructure;
 using CodeBase.Models;
-using NaughtyAttributes;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes_SpecialCase;
 using UnityEngine;
 
-namespace CodeBase
+namespace CodeBase.LevelData
 {
     public class LevelStaticData : MonoBehaviour, IModel
     {

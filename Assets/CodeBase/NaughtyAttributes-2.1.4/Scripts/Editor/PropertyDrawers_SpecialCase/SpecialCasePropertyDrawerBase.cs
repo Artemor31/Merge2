@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes_SpecialCase;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.ValidatorAttributes;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyValidators;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace NaughtyAttributes.Editor
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyDrawers_SpecialCase
 {
     public abstract class SpecialCasePropertyDrawerBase
     {

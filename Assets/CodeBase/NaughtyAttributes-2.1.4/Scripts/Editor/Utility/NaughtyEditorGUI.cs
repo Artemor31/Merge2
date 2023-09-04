@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes_SpecialCase;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.ValidatorAttributes;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyDrawers_SpecialCase;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyValidators;
 using UnityEditor;
-using UnityEditor.Experimental.SceneManagement;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace NaughtyAttributes.Editor
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.Utility
 {
     public static class NaughtyEditorGUI
     {

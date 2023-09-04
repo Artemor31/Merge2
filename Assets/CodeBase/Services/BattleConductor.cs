@@ -2,10 +2,9 @@
 using System.Linq;
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
-using CodeBase.Infrastructure;
 using CodeBase.Models;
 
-namespace CodeBase.Services.StateMachine
+namespace CodeBase.Services
 {
     public class BattleConductor
     {

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.DrawerAttributes;
 using UnityEditor;
-using System;
+using UnityEngine;
 
-namespace NaughtyAttributes.Editor
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(LayerAttribute))]
     public class LayerPropertyDrawer : PropertyDrawerBase

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using CodeBase.NaughtyAttributes_2._1._4.Scripts.Core.ValidatorAttributes;
+using CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.Utility;
 using UnityEditor;
+using UnityEngine;
 
-namespace NaughtyAttributes.Editor
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Editor.PropertyValidators
 {
     public class MaxValuePropertyValidator : PropertyValidatorBase
     {

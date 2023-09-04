@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace NaughtyAttributes.Test
+namespace CodeBase.NaughtyAttributes_2._1._4.Scripts.Test
 {
     public class _NaughtyComponent : MonoBehaviour
     {

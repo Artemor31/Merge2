@@ -1,8 +1,7 @@
 ﻿using System;
-using CodeBase.Services;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Services
 {
     public class InputService : IService
     {
