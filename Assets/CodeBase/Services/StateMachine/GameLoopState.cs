@@ -36,9 +36,9 @@ namespace CodeBase.Services.StateMachine
             var database = _databaseProvider.GetDatabase<UnitsDatabase>();
             var wavesDatabase = _databaseProvider.GetDatabase<WavesDatabase>();
             var levelStaticData = ModelsContainer.Resolve<LevelStaticData>();
-
-            _model.PlayerUnits = new();
-
+        
+            // TODO
+            ResetModels();
 
             _factory = new GameplayFactory(database, assetsProvider);
             _waveBuilder = new WaveBuilder(_factory, wavesDatabase, _model, levelStaticData);
@@ -47,6 +47,12 @@ namespace CodeBase.Services.StateMachine
             _waveBuilder.BuildWave(0);
 
             _windowsService.Show<GameplayWindow>();
+        }
+
+        private void ResetModels()
+        {
+            _model.PlayerUnits = new();
+            _model.PlayerCells = new();
         }
     }
 }

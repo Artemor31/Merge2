@@ -31,6 +31,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(new DatabaseProvider(assetsProvider));
             ServiceLocator.Bind(this as IUpdateable);
             ServiceLocator.Bind(new InputService(this));
+            ServiceLocator.Bind(new ProgressService());
 
             if (_instance == null)
             {

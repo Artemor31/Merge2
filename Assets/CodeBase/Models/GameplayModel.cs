@@ -10,7 +10,10 @@ namespace CodeBase.Models
     public class GameplayModel : IModel
     {
         public event Action<GameState> StateChanged;
-
+        
+        public int CurrentWave { get; set; }
+        public int Money { get; set; }
+        
         private GameState _state;
         public GameState State
         {
@@ -24,10 +27,9 @@ namespace CodeBase.Models
             }
         }
 
+        public List<UnitCell> PlayerCells { get; set; }
         public List<Unit> EnemyUnits { get; set; }
         public List<Unit> PlayerUnits { get; set; }
-        public int CurrentWave { get; set; }
-        public int Money { get; set; }
         public List<UnitCard> PlayerCards { get; set; }
     }
 }
