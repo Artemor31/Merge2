@@ -25,12 +25,8 @@ namespace CodeBase.Services.StateMachine
             var progressService = ServiceLocator.Resolve<ProgressService>();
             var updatable = ServiceLocator.Resolve<IUpdateable>();
             var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
-
-            var staticData = Object.FindObjectOfType<LevelStaticData>();
-            if (staticData == null)
-                throw new Exception("Not found static data!!!!!!!!!!");
             
-            _conductor = new BattleConductor(progressService, staticData, updatable, waveBuilder);
+            _conductor = new BattleConductor(progressService, updatable, waveBuilder);
             _windowsService.Show<GameplayWindow>();
         }
     }

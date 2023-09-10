@@ -9,8 +9,11 @@ namespace CodeBase.Gameplay.Units
         public override Unit Target { get; protected set; }
         private List<Unit> _candidates;
 
-        public override void SetTargets(List<Unit> candidates) =>
+        public override void SetTargets(List<Unit> candidates)
+        {
             _candidates = candidates;
+            SearchTarget();
+        }
 
         public override void SearchTarget()
         {

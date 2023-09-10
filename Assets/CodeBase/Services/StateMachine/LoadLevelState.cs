@@ -1,6 +1,7 @@
-﻿using CodeBase.Infrastructure;
+﻿using System;
+using CodeBase.Infrastructure;
 using CodeBase.LevelData;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.StateMachine
 {
@@ -19,10 +20,16 @@ namespace CodeBase.Services.StateMachine
 
         public void Enter()
         {
-            // TODO!!!
-            ServiceLocator.Resolve<ProgressService>().StaticData = Object.FindObjectOfType<LevelStaticData>();
-
-            _sceneLoader.Load(GameplaySceneName, () => _gameStateMachine.Enter<GameLoopState>());
+            _sceneLoader.Load(GameplaySceneName, () =>
+            {
+                // TODO!!!
+                var staticData = Object.FindObjectOfType<LevelStaticData>();
+                if (staticData == null)
+                    throw new Exception("Static data not found");
+                
+                ServiceLocator.Resolve<ProgressService>().StaticData = staticData;
+                _gameStateMachine.Enter<GameLoopState>();
+            });
         }
 
         public void Exit()
