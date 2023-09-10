@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 3976405780717597930}
   - component: {fileID: 3976405780717597931}
   - component: {fileID: 4180328428378639301}
-  - component: {fileID: 6368052905239666587}
-  - component: {fileID: 8694279587555907208}
-  - component: {fileID: 6645460857187516395}
-  - component: {fileID: 8914822097844437471}
-  - component: {fileID: 3228716023292121826}
+  - component: {fileID: 2650067812198512934}
+  - component: {fileID: 3065065456433531755}
+  - component: {fileID: 228210470498409916}
+  - component: {fileID: 6672911749132282058}
+  - component: {fileID: 706842926059796714}
   m_Layer: 0
-  m_Name: PlayerUnit
+  m_Name: RedDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4c3169fd77b23434897c94051bfceff2, type: 2}
+  - {fileID: 2100000, guid: a144273987cbcbd49a5afa257edcf4e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,48 +126,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
---- !u!114 &6368052905239666587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976405780717597928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3038dff8868e4684b038727fa52c4c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8694279587555907208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976405780717597928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e2f4c196594f78a5e5b0c991cdf356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agent: {fileID: 4180328428378639301}
-  _speed: 6
---- !u!114 &6645460857187516395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3976405780717597928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b6da52c1ea44229e1d92a51b6ce16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 5
-  _range: 5
-  _attackCooldown: 5
---- !u!114 &8914822097844437471
+--- !u!114 &2650067812198512934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +140,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agent: {fileID: 4180328428378639301}
   _maxHealth: 10
---- !u!114 &3228716023292121826
+--- !u!114 &3065065456433531755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976405780717597928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6da52c1ea44229e1d92a51b6ce16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 3
+  _range: 3
+  _attackCooldown: 2
+--- !u!114 &228210470498409916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976405780717597928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e2f4c196594f78a5e5b0c991cdf356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 4180328428378639301}
+  _speed: 3
+--- !u!114 &6672911749132282058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976405780717597928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3038dff8868e4684b038727fa52c4c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &706842926059796714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67406d005e3b41e6a4aeed482b629eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 8914822097844437471}
-  _mover: {fileID: 8694279587555907208}
-  _targetSearch: {fileID: 6368052905239666587}
-  _attacker: {fileID: 6645460857187516395}
+  <Health>k__BackingField: {fileID: 2650067812198512934}
+  <Mover>k__BackingField: {fileID: 228210470498409916}
+  <TargetSearch>k__BackingField: {fileID: 6672911749132282058}
+  <Attacker>k__BackingField: {fileID: 3065065456433531755}

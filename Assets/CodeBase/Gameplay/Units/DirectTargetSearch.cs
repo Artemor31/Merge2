@@ -15,7 +15,14 @@ namespace CodeBase.Gameplay.Units
             SearchTarget();
         }
 
-        public override void SearchTarget()
+        public override void Disable()
+        {
+            _candidates.Clear();
+            Target = null;
+            Debug.LogError($"Killing the {gameObject.name}");
+        }
+
+        private void SearchTarget()
         {
             if (_candidates.Count == 0) return;
 
@@ -36,6 +43,7 @@ namespace CodeBase.Gameplay.Units
 
         private void OnTargetDies()
         {
+            Debug.LogError($"target dies for {gameObject.name}");
             Target.Health.Died -= OnTargetDies;
             Target = null;
             SearchTarget();

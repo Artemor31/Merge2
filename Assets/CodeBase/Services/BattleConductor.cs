@@ -31,21 +31,29 @@ namespace CodeBase.Services
         {
             if (_gameplayModel.State != GameState.Processing) return;
 
-            foreach (var unit in _gameplayModel.EnemyUnits)
-            {
-                if (unit.Health.Current <= 0) continue;
-                
-                unit.Mover.MoveTo(unit.TargetSearch.Target);
-                unit.Attacker.Attack(unit.TargetSearch.Target);
-            }
+            var enemies = _gameplayModel.EnemyUnits;
+            var allies = _gameplayModel.PlayerUnits;
 
-            foreach (var unit in _gameplayModel.PlayerUnits)
+            ProcessUnits(enemies);
+            ProcessUnits(allies);
+        }
+
+        private static void ProcessUnits(List<Unit> enemies)
+        {
+            foreach (var unit in enemies)
             {
                 if (unit.Health.Current <= 0) continue;
-                
-                unit.Mover.MoveTo(unit.TargetSearch.Target);
-                unit.Attacker.Attack(unit.TargetSearch.Target);
+                ProcessUnitBehaviour(unit);
             }
+        }
+
+        private static void ProcessUnitBehaviour(Unit unit)
+        {
+            var target = unit.TargetSearch.Target;
+            if (unit.Attacker.CanAttack(target))
+                unit.Attacker.Attack(target);
+            else
+                unit.Mover.MoveTo(target);
         }
 
         private void GameplayModelOnStateChanged(GameState state)
@@ -65,7 +73,6 @@ namespace CodeBase.Services
         private void SetUnitsIdle()
         {
             _waveBuilder.BuildWave(_staticData, 0);
-            
         }
 
         private void StartBattle()

@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace CodeBase.Gameplay.Units
 {
@@ -8,14 +7,10 @@ namespace CodeBase.Gameplay.Units
     {
         public override event Action Died;
         public override float Current { get; protected set; }
-
-        [SerializeField] private NavMeshAgent Agent;
         [SerializeField] private float _maxHealth;
 
-        private void Awake()
-        {
+        private void Awake() => 
             Current = _maxHealth;
-        }
 
         public override void TakeDamage(float damage)
         {
@@ -26,8 +21,13 @@ namespace CodeBase.Gameplay.Units
 
         public override void Die()
         {
-            Agent.enabled = false;
+            Debug.LogError($"{gameObject.name} dies :(");
             Died?.Invoke();
+        }
+
+        public override void Disable()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

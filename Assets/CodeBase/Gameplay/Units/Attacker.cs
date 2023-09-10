@@ -6,5 +6,6 @@ namespace CodeBase.Gameplay.Units
     {
         public abstract bool CanAttack(Unit unit);
         public abstract void Attack(Unit unit);
+        public abstract void Disable();
     }
 }

@@ -21,6 +21,9 @@ namespace CodeBase.Gameplay.Units
             _timer = _attackCooldown;
         }
 
+        public override void Disable() => 
+            _timer = float.MaxValue;
+
         private void Update()
         {
             if (CooldownUp() == false)

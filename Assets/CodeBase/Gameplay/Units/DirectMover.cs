@@ -19,5 +19,10 @@ namespace CodeBase.Gameplay.Units
 
         public override void Stop() =>
             _agent.destination = transform.position;
+
+        public override void Disable()
+        {
+            _agent.enabled = false;
+        }
     }
 }

@@ -1,18 +1,24 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CodeBase.Gameplay.Units
 {
     public class Unit : MonoBehaviour
     {
-        public Health Health => _health;
-        public Mover Mover => _mover;
-        public TargetSearch TargetSearch => _targetSearch;
-        public Attacker Attacker => _attacker;
+        [field: SerializeField] public Health Health { get; set; }
+        [field: SerializeField] public Mover Mover { get; set; }
+        [field: SerializeField] public TargetSearch TargetSearch { get; set; }
+        [field: SerializeField] public Attacker Attacker { get; set; }
 
-        [SerializeField] private Health _health;
-        [SerializeField] private Mover _mover;
-        [SerializeField] private TargetSearch _targetSearch;
-        [SerializeField] private Attacker _attacker;
+        private void OnEnable() => 
+            Health.Died += OnDies;
+        
+        private void OnDies()
+        {
+            Health.Died -= OnDies;
+            Attacker.Disable();
+            Health.Disable();
+            Mover.Disable();
+            TargetSearch.Disable();
+        }
     }
 }
