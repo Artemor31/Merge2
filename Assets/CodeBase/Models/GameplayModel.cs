@@ -27,9 +27,9 @@ namespace CodeBase.Models
             }
         }
 
-        public List<UnitCell> PlayerCells { get; set; }
-        public List<Unit> EnemyUnits { get; set; }
-        public List<Unit> PlayerUnits { get; set; }
-        public List<UnitCard> PlayerCards { get; set; }
+        public List<UnitCell> PlayerCells { get; set; } = new();
+        public List<Unit> EnemyUnits { get; set; } = new();
+        public List<Unit> PlayerUnits { get; set; } = new();
+        public List<UnitCard> PlayerCards { get; set; } = new();
     }
 }

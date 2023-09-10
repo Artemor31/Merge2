@@ -12,10 +12,10 @@ namespace CodeBase.Infrastructure
         private static ModelsContainer Container =>
             _container ??= new ModelsContainer
             {
-                Binds = new Dictionary<Type, IModel>()
+                binds = new Dictionary<Type, IModel>()
             };
 
-        private Dictionary<Type, IModel> Binds;
+        private Dictionary<Type, IModel> binds;
 
         private ModelsContainer()
         {
@@ -23,20 +23,21 @@ namespace CodeBase.Infrastructure
 
         public static void Bind<T>(T service) where T : IModel
         {
-            if (Container.Binds.ContainsKey(typeof(T)))
+            if (Container.binds.ContainsKey(typeof(T)))
             {
-                Container.Binds[typeof(T)] = service;
+                Container.binds[typeof(T)] = service;
                 Debug.LogError("Changed instance for type = " + typeof(T).Name);
             }
 
-            Container.Binds.Add(typeof(T), service);
+            Container.binds.Add(typeof(T), service);
         }
 
         public static T Resolve<T>() where T : class, IModel, new()
         {
-            if (Container.Binds.TryGetValue(typeof(T), out var model))
+            if (Container.binds.TryGetValue(typeof(T), out var model))
                 return (T)model;
             
+                    // TODO
             // else try load from save file
             
             return new T();

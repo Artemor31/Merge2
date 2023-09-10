@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace CodeBase.Services
 {
-    public class GameplayFactory
+    public class GameFactory : IService
     {
         private readonly UnitsDatabase _database;
         private readonly UnitCell _cellPrefab;
 
-        public GameplayFactory(UnitsDatabase database, AssetsProvider assetsProvider)
+        public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider)
         {
-            _database = database;
+            _database = database.GetDatabase<UnitsDatabase>();
             _cellPrefab = assetsProvider.Load<UnitCell>(AssetsPath.UnitCellPrefab);
         }
 

@@ -1,6 +1,4 @@
-﻿using CodeBase.Databases;
-using CodeBase.Gameplay;
-using CodeBase.Gameplay.Units;
+﻿using CodeBase.Gameplay;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
@@ -12,47 +10,26 @@ namespace CodeBase.Services.StateMachine
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly WindowsService _windowsService;
-        private readonly GameplayModel _model;
-        private readonly DatabaseProvider _databaseProvider;
         private BattleConductor _conductor;
-        private GameplayFactory _factory;
-        private WaveBuilder _waveBuilder;
 
-        public GameLoopState(GameStateMachine gameStateMachine,
-                             WindowsService windowsService,
-                             GameplayModel model,
-                             DatabaseProvider databaseProvider)
+        public GameLoopState(GameStateMachine gameStateMachine, WindowsService windowsService)
         {
-            _model = model;
-            _windowsService = windowsService;
             _gameStateMachine = gameStateMachine;
-            _databaseProvider = databaseProvider;
+            _windowsService = windowsService;
         }
 
         public void Enter()
         {
+            var model = ModelsContainer.Resolve<GameplayModel>();
+            var staticData = ModelsContainer.Resolve<LevelStaticData>();
+
             var updatable = ServiceLocator.Resolve<IUpdateable>();
-            var assetsProvider = ServiceLocator.Resolve<AssetsProvider>();
-            var database = _databaseProvider.GetDatabase<UnitsDatabase>();
-            var wavesDatabase = _databaseProvider.GetDatabase<WavesDatabase>();
-            var levelStaticData = ModelsContainer.Resolve<LevelStaticData>();
-        
+            var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
+
+            _conductor = new BattleConductor(model, staticData, updatable, waveBuilder);
+
             // TODO
-            ResetModels();
-
-            _factory = new GameplayFactory(database, assetsProvider);
-            _waveBuilder = new WaveBuilder(_factory, wavesDatabase, _model, levelStaticData);
-            _conductor = new BattleConductor(_model, updatable, _waveBuilder);
-
-            _waveBuilder.BuildWave(0);
-
             _windowsService.Show<GameplayWindow>();
-        }
-
-        private void ResetModels()
-        {
-            _model.PlayerUnits = new();
-            _model.PlayerCells = new();
         }
     }
 }

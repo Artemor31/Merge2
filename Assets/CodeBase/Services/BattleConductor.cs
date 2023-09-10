@@ -2,6 +2,7 @@
 using System.Linq;
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
+using CodeBase.LevelData;
 using CodeBase.Models;
 
 namespace CodeBase.Services
@@ -9,18 +10,22 @@ namespace CodeBase.Services
     public class BattleConductor
     {
         private readonly GameplayModel _gameplayModel;
+        private readonly LevelStaticData _staticData;
         private readonly IUpdateable _updateable;
         private readonly WaveBuilder _waveBuilder;
 
         private bool _battling;
 
-        public BattleConductor(GameplayModel gameplayModel, IUpdateable updateable, WaveBuilder waveBuilder)
+        public BattleConductor(GameplayModel gameplayModel, LevelStaticData staticData,
+                               IUpdateable updateable, WaveBuilder waveBuilder)
         {
             _gameplayModel = gameplayModel;
+            _staticData = staticData;
             _updateable = updateable;
             _waveBuilder = waveBuilder;
             _updateable.Tick += Tick;
             _gameplayModel.StateChanged += GameplayModelOnStateChanged;
+            GameplayModelOnStateChanged(_gameplayModel.State);
         }
 
         private void Tick()
@@ -58,6 +63,12 @@ namespace CodeBase.Services
             }
         }
 
+        private void SetUnitsIdle()
+        {
+            _waveBuilder.BuildWave(_staticData, 0);
+            
+        }
+
         private void StartBattle()
         {
             var enemies = _gameplayModel.EnemyUnits;
@@ -71,10 +82,6 @@ namespace CodeBase.Services
         {
             foreach (var search in searchers)
                 search.SetTargets(candidates);
-        }
-
-        private void SetUnitsIdle()
-        {
         }
     }
 }
