@@ -1,7 +1,7 @@
 ﻿namespace CodeBase.Models
 {
-    public class PlayerModel : IModel
+    public class PlayerModel
     {
-        public string Name = "Jopa";
+        public string Name = "Artem";
     }
 }

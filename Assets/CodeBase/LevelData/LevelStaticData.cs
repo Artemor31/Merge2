@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeBase.LevelData
 {
-    public class LevelStaticData : MonoBehaviour, IModel
+    public class LevelStaticData : MonoBehaviour
     {
         [SerializeField] private Vector3 _enemyStartPosition;
         [SerializeField] private Vector3 _playerStartPosition;
@@ -19,9 +19,6 @@ namespace CodeBase.LevelData
 
         public IReadOnlyList<Vector3> EnemyPositions => _enemyPositions;
         public IReadOnlyList<Vector3> PlayerPositions => _playerPositions;
-
-        private void Awake() => 
-            ModelsContainer.Bind(this);
 
         [Button]
         public void FillPositions()

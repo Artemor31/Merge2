@@ -1,8 +1,10 @@
-﻿using CodeBase.Gameplay;
+﻿using System;
+using CodeBase.Gameplay;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
 using CodeBase.UI.GameplayWindow;
+using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.StateMachine
 {
@@ -20,15 +22,15 @@ namespace CodeBase.Services.StateMachine
 
         public void Enter()
         {
-            var model = ModelsContainer.Resolve<GameplayModel>();
-            var staticData = ModelsContainer.Resolve<LevelStaticData>();
-
+            var progressService = ServiceLocator.Resolve<ProgressService>();
             var updatable = ServiceLocator.Resolve<IUpdateable>();
             var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
 
-            _conductor = new BattleConductor(model, staticData, updatable, waveBuilder);
-
-            // TODO
+            var staticData = Object.FindObjectOfType<LevelStaticData>();
+            if (staticData == null)
+                throw new Exception("Not found static data!!!!!!!!!!");
+            
+            _conductor = new BattleConductor(progressService, staticData, updatable, waveBuilder);
             _windowsService.Show<GameplayWindow>();
         }
     }

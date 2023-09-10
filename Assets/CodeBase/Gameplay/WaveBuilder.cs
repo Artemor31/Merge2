@@ -14,11 +14,11 @@ namespace CodeBase.Gameplay
         private readonly GameplayModel _model;
         private readonly WavesDatabase _wavesDatabase;
 
-        public WaveBuilder(GameFactory factory, DatabaseProvider provider)
+        public WaveBuilder(GameFactory factory, DatabaseProvider provider, ProgressService progressService)
         {
             _factory = factory;
 
-            _model = ModelsContainer.Resolve<GameplayModel>();
+            _model = progressService.GameplayModel;
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
         }
 

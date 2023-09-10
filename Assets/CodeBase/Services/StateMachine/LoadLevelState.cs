@@ -1,4 +1,8 @@
-﻿namespace CodeBase.Services.StateMachine
+﻿using CodeBase.Infrastructure;
+using CodeBase.LevelData;
+using UnityEngine;
+
+namespace CodeBase.Services.StateMachine
 {
     public class LoadLevelState : IState, IExitableState
     {
@@ -15,12 +19,14 @@
 
         public void Enter()
         {
+            // TODO!!!
+            ServiceLocator.Resolve<ProgressService>().StaticData = Object.FindObjectOfType<LevelStaticData>();
+
             _sceneLoader.Load(GameplaySceneName, () => _gameStateMachine.Enter<GameLoopState>());
         }
 
         public void Exit()
         {
-            
         }
     }
 }

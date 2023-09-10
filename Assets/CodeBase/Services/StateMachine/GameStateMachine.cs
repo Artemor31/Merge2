@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Infrastructure;
-using CodeBase.Models;
 
 namespace CodeBase.Services.StateMachine
 {

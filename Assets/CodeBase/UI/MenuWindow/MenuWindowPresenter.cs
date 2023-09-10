@@ -1,7 +1,7 @@
 ﻿using CodeBase.Models;
 using CodeBase.Services.StateMachine;
 
-namespace CodeBase.UI.MenuWIndow
+namespace CodeBase.UI.MenuWindow
 {
     public class MenuWindowPresenter
     {

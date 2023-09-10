@@ -16,10 +16,10 @@ namespace CodeBase.Services
 
         private bool _battling;
 
-        public BattleConductor(GameplayModel gameplayModel, LevelStaticData staticData,
+        public BattleConductor(ProgressService progressService, LevelStaticData staticData,
                                IUpdateable updateable, WaveBuilder waveBuilder)
         {
-            _gameplayModel = gameplayModel;
+            _gameplayModel = progressService.GameplayModel;
             _staticData = staticData;
             _updateable = updateable;
             _waveBuilder = waveBuilder;

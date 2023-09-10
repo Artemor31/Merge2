@@ -23,18 +23,17 @@ namespace CodeBase.UI.GameplayWindow
         private Dictionary<UnitCard, UnitId> _unitCards;
         private bool _refreshed;
 
-        public GameplayWindowPresenter(GameplayModel model,
-                                       GameplayWindow window,
+        public GameplayWindowPresenter(GameplayWindow window,
                                        WindowsService windowsService,
                                        AssetsProvider assetsProvider,
                                        UnitsDatabase unitsDatabase,
-                                       LevelStaticData levelStaticData)
+                                       ProgressService progressService)
         {
-            _model = model;
+            _model = progressService.GameplayModel;
             _window = window;
             _windowsService = windowsService;
             _unitsDatabase = unitsDatabase;
-            _levelStaticData = levelStaticData;
+            _levelStaticData = progressService.StaticData;
 
             _cardPrefab = assetsProvider.Load<UnitCard>(AssetsPath.UnitCard);
 

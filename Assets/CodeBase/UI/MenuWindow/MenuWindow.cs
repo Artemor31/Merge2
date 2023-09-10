@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine.UI;
 
-namespace CodeBase.UI.MenuWIndow
+namespace CodeBase.UI.MenuWindow
 {
     public class MenuWindow : Window
     {

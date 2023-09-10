@@ -7,10 +7,9 @@ using UnityEngine;
 
 namespace CodeBase.Models
 {
-    public class GameplayModel : IModel
+    public class GameplayModel
     {
         public event Action<GameState> StateChanged;
-        
         public int CurrentWave { get; set; }
         public int Money { get; set; }
         

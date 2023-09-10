@@ -20,13 +20,17 @@ namespace CodeBase.Infrastructure
         public void CreateGame()
         {
             ServiceLocator.Clear();
-            ModelsContainer.Clear();
 
             var sceneLoader = new SceneLoader(this);
 
             var assetsProvider = new AssetsProvider();
+            var progressService = new ProgressService();
+            
+            var inputService = new InputService(this);
             var databaseProvider = new DatabaseProvider(assetsProvider);
+            
             var gameFactory = new GameFactory(databaseProvider, assetsProvider);
+            var waveBuilder = new WaveBuilder(gameFactory, databaseProvider, progressService);
 
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
@@ -34,10 +38,10 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(databaseProvider);
             ServiceLocator.Bind(this as IUpdateable);
-            ServiceLocator.Bind(new InputService(this));
-            ServiceLocator.Bind(new ProgressService());
+            ServiceLocator.Bind(inputService);
+            ServiceLocator.Bind(progressService);
             ServiceLocator.Bind(gameFactory);
-            ServiceLocator.Bind(new WaveBuilder(gameFactory, databaseProvider));
+            ServiceLocator.Bind(waveBuilder);
 
             if (_instance == null)
             {

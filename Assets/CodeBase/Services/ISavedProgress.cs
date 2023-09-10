@@ -1,4 +1,6 @@
-﻿namespace CodeBase.Services
+﻿using CodeBase.Services.SaveService;
+
+namespace CodeBase.Services
 {
     public interface ISavedProgress : ISavedProgressReader
     {
