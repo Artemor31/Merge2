@@ -9,9 +9,6 @@ namespace CodeBase.Gameplay.Units
         public override float Current { get; protected set; }
         [SerializeField] private float _maxHealth;
 
-        private void Awake() => 
-            Current = _maxHealth;
-
         public override void TakeDamage(float damage)
         {
             Current -= damage;
@@ -19,15 +16,16 @@ namespace CodeBase.Gameplay.Units
                 Die();
         }
 
-        public override void Die()
+        public override void Reset() => 
+            Current = _maxHealth;
+
+        private void Awake() =>
+            Reset();
+
+        private void Die()
         {
             Debug.LogError($"{gameObject.name} dies :(");
             Died?.Invoke();
-        }
-
-        public override void Disable()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

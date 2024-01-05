@@ -9,20 +9,22 @@ namespace CodeBase.Gameplay.Units
         [SerializeField] private float _attackCooldown;
 
         private float _timer;
+        private bool _available;
 
         public override bool CanAttack(Unit unit) => 
-            InRange(unit) && CooldownUp();
+            InRange(unit) && CooldownUp()  && _available;
 
         public override void Attack(Unit unit)
         {
+            _available = true;
             if (!CanAttack(unit)) return;
             
             unit.Health.TakeDamage(_damage);
             _timer = _attackCooldown;
         }
 
-        public override void Disable() => 
-            _timer = float.MaxValue;
+        public override void Reset() =>
+            _available = false;
 
         private void Update()
         {

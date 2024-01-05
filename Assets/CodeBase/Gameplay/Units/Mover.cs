@@ -6,7 +6,6 @@ namespace CodeBase.Gameplay.Units
     {
         public abstract void MoveTo(Vector3 target);
         public abstract void MoveTo(Unit target);
-        public abstract void Stop();
-        public abstract void Disable();
+        public abstract void Reset();
     }
 }

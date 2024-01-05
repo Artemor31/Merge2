@@ -22,11 +22,10 @@ namespace CodeBase.Services.StateMachine
 
         public void Enter()
         {
-            var progressService = ServiceLocator.Resolve<ProgressService>();
-            var updatable = ServiceLocator.Resolve<IUpdateable>();
             var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
-            
-            _conductor = new BattleConductor(progressService, updatable, waveBuilder);
+            var progressService = ServiceLocator.Resolve<ProgressService>();
+
+            _conductor = new BattleConductor(progressService, waveBuilder);
             _windowsService.Show<GameplayWindow>();
         }
     }

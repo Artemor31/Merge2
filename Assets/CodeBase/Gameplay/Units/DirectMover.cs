@@ -17,12 +17,7 @@ namespace CodeBase.Gameplay.Units
         public override void MoveTo(Unit target) =>
             _agent.destination = target.transform.position;
 
-        public override void Stop() =>
+        public override void Reset() => 
             _agent.destination = transform.position;
-
-        public override void Disable()
-        {
-            _agent.enabled = false;
-        }
     }
 }
