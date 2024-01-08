@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
 using CodeBase.UI.GameplayWindow;
-using UnityEngine;
 
 namespace CodeBase.Models
 {

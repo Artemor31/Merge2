@@ -39,7 +39,7 @@ namespace CodeBase.Gameplay
             }
         }
 
-        private WaveData CurrentWaveData(int wave) =>
+        private WavesDatabase.WaveData CurrentWaveData(int wave) =>
             _wavesDatabase.WavesData.First(d => d.Wave == wave);
 
         private void CleanUp()

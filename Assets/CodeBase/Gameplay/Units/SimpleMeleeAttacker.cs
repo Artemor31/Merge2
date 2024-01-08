@@ -26,6 +26,11 @@ namespace CodeBase.Gameplay.Units
         public override void Reset() =>
             _available = false;
 
+        public override bool InRange(Vector3 transformPosition)
+        {
+            return true;
+        }
+
         private void Update()
         {
             if (CooldownUp() == false)
