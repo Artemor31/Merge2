@@ -26,11 +26,11 @@ namespace CodeBase.Gameplay
         {
             CleanUp();
 
-            var waveData = CurrentWaveData(wave);
+            WavesDatabase.WaveData waveData = CurrentWaveData(wave);
 
-            foreach (var data in waveData.Enemies)
+            foreach (WavesDatabase.EnemyAmount data in waveData.Enemies)
             {
-                for (var i = 0; i < data.Amount; i++)
+                for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateUnit(data.Unit);
                     enemy.transform.position = levelStaticData.EnemyPositions.Random();
