@@ -22,6 +22,7 @@ namespace CodeBase.UI.MenuWindow
         private void PlayClicked()
         {
             _menuWindow.gameObject.SetActive(false);
+            _menuWindow.PlayButton.onClick.RemoveListener(PlayClicked);
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }

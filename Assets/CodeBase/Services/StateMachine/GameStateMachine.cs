@@ -10,12 +10,17 @@ namespace CodeBase.Services.StateMachine
 
         public GameStateMachine(SceneLoader sceneLoader, WindowsService windowsService)
         {
+            var bootstrapState = new BootstrapState(this, sceneLoader);
+            var loadLevelState = new LoadLevelState(this, sceneLoader);
+            var menuState = new MenuState(this, windowsService);
+            var gameLoopState = new GameLoopState(this, windowsService);
+
             _states = new Dictionary<Type, IState>
             {
-                {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader)},
-                {typeof(MenuState), new MenuState(this, windowsService)},
-                {typeof(GameLoopState), new GameLoopState(this, windowsService)},
+                {typeof(BootstrapState), bootstrapState},
+                {typeof(LoadLevelState), loadLevelState},
+                {typeof(MenuState), menuState},
+                {typeof(GameLoopState), gameLoopState},
             };
         }
 
@@ -24,7 +29,7 @@ namespace CodeBase.Services.StateMachine
             if (_currentState is IExitableState state)
                 state.Exit();
 
-            var newState = _states[typeof(T)];
+            IState newState = _states[typeof(T)];
             _currentState = newState;
             _currentState.Enter();
         }

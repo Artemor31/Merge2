@@ -1,10 +1,6 @@
-﻿using System;
-using CodeBase.Gameplay;
+﻿using CodeBase.UI.GameplayWindow;
 using CodeBase.Infrastructure;
-using CodeBase.LevelData;
-using CodeBase.Models;
-using CodeBase.UI.GameplayWindow;
-using Object = UnityEngine.Object;
+using CodeBase.Gameplay;
 
 namespace CodeBase.Services.StateMachine
 {

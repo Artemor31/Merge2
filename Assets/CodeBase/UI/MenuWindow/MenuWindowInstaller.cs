@@ -10,12 +10,11 @@ namespace CodeBase.UI.MenuWindow
         [SerializeField] private MenuWindow _window;
         private MenuWindowPresenter _presenter;
 
-        private void OnEnable()
+        private void Start()
         {
             var stateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            var playerModel = ServiceLocator.Resolve<ProgressService>().PlayerModel;
-            
-            _presenter = new MenuWindowPresenter(playerModel, _window, stateMachine);
+            var progressService = ServiceLocator.Resolve<ProgressService>();
+            _presenter = new MenuWindowPresenter(progressService.PlayerModel, _window, stateMachine);
         }
     }
 }

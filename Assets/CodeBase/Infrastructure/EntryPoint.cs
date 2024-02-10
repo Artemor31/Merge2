@@ -17,18 +17,28 @@ namespace CodeBase.Infrastructure
         private void Start() =>
             CreateGame();
 
-        public void CreateGame()
+        private void CreateGame()
+        {
+            BindServices();
+
+            if (_instance == null)
+            {
+                DontDestroyOnLoad(this);
+                DontDestroyOnLoad(_windowsService);
+            }
+
+            _game = new Game(ServiceLocator.Resolve<SceneLoader>(), _windowsService);
+        }
+
+        private void BindServices()
         {
             ServiceLocator.Clear();
 
             var sceneLoader = new SceneLoader(this);
-
             var assetsProvider = new AssetsProvider();
             var progressService = new ProgressService();
-            
             var inputService = new InputService(this);
             var databaseProvider = new DatabaseProvider(assetsProvider);
-            
             var gameFactory = new GameFactory(databaseProvider, assetsProvider);
             var waveBuilder = new WaveBuilder(gameFactory, databaseProvider, progressService);
 
@@ -42,19 +52,8 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(progressService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
-
-            if (_instance == null)
-            {
-                DontDestroyOnLoad(this);
-                DontDestroyOnLoad(_windowsService);
-            }
-
-            _game = new Game(sceneLoader, _windowsService);
         }
 
-        private void Update()
-        {
-            Tick?.Invoke();
-        }
+        private void Update() => Tick?.Invoke();
     }
 }
