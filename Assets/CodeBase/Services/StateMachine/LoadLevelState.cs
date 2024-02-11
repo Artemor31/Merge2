@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.StateMachine
@@ -18,22 +20,16 @@ namespace CodeBase.Services.StateMachine
             _sceneLoader = sceneLoader;
         }
 
-        public void Enter()
-        {
-            _sceneLoader.Load(GameplaySceneName, () =>
-            {
-                // TODO!!!
-                var staticData = Object.FindObjectOfType<LevelStaticData>();
-                if (staticData == null)
-                    throw new Exception("Static data not found");
-                
-                ServiceLocator.Resolve<ProgressService>().StaticData = staticData;
-                _gameStateMachine.Enter<GameLoopState>();
-            });
-        }
+        public void Enter() => _sceneLoader.Load(GameplaySceneName, 
+                 () => _gameStateMachine.Enter<GameLoopState>());
 
         public void Exit()
         {
+            var staticData = Object.FindObjectOfType<LevelStaticData>();
+            IReadOnlyList<Vector3> _ = staticData.EnemyPositions;
+            ServiceLocator.Resolve<ProgressService>().StaticData = staticData;
+            ServiceLocator.Resolve<InputService>().SetCamera(Camera.main);
+            ServiceLocator.Resolve<GridService>().Init();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using CodeBase.UI.GameplayWindow;
-using CodeBase.Infrastructure;
 using CodeBase.Gameplay;
 
 namespace CodeBase.Services.StateMachine
@@ -8,20 +7,24 @@ namespace CodeBase.Services.StateMachine
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly WindowsService _windowsService;
+        private readonly WaveBuilder _waveBuilder;
+        private readonly ProgressService _progressService;
         private BattleConductor _conductor;
 
-        public GameLoopState(GameStateMachine gameStateMachine, WindowsService windowsService)
+        public GameLoopState(GameStateMachine gameStateMachine, 
+                             WindowsService windowsService,
+                             WaveBuilder waveBuilder,
+                             ProgressService progressService)
         {
             _gameStateMachine = gameStateMachine;
             _windowsService = windowsService;
+            _waveBuilder = waveBuilder;
+            _progressService = progressService;
         }
 
         public void Enter()
         {
-            var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
-            var progressService = ServiceLocator.Resolve<ProgressService>();
-
-            _conductor = new BattleConductor(progressService, waveBuilder);
+            _conductor = new BattleConductor(_progressService, _waveBuilder);
             _windowsService.Show<GameplayWindow>();
         }
     }

@@ -10,6 +10,7 @@ namespace CodeBase.Infrastructure
         public event Action Tick;
 
         [SerializeField] private WindowsService _windowsService;
+        [SerializeField] private LayerMask _gridLayerMask;
 
         private static EntryPoint _instance;
         private Game _game;
@@ -37,10 +38,11 @@ namespace CodeBase.Infrastructure
             var sceneLoader = new SceneLoader(this);
             var assetsProvider = new AssetsProvider();
             var progressService = new ProgressService();
-            var inputService = new InputService(this);
             var databaseProvider = new DatabaseProvider(assetsProvider);
             var gameFactory = new GameFactory(databaseProvider, assetsProvider);
             var waveBuilder = new WaveBuilder(gameFactory, databaseProvider, progressService);
+            var inputService = new InputService(this, _gridLayerMask);
+            var gridService = new GridService(this, inputService);
 
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
@@ -52,6 +54,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(progressService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
+            ServiceLocator.Bind(gridService);
         }
 
         private void Update() => Tick?.Invoke();

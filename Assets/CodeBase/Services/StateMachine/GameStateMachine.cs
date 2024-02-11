@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeBase.Gameplay;
+using CodeBase.Infrastructure;
 
 namespace CodeBase.Services.StateMachine
 {
@@ -13,7 +15,9 @@ namespace CodeBase.Services.StateMachine
             var bootstrapState = new BootstrapState(this, sceneLoader);
             var loadLevelState = new LoadLevelState(this, sceneLoader);
             var menuState = new MenuState(this, windowsService);
-            var gameLoopState = new GameLoopState(this, windowsService);
+            var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
+            var progressService = ServiceLocator.Resolve<ProgressService>();
+            var gameLoopState = new GameLoopState(this, windowsService, waveBuilder, progressService);
 
             _states = new Dictionary<Type, IState>
             {

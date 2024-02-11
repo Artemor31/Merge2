@@ -7,18 +7,43 @@ namespace CodeBase.Services
     {
         public event Action<Vector3> LeftButtonDown;
         public event Action<Vector3> LeftButtonUp;
-
         public Vector3 MousePosition => Input.mousePosition;
-        private readonly IUpdateable _updateable;
-        private bool _clicked;
+        public Vector3 MousePositionOnPlane => PointerOnPlane();
 
-        public InputService(IUpdateable updateable)
+        private readonly IUpdateable _updateable;
+        private readonly LayerMask _layerMask;
+        
+        private Camera _camera;
+        private bool _clicked;
+        private Vector3 _lastPosition;
+
+        public InputService(IUpdateable updateable, LayerMask layerMask)
         {
             _updateable = updateable;
+            _layerMask = layerMask;
             _updateable.Tick += UpdateableOnTick;
         }
 
+        public void SetCamera(Camera camera) => _camera = camera;
+
+        private Vector3 PointerOnPlane()
+        {
+            Ray ray = _camera.ScreenPointToRay(MousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100, _layerMask))
+            {
+                _lastPosition = hit.point;
+                return _lastPosition;
+            }
+
+            return _lastPosition;
+        }
+
         private void UpdateableOnTick()
+        {
+            CheckClicks();
+        }
+
+        private void CheckClicks()
         {
             if (Input.GetMouseButtonDown(0) && _clicked == false)
             {
