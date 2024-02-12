@@ -10,7 +10,7 @@ namespace CodeBase.Services.StateMachine
         private readonly WaveBuilder _waveBuilder;
         private readonly ProgressService _progressService;
         private BattleConductor _conductor;
-
+        
         public GameLoopState(GameStateMachine gameStateMachine, 
                              WindowsService windowsService,
                              WaveBuilder waveBuilder,
