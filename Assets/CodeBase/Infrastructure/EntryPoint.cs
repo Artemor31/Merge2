@@ -55,6 +55,8 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(gridService);
+
+            _windowsService.InitWindows();
         }
 
         private void Update() => Tick?.Invoke();

@@ -25,7 +25,7 @@ namespace CodeBase.Services.StateMachine
         public void Enter()
         {
             _conductor = new BattleConductor(_progressService, _waveBuilder);
-            _windowsService.Show<GameplayWindow>();
+            _windowsService.Show<GameplayPresenter>();
         }
     }
 }

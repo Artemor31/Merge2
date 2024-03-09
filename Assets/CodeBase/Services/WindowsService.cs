@@ -7,13 +7,21 @@ namespace CodeBase.Services
 {
     public class WindowsService : MonoBehaviour, IService
     {
-        [SerializeField] private List<Window> _windows;
+        [SerializeField] private List<Presenter> _windows;
 
-        public void Show<T>() where T : Window
+        public void Show<T>() where T : Presenter
         {
             _windows.First(w => w.GetType() == typeof(T))
                     .gameObject
                     .SetActive(true);
+        }
+
+        public void InitWindows()
+        {
+            foreach (Presenter presenter in _windows)
+            {
+                presenter.Init();
+            }
         }
     }
 }

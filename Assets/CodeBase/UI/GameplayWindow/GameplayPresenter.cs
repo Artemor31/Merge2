@@ -2,54 +2,54 @@
 using System.Linq;
 using CodeBase.Databases;
 using CodeBase.Gameplay;
+using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
 using CodeBase.Services;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeBase.UI.GameplayWindow
 {
-    public class GameplayWindowPresenter
+    public class GameplayPresenter : Presenter
     {
-        private readonly GameplayModel _model;
-        private readonly GameplayWindow _window;
-        private readonly WindowsService _windowsService;
-        private readonly UnitsDatabase _unitsDatabase;
-        private readonly LevelStaticData _levelStaticData;
+        [SerializeField] public Transform UnitsParent;
+        [SerializeField] public LayerMask Ground;
+        [SerializeField] public Button StartWaveButton;
 
-        private readonly UnitCard _cardPrefab;
-
+        private GameplayModel _model;
+        private WindowsService _windowsService;
+        private UnitsDatabase _unitsDatabase;
+        private LevelStaticData _levelStaticData;
+        private UnitCard _cardPrefab;
         private Dictionary<UnitCard, UnitId> _unitCards;
         private bool _refreshed;
 
-        public GameplayWindowPresenter(GameplayWindow window,
-                                       WindowsService windowsService,
-                                       AssetsProvider assetsProvider,
-                                       UnitsDatabase unitsDatabase,
-                                       ProgressService progressService)
+        public override void Init()
         {
+            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>()
+                                           .GetDatabase<UnitsDatabase>();
+
+            var progressService = ServiceLocator.Resolve<ProgressService>();
             _model = progressService.GameplayModel;
-            _window = window;
-            _windowsService = windowsService;
-            _unitsDatabase = unitsDatabase;
             _levelStaticData = progressService.StaticData;
+            _windowsService = ServiceLocator.Resolve<WindowsService>();
+            _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
 
-            _cardPrefab = assetsProvider.Load<UnitCard>(AssetsPath.UnitCard);
-
-            _window.StartWave.onClick.AddListener(StartWave);
+            StartWaveButton.onClick.AddListener(StartWave);
             CreatePlayerCards();
         }
-        
+
         private void CreatePlayerCards()
         {
             _unitCards = new Dictionary<UnitCard, UnitId>();
             foreach (var unitData in _unitsDatabase.Units)
             {
-                var card = Object.Instantiate(_cardPrefab, _window.UnitsParent);
-                
+                UnitCard card = Instantiate(_cardPrefab, UnitsParent);
+
                 card.SetIcon(unitData.Icon);
                 card.SetTitle(unitData.Name);
-                card.Button.onClick.AddListener(() => CardOnClicked(card)); 
+                card.Button.onClick.AddListener(() => CardOnClicked(card));
                 _unitCards.Add(card, unitData.Id);
             }
         }
@@ -65,12 +65,11 @@ namespace CodeBase.UI.GameplayWindow
         private void StartWave()
         {
             _model.State = GameState.Processing;
-            _window.SetBattleState();
         }
 
         private void OpenShowWindow()
         {
-            _windowsService.Show<ShopWindow>();
+            _windowsService.Show<ShopPresenter>();
         }
 
         private void UpdateHp()

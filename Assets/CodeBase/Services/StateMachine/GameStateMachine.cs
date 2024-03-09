@@ -12,19 +12,15 @@ namespace CodeBase.Services.StateMachine
 
         public GameStateMachine(SceneLoader sceneLoader, WindowsService windowsService)
         {
-            var bootstrapState = new BootstrapState(this, sceneLoader);
-            var loadLevelState = new LoadLevelState(this, sceneLoader);
-            var menuState = new MenuState(this, windowsService);
             var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
             var progressService = ServiceLocator.Resolve<ProgressService>();
-            var gameLoopState = new GameLoopState(this, windowsService, waveBuilder, progressService);
 
             _states = new Dictionary<Type, IState>
             {
-                {typeof(BootstrapState), bootstrapState},
-                {typeof(LoadLevelState), loadLevelState},
-                {typeof(MenuState), menuState},
-                {typeof(GameLoopState), gameLoopState},
+                {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader)},
+                {typeof(MenuState), new MenuState(this, windowsService)},
+                {typeof(GameLoopState), new GameLoopState(this, windowsService, waveBuilder, progressService)},
             };
         }
 

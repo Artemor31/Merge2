@@ -8,17 +8,14 @@ namespace CodeBase.Services
 {
     public class GameFactory : IService
     {
+        private readonly AssetsProvider _assetsProvider;
         private readonly UnitsDatabase _database;
-        private readonly UnitCell _cellPrefab;
 
         public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider)
         {
+            _assetsProvider = assetsProvider;
             _database = database.GetDatabase<UnitsDatabase>();
-            _cellPrefab = assetsProvider.Load<UnitCell>(AssetsPath.UnitCellPrefab);
         }
-
-        public UnitCell CreateCell(Vector3 position) => 
-            Object.Instantiate(_cellPrefab, position, Quaternion.identity);
 
         public Unit CreateUnit(UnitId id)
         {

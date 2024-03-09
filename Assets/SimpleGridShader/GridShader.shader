@@ -1,108 +1,105 @@
-﻿// Upgrade NOTE: upgraded instancing buffer 'Props' to new syntax.
+﻿Shader "PDT Shaders/TestGrid"
+{
+    Properties
+    {
+        _LineColor ("Line Color", Color) = (1,1,1,1)
+        _CellColor ("Cell Color", Color) = (0,0,0,0)
+        _SelectedColor ("Selected Color", Color) = (1,0,0,1)
+        [IntRange] _GridSizeX("Grid Size", Range(1,50)) = 10
+        [IntRange] _GridSizeY("Grid Size", Range(1,50)) = 10
+        _LineSize("Line Size", Range(0,1)) = 0.15
+        [IntRange] _SelectCell("Select Cell Toggle ( 0 = False , 1 = True )", Range(0,1)) = 0.0
+        [IntRange] _SelectedCellX("Selected Cell X", Range(0,100)) = 0.0
+        [IntRange] _SelectedCellY("Selected Cell Y", Range(0,100)) = 0.0
+        [PerRendererData] _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        Tags
+        {
+            "Queue"="AlphaTest" "RenderType"="TransparentCutout"
+        }
+        LOD 200
+        
+        CGPROGRAM
+        #pragma surface surf Standard fullforwardshadows
+        #pragma target 3.0
 
-Shader "PDT Shaders/TestGrid" {
-	Properties {
-		_LineColor ("Line Color", Color) = (1,1,1,1)
-		_CellColor ("Cell Color", Color) = (0,0,0,0)
-		_SelectedColor ("Selected Color", Color) = (1,0,0,1)
-		[PerRendererData] _MainTex ("Albedo (RGB)", 2D) = "white" {}
-		[IntRange] _GridSizeX("Grid Size", Range(1,50)) = 10
-		[IntRange] _GridSizeY("Grid Size", Range(1,50)) = 10
-		_LineSize("Line Size", Range(0,1)) = 0.15
-		[IntRange] _SelectCell("Select Cell Toggle ( 0 = False , 1 = True )", Range(0,1)) = 0.0
-		[IntRange] _SelectedCellX("Selected Cell X", Range(0,100)) = 0.0
-		[IntRange] _SelectedCellY("Selected Cell Y", Range(0,100)) = 0.0
-	}
-	SubShader {
-		Tags { "Queue"="AlphaTest" "RenderType"="TransparentCutout" }
-		LOD 200
-	
+        sampler2D _MainTex;
 
-		CGPROGRAM
-		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
+        struct Input
+        {
+            float2 uv_MainTex;
+        };
 
-		// Use shader model 3.0 target, to get nicer looking lighting
-		#pragma target 3.0
+        half _Glossiness = 0.0;
+        half _Metallic = 0.0;
+        float4 _LineColor;
+        float4 _CellColor;
+        float4 _SelectedColor;
 
-		sampler2D _MainTex;
+        float _GridSizeX;
+        float _GridSizeY;
+        float _LineSize;
 
-		struct Input {
-			float2 uv_MainTex;
-		};
+        float _SelectCell;
+        float _SelectedCellX;
+        float _SelectedCellY;
 
-		half _Glossiness = 0.0;
-		half _Metallic = 0.0;
-		float4 _LineColor;
-		float4 _CellColor;
-		float4 _SelectedColor;
+        // #pragma instancing_options assumeuniformscaling
+        UNITY_INSTANCING_BUFFER_START(Props)
+            // put more per-instance properties here
+        UNITY_INSTANCING_BUFFER_END(Props)
 
-		float _GridSizeX;
-		float _GridSizeY;
-		float _LineSize;
+        void surf(Input IN, inout SurfaceOutputStandard output)
+        {
+            // Albedo comes from a texture tinted by color
+            float2 uv = IN.uv_MainTex;
 
-		float _SelectCell;
-		float _SelectedCellX;
-		float _SelectedCellY;
+            _SelectedCellX = floor(_SelectedCellX);
+            _SelectedCellY = floor(_SelectedCellY);
 
-		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-		// #pragma instancing_options assumeuniformscaling
-		UNITY_INSTANCING_BUFFER_START(Props)
-			// put more per-instance properties here
-		UNITY_INSTANCING_BUFFER_END(Props)
+            fixed4 c = float4(0.0, 0.0, 0.0, 0.0);
 
-		void surf (Input IN, inout SurfaceOutputStandard o) {
-			// Albedo comes from a texture tinted by color
+            float gsize_x = floor(_GridSizeX);
+            float gsize_y = floor(_GridSizeY);
 
-			float2 uv = IN.uv_MainTex;
+            gsize_x += _LineSize;
+            gsize_y += _LineSize;
 
-			_SelectedCellX = floor(_SelectedCellX);
-			_SelectedCellY = floor(_SelectedCellY);
+            float2 id;
 
-			fixed4 c = float4(0.0,0.0,0.0,0.0);
+            id.x = floor(uv.x / (1.0 / gsize_x));
+            id.y = floor(uv.y / (1.0 / gsize_y));
 
-			float brightness = 1.;
+            float4 color = _CellColor;
+            float brightness = _CellColor.w;
 
-			float gsizeX = floor(_GridSizeX);
-			float gsizeY = floor(_GridSizeY);
-		    
-			gsizeX += _LineSize;
-			gsizeY += _LineSize;
+            //This checks that the cell is currently selected if the Select Cell slider is set to 1 ( True )
+            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && id.y == _SelectedCellY)
+            {
+                brightness = _SelectedColor.w;
+                color = _SelectedColor;
+            }
 
-			float2 id;
+            if (frac(uv.x * gsize_x) <= _LineSize || frac(uv.y * gsize_y) <= _LineSize)
+            {
+                brightness = _LineColor.w;
+                color = _LineColor;
+            }
 
-			id.x = floor(uv.x/(1.0/gsizeX));
-			id.y = floor(uv.y/(1.0/gsizeY));
+            //Clip transparent spots using alpha cutout
+            if (brightness == 0.0)
+            {
+                clip(c.a - 1.0);
+            }
 
-			float4 color = _CellColor;
-			brightness = _CellColor.w;
-
-			//This checks that the cell is currently selected if the Select Cell slider is set to 1 ( True )
-			if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && id.y == _SelectedCellY)
-			{
-				brightness = _SelectedColor.w;
-				color = _SelectedColor;
-			}
-
-			if (frac(uv.x*gsizeX) <= _LineSize || frac(uv.y*gsizeY) <= _LineSize)
-			{
-				brightness = _LineColor.w;
-				color = _LineColor;
-			}
-
-			//Clip transparent spots using alpha cutout
-			if (brightness == 0.0) {
-				clip(c.a - 1.0);
-			}
-		    
-			o.Albedo = float4( color.x*brightness,color.y*brightness,color.z*brightness,brightness);
-			// Metallic and smoothness come from slider variables
-			o.Metallic = 0.0;
-			o.Smoothness = 0.0;
-			o.Alpha = 0.0;
-		}
-		ENDCG
-	}
-	FallBack "Diffuse"
+            output.Albedo = float4(color.x * brightness, color.y * brightness, color.z * brightness, brightness);
+            output.Metallic = 0.0;
+            output.Smoothness = 0.0;
+            output.Alpha = 0.0;
+        }
+        ENDCG
+    }
+    FallBack "Diffuse"
 }

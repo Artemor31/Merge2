@@ -77,17 +77,17 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SelectCell: 1
-    - _SelectedCellX: 3
-    - _SelectedCellY: 1
+    - _SelectedCellX: 2
+    - _SelectedCellY: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _CellColor: {r: 0.3620395, g: 0.7903564, b: 0.37557003, a: 0}
+    - _CellColor: {r: 0.124763206, g: 0.6679245, b: 0.14456593, a: 1}
     - _Color: {r: 0.935151, g: 0.9705882, b: 0.3282872, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LineColor: {r: 0.4458024, g: 0.9706498, b: 0.27776444, a: 0.57254905}
-    - _SelectedColor: {r: 0.7945492, g: 0.46485412, b: 0.31398848, a: 1}
+    - _LineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SelectedColor: {r: 1, g: 0.13919735, b: 0, a: 1}
   m_BuildTextureStacks: []

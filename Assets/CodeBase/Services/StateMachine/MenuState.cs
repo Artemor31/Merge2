@@ -15,7 +15,7 @@ namespace CodeBase.Services.StateMachine
 
         public void Enter()
         {
-            _windowsService.Show<MenuWindow>();
+            _windowsService.Show<MenuPresenter>();
         }
     }
 }
