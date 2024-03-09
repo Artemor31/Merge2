@@ -2,6 +2,7 @@
 using System.Linq;
 using CodeBase.Databases;
 using CodeBase.Gameplay;
+using CodeBase.Gameplay.Units;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
@@ -24,6 +25,7 @@ namespace CodeBase.UI.GameplayWindow
         private UnitCard _cardPrefab;
         private Dictionary<UnitCard, UnitId> _unitCards;
         private bool _refreshed;
+        private GameFactory _factory;
 
         public override void Init()
         {
@@ -35,6 +37,8 @@ namespace CodeBase.UI.GameplayWindow
             _levelStaticData = progressService.StaticData;
             _windowsService = ServiceLocator.Resolve<WindowsService>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
+
+            _factory = ServiceLocator.Resolve<GameFactory>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             CreatePlayerCards();
@@ -56,10 +60,13 @@ namespace CodeBase.UI.GameplayWindow
 
         private void CardOnClicked(UnitCard card)
         {
-            var unitPrefab = _unitsDatabase.Units.First(u => u.Id == _unitCards[card]).Prefab;
-            var position = _levelStaticData.PlayerPositions.First();
-            var unit = Object.Instantiate(unitPrefab, position, Quaternion.AngleAxis(180, Vector3.up));
-            _model.PlayerUnits.Add(unit);
+            Unit unit = _factory.CreateUnit(_unitCards[card]);
+
+            Vector3 position = _levelStaticData.PlayerPositions.First();
+            Quaternion rotation = Quaternion.AngleAxis(180, Vector3.up);
+
+            unit.transform.SetPositionAndRotation(position, rotation);
+            _model.AddAlly(unit);
         }
 
         private void StartWave()

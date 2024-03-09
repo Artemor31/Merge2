@@ -11,8 +11,8 @@ namespace CodeBase.Models
         
         private GameState _state;
         
-        public List<Unit> EnemyUnits { get; set; } = new();
-        public List<Unit> PlayerUnits { get; set; } = new();
+        public List<Unit> EnemyUnits { get; private set; } = new();
+        public List<Unit> PlayerUnits { get; private set; } = new();
         public GameState State
         {
             get => _state;
@@ -25,5 +25,14 @@ namespace CodeBase.Models
             }
         }
 
+        public void AddEnemy(Unit unit)
+        {
+            EnemyUnits.Add(unit);
+        }
+        
+        public void AddAlly(Unit unit)
+        {
+            PlayerUnits.Add(unit);
+        }
     }
 }
