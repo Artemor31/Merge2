@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using CodeBase.Gameplay;
+using CodeBase.Services.StateMachine;
 
 namespace CodeBase.Infrastructure
 {
@@ -13,7 +14,6 @@ namespace CodeBase.Infrastructure
         [SerializeField] private LayerMask _gridLayerMask;
 
         private static EntryPoint _instance;
-        private Game _game;
 
         private void Start() =>
             CreateGame();
@@ -27,8 +27,8 @@ namespace CodeBase.Infrastructure
                 DontDestroyOnLoad(this);
                 DontDestroyOnLoad(_windowsService);
             }
-
-            _game = new Game(ServiceLocator.Resolve<SceneLoader>(), _windowsService);
+            
+            ServiceLocator.Resolve<GameStateMachine>().Enter<BootstrapState>();
         }
 
         private void BindServices()
@@ -43,6 +43,7 @@ namespace CodeBase.Infrastructure
             var waveBuilder = new WaveBuilder(gameFactory, databaseProvider, progressService);
             var inputService = new InputService(this, _gridLayerMask);
             var gridService = new GridService(this, inputService);
+            var stateMachine = new GameStateMachine(sceneLoader, _windowsService, waveBuilder, progressService);
 
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
@@ -55,6 +56,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(gridService);
+            ServiceLocator.Bind(stateMachine);
 
             _windowsService.InitWindows();
         }

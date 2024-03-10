@@ -37,7 +37,6 @@ namespace CodeBase.UI.GameplayWindow
             _levelStaticData = progressService.StaticData;
             _windowsService = ServiceLocator.Resolve<WindowsService>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
-
             _factory = ServiceLocator.Resolve<GameFactory>();
 
             StartWaveButton.onClick.AddListener(StartWave);
@@ -61,7 +60,6 @@ namespace CodeBase.UI.GameplayWindow
         private void CardOnClicked(UnitCard card)
         {
             Unit unit = _factory.CreateUnit(_unitCards[card]);
-
             Vector3 position = _levelStaticData.PlayerPositions.First();
             Quaternion rotation = Quaternion.AngleAxis(180, Vector3.up);
 

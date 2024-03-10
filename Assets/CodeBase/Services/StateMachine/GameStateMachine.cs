@@ -10,11 +10,8 @@ namespace CodeBase.Services.StateMachine
         private readonly Dictionary<Type, IState> _states;
         private IState _currentState;
 
-        public GameStateMachine(SceneLoader sceneLoader, WindowsService windowsService)
+        public GameStateMachine(SceneLoader sceneLoader, WindowsService windowsService, WaveBuilder waveBuilder, ProgressService progressService)
         {
-            var waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
-            var progressService = ServiceLocator.Resolve<ProgressService>();
-
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},

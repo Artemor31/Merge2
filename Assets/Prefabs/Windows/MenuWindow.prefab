@@ -33,7 +33,6 @@ RectTransform:
   m_Children:
   - {fileID: 93707170056805337}
   m_Father: {fileID: 5207946220980710745}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -153,7 +152,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5207946220980710745}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -268,8 +266,7 @@ GameObject:
   - component: {fileID: 5207946220980710745}
   - component: {fileID: 5207946220980710747}
   - component: {fileID: 5207946220980710746}
-  - component: {fileID: 5207946220980710748}
-  - component: {fileID: 451579062953670255}
+  - component: {fileID: 4920600373714077843}
   m_Layer: 5
   m_Name: MenuWindow
   m_TagString: Untagged
@@ -292,7 +289,6 @@ RectTransform:
   - {fileID: 5207946220657315101}
   - {fileID: 8131112473972013785}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -337,7 +333,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5207946220980710748
+--- !u!114 &4920600373714077843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -346,24 +342,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5207946220980710744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a32a2331ba421d93575ed230f3c4a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bad7bddfbc8474b97e61a972e33738e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: {fileID: 5207946220657315102}
-  PlayButton: {fileID: 1350003155141021932}
---- !u!114 &451579062953670255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5207946220980710744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8ba3ef626041858f2231b336e47b28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _window: {fileID: 5207946220980710748}
+  _playerName: {fileID: 5207946220657315102}
+  _playButton: {fileID: 1350003155141021932}
 --- !u!1 &7586508967328004435
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +378,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8131112473972013785}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
