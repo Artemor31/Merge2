@@ -21,7 +21,7 @@ namespace CodeBase.Services
         {
             _updateable = updateable;
             _layerMask = layerMask;
-            _updateable.Tick += UpdateableOnTick;
+            //_updateable.Tick += UpdateableOnTick;
         }
 
         public void SetCamera(Camera camera) => _camera = camera;
@@ -29,7 +29,7 @@ namespace CodeBase.Services
         private Vector3 PointerOnPlane()
         {
             Ray ray = _camera.ScreenPointToRay(MousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, 100, _layerMask))
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000, _layerMask))
             {
                 _lastPosition = hit.point;
                 return _lastPosition;

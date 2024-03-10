@@ -1,35 +1,29 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
-using CodeBase.LevelData;
 using CodeBase.Models;
 
 namespace CodeBase.Services
 {
-    public class BattleConductor
+    public class BattleConductor : IService
     {
-        private readonly GameplayModel _gameplayModel;
-        private readonly LevelStaticData _staticData;
+        private GameplayModel Model => _progressService.GameplayModel;
+        private readonly ProgressService _progressService;
         private readonly WaveBuilder _waveBuilder;
-
         private bool _battling;
 
         public BattleConductor(ProgressService progressService, WaveBuilder waveBuilder)
         {
-            _gameplayModel = progressService.GameplayModel;
-            _staticData = progressService.StaticData;
+            _progressService = progressService;
             _waveBuilder = waveBuilder;
-            
-            _gameplayModel.StateChanged += GameplayModelOnStateChanged;
-            GameplayModelOnStateChanged(_gameplayModel.State);
         }
 
-        private void GameplayModelOnStateChanged(GameState state)
+        public void SetState(GameState state)
         {
             switch (state)
             {
                 case GameState.Waiting:
-                    _waveBuilder.BuildWave(_staticData, 0);
+                    _waveBuilder.BuildEnemyWave(_progressService.StaticData, _progressService.GameplayModel,0);
                     return;
                 case GameState.Processing:
                     StartBattle();
@@ -39,8 +33,8 @@ namespace CodeBase.Services
 
         private void StartBattle()
         {
-            SetTargets(_gameplayModel.EnemyUnits, _gameplayModel.PlayerUnits);
-            SetTargets(_gameplayModel.PlayerUnits, _gameplayModel.EnemyUnits);
+            SetTargets(Model.EnemyUnits, Model.PlayerUnits);
+            SetTargets(Model.PlayerUnits, Model.EnemyUnits);
         }
 
         private void SetTargets(IEnumerable<Unit> units, List<Unit> candidates)

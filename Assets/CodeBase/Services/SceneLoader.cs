@@ -11,8 +11,8 @@ namespace CodeBase.Services
         public SceneLoader(ICoroutineRunner coroutineRunner) =>
             _coroutineRunner = coroutineRunner;
 
-        public void Load(string name, Action onLoaded = null) =>
-            _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
+        public void Load(string name, Action then = null) =>
+            _coroutineRunner.StartCoroutine(LoadScene(name, then));
 
         public void Unload(string name, Action onUnloaded = null) =>
             _coroutineRunner.StartCoroutine(UnloadScene(name, onUnloaded));

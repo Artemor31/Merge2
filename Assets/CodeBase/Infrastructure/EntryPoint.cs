@@ -40,10 +40,11 @@ namespace CodeBase.Infrastructure
             var progressService = new ProgressService();
             var databaseProvider = new DatabaseProvider(assetsProvider);
             var gameFactory = new GameFactory(databaseProvider, assetsProvider);
-            var waveBuilder = new WaveBuilder(gameFactory, databaseProvider, progressService);
+            var waveBuilder = new WaveBuilder(gameFactory, databaseProvider);
             var inputService = new InputService(this, _gridLayerMask);
             var gridService = new GridService(this, inputService);
-            var stateMachine = new GameStateMachine(sceneLoader, _windowsService, waveBuilder, progressService);
+            var battleConductor = new BattleConductor(progressService, waveBuilder);
+            var stateMachine = new GameStateMachine(sceneLoader, _windowsService, waveBuilder, battleConductor);
 
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
@@ -57,7 +58,20 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(gridService);
             ServiceLocator.Bind(stateMachine);
+            ServiceLocator.Bind(battleConductor);
 
+            // game pipeline
+            
+            // menu
+            // load level from data
+            // start level in wait, show ui
+            // buy stage
+            // fight stage
+            // wave result stage
+            // load level stage (step 2) and repeat
+            // or load menu stage
+            
+            
             _windowsService.InitWindows();
         }
 

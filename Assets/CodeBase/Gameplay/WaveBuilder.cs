@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using CodeBase.Databases;
+using CodeBase.Gameplay.Units;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
@@ -11,20 +12,17 @@ namespace CodeBase.Gameplay
     public class WaveBuilder : IService
     {
         private readonly GameFactory _factory;
-        private readonly GameplayModel _model;
         private readonly WavesDatabase _wavesDatabase;
 
-        public WaveBuilder(GameFactory factory, DatabaseProvider provider, ProgressService progressService)
+        public WaveBuilder(GameFactory factory, DatabaseProvider provider)
         {
             _factory = factory;
-
-            _model = progressService.GameplayModel;
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
         }
 
-        public void BuildWave(LevelStaticData levelStaticData, int wave)
+        public void BuildEnemyWave(LevelStaticData staticData, GameplayModel model, int wave)
         {
-            CleanUp();
+            CleanUp(model);
 
             WavesDatabase.WaveData waveData = CurrentWaveData(wave);
 
@@ -33,19 +31,27 @@ namespace CodeBase.Gameplay
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateUnit(data.Unit);
-                    enemy.transform.position = levelStaticData.EnemyPositions.Random();
-                    _model.EnemyUnits.Add(enemy);
+                    enemy.transform.position = staticData.EnemyPositions.Random();
+                    model.EnemyUnits.Add(enemy);
                 }
+            }
+        }
+
+        public void BuildPlayerWave(LevelStaticData staticData, GameplayModel model)
+        {
+            foreach (Unit unit in model.PlayerUnits)
+            {
+                // сохранять id юнита и его позицию?
             }
         }
 
         private WavesDatabase.WaveData CurrentWaveData(int wave) =>
             _wavesDatabase.WavesData.First(d => d.Wave == wave);
 
-        private void CleanUp()
+        private void CleanUp(GameplayModel model)
         {
-            _model.EnemyUnits.ForEach(Object.Destroy);
-            _model.EnemyUnits.Clear();
+            model.EnemyUnits.ForEach(Object.Destroy);
+            model.EnemyUnits.Clear();
         }
     }
 }

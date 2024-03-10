@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3254555
@@ -428,6 +432,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -615,6 +623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3254555
@@ -711,6 +723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3254555
@@ -772,6 +788,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -868,6 +888,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -992,6 +1016,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1151,6 +1179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.3254557
@@ -1212,6 +1244,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1368,6 +1404,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1719,6 +1759,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2692,6 +2736,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.3254557
@@ -3098,6 +3146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3254555
@@ -3284,6 +3336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.6745443
@@ -3441,6 +3497,10 @@ PrefabInstance:
     - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tiles_Ornate_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138890, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 430894, guid: f84507d8111aabf4c9b10e2297b3a4d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3625,7 +3685,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2092146119}
-  m_Layer: 0
+  - component: {fileID: 2092146120}
+  m_Layer: 6
   m_Name: Tiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3662,6 +3723,27 @@ Transform:
   - {fileID: 532395233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2092146120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092146118}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15.522772, y: 0.33301026, z: 25.294985}
+  m_Center: {x: -1.1732521, y: -0.11082176, z: -4.303624}
 --- !u!1 &2095803359
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using CodeBase.Gameplay;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.StateMachine
@@ -12,23 +11,26 @@ namespace CodeBase.Services.StateMachine
 
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly WaveBuilder _waveBuilder;
 
-        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader)
+        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, WaveBuilder waveBuilder)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
+            _waveBuilder = waveBuilder;
         }
 
         public void Enter() => _sceneLoader.Load(GameplaySceneName, 
-                 () => _gameStateMachine.Enter<GameLoopState>());
+                 then: () => _gameStateMachine.Enter<GameLoopState>());
 
         public void Exit()
         {
-            var staticData = Object.FindObjectOfType<LevelStaticData>();
-            IReadOnlyList<Vector3> _ = staticData.EnemyPositions;
-            ServiceLocator.Resolve<ProgressService>().StaticData = staticData;
-            ServiceLocator.Resolve<InputService>().SetCamera(Camera.main);
-            ServiceLocator.Resolve<GridService>().Init();
+            var progressService = ServiceLocator.Resolve<ProgressService>();
+            progressService.StaticData = Object.FindObjectOfType<LevelStaticData>();
+            int currentWave = progressService.Progress.Wave;
+            
+            _waveBuilder.BuildEnemyWave(progressService.StaticData, progressService.GameplayModel, currentWave);
+            _waveBuilder.BuildPlayerWave(progressService.StaticData, progressService.GameplayModel);
         }
     }
 }
