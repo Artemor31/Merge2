@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
+using CodeBase.Services.StateMachine;
 
 namespace CodeBase.Models
 {
@@ -11,8 +12,8 @@ namespace CodeBase.Models
         
         private GameState _state;
         
-        public List<Unit> EnemyUnits { get; private set; } = new();
-        public List<Unit> PlayerUnits { get; private set; } = new();
+        public List<Actor> EnemyUnits { get; private set; } = new();
+        public List<Actor> PlayerUnits { get; private set; } = new();
         public GameState State
         {
             get => _state;
@@ -25,14 +26,14 @@ namespace CodeBase.Models
             }
         }
 
-        public void AddEnemy(Unit unit)
+        public void AddEnemy(Actor actor)
         {
-            EnemyUnits.Add(unit);
+            EnemyUnits.Add(actor);
         }
         
-        public void AddAlly(Unit unit)
+        public void AddAlly(Actor actor)
         {
-            PlayerUnits.Add(unit);
+            PlayerUnits.Add(actor);
         }
     }
 }

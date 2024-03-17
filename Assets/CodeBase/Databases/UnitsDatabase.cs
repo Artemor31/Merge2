@@ -15,7 +15,7 @@ namespace CodeBase.Databases
         {
             public UnitId Id;
             public Sprite Icon;
-            public Unit Prefab;
+            public Actor Prefab;
             public string Name;
         }
     }
@@ -23,8 +23,7 @@ namespace CodeBase.Databases
     public enum UnitId
     {
         None = 0,
-        Blue = 1,
-        Red = 2,
-        Orange = 3,
+        Skeleton = 1,
+        Orc = 2
     }
 }

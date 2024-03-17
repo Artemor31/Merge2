@@ -6,17 +6,17 @@ namespace CodeBase.Gameplay
 {
     public class UnitCell : MonoBehaviour
     {
-        public bool Free => _unit != null;
+        public bool Free => _actor != null;
         
-        private Unit _unit;
+        private Actor _actor;
 
 
-        public void SetUnit(Unit unit)
+        public void SetUnit(Actor actor)
         {
-            if (_unit != null)
+            if (_actor != null)
                 throw new Exception("Unit already exist");
-            _unit = unit;
-            _unit.transform.position = transform.position;
+            _actor = actor;
+            _actor.transform.position = transform.position;
         }
     }
 }

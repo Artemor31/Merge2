@@ -6,9 +6,9 @@ namespace CodeBase.Gameplay.Units
 {
     public class ClosestTargetSearch : TargetSearch
     {
-        public override Unit Target { get; protected set; }
+        public override Actor Target { get; protected set; }
         
-        public override void SearchTarget(List<Unit> candidates)
+        public override void SearchTarget(List<Actor> candidates)
         {
             if (candidates.Count == 0) return;
 
@@ -31,10 +31,10 @@ namespace CodeBase.Gameplay.Units
             Target = null;
         }
 
-        private bool IsDead(Unit unit) => 
-            unit.Health.Current <= 0;
+        private bool IsDead(Actor actor) => 
+            actor.Health.Current <= 0;
 
-        private float DistanceTo(Unit target) => 
+        private float DistanceTo(Actor target) => 
             Vector3.Distance(target.transform.position, transform.position);
     }
 }

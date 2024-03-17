@@ -11,15 +11,15 @@ namespace CodeBase.Gameplay.Units
         private float _timer;
         private bool _available;
 
-        public override bool CanAttack(Unit unit) => 
-            InRange(unit) && CooldownUp()  && _available;
+        public override bool CanAttack(Actor actor) => 
+            InRange(actor) && CooldownUp()  && _available;
 
-        public override void Attack(Unit unit)
+        public override void Attack(Actor actor)
         {
             _available = true;
-            if (!CanAttack(unit)) return;
+            if (!CanAttack(actor)) return;
             
-            unit.Health.TakeDamage(_damage);
+            actor.Health.TakeDamage(_damage);
             _timer = _attackCooldown;
         }
 
@@ -40,7 +40,7 @@ namespace CodeBase.Gameplay.Units
         private bool CooldownUp() => 
             _timer <= 0;
 
-        private bool InRange(Unit unit) => 
-            Vector3.Distance(transform.position, unit.transform.position) <= _range;
+        private bool InRange(Actor actor) => 
+            Vector3.Distance(transform.position, actor.transform.position) <= _range;
     }
 }

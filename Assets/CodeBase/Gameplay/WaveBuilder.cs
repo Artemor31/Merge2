@@ -39,7 +39,7 @@ namespace CodeBase.Gameplay
 
         public void BuildPlayerWave(LevelStaticData staticData, GameplayModel model)
         {
-            foreach (Unit unit in model.PlayerUnits)
+            foreach (Actor unit in model.PlayerUnits)
             {
                 // сохранять id юнита и его позицию?
             }

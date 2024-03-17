@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Gameplay
+﻿namespace CodeBase.Services.StateMachine
 {
     public enum GameState
     {

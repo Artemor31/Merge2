@@ -7,6 +7,7 @@ using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
 using CodeBase.Services;
+using CodeBase.Services.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,12 +60,13 @@ namespace CodeBase.UI.GameplayWindow
 
         private void CardOnClicked(UnitCard card)
         {
-            Unit unit = _factory.CreateUnit(_unitCards[card]);
-            Vector3 position = _levelStaticData.PlayerPositions.First();
+            Actor actor = _factory.CreateUnit(_unitCards[card]);
+            Platform platform = _levelStaticData.PlayerPositions.First(p => p.Actor == null);
+            if (platform == null) return;
+            
             Quaternion rotation = Quaternion.AngleAxis(180, Vector3.up);
-
-            unit.transform.SetPositionAndRotation(position, rotation);
-            _model.AddAlly(unit);
+            actor.transform.SetPositionAndRotation(platform.transform.position, rotation);
+            _model.AddAlly(actor);
         }
 
         private void StartWave()

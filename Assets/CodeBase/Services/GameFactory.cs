@@ -17,7 +17,7 @@ namespace CodeBase.Services
             _database = database.GetDatabase<UnitsDatabase>();
         }
 
-        public Unit CreateUnit(UnitId id)
+        public Actor CreateUnit(UnitId id)
         {
             var unitData = _database.Units.First(u => u.Id == id);
             var unit = Object.Instantiate(unitData.Prefab);

@@ -2,6 +2,7 @@
 using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
 using CodeBase.Models;
+using CodeBase.Services.StateMachine;
 
 namespace CodeBase.Services
 {
@@ -37,9 +38,9 @@ namespace CodeBase.Services
             SetTargets(Model.PlayerUnits, Model.EnemyUnits);
         }
 
-        private void SetTargets(IEnumerable<Unit> units, List<Unit> candidates)
+        private void SetTargets(IEnumerable<Actor> units, List<Actor> candidates)
         {
-            foreach (Unit unit in units)
+            foreach (Actor unit in units)
                 unit.SetFighting(candidates);
         }
     }
