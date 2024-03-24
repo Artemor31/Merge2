@@ -72,8 +72,8 @@
      <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\Utility\ButtonUtility.cs" />
      <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\PropertyDrawers\ProgressBarPropertyDrawer.cs" />
      <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\Utility\SavedBool.cs" />
-     <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\DecoratorDrawers\HorizontalLineDecoratorDrawer.cs" />
      <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\PropertyDrawers_SpecialCase\SpecialCasePropertyDrawerBase.cs" />
+     <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\DecoratorDrawers\HorizontalLineDecoratorDrawer.cs" />
      <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\PropertyValidators\MaxValuePropertyValidator.cs" />
      <Compile Include="Assets\CodeBase\NaughtyAttributes\Editor\Utility\PropertyUtility.cs" />
      <Folder Include="Assets\CodeBase\NaughtyAttributes\Editor\PropertyValidators" />

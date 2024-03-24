@@ -7,9 +7,9 @@ namespace CodeBase.LevelData
     public class LevelStaticData : MonoBehaviour
     {
         public IReadOnlyList<Vector3> EnemyPositions => _enemyPositions;
-        public IReadOnlyList<Platform> PlayerPositions => _playerPositions;
+        public GridView GridView => _gridView;
         [SerializeField] private List<Vector3> _enemyPositions;
-        [SerializeField] private List<Platform> _playerPositions;
+        [SerializeField] private GridView _gridView;
 
         [SerializeField] private float _delta;
         [SerializeField] private int _countX;

@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CodeBase.Databases;
-using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
-using CodeBase.Models;
 using CodeBase.Services;
 using CodeBase.Services.StateMachine;
 using UnityEngine;
@@ -16,26 +13,22 @@ namespace CodeBase.UI.GameplayWindow
     public class GameplayPresenter : Presenter
     {
         [SerializeField] public Transform UnitsParent;
-        [SerializeField] public LayerMask Ground;
         [SerializeField] public Button StartWaveButton;
 
-        private GameplayModel _model;
         private WindowsService _windowsService;
         private UnitsDatabase _unitsDatabase;
-        private LevelStaticData _levelStaticData;
         private UnitCard _cardPrefab;
         private Dictionary<UnitCard, UnitId> _unitCards;
         private bool _refreshed;
         private GameFactory _factory;
+        private ProgressService _progressService;
 
         public override void Init()
         {
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>()
                                            .GetDatabase<UnitsDatabase>();
 
-            var progressService = ServiceLocator.Resolve<ProgressService>();
-            _model = progressService.GameplayModel;
-            _levelStaticData = progressService.StaticData;
+            _progressService = ServiceLocator.Resolve<ProgressService>();
             _windowsService = ServiceLocator.Resolve<WindowsService>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _factory = ServiceLocator.Resolve<GameFactory>();
@@ -61,17 +54,18 @@ namespace CodeBase.UI.GameplayWindow
         private void CardOnClicked(UnitCard card)
         {
             Actor actor = _factory.CreateUnit(_unitCards[card]);
-            Platform platform = _levelStaticData.PlayerPositions.First(p => p.Actor == null);
+            Platform platform = _progressService.StaticData.GridView.GetFreePlatform();
             if (platform == null) return;
             
             Quaternion rotation = Quaternion.AngleAxis(180, Vector3.up);
             actor.transform.SetPositionAndRotation(platform.transform.position, rotation);
-            _model.AddAlly(actor);
+            _progressService.StaticData.GridView.AddActor(actor, platform);
+            _progressService.GameplayModel.AddAlly(actor);
         }
 
         private void StartWave()
         {
-            _model.State = GameState.Processing;
+            _progressService.GameplayModel.State = GameState.Processing;
         }
 
         private void OpenShowWindow()
