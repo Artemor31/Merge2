@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Gameplay;
 using CodeBase.Gameplay.Units;
 using CodeBase.Services.StateMachine;
 
@@ -10,10 +9,13 @@ namespace CodeBase.Models
     {
         public event Action<GameState> StateChanged;
         
+        public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
+        public IReadOnlyList<Actor> PlayerUnits => _playerUnits;
+
+        private readonly List<Actor> _playerUnits = new();
+        private readonly List<Actor> _enemyUnits = new();
         private GameState _state;
-        
-        public List<Actor> EnemyUnits { get; private set; } = new();
-        public List<Actor> PlayerUnits { get; private set; } = new();
+
         public GameState State
         {
             get => _state;
@@ -26,14 +28,21 @@ namespace CodeBase.Models
             }
         }
 
-        public void AddEnemy(Actor actor)
-        {
-            EnemyUnits.Add(actor);
-        }
-        
+
         public void AddAlly(Actor actor)
         {
-            PlayerUnits.Add(actor);
+            _playerUnits.Add(actor);
+        }
+
+        public void AddEnemy(Actor actor)
+        {
+            _enemyUnits.Add(actor);
+        }
+
+        public void RemoveEnemies()
+        {
+            _enemyUnits.ForEach(UnityEngine.Object.Destroy);
+            _enemyUnits.Clear();
         }
     }
 }

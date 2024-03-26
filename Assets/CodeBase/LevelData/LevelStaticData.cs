@@ -36,7 +36,7 @@ namespace CodeBase.LevelData
 
         private void OnDrawGizmosSelected()
         {
-            if (EnemyPositions != null && EnemyPositions.Count > 0)
+            if (EnemyPositions is {Count: > 0})
             {
                 foreach (var position in _enemyPositions)
                 {

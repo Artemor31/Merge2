@@ -5,7 +5,6 @@ using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Models;
 using CodeBase.Services;
-using UnityEngine;
 
 namespace CodeBase.Gameplay
 {
@@ -22,17 +21,15 @@ namespace CodeBase.Gameplay
 
         public void BuildEnemyWave(LevelStaticData staticData, GameplayModel model, int wave)
         {
-            CleanUp(model);
+            model.RemoveEnemies();
 
-            WavesDatabase.WaveData waveData = CurrentWaveData(wave);
-
-            foreach (WavesDatabase.EnemyAmount data in waveData.Enemies)
+            foreach (WavesDatabase.EnemyAmount data in WaveData(wave).Enemies)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateUnit(data.Unit);
                     enemy.transform.position = staticData.EnemyPositions.Random();
-                    model.EnemyUnits.Add(enemy);
+                    model.AddEnemy(enemy);
                 }
             }
         }
@@ -45,13 +42,7 @@ namespace CodeBase.Gameplay
             }
         }
 
-        private WavesDatabase.WaveData CurrentWaveData(int wave) =>
+        private WavesDatabase.WaveData WaveData(int wave) =>
             _wavesDatabase.WavesData.First(d => d.Wave == wave);
-
-        private void CleanUp(GameplayModel model)
-        {
-            model.EnemyUnits.ForEach(Object.Destroy);
-            model.EnemyUnits.Clear();
-        }
     }
 }

@@ -11,15 +11,16 @@ namespace CodeBase.Databases
         public List<UnitData> Units;
         
         [Serializable]
-        public class UnitData
+        public class UnitData 
         {
             public UnitId Id;
             public Sprite Icon;
             public Actor Prefab;
             public string Name;
+            public int Level;
         }
     }
-    
+
     public enum UnitId
     {
         None = 0,

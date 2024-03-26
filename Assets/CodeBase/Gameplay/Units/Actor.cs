@@ -5,57 +5,59 @@ namespace CodeBase.Gameplay.Units
 {
     public class Actor : MonoBehaviour
     {
-        [field: SerializeField] public Health Health { get; set; }
-        [field: SerializeField] public Mover Mover { get; set; }
-        [field: SerializeField] public TargetSearch TargetSearch { get; set; }
-        [field: SerializeField] public Attacker Attacker { get; set; }
+        [field: SerializeField] public int Level { get; private set; }
 
+        [SerializeField] private Health _health;
+        [SerializeField] private Mover _mover;
+        [SerializeField] private TargetSearch _targetSearch;
+        [SerializeField] private Attacker _attacker;
+        [SerializeField] private AnimatorScheduler _animator;
+
+        public bool IsDead => _health.Current <= 0;
         private UnitState _state = UnitState.Idle;
         private List<Actor> _candidates;
 
-        public void SetFighting(List<Actor> candidates)
+        public Actor Initialize()
+        {
+            _state = UnitState.Idle;
+            _health.Reset();
+            _targetSearch.Disable();
+            return this;
+        }
+
+        public void Unleash(List<Actor> candidates)
         {
             _state = UnitState.Fighting;
             _candidates = candidates;
-            TargetSearch.SearchTarget(_candidates);
-            Mover.MoveTo(TargetSearch.Target);
-            Health.Died += OnDies;
+            _targetSearch.SearchTarget(_candidates);
+            _mover.MoveTo(_targetSearch.Target);
+            _health.Died += OnDies;
         }
 
-        public void SetIdle()
-        {
-            _state = UnitState.Idle;
-            Health.Reset();
-            TargetSearch.Reset();
-        }
+        public void TakeDamage(float damage) => _health.TakeDamage(damage);
 
         private void Update()
         {
-            return;
-            if (Health.Current <= 0 || _state == UnitState.Idle) return;
+            if (IsDead || _state == UnitState.Idle) return;
 
-            if (TargetSearch.Target == null || TargetSearch.Target.Health.Current <= 0)
+            _attacker.Tick();
+
+            if (_targetSearch.NeedNewTarget())
             {
-                TargetSearch.SearchTarget(_candidates);
+                _targetSearch.SearchTarget(_candidates);
             }
 
-            if (Attacker.InRange(TargetSearch.Target.transform.position) == false)
+            if (_attacker.InRange(_targetSearch.Target.transform.position) == false)
             {
-                
             }
         }
 
         private void OnDies()
         {
-            Health.Died -= OnDies;
-            Reset();
-        }
-
-        private void Reset()
-        {
-            Attacker.Reset();
-            Mover.Reset();
-            TargetSearch.Reset();
+            _health.Died -= OnDies;
+            _attacker.Disable();
+            _mover.Reset();
+            _targetSearch.Disable();
         }
     }
 }

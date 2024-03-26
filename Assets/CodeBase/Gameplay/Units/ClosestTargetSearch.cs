@@ -19,20 +19,18 @@ namespace CodeBase.Gameplay.Units
             {
                 var unit = candidates[index];
                 
-                if (IsDead(unit) == false && DistanceTo(unit) < targetDistance)
+                if (unit.IsDead == false && DistanceTo(unit) < targetDistance)
                     targetIndex = index;
             }
 
             Target = candidates[targetIndex];
         }
 
-        public override void Reset()
-        {
+        public override void Disable() => 
             Target = null;
-        }
 
-        private bool IsDead(Actor actor) => 
-            actor.Health.Current <= 0;
+        public override bool NeedNewTarget() => 
+            Target == null || Target.IsDead;
 
         private float DistanceTo(Actor target) => 
             Vector3.Distance(target.transform.position, transform.position);

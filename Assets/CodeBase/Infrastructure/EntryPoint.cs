@@ -11,7 +11,6 @@ namespace CodeBase.Infrastructure
         public event Action Tick;
 
         [SerializeField] private WindowsService _windowsService;
-        [SerializeField] private LayerMask _gridLayerMask;
 
         private static EntryPoint _instance;
 
@@ -41,24 +40,22 @@ namespace CodeBase.Infrastructure
             var databaseProvider = new DatabaseProvider(assetsProvider);
             var gameFactory = new GameFactory(databaseProvider, assetsProvider);
             var waveBuilder = new WaveBuilder(gameFactory, databaseProvider);
-            var inputService = new InputService(this, _gridLayerMask);
-            var gridService = new GridService(this, inputService);
             var battleConductor = new BattleConductor(progressService, waveBuilder);
             var stateMachine = new GameStateMachine(sceneLoader, _windowsService, waveBuilder, battleConductor);
+            var mergeService = new MergeService(gameFactory, databaseProvider);
 
+            ServiceLocator.Bind(this as ICoroutineRunner);
+            ServiceLocator.Bind(this as IUpdateable);
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
             ServiceLocator.Bind(assetsProvider);
-            ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(databaseProvider);
-            ServiceLocator.Bind(this as IUpdateable);
-            ServiceLocator.Bind(inputService);
             ServiceLocator.Bind(progressService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
-            ServiceLocator.Bind(gridService);
             ServiceLocator.Bind(stateMachine);
             ServiceLocator.Bind(battleConductor);
+            ServiceLocator.Bind(mergeService);
 
             // game pipeline
             

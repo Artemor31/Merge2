@@ -19,9 +19,6 @@ namespace CodeBase.Gameplay.Units
         public override void Reset() => 
             Current = _maxHealth;
 
-        private void Awake() =>
-            Reset();
-
         private void Die()
         {
             Debug.LogError($"{gameObject.name} dies :(");

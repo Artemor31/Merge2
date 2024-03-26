@@ -19,11 +19,11 @@ namespace CodeBase.Gameplay.Units
             _available = true;
             if (!CanAttack(actor)) return;
             
-            actor.Health.TakeDamage(_damage);
+            actor.TakeDamage(_damage);
             _timer = _attackCooldown;
         }
 
-        public override void Reset() =>
+        public override void Disable() =>
             _available = false;
 
         public override bool InRange(Vector3 transformPosition)
@@ -31,7 +31,7 @@ namespace CodeBase.Gameplay.Units
             return true;
         }
 
-        private void Update()
+        public override void Tick()
         {
             if (CooldownUp() == false)
                 _timer -= Time.deltaTime;

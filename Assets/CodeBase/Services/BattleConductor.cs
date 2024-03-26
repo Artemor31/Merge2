@@ -34,14 +34,12 @@ namespace CodeBase.Services
 
         private void StartBattle()
         {
-            SetTargets(Model.EnemyUnits, Model.PlayerUnits);
-            SetTargets(Model.PlayerUnits, Model.EnemyUnits);
         }
 
         private void SetTargets(IEnumerable<Actor> units, List<Actor> candidates)
         {
             foreach (Actor unit in units)
-                unit.SetFighting(candidates);
+                unit.Unleash(candidates);
         }
     }
 }
