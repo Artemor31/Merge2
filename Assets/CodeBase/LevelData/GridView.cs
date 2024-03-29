@@ -2,6 +2,7 @@
 using System.Linq;
 using CodeBase.Gameplay.Units;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace CodeBase.LevelData
 {
@@ -69,6 +70,7 @@ namespace CodeBase.LevelData
                 SetSelected(true);
                 _actor = _formation[platform];
                 _platform = platform;
+                _actor.GetComponent<NavMeshAgent>().enabled = false;
             }
         }
 
@@ -80,6 +82,8 @@ namespace CodeBase.LevelData
                 {
                     _formation[platform] = _actor;
                     _actor.transform.position = platform.transform.position;
+                    
+                    _actor.GetComponent<NavMeshAgent>().enabled = true;
                     _formation[_platform] = null;
                 }
                 else
