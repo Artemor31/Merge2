@@ -27,6 +27,7 @@ namespace CodeBase.Services.StateMachine
         {
             var progressService = ServiceLocator.Resolve<ProgressService>();
             progressService.StaticData = Object.FindObjectOfType<LevelStaticData>();
+            progressService.StaticData.GridView.Init(ServiceLocator.Resolve<MergeService>());
             int currentWave = progressService.Progress.Wave;
             
             _waveBuilder.BuildEnemyWave(progressService.StaticData, progressService.GameplayModel, currentWave);

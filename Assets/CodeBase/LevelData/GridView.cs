@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Gameplay.Units;
+using CodeBase.Services;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +26,12 @@ namespace CodeBase.LevelData
         private bool _dragging;
         private Actor _actor;
         private Platform _platform;
+        private MergeService _mergeService;
+
+        public void Init(MergeService mergeService)
+        {
+            _mergeService = mergeService;
+        }
 
         private void OnEnable()
         {
@@ -33,7 +40,7 @@ namespace CodeBase.LevelData
             _formation = new Dictionary<Platform, Actor>();
             _hits = new RaycastHit[5];
             _camera = Camera.main;
-            
+
             foreach (Platform platform in _platforms)
             {
                 platform.OnClicked += PlatformOnOnClicked;
@@ -46,7 +53,7 @@ namespace CodeBase.LevelData
         private void Update()
         {
             if (!_dragging) return;
-            
+
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (RaycastPlatform(out Platform platform))
             {
@@ -62,9 +69,9 @@ namespace CodeBase.LevelData
 
         public void AddActor(Actor actor, Platform platform) => _formation[platform] = actor;
 
-        private void PlatformOnOnClicked(Vector2Int position)
+        private void PlatformOnOnClicked(Platform platform)
         {
-            if (RaycastPlatform(out Platform platform) && _formation[platform] != null)
+            if (_formation[platform] != null)
             {
                 _dragging = true;
                 SetSelected(true);
@@ -74,22 +81,38 @@ namespace CodeBase.LevelData
             }
         }
 
-        private void PlatformOnOnReleased(Vector2Int position)
+        private void PlatformOnOnReleased(Platform platform)
         {
-            if (RaycastPlatform(out Platform platform) && _actor != null)
+            if (RaycastPlatform(out Platform castedPlatform) && _actor != null)
             {
-                if (_formation[platform] == null)
+                // if new grid is empty
+                if (_formation[castedPlatform] == null)
                 {
-                    _formation[platform] = _actor;
-                    _actor.transform.position = platform.transform.position;
-                    
+                    _formation[castedPlatform] = _actor;
+                    _actor.transform.position = castedPlatform.transform.position;
+
                     _actor.GetComponent<NavMeshAgent>().enabled = true;
                     _formation[_platform] = null;
                 }
                 else
                 {
-                    _actor.transform.position = _platform.transform.position;
+                    if (_mergeService.TryMerge(_formation[castedPlatform], _actor, out var newActor))
+                    {
+                        Destroy(_formation[castedPlatform].gameObject);
+                        _formation[castedPlatform] = null;
+                        
+                        Destroy(_formation[platform].gameObject);
+                        _formation[platform] = null;
+                        
+                        newActor.transform.position = castedPlatform.transform.position;
+                        _formation[castedPlatform] = newActor;
+                    }
+                    else
+                    {
+                        _actor.transform.position = _platform.transform.position;
+                    }
                 }
+
                 SetSelected(false);
                 _dragging = false;
                 _actor = null;

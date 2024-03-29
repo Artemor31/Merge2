@@ -3487,6 +3487,12 @@ GameObject:
   - component: {fileID: 497534}
   - component: {fileID: 9508676}
   - component: {fileID: 245096800991137023}
+  - component: {fileID: 3864560027553823599}
+  - component: {fileID: 4891314235274067247}
+  - component: {fileID: 1021737018053504334}
+  - component: {fileID: 5068843752131825768}
+  - component: {fileID: 146924161607811053}
+  - component: {fileID: 1901995393960884303}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Untagged
@@ -3536,7 +3542,7 @@ Animator:
   m_GameObject: {fileID: 173802}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dec9347ed96b9c44a9fd5c1de88d34d2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3559,10 +3565,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67406d005e3b41e6a4aeed482b629eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: {fileID: 0}
-  <Mover>k__BackingField: {fileID: 0}
-  <TargetSearch>k__BackingField: {fileID: 0}
-  <Attacker>k__BackingField: {fileID: 0}
+  <Level>k__BackingField: 1
+  _health: {fileID: 3864560027553823599}
+  _mover: {fileID: 4891314235274067247}
+  _targetSearch: {fileID: 1021737018053504334}
+  _attacker: {fileID: 5068843752131825768}
+  _animator: {fileID: 146924161607811053}
+--- !u!114 &3864560027553823599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766e60318b7341e7b43d6b83e3b41cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+--- !u!114 &4891314235274067247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e2f4c196594f78a5e5b0c991cdf356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 1901995393960884303}
+  _speed: 3
+--- !u!114 &1021737018053504334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3038dff8868e4684b038727fa52c4c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5068843752131825768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6da52c1ea44229e1d92a51b6ce16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _range: 1
+  _attackCooldown: 11
+--- !u!114 &146924161607811053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284e6109c6184dd4937b5fd96476789a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 9508676}
+--- !u!195 &1901995393960884303
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &174376
 GameObject:
   m_ObjectHideFlags: 0

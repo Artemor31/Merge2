@@ -20,7 +20,7 @@ namespace CodeBase.Services
             result = null;
             if (actor.Level != actor2.Level) return false;
 
-            var unit = _unitsDatabase.Units.First(u => u.Level == actor.Level);
+            var unit = _unitsDatabase.Units.First(u => u.Level == actor.Level + 1);
             result = _gameFactory.CreateUnit(unit.Id);
             return true;
         }
