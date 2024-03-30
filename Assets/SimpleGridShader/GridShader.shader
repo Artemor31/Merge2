@@ -20,7 +20,7 @@
             "Queue"="AlphaTest" "RenderType"="TransparentCutout"
         }
         LOD 200
-        
+
         CGPROGRAM
         #pragma surface surf Standard fullforwardshadows
         #pragma target 3.0
@@ -68,15 +68,15 @@
             gsize_y += _LineSize;
 
             float2 id;
-
-            id.x = floor(uv.x / (1.0 / gsize_x));
-            id.y = floor(uv.y / (1.0 / gsize_y));
+            
+            id.x = floor(uv.x * gsize_x);
+            id.y = floor(uv.y * gsize_y);
 
             float4 color = _CellColor;
             float brightness = _CellColor.w;
 
             //This checks that the cell is currently selected if the Select Cell slider is set to 1 ( True )
-            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && (id.y == floor(gsize_y - _SelectedCellY -1)))
+            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && (id.y == floor(gsize_y - _SelectedCellY - 1)))
             {
                 brightness = _SelectedColor.w;
                 color = _SelectedColor;
