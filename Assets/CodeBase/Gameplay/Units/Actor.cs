@@ -17,8 +17,9 @@ namespace CodeBase.Gameplay.Units
         private UnitState _state = UnitState.Idle;
         private List<Actor> _candidates;
 
-        public Actor Initialize()
+        public Actor Initialize(int level)
         {
+            Level = level;
             _state = UnitState.Idle;
             _health.Reset();
             _targetSearch.Disable();

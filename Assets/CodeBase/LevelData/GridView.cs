@@ -84,26 +84,28 @@ namespace CodeBase.LevelData
         {
             if (RaycastPlatform(out Platform castedPlatform) && _dragging)
             {
-                // if new grid is empty
-                var casted = _dataProvider[castedPlatform.Index];
-                var selected = _dataProvider[_selected];
-                
-                if (casted.Busy == false)
+                GridRuntimeData casted = _dataProvider[castedPlatform.Index];
+                GridRuntimeData selected = _dataProvider[_selected];
+
+                // placed at start cell
+                if (casted.Index == _selected)
+                {
+                    selected.Actor.transform.position = selected.Platform.transform.position;
+                }
+                // placed at empty cell
+                else if (casted.Busy == false)
                 {
                     casted.Actor = selected.Actor;
-                    casted.Actor.transform.position = castedPlatform.transform.position;
+                    casted.Actor.transform.position = casted.Platform.transform.position;
                     casted.Actor.GetComponent<NavMeshAgent>().enabled = true;
                     selected.Actor = null;
                 }
+                // placed at empty cell
                 else
                 {
-                    // can merge
-                    Actor actor = _dataProvider[castedPlatform.Index].Actor;
-                    Actor actor2 = selected.Actor;
-                    
-                    if (_mergeService.TryMerge(actor, actor2, out var newActor))
+                    if (_mergeService.TryMerge(_dataProvider[casted.Index].Actor, selected.Actor, out var newActor))
                     {
-                        Destroy(actor.gameObject);
+                        Destroy(_dataProvider[castedPlatform.Index].Actor.gameObject);
                         _dataProvider[castedPlatform.Index].Actor = null;
 
                         Destroy(_dataProvider[platform.Index].Actor.gameObject);

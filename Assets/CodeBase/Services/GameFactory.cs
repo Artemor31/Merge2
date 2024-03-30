@@ -32,6 +32,7 @@ namespace CodeBase.Services
             var unitData = _unitsDatabase.Units.First(u => u.Id == id);
             var unit = Object.Instantiate(unitData.Prefab);
             unit.gameObject.name += Random.Range(0, 10000);
+            unit.Initialize(unitData.Level);
             return unit;
         }
 
