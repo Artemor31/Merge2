@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Units
@@ -7,27 +6,23 @@ namespace CodeBase.Gameplay.Units
     public class ClosestTargetSearch : TargetSearch
     {
         public override Actor Target { get; protected set; }
+        public override Vector3 TargetPoint => Target.transform.position;
         
-        public override void SearchTarget(List<Actor> candidates)
+        public override void SearchTarget(IReadOnlyList<Actor> candidates)
         {
-            if (candidates.Count == 0) return;
-
-            var targetIndex = 0;
-            float targetDistance = DistanceTo(candidates.First());
-
-            for (var index = 1; index < candidates.Count; index++)
-            {
-                var unit = candidates[index];
-                
-                if (unit.IsDead == false && DistanceTo(unit) < targetDistance)
-                    targetIndex = index;
-            }
-
-            Target = candidates[targetIndex];
-        }
-
-        public override void Disable() => 
             Target = null;
+            float currentDistance = float.MaxValue;
+            foreach (Actor actor in candidates)
+            {
+                if (actor.IsDead) continue;
+                float distance = DistanceTo(actor);
+                if (distance < currentDistance)
+                {
+                    Target = actor;
+                    currentDistance = distance;
+                }
+            }
+        }
 
         public override bool NeedNewTarget() => 
             Target == null || Target.IsDead;

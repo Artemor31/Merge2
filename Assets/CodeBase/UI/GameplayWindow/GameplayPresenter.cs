@@ -64,6 +64,14 @@ namespace CodeBase.UI.GameplayWindow
 
         private void StartWave()
         {
+            var playerUnits = _runtimeDataProvider.GetPlayerUnits();
+            var enemyUnits = _runtimeDataProvider.EnemyUnits;
+            
+            foreach (Actor actor in playerUnits) 
+                actor.Unleash(enemyUnits);
+
+            foreach (Actor actor in enemyUnits) 
+                actor.Unleash(playerUnits);
         }
 
         private void OpenShowWindow()

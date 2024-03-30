@@ -9,21 +9,14 @@ namespace CodeBase.Services.SaveService
 {
     public class RuntimeDataProvider : IService
     {
-        public IReadOnlyList<Actor> PlayerUnits => GetPlayerUnits();
         public int Wave => _progress.Wave;
         public Vector2Int GridSize => _progress.GridSize;
-
-        public GridRuntimeData[,] GridData => _gridData;
-
-        public GridRuntimeData this[Vector2Int index]
-        {
-            get => _gridData[index.x, index.y];
-            set => _gridData[index.x, index.y] = value;
-        }
+        public GridRuntimeData this[Vector2Int index] => GridData[index.x, index.y];
+        
+        public GridRuntimeData[,] GridData { get; }
+        public List<Actor> EnemyUnits { get; }
 
         private readonly PlayerProgress _progress;
-        private readonly GridRuntimeData[,] _gridData;
-        private readonly List<Actor> _enemyUnits;
 
         public RuntimeDataProvider()
         {
@@ -34,10 +27,10 @@ namespace CodeBase.Services.SaveService
                 GridSize = new Vector2Int(3, 5)
             };
 
-            _gridData = new GridRuntimeData[_progress.GridSize.x, _progress.GridSize.y];
+            GridData = new GridRuntimeData[_progress.GridSize.x, _progress.GridSize.y];
 
-            DoForeach((i, j) => _gridData[i, j] = new GridRuntimeData());
-            _enemyUnits = new List<Actor>();
+            DoForeach((i, j) => GridData[i, j] = new GridRuntimeData());
+            EnemyUnits = new List<Actor>();
         }
 
 
@@ -84,12 +77,12 @@ namespace CodeBase.Services.SaveService
         public void SetupPlatforms(Platform[,] platforms) =>
             DoForeach((i, j) => GridData[i, j].Platform = platforms[i, j].Init(i, j));
 
-        private IReadOnlyList<Actor> GetPlayerUnits()
+        public IReadOnlyList<Actor> GetPlayerUnits()
         {
             List<Actor> units = new();
             DoForeach((i, j) =>
             {
-                if (GridData[i, j].Busy == false)
+                if (GridData[i, j].Busy)
                     units.Add(GridData[i, j].Actor);
             });
 
@@ -103,12 +96,12 @@ namespace CodeBase.Services.SaveService
                     action.Invoke(i, j);
         }
 
-        public void AddEnemy(Actor actor) => _enemyUnits.Add(actor);
+        public void AddEnemy(Actor actor) => EnemyUnits.Add(actor);
 
         public void RemoveEnemies()
         {
-            _enemyUnits.ForEach(Object.Destroy);
-            _enemyUnits.Clear();
+            EnemyUnits.ForEach(Object.Destroy);
+            EnemyUnits.Clear();
         }
     }
 }

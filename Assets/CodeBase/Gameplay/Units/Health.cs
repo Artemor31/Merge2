@@ -8,6 +8,6 @@ namespace CodeBase.Gameplay.Units
         public abstract event Action Died;
         public abstract float Current { get; protected set; }
         public abstract void TakeDamage(float damage);
-        public abstract void Reset();
+        public abstract void Init(AnimatorScheduler animator);
     }
 }

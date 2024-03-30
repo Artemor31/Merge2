@@ -15,23 +15,22 @@ namespace CodeBase.Gameplay.Units
 
         public bool IsDead => _health.Current <= 0;
         private UnitState _state = UnitState.Idle;
-        private List<Actor> _candidates;
+        private IReadOnlyList<Actor> _candidates;
 
-        public Actor Initialize(int level)
+        public void Initialize(int level)
         {
             Level = level;
             _state = UnitState.Idle;
-            _health.Reset();
-            _targetSearch.Disable();
-            return this;
+            _health.Init(_animator);
+            _mover.Init(_animator);
+            _attacker.Init(_animator);
         }
 
-        public void Unleash(List<Actor> candidates)
+        public void Unleash(IReadOnlyList<Actor> candidates)
         {
             _state = UnitState.Fighting;
             _candidates = candidates;
             _targetSearch.SearchTarget(_candidates);
-            _mover.MoveTo(_targetSearch.Target);
             _health.Died += OnDies;
         }
 
@@ -41,24 +40,32 @@ namespace CodeBase.Gameplay.Units
         {
             if (IsDead || _state == UnitState.Idle) return;
 
-            _attacker.Tick();
-
             if (_targetSearch.NeedNewTarget())
             {
                 _targetSearch.SearchTarget(_candidates);
             }
-
-            if (_attacker.InRange(_targetSearch.Target.transform.position) == false)
+            
+            if (_targetSearch.Target == null) return;
+            
+            _attacker.Tick();
+            if (_attacker.InRange(_targetSearch.Target))
             {
+                _mover.Stop();
+                if (_attacker.CanAttack(_targetSearch.Target))
+                {
+                    _attacker.Attack(_targetSearch.Target);
+                }
+            }
+            else
+            {
+                _mover.MoveTo(_targetSearch.Target);
             }
         }
 
         private void OnDies()
         {
             _health.Died -= OnDies;
-            _attacker.Disable();
-            _mover.Reset();
-            _targetSearch.Disable();
+            _mover.Stop();
         }
     }
 }

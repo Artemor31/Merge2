@@ -6,8 +6,8 @@ namespace CodeBase.Gameplay.Units
     {
         public abstract bool CanAttack(Actor actor);
         public abstract void Attack(Actor actor);
-        public abstract void Disable();
-        public abstract bool InRange(Vector3 transformPosition);
+        public abstract bool InRange(Actor actor);
         public abstract void Tick();
+        public abstract void Init(AnimatorScheduler animator);
     }
 }

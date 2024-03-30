@@ -16,4 +16,4 @@ MonoBehaviour:
   - Wave: 0
     Enemies:
     - Unit: 1
-      Amount: 5
+      Amount: 7

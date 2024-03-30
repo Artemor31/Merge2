@@ -49,7 +49,7 @@ namespace CodeBase.Services.StateMachine
             _levelDataProvider.AddItem(grid);
             
             _waveBuilder.BuildEnemyWave(spawner, _runtimeDataProvider);
-            _waveBuilder.BuildPlayerWave(spawner, _runtimeDataProvider.PlayerUnits);
+            _waveBuilder.BuildPlayerWave(spawner, _runtimeDataProvider.GetPlayerUnits());
         }
     }
 }
