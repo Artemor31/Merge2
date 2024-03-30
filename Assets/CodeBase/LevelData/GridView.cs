@@ -76,6 +76,7 @@ namespace CodeBase.LevelData
             
             _dragging = true;
             _selected = platform.Index;
+            SetSelected(_selected);
             SetSelected(true);
             gridRuntimeData.Actor.GetComponent<NavMeshAgent>().enabled = false;
         }
@@ -128,7 +129,8 @@ namespace CodeBase.LevelData
 
         private void PlatformOnOnHovered(Vector2Int position)
         {
-            SetSelected(position);
+            if (_dragging)
+                SetSelected(position);
         }
 
         private bool RaycastPlatform(out Platform platform)

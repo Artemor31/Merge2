@@ -76,7 +76,7 @@
             float brightness = _CellColor.w;
 
             //This checks that the cell is currently selected if the Select Cell slider is set to 1 ( True )
-            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && id.y == _SelectedCellY)
+            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && (id.y == floor(gsize_y - _SelectedCellY -1)))
             {
                 brightness = _SelectedColor.w;
                 color = _SelectedColor;
