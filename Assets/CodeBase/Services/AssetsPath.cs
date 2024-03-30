@@ -4,6 +4,8 @@
     {
         public const string DatabasesFolder = "Databases/";
         public const string UnitCard = "UnitCard";
-        public const string UnitCellPrefab = "UnitCell";
+        public const string GridView = "GridView";
+        public const string EnemiesSpawner = "EnemiesSpawner";
+        public const string Platform = "Platform";
     }
 }

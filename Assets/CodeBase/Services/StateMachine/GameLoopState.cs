@@ -7,20 +7,16 @@ namespace CodeBase.Services.StateMachine
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly WindowsService _windowsService;
-        private readonly BattleConductor _conductor;
         
         public GameLoopState(GameStateMachine gameStateMachine, 
-                             WindowsService windowsService,
-                             BattleConductor conductor)
+                             WindowsService windowsService)
         {
             _gameStateMachine = gameStateMachine;
             _windowsService = windowsService;
-            _conductor = conductor;
         }
 
         public void Enter()
         {
-            _conductor.SetState(GameState.Waiting);
             _windowsService.Show<GameplayPresenter>();
         }
     }

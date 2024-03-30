@@ -4,6 +4,7 @@ using CodeBase.Gameplay.Units;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Services;
+using CodeBase.Services.SaveService;
 using CodeBase.Services.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,14 +22,14 @@ namespace CodeBase.UI.GameplayWindow
         private Dictionary<UnitCard, UnitId> _unitCards;
         private bool _refreshed;
         private GameFactory _factory;
-        private ProgressService _progressService;
+        private RuntimeDataProvider _runtimeDataProvider;
 
         public override void Init()
         {
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>()
                                            .GetDatabase<UnitsDatabase>();
 
-            _progressService = ServiceLocator.Resolve<ProgressService>();
+            _runtimeDataProvider = ServiceLocator.Resolve<RuntimeDataProvider>();
             _windowsService = ServiceLocator.Resolve<WindowsService>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _factory = ServiceLocator.Resolve<GameFactory>();
@@ -53,19 +54,16 @@ namespace CodeBase.UI.GameplayWindow
 
         private void CardOnClicked(UnitCard card)
         {
-            Actor actor = _factory.CreateUnit(_unitCards[card]);
-            Platform platform = _progressService.StaticData.GridView.GetFreePlatform();
+            Platform platform = _runtimeDataProvider.GetFreePlatform();
             if (platform == null) return;
             
-            Quaternion rotation = Quaternion.AngleAxis(180, Vector3.up);
-            actor.transform.SetPositionAndRotation(platform.transform.position, rotation);
-            _progressService.StaticData.GridView.AddActor(actor, platform);
-            _progressService.GameplayModel.AddAlly(actor);
+            Actor actor = _factory.CreateUnit(_unitCards[card]);
+            actor.transform.position = platform.transform.position;
+            _runtimeDataProvider.AddActor(actor, platform);
         }
 
         private void StartWave()
         {
-            _progressService.GameplayModel.State = GameState.Processing;
         }
 
         private void OpenShowWindow()

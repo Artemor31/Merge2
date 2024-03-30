@@ -1,56 +1,60 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CodeBase.Gameplay.Units;
 using CodeBase.Services;
+using CodeBase.Services.SaveService;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace CodeBase.LevelData
 {
-    public class GridView : MonoBehaviour
+    public class GridView : LevelItem
     {
-        private static readonly int GridSizeX = Shader.PropertyToID("_GridSizeX");
-        private static readonly int GridSizeY = Shader.PropertyToID("_GridSizeY");
         private static readonly int SelectCell = Shader.PropertyToID("_SelectCell");
         private static readonly int SelectedCellX = Shader.PropertyToID("_SelectedCellX");
         private static readonly int SelectedCellY = Shader.PropertyToID("_SelectedCellY");
 
-        [SerializeField] private List<Platform> _platforms;
         [SerializeField] private LayerMask _platformMask;
+        [SerializeField] private Material _material;
 
-        private Dictionary<Platform, Actor> _formation;
+        private IUpdateable _updateable;
+        private RuntimeDataProvider _dataProvider;
+
         private RaycastHit[] _hits;
-        private Material _material;
         private Vector2 _size;
         private Camera _camera;
         private bool _dragging;
-        private Actor _actor;
-        private Platform _platform;
+        private Vector2Int _selected;
         private MergeService _mergeService;
+        private GridRuntimeData[,] _data;
 
-        public void Init(MergeService mergeService)
+        public void Init(IUpdateable updateable, RuntimeDataProvider dataProvider, MergeService mergeService)
         {
+            _dataProvider = dataProvider;
+            _updateable = updateable;
             _mergeService = mergeService;
-        }
+            _updateable.Tick += OnTick;
 
-        private void OnEnable()
-        {
-            _material = GetComponent<MeshRenderer>().material;
             _material.SetFloat(SelectCell, 0);
-            _formation = new Dictionary<Platform, Actor>();
             _hits = new RaycastHit[5];
             _camera = Camera.main;
 
-            foreach (Platform platform in _platforms)
+
+            _data = _dataProvider.GridData;
+
+            for (int i = 0; i < _data.GetLength(0); i++)
             {
-                platform.OnClicked += PlatformOnOnClicked;
-                platform.OnReleased += PlatformOnOnReleased;
-                platform.OnHovered += PlatformOnOnHovered;
-                _formation.Add(platform, null);
+                for (int j = 0; j < _data.GetLength(1); j++)
+                {
+                    _data[i, j].Platform.OnClicked += PlatformOnOnClicked;
+                    _data[i, j].Platform.OnReleased += PlatformOnOnReleased;
+                    _data[i, j].Platform.OnHovered += PlatformOnOnHovered;
+
+                    //_formation.Add(_data[i,j].Platform, _data[i,j].Actor);
+                }
             }
         }
 
-        private void Update()
+        private void OnTick()
         {
             if (!_dragging) return;
 
@@ -60,63 +64,63 @@ namespace CodeBase.LevelData
                 var plane = new Plane(Vector3.up, platform.transform.position);
                 if (plane.Raycast(ray, out float distance))
                 {
-                    _actor.transform.position = ray.GetPoint(distance);
+                    _dataProvider[_selected].Actor.transform.position = ray.GetPoint(distance);
                 }
             }
         }
 
-        public Platform GetFreePlatform() => _formation.Keys.FirstOrDefault(platform => _formation[platform] == null);
-
-        public void AddActor(Actor actor, Platform platform) => _formation[platform] = actor;
-
         private void PlatformOnOnClicked(Platform platform)
         {
-            if (_formation[platform] != null)
-            {
-                _dragging = true;
-                SetSelected(true);
-                _actor = _formation[platform];
-                _platform = platform;
-                _actor.GetComponent<NavMeshAgent>().enabled = false;
-            }
+            GridRuntimeData gridRuntimeData = _data[platform.Index.x, platform.Index.y];
+            if (gridRuntimeData.Busy == false) return;
+            
+            _dragging = true;
+            _selected = platform.Index;
+            SetSelected(true);
+            gridRuntimeData.Actor.GetComponent<NavMeshAgent>().enabled = false;
         }
 
         private void PlatformOnOnReleased(Platform platform)
         {
-            if (RaycastPlatform(out Platform castedPlatform) && _actor != null)
+            if (RaycastPlatform(out Platform castedPlatform) && _dragging)
             {
                 // if new grid is empty
-                if (_formation[castedPlatform] == null)
+                var casted = _dataProvider[castedPlatform.Index];
+                var selected = _dataProvider[_selected];
+                
+                if (casted.Busy == false)
                 {
-                    _formation[castedPlatform] = _actor;
-                    _actor.transform.position = castedPlatform.transform.position;
-
-                    _actor.GetComponent<NavMeshAgent>().enabled = true;
-                    _formation[_platform] = null;
+                    casted.Actor = selected.Actor;
+                    casted.Actor.transform.position = castedPlatform.transform.position;
+                    casted.Actor.GetComponent<NavMeshAgent>().enabled = true;
+                    selected.Actor = null;
                 }
                 else
                 {
-                    if (_mergeService.TryMerge(_formation[castedPlatform], _actor, out var newActor))
+                    // can merge
+                    Actor actor = _dataProvider[castedPlatform.Index].Actor;
+                    Actor actor2 = selected.Actor;
+                    
+                    if (_mergeService.TryMerge(actor, actor2, out var newActor))
                     {
-                        Destroy(_formation[castedPlatform].gameObject);
-                        _formation[castedPlatform] = null;
-                        
-                        Destroy(_formation[platform].gameObject);
-                        _formation[platform] = null;
-                        
+                        Destroy(actor.gameObject);
+                        _dataProvider[castedPlatform.Index].Actor = null;
+
+                        Destroy(_dataProvider[platform.Index].Actor.gameObject);
+                        _dataProvider[platform.Index].Actor = null;
+
                         newActor.transform.position = castedPlatform.transform.position;
-                        _formation[castedPlatform] = newActor;
+                        _dataProvider[castedPlatform.Index].Actor = newActor;
                     }
                     else
                     {
-                        _actor.transform.position = _platform.transform.position;
+                        selected.Actor.transform.position = selected.Platform.transform.position;
                     }
                 }
 
                 SetSelected(false);
                 _dragging = false;
-                _actor = null;
-                _platform = null;
+                _selected = Vector2Int.zero;
             }
         }
 

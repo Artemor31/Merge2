@@ -3,12 +3,18 @@ using UnityEngine;
 
 namespace CodeBase.LevelData
 {
-    public class Platform : MonoBehaviour
+    public class Platform : LevelItem
     {
         public event Action<Platform> OnClicked;
         public event Action<Platform> OnReleased;
         public event Action<Vector2Int> OnHovered;
         public Vector2Int Index;
+
+        public Platform Init(int i, int j)
+        {
+            Index = new Vector2Int(i, j);
+            return this;
+        }
 
         public void OnMouseDown()
         {

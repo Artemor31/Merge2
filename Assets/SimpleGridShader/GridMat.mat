@@ -76,8 +76,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SelectCell: 1
-    - _SelectedCellX: 0
+    - _SelectCell: 0
+    - _SelectedCellX: 3
     - _SelectedCellY: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

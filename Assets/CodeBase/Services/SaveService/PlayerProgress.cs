@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace CodeBase.Services.SaveService
 {
@@ -6,5 +7,6 @@ namespace CodeBase.Services.SaveService
     public class PlayerProgress
     {
         public int Wave;
+        public Vector2Int GridSize;
     }
 }

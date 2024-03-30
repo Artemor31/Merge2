@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using CodeBase.Gameplay;
+using CodeBase.Services.SaveService;
 using CodeBase.Services.StateMachine;
 
 namespace CodeBase.Infrastructure
@@ -34,28 +35,32 @@ namespace CodeBase.Infrastructure
         {
             ServiceLocator.Clear();
 
-            var sceneLoader = new SceneLoader(this);
-            var assetsProvider = new AssetsProvider();
-            var progressService = new ProgressService();
-            var databaseProvider = new DatabaseProvider(assetsProvider);
-            var gameFactory = new GameFactory(databaseProvider, assetsProvider);
-            var waveBuilder = new WaveBuilder(gameFactory, databaseProvider);
-            var battleConductor = new BattleConductor(progressService, waveBuilder);
-            var stateMachine = new GameStateMachine(sceneLoader, _windowsService, waveBuilder, battleConductor);
-            var mergeService = new MergeService(gameFactory, databaseProvider);
+            SceneLoader sceneLoader = new(this);
+            AssetsProvider assetsProvider = new();
+            RuntimeDataProvider runtimeDataProvider = new();
+            LevelDataProvider levelDataProvider = new();
+            DatabaseProvider databaseProvider = new(assetsProvider);
+            GameFactory gameFactory = new(databaseProvider, assetsProvider, this, runtimeDataProvider);
+            WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
+            MergeService mergeService = new(gameFactory, databaseProvider);
+            
+            GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
+                runtimeDataProvider, gameFactory, mergeService, levelDataProvider);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
+            ServiceLocator.Bind(levelDataProvider);
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(databaseProvider);
-            ServiceLocator.Bind(progressService);
+            ServiceLocator.Bind(runtimeDataProvider);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);
-            ServiceLocator.Bind(battleConductor);
             ServiceLocator.Bind(mergeService);
+            
+            _windowsService.InitWindows();
 
             // game pipeline
             
@@ -67,9 +72,6 @@ namespace CodeBase.Infrastructure
             // wave result stage
             // load level stage (step 2) and repeat
             // or load menu stage
-            
-            
-            _windowsService.InitWindows();
         }
 
         private void Update() => Tick?.Invoke();

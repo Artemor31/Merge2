@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CodeBase.Databases;
 using CodeBase.Gameplay.Units;
 using CodeBase.Infrastructure;
 using CodeBase.LevelData;
-using CodeBase.Models;
 using CodeBase.Services;
+using CodeBase.Services.SaveService;
 
 namespace CodeBase.Gameplay
 {
@@ -19,24 +20,24 @@ namespace CodeBase.Gameplay
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
         }
 
-        public void BuildEnemyWave(LevelStaticData staticData, GameplayModel model, int wave)
+        public void BuildEnemyWave(EnemySpawner staticData, RuntimeDataProvider service)
         {
-            model.RemoveEnemies();
+            service.RemoveEnemies();
 
-            foreach (WavesDatabase.EnemyAmount data in WaveData(wave).Enemies)
+            foreach (WavesDatabase.EnemyAmount data in WaveData(service.Wave).Enemies)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateUnit(data.Unit);
                     enemy.transform.position = staticData.EnemyPositions.Random();
-                    model.AddEnemy(enemy);
+                    service.AddEnemy(enemy);
                 }
             }
         }
 
-        public void BuildPlayerWave(LevelStaticData staticData, GameplayModel model)
+        public void BuildPlayerWave(EnemySpawner staticData, IReadOnlyList<Actor> actors)
         {
-            foreach (Actor unit in model.PlayerUnits)
+            foreach (Actor unit in actors)
             {
                 // сохранять id юнита и его позицию?
             }
