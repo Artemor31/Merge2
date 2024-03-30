@@ -18,6 +18,7 @@ namespace CodeBase.Databases
             public Actor Prefab;
             public string Name;
             public int Level;
+            public int Cost;
         }
     }
 

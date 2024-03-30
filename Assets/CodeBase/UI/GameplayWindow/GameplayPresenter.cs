@@ -5,7 +5,7 @@ using CodeBase.Infrastructure;
 using CodeBase.LevelData;
 using CodeBase.Services;
 using CodeBase.Services.SaveService;
-using CodeBase.Services.StateMachine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +15,7 @@ namespace CodeBase.UI.GameplayWindow
     {
         [SerializeField] public Transform UnitsParent;
         [SerializeField] public Button StartWaveButton;
+        [SerializeField] public TMP_Text Money;
 
         private WindowsService _windowsService;
         private UnitsDatabase _unitsDatabase;
@@ -35,8 +36,12 @@ namespace CodeBase.UI.GameplayWindow
             _factory = ServiceLocator.Resolve<GameFactory>();
 
             StartWaveButton.onClick.AddListener(StartWave);
+            _runtimeDataProvider.OnMoneyChanged += RuntimeDataProviderOnOnMoneyChanged;
+            RuntimeDataProviderOnOnMoneyChanged(_runtimeDataProvider.Money);
             CreatePlayerCards();
         }
+
+        private void RuntimeDataProviderOnOnMoneyChanged(int money) => Money.text = "Money: " + money;
 
         private void CreatePlayerCards()
         {
@@ -45,8 +50,7 @@ namespace CodeBase.UI.GameplayWindow
             {
                 UnitCard card = Instantiate(_cardPrefab, UnitsParent);
 
-                card.SetIcon(unitData.Icon);
-                card.SetTitle(unitData.Name);
+                card.Setup(unitData);
                 card.Button.onClick.AddListener(() => CardOnClicked(card));
                 _unitCards.Add(card, unitData.Id);
             }
@@ -54,6 +58,8 @@ namespace CodeBase.UI.GameplayWindow
 
         private void CardOnClicked(UnitCard card)
         {
+            if (_runtimeDataProvider.TryBuy(card.Cost) == false) return;
+            
             Platform platform = _runtimeDataProvider.GetFreePlatform();
             if (platform == null) return;
             
@@ -72,23 +78,6 @@ namespace CodeBase.UI.GameplayWindow
 
             foreach (Actor actor in enemyUnits) 
                 actor.Unleash(playerUnits);
-        }
-
-        private void OpenShowWindow()
-        {
-            _windowsService.Show<ShopPresenter>();
-        }
-
-        private void UpdateHp()
-        {
-        }
-
-        private void UpdateMoney()
-        {
-        }
-
-        private void UpdateCards()
-        {
         }
     }
 }
