@@ -27,10 +27,7 @@ namespace CodeBase.Gameplay.Units
         private void Die()
         {
             Died?.Invoke();
-            
-            
             _animator.Die();
-            Debug.LogError($"{gameObject.name} dies :(");
         }
     }
 }
