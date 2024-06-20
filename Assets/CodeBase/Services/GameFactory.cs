@@ -45,15 +45,6 @@ namespace CodeBase.Services
             return gridView;
         }
 
-        public EnemySpawner CreateEnemySpawner()
-        {
-            EnemySpawner spawner = _assetsProvider.Load<EnemySpawner>(AssetsPath.EnemiesSpawner);
-            spawner.Init();
-            Object.Instantiate(spawner);
-            spawner.transform.position = _levelDatabase.SpawnerPosition;
-            return spawner;
-        }
-
         public Platform[,] CreatePlatforms(Vector2Int size)
         {
             var platforms = new Platform[size.x, size.y];

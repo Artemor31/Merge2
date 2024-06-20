@@ -48,8 +48,6 @@ namespace CodeBase.LevelData
                     _data[i, j].Platform.OnClicked += PlatformOnOnClicked;
                     _data[i, j].Platform.OnReleased += PlatformOnOnReleased;
                     _data[i, j].Platform.OnHovered += PlatformOnOnHovered;
-
-                    //_formation.Add(_data[i,j].Platform, _data[i,j].Actor);
                 }
             }
         }

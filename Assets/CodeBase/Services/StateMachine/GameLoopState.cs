@@ -1,5 +1,4 @@
 ﻿using CodeBase.UI.GameplayWindow;
-using CodeBase.Gameplay;
 
 namespace CodeBase.Services.StateMachine
 {

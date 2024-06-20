@@ -17,7 +17,6 @@ namespace CodeBase.UI.GameplayWindow
         [SerializeField] public Button StartWaveButton;
         [SerializeField] public TMP_Text Money;
 
-        private WindowsService _windowsService;
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
         private Dictionary<UnitCard, UnitId> _unitCards;
@@ -31,7 +30,6 @@ namespace CodeBase.UI.GameplayWindow
                                            .GetDatabase<UnitsDatabase>();
 
             _runtimeDataProvider = ServiceLocator.Resolve<RuntimeDataProvider>();
-            _windowsService = ServiceLocator.Resolve<WindowsService>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _factory = ServiceLocator.Resolve<GameFactory>();
 

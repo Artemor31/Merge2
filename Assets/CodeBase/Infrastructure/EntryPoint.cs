@@ -38,20 +38,18 @@ namespace CodeBase.Infrastructure
             SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
             RuntimeDataProvider runtimeDataProvider = new();
-            LevelDataProvider levelDataProvider = new();
             DatabaseProvider databaseProvider = new(assetsProvider);
             GameFactory gameFactory = new(databaseProvider, assetsProvider, this, runtimeDataProvider);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             MergeService mergeService = new(gameFactory, databaseProvider);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                runtimeDataProvider, gameFactory, mergeService, levelDataProvider);
+                runtimeDataProvider, gameFactory, mergeService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
-            ServiceLocator.Bind(levelDataProvider);
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(databaseProvider);
             ServiceLocator.Bind(runtimeDataProvider);

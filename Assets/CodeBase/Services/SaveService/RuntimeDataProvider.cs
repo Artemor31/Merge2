@@ -90,11 +90,11 @@ namespace CodeBase.Services.SaveService
                     action.Invoke(i, j);
         }
 
-        public bool TryBuy(int amount)
+        public bool TryBuy(int cost)
         {
-            if (_progress.Money >= amount)
+            if (_progress.Money >= cost)
             {
-                _progress.Money -= amount;
+                _progress.Money -= cost;
                 OnMoneyChanged?.Invoke(_progress.Money);
                 return true;
             }
