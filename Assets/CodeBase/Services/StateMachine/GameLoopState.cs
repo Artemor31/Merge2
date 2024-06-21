@@ -7,8 +7,7 @@ namespace CodeBase.Services.StateMachine
         private readonly GameStateMachine _gameStateMachine;
         private readonly WindowsService _windowsService;
         
-        public GameLoopState(GameStateMachine gameStateMachine, 
-                             WindowsService windowsService)
+        public GameLoopState(GameStateMachine gameStateMachine, WindowsService windowsService)
         {
             _gameStateMachine = gameStateMachine;
             _windowsService = windowsService;

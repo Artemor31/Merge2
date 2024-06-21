@@ -26,12 +26,11 @@ namespace CodeBase.UI.GameplayWindow
 
         public override void Init()
         {
-            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>()
-                                           .GetDatabase<UnitsDatabase>();
-
             _runtimeDataProvider = ServiceLocator.Resolve<RuntimeDataProvider>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _factory = ServiceLocator.Resolve<GameFactory>();
+            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>()
+                                           .GetDatabase<UnitsDatabase>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             _runtimeDataProvider.OnMoneyChanged += RuntimeDataProviderOnOnMoneyChanged;
