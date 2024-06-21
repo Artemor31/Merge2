@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Units
 {
     public class Actor : MonoBehaviour
     {
+        public event Action<Actor> OnDied;
+        
         [field: SerializeField] public int Level { get; private set; }
-
         [SerializeField] private Health _health;
         [SerializeField] private Mover _mover;
         [SerializeField] private TargetSearch _targetSearch;
@@ -66,6 +68,7 @@ namespace CodeBase.Gameplay.Units
         {
             _health.Died -= OnDies;
             _mover.Stop();
+            OnDied?.Invoke(this);
         }
     }
 }

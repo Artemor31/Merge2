@@ -71,7 +71,7 @@ namespace CodeBase.Services.SaveService
             }
         }
 
-        public IReadOnlyList<Actor> GetPlayerUnits()
+        public List<Actor> GetPlayerUnits()
         {
             List<Actor> units = new();
             DoForeach((i, j) =>
@@ -90,16 +90,14 @@ namespace CodeBase.Services.SaveService
                     action.Invoke(i, j);
         }
 
-        public bool TryBuy(int cost)
-        {
-            if (_progress.Money >= cost)
-            {
-                _progress.Money -= cost;
-                OnMoneyChanged?.Invoke(_progress.Money);
-                return true;
-            }
+        public bool CanBuy(int cost) => _progress.Money >=cost;
 
-            return false;
+        public void TryBuy(int cost)
+        {
+            if (!CanBuy(cost)) return;
+
+            _progress.Money -= cost;
+            OnMoneyChanged?.Invoke(_progress.Money);
         }
     }
 }

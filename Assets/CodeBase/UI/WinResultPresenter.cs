@@ -10,6 +10,7 @@ namespace CodeBase.UI
     {
         [SerializeField] private TextMeshProUGUI _moneyText;
         [SerializeField] private Button _nextLevel;
+        
         private GameStateMachine _gameStateMachine;
 
         public override void Init()

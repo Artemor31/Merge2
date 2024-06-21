@@ -15,14 +15,17 @@ namespace CodeBase.Services.StateMachine
                                 WaveBuilder waveBuilder,
                                 RuntimeDataProvider runtimeDataProvider,
                                 GameFactory gameFactory,
-                                MergeService mergeService)
+                                MergeService mergeService,
+                                RuntimeDataProvider dataProvider, 
+                                GameObserver gameObserver)
         {
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, runtimeDataProvider, gameFactory, mergeService)},
-                {typeof(GameLoopState), new GameLoopState(this, windowsService)},
+                {typeof(GameLoopState), new GameLoopState(this, windowsService, gameObserver)},
+                {typeof(ResultScreenState), new ResultScreenState(this, windowsService, dataProvider, gameObserver)},
             };
         }
 

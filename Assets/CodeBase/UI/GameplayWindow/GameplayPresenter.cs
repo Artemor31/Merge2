@@ -23,14 +23,15 @@ namespace CodeBase.UI.GameplayWindow
         private bool _refreshed;
         private GameFactory _factory;
         private RuntimeDataProvider _runtimeDataProvider;
+        private GameObserver _observer;
 
         public override void Init()
         {
-            _runtimeDataProvider = ServiceLocator.Resolve<RuntimeDataProvider>();
-            _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _factory = ServiceLocator.Resolve<GameFactory>();
-            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>()
-                                           .GetDatabase<UnitsDatabase>();
+            _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
+            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
+            _runtimeDataProvider = ServiceLocator.Resolve<RuntimeDataProvider>();
+            _observer = ServiceLocator.Resolve<GameObserver>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             _runtimeDataProvider.OnMoneyChanged += RuntimeDataProviderOnOnMoneyChanged;
@@ -48,18 +49,19 @@ namespace CodeBase.UI.GameplayWindow
                 UnitCard card = Instantiate(_cardPrefab, UnitsParent);
 
                 card.Setup(unitData);
-                card.Button.onClick.AddListener(() => CardOnClicked(card));
+                card.Button.onClick.AddListener(() => CardClicked(card));
                 _unitCards.Add(card, unitData.Id);
             }
         }
 
-        private void CardOnClicked(UnitCard card)
+        private void CardClicked(UnitCard card)
         {
-            if (_runtimeDataProvider.TryBuy(card.Cost) == false) return;
+            if (_runtimeDataProvider.CanBuy(card.Cost) == false) return;
             
             Platform platform = _runtimeDataProvider.GetFreePlatform();
             if (platform == null) return;
-            
+
+            _runtimeDataProvider.TryBuy(card.Cost);
             Actor actor = _factory.CreateUnit(_unitCards[card]);
             actor.transform.position = platform.transform.position;
             _runtimeDataProvider.AddActor(actor, platform);
@@ -67,6 +69,7 @@ namespace CodeBase.UI.GameplayWindow
 
         private void StartWave()
         {
+            _observer.StartWatch();
             var playerUnits = _runtimeDataProvider.GetPlayerUnits();
             var enemyUnits = _runtimeDataProvider.EnemyUnits;
             

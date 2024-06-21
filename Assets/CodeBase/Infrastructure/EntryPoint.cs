@@ -42,9 +42,10 @@ namespace CodeBase.Infrastructure
             GameFactory gameFactory = new(databaseProvider, assetsProvider, this, runtimeDataProvider);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             MergeService mergeService = new(gameFactory, databaseProvider);
+            GameObserver gameObserver = new(runtimeDataProvider);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                runtimeDataProvider, gameFactory, mergeService);
+                runtimeDataProvider, gameFactory, mergeService, runtimeDataProvider, gameObserver);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -57,6 +58,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);
             ServiceLocator.Bind(mergeService);
+            ServiceLocator.Bind(gameObserver);
             
             _windowsService.InitWindows();
 

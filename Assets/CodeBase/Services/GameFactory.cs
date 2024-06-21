@@ -7,14 +7,6 @@ using UnityEngine;
 
 namespace CodeBase.Services
 {
-    public class GameObserver : IService
-    {
-        public void StartWatch()
-        {
-            
-        }
-    }
-    
     public class GameFactory : IService
     {
         private readonly AssetsProvider _assetsProvider;
