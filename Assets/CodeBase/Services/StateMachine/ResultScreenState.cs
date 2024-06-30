@@ -7,29 +7,30 @@ namespace CodeBase.Services.StateMachine
     {
         private readonly GameStateMachine _stateMachine;
         private readonly WindowsService _windowsService;
-        private readonly RuntimeDataProvider _dataProvider;
+        private readonly RuntimeDataRepository _dataRepository;
         private readonly GameObserver _gameObserver;
 
         public ResultScreenState(GameStateMachine stateMachine, 
                                  WindowsService windowsService,
-                                 RuntimeDataProvider dataProvider,
+                                 RuntimeDataRepository dataRepository,
                                  GameObserver gameObserver)
         {
             _stateMachine = stateMachine;
             _windowsService = windowsService;
-            _dataProvider = dataProvider;
+            _dataRepository = dataRepository;
             _gameObserver = gameObserver;
         }
         
         public void Enter()
         {
+            _dataRepository.UninitPlatforms();
             if (_gameObserver.IsWin)
             {
                 _windowsService.Show<WinResultPresenter>();
             }
             else
             {
-                //
+                _windowsService.Show<LoseResultPresenter>();
             }
 
         }

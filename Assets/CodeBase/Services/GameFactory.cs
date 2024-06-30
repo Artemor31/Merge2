@@ -2,7 +2,6 @@
 using CodeBase.Databases;
 using CodeBase.Gameplay.Units;
 using CodeBase.LevelData;
-using CodeBase.Services.SaveService;
 using UnityEngine;
 
 namespace CodeBase.Services
@@ -10,19 +9,12 @@ namespace CodeBase.Services
     public class GameFactory : IService
     {
         private readonly AssetsProvider _assetsProvider;
-        private readonly IUpdateable _updateable;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
-        private readonly RuntimeDataProvider _dataProvider;
 
-        public GameFactory(DatabaseProvider database,
-                           AssetsProvider assetsProvider,
-                           IUpdateable updateable,
-                           RuntimeDataProvider runtimeDataProvider)
+        public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider)
         {
             _assetsProvider = assetsProvider;
-            _updateable = updateable;
-            _dataProvider = runtimeDataProvider;
             _unitsDatabase = database.GetDatabase<UnitsDatabase>();
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
@@ -36,11 +28,10 @@ namespace CodeBase.Services
             return unit;
         }
 
-        public GridView CreateGridView(MergeService mergeService)
+        public GridView CreateGridView(GridService gridService)
         {
-            GridView gridView = _assetsProvider.Load<GridView>(AssetsPath.GridView);
-            gridView.Init(_updateable, _dataProvider, mergeService);
-            Object.Instantiate(gridView);
+            GridView gridView = Object.Instantiate(_assetsProvider.Load<GridView>(AssetsPath.GridView));
+            gridView.Init(gridService);
             gridView.transform.position = _levelDatabase.GridPosition;
             return gridView;
         }

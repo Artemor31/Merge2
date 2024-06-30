@@ -17,3 +17,13 @@ MonoBehaviour:
     Enemies:
     - Unit: 1
       Amount: 2
+  - Wave: 1
+    Enemies:
+    - Unit: 2
+      Amount: 1
+  - Wave: 2
+    Enemies:
+    - Unit: 2
+      Amount: 1
+    - Unit: 1
+      Amount: 2

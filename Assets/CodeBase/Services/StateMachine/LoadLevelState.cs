@@ -1,4 +1,5 @@
 ﻿using CodeBase.Gameplay;
+using CodeBase.LevelData;
 using CodeBase.Services.SaveService;
 
 namespace CodeBase.Services.StateMachine
@@ -10,23 +11,23 @@ namespace CodeBase.Services.StateMachine
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly WaveBuilder _waveBuilder;
-        private readonly RuntimeDataProvider _runtimeDataProvider;
+        private readonly RuntimeDataRepository _runtimeDataRepository;
         private readonly GameFactory _gameFactory;
-        private readonly MergeService _mergeService;
+        private readonly GridService _gridService;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
-                              RuntimeDataProvider runtimeDataProvider,
+                              RuntimeDataRepository runtimeDataRepository,
                               GameFactory gameFactory,
-                              MergeService mergeService)
+                              GridService gridService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _waveBuilder = waveBuilder;
-            _runtimeDataProvider = runtimeDataProvider;
+            _runtimeDataRepository = runtimeDataRepository;
             _gameFactory = gameFactory;
-            _mergeService = mergeService;
+            _gridService = gridService;
         }
 
         public void Enter() => _sceneLoader.Load(GameplaySceneName,
@@ -34,12 +35,12 @@ namespace CodeBase.Services.StateMachine
 
         public void Exit()
         {
-            var platforms = _gameFactory.CreatePlatforms(_runtimeDataProvider.GridSize);
-            _runtimeDataProvider.SetupPlatforms(platforms);
+            var platforms = _gameFactory.CreatePlatforms(_runtimeDataRepository.GridSize);
+            _runtimeDataRepository.InitPlatforms(platforms);
 
-            _gameFactory.CreateGridView(_mergeService);
-            _waveBuilder.BuildEnemyWave(_runtimeDataProvider);
-            _waveBuilder.BuildPlayerWave(_runtimeDataProvider.GetPlayerUnits());
+            _gameFactory.CreateGridView(_gridService);
+            _waveBuilder.BuildEnemyWave(_runtimeDataRepository);
+            _waveBuilder.BuildPlayerWave(_runtimeDataRepository.GetPlayerUnits());
         }
     }
 }

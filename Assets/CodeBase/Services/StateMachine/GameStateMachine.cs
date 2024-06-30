@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Gameplay;
+using CodeBase.LevelData;
 using CodeBase.Services.SaveService;
 
 namespace CodeBase.Services.StateMachine
@@ -13,19 +14,19 @@ namespace CodeBase.Services.StateMachine
         public GameStateMachine(SceneLoader sceneLoader,
                                 WindowsService windowsService,
                                 WaveBuilder waveBuilder,
-                                RuntimeDataProvider runtimeDataProvider,
+                                RuntimeDataRepository runtimeDataRepository,
                                 GameFactory gameFactory,
-                                MergeService mergeService,
-                                RuntimeDataProvider dataProvider, 
+                                GridService gridService,
+                                RuntimeDataRepository dataRepository, 
                                 GameObserver gameObserver)
         {
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, runtimeDataProvider, gameFactory, mergeService)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, runtimeDataRepository, gameFactory, gridService)},
                 {typeof(GameLoopState), new GameLoopState(this, windowsService, gameObserver)},
-                {typeof(ResultScreenState), new ResultScreenState(this, windowsService, dataProvider, gameObserver)},
+                {typeof(ResultScreenState), new ResultScreenState(this, windowsService, dataRepository, gameObserver)},
             };
         }
 

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using CodeBase.Gameplay;
+using CodeBase.LevelData;
 using CodeBase.Services.SaveService;
 using CodeBase.Services.StateMachine;
 
@@ -37,15 +38,18 @@ namespace CodeBase.Infrastructure
 
             SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
-            RuntimeDataProvider runtimeDataProvider = new();
+            RuntimeDataRepository runtimeDataRepository = new();
             DatabaseProvider databaseProvider = new(assetsProvider);
-            GameFactory gameFactory = new(databaseProvider, assetsProvider, this, runtimeDataProvider);
+            GameFactory gameFactory = new(databaseProvider, assetsProvider);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             MergeService mergeService = new(gameFactory, databaseProvider);
-            GameObserver gameObserver = new(runtimeDataProvider);
+            GameObserver gameObserver = new(runtimeDataRepository);
+            CameraService cameraService = new(sceneLoader);
+            GridService gridService = new(this, runtimeDataRepository, mergeService, cameraService);
+            
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                runtimeDataProvider, gameFactory, mergeService, runtimeDataProvider, gameObserver);
+                runtimeDataRepository, gameFactory, gridService, runtimeDataRepository, gameObserver);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -53,7 +57,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(_windowsService);
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(databaseProvider);
-            ServiceLocator.Bind(runtimeDataProvider);
+            ServiceLocator.Bind(runtimeDataRepository);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);

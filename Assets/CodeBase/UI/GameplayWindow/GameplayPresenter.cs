@@ -22,7 +22,7 @@ namespace CodeBase.UI.GameplayWindow
         private Dictionary<UnitCard, UnitId> _unitCards;
         private bool _refreshed;
         private GameFactory _factory;
-        private RuntimeDataProvider _runtimeDataProvider;
+        private RuntimeDataRepository _runtimeDataRepository;
         private GameObserver _observer;
 
         public override void Init()
@@ -30,16 +30,16 @@ namespace CodeBase.UI.GameplayWindow
             _factory = ServiceLocator.Resolve<GameFactory>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            _runtimeDataProvider = ServiceLocator.Resolve<RuntimeDataProvider>();
+            _runtimeDataRepository = ServiceLocator.Resolve<RuntimeDataRepository>();
             _observer = ServiceLocator.Resolve<GameObserver>();
 
             StartWaveButton.onClick.AddListener(StartWave);
-            _runtimeDataProvider.OnMoneyChanged += RuntimeDataProviderOnOnMoneyChanged;
-            RuntimeDataProviderOnOnMoneyChanged(_runtimeDataProvider.Money);
+            _runtimeDataRepository.OnMoneyChanged += RuntimeDataRepositoryOnOnMoneyChanged;
+            RuntimeDataRepositoryOnOnMoneyChanged(_runtimeDataRepository.Money);
             CreatePlayerCards();
         }
 
-        private void RuntimeDataProviderOnOnMoneyChanged(int money) => Money.text = "Money: " + money;
+        private void RuntimeDataRepositoryOnOnMoneyChanged(int money) => Money.text = "Money: " + money;
 
         private void CreatePlayerCards()
         {
@@ -56,22 +56,21 @@ namespace CodeBase.UI.GameplayWindow
 
         private void CardClicked(UnitCard card)
         {
-            if (_runtimeDataProvider.CanBuy(card.Cost) == false) return;
-            
-            Platform platform = _runtimeDataProvider.GetFreePlatform();
+            Platform platform = _runtimeDataRepository.GetFreePlatform();
             if (platform == null) return;
 
-            _runtimeDataProvider.TryBuy(card.Cost);
+            if (!_runtimeDataRepository.TryBuy(card.Cost)) return;
+            
             Actor actor = _factory.CreateUnit(_unitCards[card]);
             actor.transform.position = platform.transform.position;
-            _runtimeDataProvider.AddActor(actor, platform);
+            _runtimeDataRepository.AddPlayerUnit(actor, platform);
         }
 
         private void StartWave()
         {
             _observer.StartWatch();
-            var playerUnits = _runtimeDataProvider.GetPlayerUnits();
-            var enemyUnits = _runtimeDataProvider.EnemyUnits;
+            var playerUnits = _runtimeDataRepository.GetPlayerUnits();
+            var enemyUnits = _runtimeDataRepository.EnemyUnits;
             
             foreach (Actor actor in playerUnits) 
                 actor.Unleash(enemyUnits);

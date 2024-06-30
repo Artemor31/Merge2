@@ -23,18 +23,18 @@ namespace CodeBase.Gameplay
             _levelDatabase = provider.GetDatabase<LevelDatabase>();
         }
 
-        public void BuildEnemyWave(RuntimeDataProvider dataProvider)
+        public void BuildEnemyWave(RuntimeDataRepository dataRepository)
         {
-            dataProvider.RemoveEnemies();
+            dataRepository.RemoveEnemies();
             var enemiesPositions = GetPositions();
 
-            foreach (WavesDatabase.EnemyAmount data in WaveData(dataProvider.Wave).Enemies)
+            foreach (WavesDatabase.EnemyAmount data in WaveData(dataRepository.Wave).Enemies)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateUnit(data.Unit);
                     enemy.transform.position = enemiesPositions.Random();
-                    dataProvider.AddEnemy(enemy);
+                    dataRepository.AddEnemy(enemy);
                 }
             }
         }

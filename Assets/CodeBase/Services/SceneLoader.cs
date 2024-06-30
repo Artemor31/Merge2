@@ -6,6 +6,7 @@ namespace CodeBase.Services
 {
     public class SceneLoader : IService
     {
+        public event Action OnSceneChanged; 
         private readonly ICoroutineRunner _coroutineRunner;
 
         public SceneLoader(ICoroutineRunner coroutineRunner) =>
@@ -19,13 +20,14 @@ namespace CodeBase.Services
 
         private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
-            if (SceneManager.GetActiveScene().name == nextScene)
+            var operation = SceneManager.LoadSceneAsync(nextScene);
+            while (!operation.isDone)
             {
-                onLoaded?.Invoke();
-                yield break;
+                yield return null;
             }
-
-            SceneManager.LoadSceneAsync(nextScene).completed += _ => onLoaded?.Invoke();
+            
+            OnSceneChanged?.Invoke();
+            onLoaded?.Invoke();
         }
 
         private IEnumerator UnloadScene(string name, Action onUnloaded)

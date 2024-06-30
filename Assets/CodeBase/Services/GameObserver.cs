@@ -13,30 +13,30 @@ namespace CodeBase.Services
         public bool IsWin { get; private set; }
         public int Profit { get; private set; }
 
-        private readonly RuntimeDataProvider _dataProvider;
+        private readonly RuntimeDataRepository _dataRepository;
 
         private IEnumerable<Actor> _actors;
         //private List<Actor> _enemies;
         //private List<Actor> _allies;
 
-        public GameObserver(RuntimeDataProvider dataProvider)
+        public GameObserver(RuntimeDataRepository dataRepository)
         {
-            _dataProvider = dataProvider;
+            _dataRepository = dataRepository;
         }
 
         public void StartWatch()
         {
-            Profit = _dataProvider.Money;
+            Profit = _dataRepository.Money;
 
             //_enemies = _dataProvider.EnemyUnits.Select(e => e).ToList();
             //_allies = _dataProvider.GetPlayerUnits().Select(a => a).ToList();
-            _dataProvider.EnemyUnits.ForEach(e => e.OnDied += OnEnemyDied);
-            _dataProvider.GetPlayerUnits().ForEach(a => a.OnDied += OnAllyDied);
+            _dataRepository.EnemyUnits.ForEach(e => e.OnDied += OnEnemyDied);
+            _dataRepository.GetPlayerUnits().ForEach(a => a.OnDied += OnAllyDied);
         }
 
         private void OnAllyDied(Actor actor)
         {
-            if (_dataProvider.GetPlayerUnits().All(a => a.IsDead))
+            if (_dataRepository.GetPlayerUnits().All(a => a.IsDead))
             {
                 IsWin = false;
                 EndGameplayLoop();
@@ -45,7 +45,7 @@ namespace CodeBase.Services
 
         private void OnEnemyDied(Actor actor)
         {
-            if (_dataProvider.EnemyUnits.All(e => e.IsDead))
+            if (_dataRepository.EnemyUnits.All(e => e.IsDead))
             {
                 IsWin = true;
                 EndGameplayLoop();
@@ -54,9 +54,9 @@ namespace CodeBase.Services
 
         private void EndGameplayLoop()
         {
-            _dataProvider.EnemyUnits.ForEach(e => e.OnDied -= OnEnemyDied);
-            _dataProvider.GetPlayerUnits().ForEach(a => a.OnDied -= OnAllyDied);
-            Profit = _dataProvider.Money - Profit;
+            _dataRepository.EnemyUnits.ForEach(e => e.OnDied -= OnEnemyDied);
+            _dataRepository.GetPlayerUnits().ForEach(a => a.OnDied -= OnAllyDied);
+            Profit = _dataRepository.Money - Profit;
             OnGameplayEnded?.Invoke(IsWin);
         }
     }
