@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Databases;
 using CodeBase.Gameplay.Units;
 using CodeBase.LevelData;
+using Newtonsoft.Json;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -14,25 +15,26 @@ namespace CodeBase.Services.SaveService
 
     public class GridRepository
     {
-        public void Save(GridData[,] saveData)
+        public void Save(GridData saveData)
         {
-            string json = JsonUtility.ToJson(saveData);
-            PlayerPrefs.SetString("GridData", json);
+            string serializeObject = JsonConvert.SerializeObject(saveData);
+            PlayerPrefs.SetString("GridData", serializeObject);
         }
 
-        public GridData[,] Restore()
+        public GridData Restore()
         {
             string json = PlayerPrefs.GetString("GridData", null);
-            if (json == null) {return null;}
+            if (json == null)
+                return null;
 
-            return JsonUtility.FromJson<GridData[,]>(json);
+            return JsonConvert.DeserializeObject<GridData>(json);
         }
 
         [Serializable]
         public class GridData
         {
-            public UnitId UnitId;
-            public GridData(UnitId unitId) => UnitId = unitId;
+            public UnitId[,] UnitIds;
+            public GridData(UnitId[,] unitId) => UnitIds = unitId;
         }
     }
 
@@ -75,13 +77,18 @@ namespace CodeBase.Services.SaveService
                 _gridData[i, j].Platform.OnHovered += PlatformOnOnHovered;
             });
 
-            var restore = _gridRepo.Restore();
-            if (restore != null)
+            GridRepository.GridData restore = _gridRepo.Restore();
+            if (restore?.UnitIds != null)
             {
                 DoForeach((i, j) =>
                 {
-                    if (_gridData[i, j] != null)
-                        _gridData[i, j].Actor = _gameFactory.CreateUnit(restore[i, j].UnitId);
+                    var data = _gridData[i, j];
+                    var id = restore.UnitIds[i, j];
+                    if (data != null && id != UnitId.None)
+                    {
+                        data.Actor = _gameFactory.CreateActor(id, data.Platform);
+                        AddPlayerUnit(data.Actor, data.Platform);
+                    }
                 });
             }
         }
@@ -106,14 +113,12 @@ namespace CodeBase.Services.SaveService
 
         public void Save()
         {
-            var data = new GridRepository.GridData[GridSize.x, GridSize.y];
-            DoForeach((i, j) =>
-            {
-                if (_gridData[i, j].Busy)
-                    data[i, j] = new GridRepository.GridData(_gridData[i, j].Actor.Id);
-            });
+            var ids = new UnitId[GridSize.x, GridSize.y];
+            DoForeach((i, j) => ids[i, j] = _gridData[i, j].Busy 
+                ? _gridData[i, j].Actor.Id 
+                : UnitId.None);
             
-            _gridRepo.Save(data);
+            _gridRepo.Save(new GridRepository.GridData(ids));
             _progress.Save();
         }
 

@@ -19,7 +19,7 @@ namespace CodeBase.Services
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
-        public Actor CreateUnit(UnitId id)
+        public Actor CreateActor(UnitId id)
         {
             var unitData = _unitsDatabase.Units.First(u => u.Id == id);
             var unit = Object.Instantiate(unitData.Prefab);
@@ -27,7 +27,14 @@ namespace CodeBase.Services
             unit.Initialize(unitData.Level, id);
             return unit;
         }
-
+             
+        public Actor CreateActor(UnitId id, Platform platform)
+        {
+            Actor actor = CreateActor(id);
+            actor.transform.position = platform.transform.position;
+            return actor;
+        }
+        
         public GridView CreateGridView(GridService gridService)
         {
             GridView gridView = Object.Instantiate(_assetsProvider.Load<GridView>(AssetsPath.GridView));

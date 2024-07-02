@@ -380,6 +380,9 @@
      <Reference Include="Unity.VisualScripting.TextureAssets">
      <HintPath>C:\Unity\Projects\RusichsVSZmeys\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
      </Reference>
+     <Reference Include="Newtonsoft.Json">
+     <HintPath>C:\Unity\Projects\RusichsVSZmeys\Assets\CodeBase\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
+     </Reference>
      <Reference Include="nunit.framework">
      <HintPath>C:\Unity\Projects\RusichsVSZmeys\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>

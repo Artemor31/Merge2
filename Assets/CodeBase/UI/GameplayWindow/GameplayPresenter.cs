@@ -61,7 +61,7 @@ namespace CodeBase.UI.GameplayWindow
 
             if (!_runtimeDataRepository.TryBuy(card.Cost)) return;
             
-            Actor actor = _factory.CreateUnit(_unitCards[card]);
+            Actor actor = _factory.CreateActor(_unitCards[card]);
             actor.transform.position = platform.transform.position;
             _runtimeDataRepository.AddPlayerUnit(actor, platform);
         }

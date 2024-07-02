@@ -32,7 +32,7 @@ namespace CodeBase.Gameplay
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
-                    var enemy = _factory.CreateUnit(data.Unit);
+                    var enemy = _factory.CreateActor(data.Unit);
                     enemy.transform.position = enemiesPositions.Random();
                     dataRepository.AddEnemy(enemy);
                 }
