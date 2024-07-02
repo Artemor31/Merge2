@@ -1,4 +1,5 @@
-﻿using CodeBase.UI.GameplayWindow;
+﻿using CodeBase.UI;
+using CodeBase.UI.GameplayWindow;
 
 namespace CodeBase.Services.StateMachine
 {
@@ -8,7 +9,7 @@ namespace CodeBase.Services.StateMachine
         private readonly WindowsService _windowsService;
         private readonly GameObserver _gameObserver;
 
-        public GameLoopState(GameStateMachine gameStateMachine, 
+        public GameLoopState(GameStateMachine gameStateMachine,
                              WindowsService windowsService,
                              GameObserver gameObserver)
         {

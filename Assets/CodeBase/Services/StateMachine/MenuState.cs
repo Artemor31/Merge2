@@ -1,4 +1,5 @@
-﻿using CodeBase.UI.MenuWindow;
+﻿using CodeBase.UI;
+using CodeBase.UI.MenuWindow;
 
 namespace CodeBase.Services.StateMachine
 {

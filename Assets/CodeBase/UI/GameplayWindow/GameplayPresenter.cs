@@ -69,6 +69,7 @@ namespace CodeBase.UI.GameplayWindow
         private void StartWave()
         {
             _observer.StartWatch();
+            _runtimeDataRepository.Save();
             var playerUnits = _runtimeDataRepository.GetPlayerUnits();
             var enemyUnits = _runtimeDataRepository.EnemyUnits;
             
@@ -77,6 +78,8 @@ namespace CodeBase.UI.GameplayWindow
 
             foreach (Actor actor in enemyUnits) 
                 actor.Unleash(playerUnits);
+            
+            gameObject.SetActive(false);
         }
     }
 }

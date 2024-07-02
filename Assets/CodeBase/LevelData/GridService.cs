@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using CodeBase.Services;
 using CodeBase.Services.SaveService;
 using UnityEngine;
@@ -76,8 +75,8 @@ namespace CodeBase.LevelData
             {
                 DestroyOldActors(started, ended);
 
-                newActor.transform.position = started.Platform.transform.position;
-                started.Actor = newActor;
+                newActor.transform.position = ended.Platform.transform.position;
+                ended.Actor = newActor;
             }
             else
             {

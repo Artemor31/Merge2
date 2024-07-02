@@ -5,6 +5,7 @@ using CodeBase.Gameplay;
 using CodeBase.LevelData;
 using CodeBase.Services.SaveService;
 using CodeBase.Services.StateMachine;
+using CodeBase.UI;
 
 namespace CodeBase.Infrastructure
 {
@@ -38,9 +39,9 @@ namespace CodeBase.Infrastructure
 
             SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
-            RuntimeDataRepository runtimeDataRepository = new();
             DatabaseProvider databaseProvider = new(assetsProvider);
             GameFactory gameFactory = new(databaseProvider, assetsProvider);
+            RuntimeDataRepository runtimeDataRepository = new(gameFactory);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             MergeService mergeService = new(gameFactory, databaseProvider);
             GameObserver gameObserver = new(runtimeDataRepository);

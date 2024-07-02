@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeBase.Databases;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Units
@@ -9,6 +10,7 @@ namespace CodeBase.Gameplay.Units
         public event Action<Actor> OnDied;
         
         [field: SerializeField] public int Level { get; private set; }
+        public UnitId Id { get; private set; }
         [SerializeField] private Health _health;
         [SerializeField] private Mover _mover;
         [SerializeField] private TargetSearch _targetSearch;
@@ -16,12 +18,14 @@ namespace CodeBase.Gameplay.Units
         [SerializeField] private AnimatorScheduler _animator;
 
         public bool IsDead => _health.Current <= 0;
+
         private UnitState _state = UnitState.Idle;
         private IReadOnlyList<Actor> _candidates;
 
-        public void Initialize(int level)
+        public void Initialize(int level, UnitId id)
         {
             Level = level;
+            Id = id;
             _state = UnitState.Idle;
             _health.Init(_animator);
             _mover.Init(_animator);
