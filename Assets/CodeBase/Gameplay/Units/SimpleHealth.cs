@@ -9,17 +9,21 @@ namespace CodeBase.Gameplay.Units
         private AnimatorScheduler _animator;
 
         public override event Action Died;
+        public override event Action HealthChanged;
         public override float Current { get; protected set; }
+        public override float Ratio => Current / _maxHealth;
 
         public override void Init(AnimatorScheduler animator)
         {
             _animator = animator;
             Current = _maxHealth;
+            HealthChanged?.Invoke();
         }
 
         public override void TakeDamage(float damage)
         {
             Current -= damage;
+            HealthChanged?.Invoke();
             if (Current <= 0)
                 Die();
         }

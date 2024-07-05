@@ -105,11 +105,7 @@ namespace CodeBase.Services.SaveService
             });
         }
 
-        public void NextLevel()
-        {
-            _progress.Wave++;
-            Save();
-        }
+        public void CompleteLevel() => _progress.Wave++;
 
         public void Save()
         {

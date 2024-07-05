@@ -1,5 +1,4 @@
 ﻿using CodeBase.Infrastructure;
-using CodeBase.Services.SaveService;
 using CodeBase.Services.StateMachine;
 using TMPro;
 using UnityEngine;
@@ -13,13 +12,10 @@ namespace CodeBase.UI
         [SerializeField] private Button _nextLevel;
 
         private GameStateMachine _gameStateMachine;
-        private RuntimeDataRepository _runtimeRepo;
 
         public override void Init()
         {
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            _runtimeRepo = ServiceLocator.Resolve<RuntimeDataRepository>();
-
             _moneyText.text = 100.ToString();
             _nextLevel.onClick.AddListener(OnNextLevelClicked);
         }
@@ -27,7 +23,6 @@ namespace CodeBase.UI
         private void OnNextLevelClicked()
         {
             gameObject.SetActive(false);
-            _runtimeRepo.NextLevel();
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }

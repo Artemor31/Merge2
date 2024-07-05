@@ -23,10 +23,12 @@ namespace CodeBase.Services.StateMachine
         
         public void Enter()
         {
+            _dataRepository.Save();
             _dataRepository.UninitPlatforms();
             if (_gameObserver.IsWin)
             {
                 _windowsService.Show<WinResultPresenter>();
+                _dataRepository.CompleteLevel();
             }
             else
             {
