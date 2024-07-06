@@ -40,12 +40,12 @@ namespace CodeBase.Infrastructure
             SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
             DatabaseProvider databaseProvider = new(assetsProvider);
-            GameFactory gameFactory = new(databaseProvider, assetsProvider);
+            CameraService cameraService = new(sceneLoader);
+            GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService);
             RuntimeDataRepository runtimeDataRepository = new(gameFactory);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             MergeService mergeService = new(gameFactory, databaseProvider);
             GameObserver gameObserver = new(runtimeDataRepository);
-            CameraService cameraService = new(sceneLoader);
             GridService gridService = new(this, runtimeDataRepository, mergeService, cameraService);
             
             

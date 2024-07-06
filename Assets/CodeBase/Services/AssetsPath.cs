@@ -6,5 +6,6 @@
         public const string UnitCard = "UnitCard";
         public const string GridView = "GridView";
         public const string Platform = "Platform";
+        public const string Healthbar = "Healthbar";
     }
 }

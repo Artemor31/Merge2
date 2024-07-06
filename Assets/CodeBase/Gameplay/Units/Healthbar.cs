@@ -1,7 +1,4 @@
-﻿using System;
-using CodeBase.Infrastructure;
-using CodeBase.LevelData;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,26 +8,24 @@ namespace CodeBase.Gameplay.Units
     {
         [SerializeField] private Image _value;
         [SerializeField] private TextMeshProUGUI _level;
-        [SerializeField] private Health _health;
-        [SerializeField] private Actor _actor;
-        [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _offset;
         [SerializeField] private Canvas _canvas;
+        private Health _health;
+        private Transform _target;
 
-        private void OnEnable()
+        public void Initialize(Camera camera, Actor actor, Health health)
         {
-            SetValue();
-            _health.HealthChanged += SetValue;
-            _level.text = _actor.Level.ToString();
-            
-            Camera currentCamera = ServiceLocator.Resolve<CameraService>().CurrentMainCamera();
-            _canvas.worldCamera = currentCamera;
-            transform.LookAt(-currentCamera.transform.position);
+            _health = health;
+            _target = actor.transform;
+            health.HealthChanged += SetHealth;
+            _level.text = actor.Level.ToString();
+            SetHealth();
+            _canvas.worldCamera = camera;
+            transform.LookAt(-camera.transform.position);
         }
 
-        // separate spawning of actor and attaching healthbar to him
         private void Update() => transform.position = _target.position + _offset;
-        private void OnDisable() => _health.HealthChanged -= SetValue;
-        private void SetValue() => _value.fillAmount = _health.Ratio;
+        private void OnDisable() => _health.HealthChanged -= SetHealth;
+        private void SetHealth() => _value.fillAmount = _health.Ratio;
     }
 }

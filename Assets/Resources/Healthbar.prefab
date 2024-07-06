@@ -70,7 +70,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.217
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3786980867017233793}
   - component: {fileID: 586360979620058113}
   m_Layer: 5
-  m_Name: ActorInfoBar
+  m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6034227796371171827}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.42985177, y: -0, z: -0, w: 0.9028995}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -169,9 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value: {fileID: 7766591068179752600}
   _level: {fileID: 1017480184257610004}
-  _health: {fileID: 0}
-  _actor: {fileID: 0}
-  _target: {fileID: 0}
   _offset: {x: 0, y: 2.4, z: 0}
   _canvas: {fileID: 1129948923519770872}
 --- !u!1 &6037500615489517612
@@ -239,7 +236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

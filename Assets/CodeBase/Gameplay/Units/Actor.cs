@@ -9,7 +9,9 @@ namespace CodeBase.Gameplay.Units
     {
         public event Action<Actor> OnDied;
         
-        [field: SerializeField] public int Level { get; private set; }
+        public bool IsDead => _health.Current <= 0;
+        public Health Health => _health;
+        public int Level { get; private set; }
         public UnitId Id { get; private set; }
         [SerializeField] private Health _health;
         [SerializeField] private Mover _mover;
@@ -17,7 +19,6 @@ namespace CodeBase.Gameplay.Units
         [SerializeField] private Attacker _attacker;
         [SerializeField] private AnimatorScheduler _animator;
 
-        public bool IsDead => _health.Current <= 0;
 
         private UnitState _state = UnitState.Idle;
         private IReadOnlyList<Actor> _candidates;

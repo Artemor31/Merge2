@@ -9,38 +9,50 @@ namespace CodeBase.Services
     public class GameFactory : IService
     {
         private readonly AssetsProvider _assetsProvider;
+        private readonly CameraService _cameraService;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
 
-        public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider)
+        public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider, CameraService cameraService)
         {
             _assetsProvider = assetsProvider;
+            _cameraService = cameraService;
             _unitsDatabase = database.GetDatabase<UnitsDatabase>();
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
         public Actor CreateActor(UnitId id)
         {
-            var unitData = _unitsDatabase.Units.First(u => u.Id == id);
-            var unit = Object.Instantiate(unitData.Prefab);
-            unit.gameObject.name += Random.Range(0, 10000);
-            unit.Initialize(unitData.Level, id);
-            return unit;
+            var data = _unitsDatabase.Units.First(u => u.Id == id);
+            var actor = Object.Instantiate(data.Prefab);
+            actor.gameObject.name += Random.Range(0, 10000);
+            actor.Initialize(data.Level, id);
+            CreateHealthbar(actor);
+            return actor;
         }
-             
+
         public Actor CreateActor(UnitId id, Platform platform)
         {
             Actor actor = CreateActor(id);
             actor.transform.position = platform.transform.position;
             return actor;
         }
-        
-        public GridView CreateGridView(GridService gridService)
+
+        private void CreateHealthbar(Actor actor)
+        {
+            var asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
+            var healthbar = Object.Instantiate(asset);
+            Camera camera = _cameraService.CurrentMainCamera();
+            var health = actor.GetComponent<Health>();
+            
+            healthbar.Initialize(camera, actor, health);
+        }
+
+        public void CreateGridView(GridService gridService)
         {
             GridView gridView = Object.Instantiate(_assetsProvider.Load<GridView>(AssetsPath.GridView));
             gridView.Init(gridService);
             gridView.transform.position = _levelDatabase.GridPosition;
-            return gridView;
         }
 
         public Platform[,] CreatePlatforms(Vector2Int size)
