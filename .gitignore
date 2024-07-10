@@ -16,3 +16,7 @@ RusichsVSZmeys.sln
 Assembly-CSharp-Editor.csproj
 
 Assembly-CSharp.csproj
+
+NaughtyAttributes.Editor.csproj
+
+NaughtyAttributes.Core.csproj

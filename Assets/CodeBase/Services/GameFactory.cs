@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace CodeBase.Services
 {
+    
     public class GameFactory : IService
     {
         private readonly AssetsProvider _assetsProvider;
@@ -13,7 +14,9 @@ namespace CodeBase.Services
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
 
-        public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider, CameraService cameraService)
+        public GameFactory(DatabaseProvider database,
+                           AssetsProvider assetsProvider,
+                           CameraService cameraService)
         {
             _assetsProvider = assetsProvider;
             _cameraService = cameraService;

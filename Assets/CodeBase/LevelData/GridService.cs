@@ -10,7 +10,7 @@ namespace CodeBase.LevelData
     public class GridService : IService
     {
         private readonly IUpdateable _updateable;
-        private readonly RuntimeDataRepository _dataRepository;
+        private readonly GridDataService _service;
         private readonly LayerMask _platformMask;
         private readonly RaycastHit[] _hits;
         private readonly MergeService _mergeService;
@@ -24,19 +24,19 @@ namespace CodeBase.LevelData
         public event Action<GridRuntimeData> OnPlatformReleased;
         public event Action<GridRuntimeData> OnPlatformHovered;
 
-        public GridService(IUpdateable updateable, RuntimeDataRepository dataRepository, MergeService mergeService, CameraService cameraService)
+        public GridService(IUpdateable updateable, GridDataService service, MergeService mergeService, CameraService cameraService)
         {
             _updateable = updateable;
-            _dataRepository = dataRepository;
+            _service = service;
             _mergeService = mergeService;
             _cameraService = cameraService;
             _hits = new RaycastHit[5];
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
 
             _updateable.Tick += OnTick;
-            _dataRepository.OnPlatformClicked += OnClicked;
-            _dataRepository.OnPlatformHovered += OnHovered;
-            _dataRepository.OnPlatformReleased += OnReleased;
+            _service.OnPlatformClicked += OnClicked;
+            _service.OnPlatformHovered += OnHovered;
+            _service.OnPlatformReleased += OnReleased;
         }
 
         private void OnHovered(GridRuntimeData gridData)
@@ -49,7 +49,7 @@ namespace CodeBase.LevelData
         {
             if (!_dragging || !RaycastPlatform(out Platform platform)) return;
 
-            GridRuntimeData ended = _dataRepository.GetDataAt(platform.Index);
+            GridRuntimeData ended = _service.GetDataAt(platform.Index);
             
             if (started.Index == ended.Index)
             {
@@ -123,7 +123,7 @@ namespace CodeBase.LevelData
                 if (hit.transform.TryGetComponent(out Platform platform) && CastPlane(platform, ray, out var distance))
                 {
                     Vector3 point = ray.GetPoint(distance);
-                    _dataRepository.GetDataAt(_selected).Actor.transform.position = point;
+                    _service.GetDataAt(_selected).Actor.transform.position = point;
                     break;
                 }
             }

@@ -13,28 +13,35 @@ namespace CodeBase.Gameplay
     public class WaveBuilder : IService
     {
         private readonly GameFactory _factory;
+        private readonly PlayerProgressService _playerProgress;
+        private readonly GridDataService _gridDataService;
         private readonly WavesDatabase _wavesDatabase;
         private readonly LevelDatabase _levelDatabase;
 
-        public WaveBuilder(GameFactory factory, DatabaseProvider provider)
+        public WaveBuilder(GameFactory factory, 
+                           DatabaseProvider provider, 
+                           PlayerProgressService playerProgress,
+                           GridDataService gridDataService)
         {
             _factory = factory;
+            _playerProgress = playerProgress;
+            _gridDataService = gridDataService;
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
             _levelDatabase = provider.GetDatabase<LevelDatabase>();
         }
 
-        public void BuildEnemyWave(RuntimeDataRepository dataRepository)
+        public void BuildEnemyWave()
         {
-            dataRepository.RemoveEnemies();
+            _gridDataService.RemoveEnemies();
             var enemiesPositions = GetPositions();
 
-            foreach (WavesDatabase.EnemyAmount data in WaveData(dataRepository.Wave).Enemies)
+            foreach (WavesDatabase.EnemyAmount data in WaveData(_playerProgress.Wave).Enemies)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateActor(data.Unit);
                     enemy.transform.position = enemiesPositions.Random();
-                    dataRepository.AddEnemy(enemy);
+                    _gridDataService.AddEnemy(enemy);
                 }
             }
         }
@@ -58,15 +65,7 @@ namespace CodeBase.Gameplay
 
             return positions;
         }
-
-        public void BuildPlayerWave(IReadOnlyList<Actor> actors)
-        {
-            foreach (Actor unit in actors)
-            {
-                // сохранять id юнита и его позицию?
-            }
-        }
-
+        
         private WavesDatabase.WaveData WaveData(int wave) =>
             _wavesDatabase.WavesData.First(d => d.Wave == wave);
     }

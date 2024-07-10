@@ -15,19 +15,20 @@ namespace CodeBase.Services.StateMachine
         public GameStateMachine(SceneLoader sceneLoader,
                                 WindowsService windowsService,
                                 WaveBuilder waveBuilder,
-                                RuntimeDataRepository runtimeDataRepository,
+                                GridDataService gridDataService,
                                 GameFactory gameFactory,
                                 GridService gridService,
-                                RuntimeDataRepository dataRepository, 
-                                GameObserver gameObserver)
+                                GridDataService service,
+                                GameObserver gameObserver, 
+                                PlayerProgressService playerProgress)
         {
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, runtimeDataRepository, gameFactory, gridService)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridDataService, gameFactory, gridService)},
                 {typeof(GameLoopState), new GameLoopState(this, windowsService, gameObserver)},
-                {typeof(ResultScreenState), new ResultScreenState(this, windowsService, dataRepository, gameObserver)},
+                {typeof(ResultScreenState), new ResultScreenState(this, windowsService, service, gameObserver, playerProgress)},
             };
         }
 

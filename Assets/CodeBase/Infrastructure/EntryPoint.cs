@@ -40,17 +40,19 @@ namespace CodeBase.Infrastructure
             SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
             DatabaseProvider databaseProvider = new(assetsProvider);
+            RepositoryProvider repositoryProvider = new();
+            PlayerProgressService playerService = new(repositoryProvider);
             CameraService cameraService = new(sceneLoader);
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService);
-            RuntimeDataRepository runtimeDataRepository = new(gameFactory);
-            WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
+            GridDataService gridDataService = new(gameFactory);
+            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService, gridDataService);
             MergeService mergeService = new(gameFactory, databaseProvider);
-            GameObserver gameObserver = new(runtimeDataRepository);
-            GridService gridService = new(this, runtimeDataRepository, mergeService, cameraService);
-            
-            
+            GridService gridService = new(this, gridDataService, mergeService, cameraService);
+            GameObserver gameObserver = new(gridDataService, playerService);
+
+
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                runtimeDataRepository, gameFactory, gridService, runtimeDataRepository, gameObserver);
+                gridDataService, gameFactory, gridService, gridDataService, gameObserver, playerService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -58,7 +60,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(_windowsService);
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(databaseProvider);
-            ServiceLocator.Bind(runtimeDataRepository);
+            ServiceLocator.Bind(gridDataService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);

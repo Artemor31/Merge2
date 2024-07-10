@@ -11,21 +11,21 @@ namespace CodeBase.Services.StateMachine
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly WaveBuilder _waveBuilder;
-        private readonly RuntimeDataRepository _runtimeDataRepository;
+        private readonly GridDataService _gridDataService;
         private readonly GameFactory _gameFactory;
         private readonly GridService _gridService;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
-                              RuntimeDataRepository runtimeDataRepository,
+                              GridDataService gridDataService,
                               GameFactory gameFactory,
                               GridService gridService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _waveBuilder = waveBuilder;
-            _runtimeDataRepository = runtimeDataRepository;
+            _gridDataService = gridDataService;
             _gameFactory = gameFactory;
             _gridService = gridService;
         }
@@ -35,12 +35,11 @@ namespace CodeBase.Services.StateMachine
 
         public void Exit()
         {
-            var platforms = _gameFactory.CreatePlatforms(_runtimeDataRepository.GridSize);
-            _runtimeDataRepository.InitPlatforms(platforms);
+            var platforms = _gameFactory.CreatePlatforms(_gridDataService.GridSize);
+            _gridDataService.InitPlatforms(platforms);
 
             _gameFactory.CreateGridView(_gridService);
-            _waveBuilder.BuildEnemyWave(_runtimeDataRepository);
-            _waveBuilder.BuildPlayerWave(_runtimeDataRepository.GetPlayerUnits());
+            _waveBuilder.BuildEnemyWave();
         }
     }
 }
