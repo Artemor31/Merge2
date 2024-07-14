@@ -67,6 +67,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(mergeService);
             ServiceLocator.Bind(gameObserver);
             ServiceLocator.Bind(cameraService);
+            ServiceLocator.Bind(playerService);
             
             _windowsService.InitWindows();
 

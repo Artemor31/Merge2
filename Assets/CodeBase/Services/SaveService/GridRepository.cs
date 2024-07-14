@@ -21,7 +21,7 @@ namespace CodeBase.Services.SaveService
         public GridData Restore()
         {
             string json = PlayerPrefs.GetString("GridData", string.Empty);
-            return json == string.Empty ? new GridData() : JsonConvert.DeserializeObject<GridData>(json);
+            return json == string.Empty ? null : JsonConvert.DeserializeObject<GridData>(json);
         }
     }
     [Serializable]
@@ -29,6 +29,6 @@ namespace CodeBase.Services.SaveService
     {
         public UnitId[,] UnitIds;
         public GridData(UnitId[,] unitId) => UnitIds = unitId;
-        public GridData() => UnitIds = new UnitId[0,0];
+        public GridData() => UnitIds = null;
     }
 }

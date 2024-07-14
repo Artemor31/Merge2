@@ -23,7 +23,7 @@ namespace CodeBase.Gameplay.Units
         private UnitState _state = UnitState.Idle;
         private IReadOnlyList<Actor> _candidates;
 
-        public void Initialize(int level, UnitId id)
+        public void Initialize(int level, UnitId id, GameObject view)
         {
             Level = level;
             Id = id;
@@ -31,6 +31,8 @@ namespace CodeBase.Gameplay.Units
             _health.Init(_animator);
             _mover.Init(_animator);
             _attacker.Init(_animator);
+            view.transform.SetParent(transform);
+            view.transform.position = Vector3.zero;
         }
 
         public void Unleash(IReadOnlyList<Actor> candidates)

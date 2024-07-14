@@ -26,12 +26,12 @@ namespace CodeBase.Services
 
         public Actor CreateActor(UnitId id)
         {
-            var data = _unitsDatabase.Units.First(u => u.Id == id);
-            var actor = Object.Instantiate(data.Prefab);
-            actor.gameObject.name += Random.Range(0, 10000);
-            actor.Initialize(data.Level, id);
-            CreateHealthbar(actor);
-            return actor;
+            var actor = _assetsProvider.Load<Actor>(AssetsPath.SimpleMeleeUnit);
+            Actor actorInstance = Object.Instantiate(actor);
+            var view = Object.Instantiate(_unitsDatabase.Units.First(u => u.Id == id).Prefab);
+            actorInstance.Initialize(_unitsDatabase.Units.First(u => u.Id == id).Level, id, view);
+            CreateHealthbar(actorInstance);
+            return actorInstance;
         }
 
         public Actor CreateActor(UnitId id, Platform platform)

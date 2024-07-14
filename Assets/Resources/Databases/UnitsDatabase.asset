@@ -13,15 +13,6 @@ MonoBehaviour:
   m_Name: UnitsDatabase
   m_EditorClassIdentifier: 
   Units:
-  - Id: 1
-    Icon: {fileID: 21300000, guid: 1c84373cf4be81c44b97ce70ed9d78e6, type: 3}
-    Prefab: {fileID: 1586560765605431493, guid: 659981ab97d9bb64990767ef5f931f7c, type: 3}
-    Name: Skeleton
-    Level: 1
-    Cost: 1
-  - Id: 2
-    Icon: {fileID: 21300000, guid: 4574f971d70a83c41ade6083ada1035a, type: 3}
-    Prefab: {fileID: 245096800991137023, guid: ba010fe100e10ca4b97ebbc6529b8016, type: 3}
-    Name: Orc
-    Level: 2
-    Cost: 2
+  - {fileID: 11400000, guid: 4c6dca5a1bd9e7343bd1a40a2ca9db79, type: 2}
+  - {fileID: 11400000, guid: 893e207a970eae94e95675881edf5a2e, type: 2}
+  - {fileID: 11400000, guid: 7b0ff5fd204481d4d97395f01c17e418, type: 2}

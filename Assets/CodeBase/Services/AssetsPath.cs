@@ -7,5 +7,6 @@
         public const string GridView = "GridView";
         public const string Platform = "Platform";
         public const string Healthbar = "Healthbar";
+        public const string SimpleMeleeUnit = "SimpleMeleeUnit";
     }
 }

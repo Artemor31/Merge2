@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8663909268866682283}
   - component: {fileID: 8408939481474730509}
   m_Layer: 0
-  m_Name: BaseActor
+  m_Name: SimpleMeleeUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

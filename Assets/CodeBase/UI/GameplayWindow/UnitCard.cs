@@ -14,7 +14,7 @@ namespace CodeBase.UI.GameplayWindow
         [SerializeField] private TMP_Text _title;
         [SerializeField] private TMP_Text _cost;
 
-        public void Setup(UnitsDatabase.UnitData unitData)
+        public void Setup(ActorConfig unitData)
         {
             _icon.sprite = unitData.Icon;
             _title.text = unitData.Name;
