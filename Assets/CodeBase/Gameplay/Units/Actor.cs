@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Databases;
+using CodeBase.Gameplay.Units.Behaviours;
+using CodeBase.Services;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Units
@@ -22,30 +24,25 @@ namespace CodeBase.Gameplay.Units
 
         private UnitState _state = UnitState.Idle;
         private IReadOnlyList<Actor> _candidates;
+        private IUpdateable _updateable;
 
-        public void Initialize(int level, UnitId id, GameObject view)
+        public void Initialize(int level, UnitId id, GameObject view, IUpdateable updateable)
         {
-            Level = level;
             Id = id;
+            Level = level;
             _state = UnitState.Idle;
+            _updateable = updateable;
+            _updateable.Tick += Tick;
+
             _health.Init(_animator);
             _mover.Init(_animator);
             _attacker.Init(_animator);
+            
             view.transform.SetParent(transform);
             view.transform.position = Vector3.zero;
         }
 
-        public void Unleash(IReadOnlyList<Actor> candidates)
-        {
-            _state = UnitState.Fighting;
-            _candidates = candidates;
-            _targetSearch.SearchTarget(_candidates);
-            _health.Died += OnDies;
-        }
-
-        public void TakeDamage(float damage) => _health.TakeDamage(damage);
-
-        private void Update()
+        private void Tick()
         {
             if (IsDead || _state == UnitState.Idle) return;
 
@@ -71,9 +68,20 @@ namespace CodeBase.Gameplay.Units
             }
         }
 
+        public void Unleash(IReadOnlyList<Actor> candidates)
+        {
+            _state = UnitState.Fighting;
+            _candidates = candidates;
+            _targetSearch.SearchTarget(_candidates);
+            _health.Died += OnDies;
+        }
+
+        public void TakeDamage(float damage) => _health.TakeDamage(damage);
+
         private void OnDies()
         {
             _health.Died -= OnDies;
+            _updateable.Tick -= Tick;
             _mover.Stop();
             OnDied?.Invoke(this);
         }

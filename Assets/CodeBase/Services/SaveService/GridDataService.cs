@@ -19,7 +19,7 @@ namespace CodeBase.Services.SaveService
         public List<Actor> EnemyUnits { get; }
 
         private readonly GridRuntimeData[,] _gridData;
-        private Vector2Int? _selected;
+        private Vector2Int? _selected;  
         private readonly GridRepository _gridRepo;
 
         public GridDataService(GameFactory gameFactory)

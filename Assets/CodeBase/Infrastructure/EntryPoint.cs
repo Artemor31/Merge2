@@ -43,14 +43,13 @@ namespace CodeBase.Infrastructure
             RepositoryProvider repositoryProvider = new();
             PlayerProgressService playerService = new(repositoryProvider);
             CameraService cameraService = new(sceneLoader);
-            GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService);
+            GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
             GridDataService gridDataService = new(gameFactory);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService, gridDataService);
             MergeService mergeService = new(gameFactory, databaseProvider);
             GridService gridService = new(this, gridDataService, mergeService, cameraService);
             GameObserver gameObserver = new(gridDataService, playerService);
-
-
+            
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gameFactory, gridService, gridDataService, gameObserver, playerService);
 
@@ -68,6 +67,7 @@ namespace CodeBase.Infrastructure
             ServiceLocator.Bind(gameObserver);
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(playerService);
+            ServiceLocator.Bind(repositoryProvider);
             
             _windowsService.InitWindows();
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Units
+namespace CodeBase.Gameplay.Units.Behaviours
 {
     public class SimpleHealth : Health
     {

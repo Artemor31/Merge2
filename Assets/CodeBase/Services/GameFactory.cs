@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using CodeBase.Databases;
 using CodeBase.Gameplay.Units;
+using CodeBase.Gameplay.Units.Behaviours;
 using CodeBase.LevelData;
 using UnityEngine;
 
@@ -11,15 +12,18 @@ namespace CodeBase.Services
     {
         private readonly AssetsProvider _assetsProvider;
         private readonly CameraService _cameraService;
+        private readonly IUpdateable _updateable;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
 
         public GameFactory(DatabaseProvider database,
                            AssetsProvider assetsProvider,
-                           CameraService cameraService)
+                           CameraService cameraService,
+                           IUpdateable updateable)
         {
             _assetsProvider = assetsProvider;
             _cameraService = cameraService;
+            _updateable = updateable;
             _unitsDatabase = database.GetDatabase<UnitsDatabase>();
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
@@ -29,7 +33,7 @@ namespace CodeBase.Services
             var actor = _assetsProvider.Load<Actor>(AssetsPath.SimpleMeleeUnit);
             Actor actorInstance = Object.Instantiate(actor);
             var view = Object.Instantiate(_unitsDatabase.Units.First(u => u.Id == id).Prefab);
-            actorInstance.Initialize(_unitsDatabase.Units.First(u => u.Id == id).Level, id, view);
+            actorInstance.Initialize(_unitsDatabase.Units.First(u => u.Id == id).Level, id, view, _updateable);
             CreateHealthbar(actorInstance);
             return actorInstance;
         }
