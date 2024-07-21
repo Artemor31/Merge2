@@ -15,15 +15,19 @@ MonoBehaviour:
   WavesData:
   - Wave: 0
     Enemies:
-    - Unit: 1
-      Amount: 2
+    - Race: 1
+      Mastery: 1
+      Amount: 1
   - Wave: 1
     Enemies:
-    - Unit: 2
-      Amount: 1
+    - Race: 1
+      Mastery: 1
+      Amount: 2
   - Wave: 2
     Enemies:
-    - Unit: 2
+    - Race: 1
+      Mastery: 1
       Amount: 1
-    - Unit: 1
-      Amount: 2
+    - Race: 1
+      Mastery: 2
+      Amount: 1

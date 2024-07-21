@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
-  m_Name: HumanRanger1
+  m_Name: HumanRanger2
   m_EditorClassIdentifier: 
   Race: 1
   Mastery: 2
   Icon: {fileID: 21300016, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
-  Prefab: {fileID: 7882407698475937630, guid: b62b0a87278a2c2448467633c573783d, type: 3}
+  Prefab: {fileID: 5497826595401838795, guid: 58cbda175e4b7e244b505c462abdefc7, type: 3}
   Name: Ranger
-  Level: 1
-  Cost: 1
+  Level: 2
+  Cost: 2

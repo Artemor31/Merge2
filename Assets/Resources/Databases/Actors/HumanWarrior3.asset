@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
   m_Name: HumanWarrior3
   m_EditorClassIdentifier: 
-  Id: 3
+  Race: 1
+  Mastery: 1
   Icon: {fileID: 21300000, guid: a8166ea434d337349818825bff42d2f6, type: 3}
   Prefab: {fileID: 8214250618548736778, guid: e78d6aabe00435c47a3235b96280a010, type: 3}
   Name: Warrior
