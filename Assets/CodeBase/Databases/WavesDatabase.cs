@@ -12,7 +12,6 @@ namespace CodeBase.Databases
         [Serializable]
         public class WaveData
         {
-            public int Wave;
             public List<EnemyAmount> Enemies;
         }
     
@@ -21,6 +20,7 @@ namespace CodeBase.Databases
         {
             public Race Race;
             public Mastery Mastery;
+            public int Level;
             public int Amount;
         } 
     }

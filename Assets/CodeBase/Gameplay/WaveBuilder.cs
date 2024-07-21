@@ -35,11 +35,11 @@ namespace CodeBase.Gameplay
             _gridDataService.RemoveEnemies();
             var enemiesPositions = GetPositions();
 
-            foreach (WavesDatabase.EnemyAmount data in WaveData(_playerProgress.Wave).Enemies)
+            foreach (WavesDatabase.EnemyAmount data in _wavesDatabase.WavesData[_playerProgress.Wave].Enemies)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
-                    var enemy = _factory.CreateActor(data.Race, data.Mastery);
+                    var enemy = _factory.CreateActor(data.Race, data.Mastery, data.Level);
                     enemy.transform.position = enemiesPositions.Random();
                     _gridDataService.AddEnemy(enemy);
                 }
@@ -65,8 +65,5 @@ namespace CodeBase.Gameplay
 
             return positions;
         }
-        
-        private WavesDatabase.WaveData WaveData(int wave) =>
-            _wavesDatabase.WavesData.First(d => d.Wave == wave);
     }
 }

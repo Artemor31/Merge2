@@ -35,7 +35,7 @@ namespace CodeBase.Services.SaveService
     [Serializable]
     public class PlayerData
     {
-        public int Money;
+        public int Money = 10;
         public int Wave;
         public int Coins;
     }

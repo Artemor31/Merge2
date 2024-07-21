@@ -28,9 +28,9 @@ namespace CodeBase.Services
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
-        public Actor CreateActor(Race race, Mastery mastery)
+        public Actor CreateActor(Race race, Mastery mastery, int level)
         {
-            ActorConfig config = _unitsDatabase.Units.First(u => u.Race == race && u.Mastery == mastery);
+            ActorConfig config = _unitsDatabase.Units.First(u => u.Race == race && u.Mastery == mastery && u.Level == level);
             GameObject view = Object.Instantiate(config.Prefab);
             Actor instance = Object.Instantiate(_assetsProvider.Load<Actor>(AssetsPath.SimpleMeleeUnit));
             instance.Initialize(config.Level, view, _updateable, race, mastery);
@@ -38,12 +38,14 @@ namespace CodeBase.Services
             return instance;
         }
 
-        public Actor CreateActor(Race race, Mastery mastery, Platform platform)
+        public Actor CreateActor(Race race, Mastery mastery, int level, Platform platform)
         {
-            Actor actor = CreateActor(race, mastery);
+            Actor actor = CreateActor(race, mastery, level);
             actor.transform.position = platform.transform.position;
             return actor;
         }
+
+        public Actor CreateActor(ActorConfig config) => CreateActor(config.Race, config.Mastery, config.Level);
 
         private void CreateHealthbar(Actor actor)
         {

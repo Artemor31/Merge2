@@ -48,10 +48,10 @@ namespace CodeBase.Services.SaveService
                 DoForeach((i, j) =>
                 {
                     GridRuntimeData data = _gridData[i, j];
-                    GridData.UnitData unitData = restore.UnitIds[i, j];
-                    if (data == null || unitData.Equals(GridData.UnitData.None)) return;
+                    UnitData unitData = restore.UnitIds[i, j];
+                    if (data == null || unitData.Equals(UnitData.None)) return;
                     
-                    data.Actor = _gameFactory.CreateActor(unitData.Race, unitData.Mastery, data.Platform);
+                    data.Actor = _gameFactory.CreateActor(unitData.Race, unitData.Mastery, unitData.Level, data.Platform);
                     AddPlayerUnit(data.Actor, data.Platform);
                 });
             }
@@ -71,13 +71,18 @@ namespace CodeBase.Services.SaveService
         
         public void Save()
         {
-            var unitDatas = new GridData.UnitData[GridSize.x, GridSize.y];
+            var unitDatas = new UnitData[GridSize.x, GridSize.y];
             DoForeach((i, j) =>
             {
                 if (_gridData[i, j].Busy)
-                    unitDatas[i, j] =  new GridData.UnitData(_gridData[i, j].Actor.Race, _gridData[i, j].Actor.Mastery);
+                {
+                    Actor actor = _gridData[i, j].Actor;
+                    unitDatas[i, j] =  new UnitData(actor.Race, actor.Mastery, actor.Level);
+                }
                 else
-                    unitDatas[i, j] = GridData.UnitData.None;
+                {
+                    unitDatas[i, j] = UnitData.None;
+                }
             });
 
             _gridRepo.Save(new GridData(unitDatas));
