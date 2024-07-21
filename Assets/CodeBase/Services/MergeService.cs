@@ -23,7 +23,7 @@ namespace CodeBase.Services
             var unit = _unitsDatabase.Units.FirstOrDefault(u => u.Level == actor.Level + 1);
             if (unit == null) return false;
             
-            result = _gameFactory.CreateActor(unit.Id);
+            result = _gameFactory.CreateActor(unit.Race, unit.Mastery);
             return true;
         }
     }

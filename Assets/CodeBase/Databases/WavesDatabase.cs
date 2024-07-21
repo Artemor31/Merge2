@@ -19,7 +19,8 @@ namespace CodeBase.Databases
         [Serializable]
         public class EnemyAmount
         {
-            public UnitId Unit;
+            public Race Race;
+            public Mastery Mastery;
             public int Amount;
         } 
     }

@@ -9,12 +9,4 @@ namespace CodeBase.Databases
     {
         public List<ActorConfig> Units;
     }
-
-    public enum UnitId
-    {
-        None = 0,
-        HumanWarrior1 = 1,
-        HumanWarrior2 = 2,
-        HumanWarrior3 = 3,
-    }
 }

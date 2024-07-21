@@ -48,10 +48,10 @@ namespace CodeBase.Services.SaveService
                 DoForeach((i, j) =>
                 {
                     GridRuntimeData data = _gridData[i, j];
-                    UnitId id = restore.UnitIds[i, j];
-                    if (data == null || id == UnitId.None) return;
+                    GridData.UnitData unitData = restore.UnitIds[i, j];
+                    if (data == null || unitData.Equals(GridData.UnitData.None)) return;
                     
-                    data.Actor = _gameFactory.CreateActor(id, data.Platform);
+                    data.Actor = _gameFactory.CreateActor(unitData.Race, unitData.Mastery, data.Platform);
                     AddPlayerUnit(data.Actor, data.Platform);
                 });
             }
@@ -71,12 +71,16 @@ namespace CodeBase.Services.SaveService
         
         public void Save()
         {
-            var ids = new UnitId[GridSize.x, GridSize.y];
-            DoForeach((i, j) => ids[i, j] = _gridData[i, j].Busy
-                ? _gridData[i, j].Actor.Id
-                : UnitId.None);
+            var unitDatas = new GridData.UnitData[GridSize.x, GridSize.y];
+            DoForeach((i, j) =>
+            {
+                if (_gridData[i, j].Busy)
+                    unitDatas[i, j] =  new GridData.UnitData(_gridData[i, j].Actor.Race, _gridData[i, j].Actor.Mastery);
+                else
+                    unitDatas[i, j] = GridData.UnitData.None;
+            });
 
-            _gridRepo.Save(new GridData(ids));
+            _gridRepo.Save(new GridData(unitDatas));
         }
 
         public void AddEnemy(Actor actor) => EnemyUnits.Add(actor);

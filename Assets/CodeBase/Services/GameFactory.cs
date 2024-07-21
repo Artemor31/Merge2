@@ -28,29 +28,29 @@ namespace CodeBase.Services
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
-        public Actor CreateActor(UnitId id)
+        public Actor CreateActor(Race race, Mastery mastery)
         {
-            var actor = _assetsProvider.Load<Actor>(AssetsPath.SimpleMeleeUnit);
-            Actor actorInstance = Object.Instantiate(actor);
-            var view = Object.Instantiate(_unitsDatabase.Units.First(u => u.Id == id).Prefab);
-            actorInstance.Initialize(_unitsDatabase.Units.First(u => u.Id == id).Level, id, view, _updateable);
-            CreateHealthbar(actorInstance);
-            return actorInstance;
+            ActorConfig config = _unitsDatabase.Units.First(u => u.Race == race && u.Mastery == mastery);
+            GameObject view = Object.Instantiate(config.Prefab);
+            Actor instance = Object.Instantiate(_assetsProvider.Load<Actor>(AssetsPath.SimpleMeleeUnit));
+            instance.Initialize(config.Level, view, _updateable, race, mastery);
+            CreateHealthbar(instance);
+            return instance;
         }
 
-        public Actor CreateActor(UnitId id, Platform platform)
+        public Actor CreateActor(Race race, Mastery mastery, Platform platform)
         {
-            Actor actor = CreateActor(id);
+            Actor actor = CreateActor(race, mastery);
             actor.transform.position = platform.transform.position;
             return actor;
         }
 
         private void CreateHealthbar(Actor actor)
         {
-            var asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
-            var healthbar = Object.Instantiate(asset);
+            Healthbar asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
+            Healthbar healthbar = Object.Instantiate(asset);
             Camera camera = _cameraService.CurrentMainCamera();
-            var health = actor.GetComponent<Health>();
+            Health health = actor.GetComponent<Health>();
             
             healthbar.Initialize(camera, actor, health);
         }

@@ -19,7 +19,7 @@ namespace CodeBase.UI.GameplayWindow
 
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
-        private Dictionary<UnitCard, UnitId> _unitCards;
+        private Dictionary<UnitCard, (Race, Mastery)> _unitCards;
         private bool _refreshed;
         private GameFactory _factory;
         private GridDataService _gridDataService;
@@ -45,14 +45,14 @@ namespace CodeBase.UI.GameplayWindow
 
         private void CreatePlayerCards()
         {
-            _unitCards = new Dictionary<UnitCard, UnitId>();
+            _unitCards = new Dictionary<UnitCard, (Race, Mastery)>();
             foreach (var unitData in _unitsDatabase.Units)
             {
                 UnitCard card = Instantiate(_cardPrefab, UnitsParent);
 
                 card.Setup(unitData);
                 card.Button.onClick.AddListener(() => CardClicked(card));
-                _unitCards.Add(card, unitData.Id);
+                _unitCards.Add(card, (unitData.Race, unitData.Mastery));
             }
         }
 
@@ -63,7 +63,7 @@ namespace CodeBase.UI.GameplayWindow
 
             if (!_playerService.TryBuy(card.Cost)) return;
             
-            Actor actor = _factory.CreateActor(_unitCards[card]);
+            Actor actor = _factory.CreateActor(_unitCards[card].Item1, _unitCards[card].Item2);
             actor.transform.position = platform.transform.position;
             _gridDataService.AddPlayerUnit(actor, platform);
         }

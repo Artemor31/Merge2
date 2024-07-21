@@ -27,8 +27,24 @@ namespace CodeBase.Services.SaveService
     [Serializable]
     public class GridData
     {
-        public UnitId[,] UnitIds;
-        public GridData(UnitId[,] unitId) => UnitIds = unitId;
-        public GridData() => UnitIds = null;
+        public UnitData[,] UnitIds;
+        public GridData(UnitData[,] unitId) => UnitIds = unitId;
+
+        public struct UnitData
+        {
+            public static UnitData None => new(Race.None, Mastery.None);
+            public readonly Race Race;
+            public readonly Mastery Mastery;
+
+            public UnitData(Race race, Mastery mastery)
+            {
+                Race = race;
+                Mastery = mastery;
+            }
+
+            public override bool Equals(object obj) => obj is UnitData data && Equals(data);
+            private bool Equals(UnitData other) => Race == other.Race && Mastery == other.Mastery;
+            public override int GetHashCode() => HashCode.Combine((int)Race, (int)Mastery);
+        }
     }
 }

@@ -14,21 +14,23 @@ namespace CodeBase.Gameplay.Units
         public bool IsDead => _health.Current <= 0;
         public Health Health => _health;
         public int Level { get; private set; }
-        public UnitId Id { get; private set; }
+        public Race Race { get; private set; }
+        public Mastery Mastery { get; private set; }
+        
         [SerializeField] private Health _health;
         [SerializeField] private Mover _mover;
         [SerializeField] private TargetSearch _targetSearch;
         [SerializeField] private Attacker _attacker;
         [SerializeField] private AnimatorScheduler _animator;
-
-
+        
         private UnitState _state = UnitState.Idle;
         private IReadOnlyList<Actor> _candidates;
         private IUpdateable _updateable;
-
-        public void Initialize(int level, UnitId id, GameObject view, IUpdateable updateable)
+        
+        public void Initialize(int level, GameObject view, IUpdateable updateable, Race race, Mastery mastery)
         {
-            Id = id;
+            Mastery = mastery;
+            Race = race;
             Level = level;
             _state = UnitState.Idle;
             _updateable = updateable;
