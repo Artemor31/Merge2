@@ -36,6 +36,7 @@ namespace CodeBase.Gameplay.Units
             _updateable = updateable;
             _updateable.Tick += Tick;
 
+            _animator.Init(view.GetComponent<Animator>());
             _health.Init(_animator);
             _mover.Init(_animator);
             _attacker.Init(_animator);

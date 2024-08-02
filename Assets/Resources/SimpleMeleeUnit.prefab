@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2626787111728515181}
-  - component: {fileID: 9018581907445089329}
   - component: {fileID: 6787395453057676287}
   - component: {fileID: 3391169263167272358}
   - component: {fileID: 1967405186381835594}
@@ -39,27 +38,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9018581907445089329
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7105839209840734736}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
-  m_Controller: {fileID: 9100000, guid: dec9347ed96b9c44a9fd5c1de88d34d2, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6787395453057676287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284e6109c6184dd4937b5fd96476789a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 9018581907445089329}
+  _animator: {fileID: 0}
 --- !u!195 &8408939481474730509
 NavMeshAgent:
   m_ObjectHideFlags: 0
