@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-
-namespace CodeBase.Gameplay.Units.Behaviours
+﻿namespace CodeBase.Gameplay.Units.Behaviours
 {
-    public class SimpleMeleeAttacker : Attacker
+    public class MeleeAttackAction : Action
     {
-        public override void Attack(Actor actor)
+        public override void PerformOn(Actor actor)
         {
             if (!CanAttack(actor)) return;
 

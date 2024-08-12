@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 namespace CodeBase.Gameplay.Units.Behaviours
 {
-    public class SimpleRangeAttacker : Attacker
+    public class RangeAttackAction : Action
     {
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private Transform _spawnPoint;
@@ -24,7 +24,7 @@ namespace CodeBase.Gameplay.Units.Behaviours
         }
 
 
-        public override void Attack(Actor actor)
+        public override void PerformOn(Actor actor)
         {
             Projectile projectile = _pool.Get();
             projectile.Init(actor.transform, _damage);

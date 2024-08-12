@@ -1,5 +1,7 @@
-﻿using CodeBase.UI;
+﻿using System;
+using CodeBase.UI;
 using CodeBase.UI.GameplayWindow;
+using UnityEngine;
 
 namespace CodeBase.Services.StateMachine
 {

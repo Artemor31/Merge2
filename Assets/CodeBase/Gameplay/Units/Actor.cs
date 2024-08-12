@@ -4,6 +4,7 @@ using CodeBase.Databases;
 using CodeBase.Gameplay.Units.Behaviours;
 using CodeBase.Services;
 using UnityEngine;
+using Action = CodeBase.Gameplay.Units.Behaviours.Action;
 
 namespace CodeBase.Gameplay.Units
 {
@@ -20,7 +21,7 @@ namespace CodeBase.Gameplay.Units
         [SerializeField] private Health _health;
         [SerializeField] private Mover _mover;
         [SerializeField] private TargetSearch _targetSearch;
-        [SerializeField] private Attacker _attacker;
+        [SerializeField] private Action _action;
         [SerializeField] private AnimatorScheduler _animator;
         
         private UnitState _state = UnitState.Idle;
@@ -39,7 +40,7 @@ namespace CodeBase.Gameplay.Units
             _animator.Init(view.GetComponent<Animator>());
             _health.Init(_animator);
             _mover.Init(_animator);
-            _attacker.Init(_animator);
+            _action.Init(_animator);
             
             view.transform.SetParent(transform);
             view.transform.position = Vector3.zero;
@@ -56,13 +57,13 @@ namespace CodeBase.Gameplay.Units
             
             if (_targetSearch.Target == null) return;
             
-            _attacker.Tick();
-            if (_attacker.InRange(_targetSearch.Target))
+            _action.Tick();
+            if (_action.InRange(_targetSearch.Target))
             {
                 _mover.Stop();
-                if (_attacker.CanAttack(_targetSearch.Target))
+                if (_action.CanAttack(_targetSearch.Target))
                 {
-                    _attacker.Attack(_targetSearch.Target);
+                    _action.PerformOn(_targetSearch.Target);
                 }
             }
             else

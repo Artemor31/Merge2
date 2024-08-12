@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using CodeBase.Databases;
+using UnityEngine;
 
 namespace CodeBase.Gameplay.Units.Behaviours
 {
-    public abstract class Attacker : MonoBehaviour
+    public abstract class Action : MonoBehaviour
     {
         protected virtual bool CooldownUp => AttackTimer <= 0;
 
@@ -19,7 +20,7 @@ namespace CodeBase.Gameplay.Units.Behaviours
             AttackTimer = 0;
         }
 
-        public abstract void Attack(Actor actor);
+        public abstract void PerformOn(Actor actor);
 
         public virtual void Tick()
         {
@@ -27,10 +28,9 @@ namespace CodeBase.Gameplay.Units.Behaviours
                 AttackTimer -= Time.deltaTime;
         }
 
+        protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, _range);
         public virtual bool CanAttack(Actor actor) => InRange(actor) && CooldownUp;
         public virtual bool InRange(Actor actor) =>
             Vector3.Distance(transform.position, actor.transform.position) <= _range;
-
-        protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, _range);
     }
 }
