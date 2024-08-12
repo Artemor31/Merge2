@@ -27,6 +27,12 @@ namespace Gameplay.Units.Behaviours
                 Die();
         }
 
+        public override void Heal(float damage)
+        {
+            Current = Mathf.Min(Current += damage, _maxHealth);
+            HealthChanged?.Invoke();
+        }
+
         private void Die()
         {
             Died?.Invoke();

@@ -10,7 +10,7 @@ namespace Gameplay.Units
         private Animator _animator;
 
         public void Init(Animator animator) => _animator = animator;
-        public void Attack() => _animator.SetTrigger(Atk);
+        public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);
         public void GoIdle() => _animator.SetFloat(Speed, 0);
         public void Die() => _animator.SetTrigger(Died);

@@ -1,15 +1,15 @@
 ﻿namespace Gameplay.Units.Behaviours
 {
-    public class MeleeAttackAction : Action
+    public class MeleeAttackAct : Act
     {
         public override void PerformOn(Actor actor)
         {
             if (!CanAttack(actor)) return;
 
             transform.LookAt(actor.transform);
-            Animator.Attack();
-            actor.TakeDamage(_damage);
-            AttackTimer = _attackCooldown;
+            Animator.PerformAct();
+            actor.Health.TakeDamage(_damage);
+            ActTimer = _actCooldown;
         }
     }
 }

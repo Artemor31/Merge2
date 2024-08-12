@@ -2,21 +2,21 @@
 
 namespace Gameplay.Units.Behaviours
 {
-    public abstract class Action : MonoBehaviour
+    public abstract class Act : MonoBehaviour
     {
-        protected virtual bool CooldownUp => AttackTimer <= 0;
+        protected virtual bool CooldownUp => ActTimer <= 0;
 
         [SerializeField] protected float _damage;
         [SerializeField] protected float _range;
-        [SerializeField] protected float _attackCooldown;
+        [SerializeField] protected float _actCooldown;
 
-        protected float AttackTimer;
+        protected float ActTimer;
         protected AnimatorScheduler Animator;
 
         public virtual void Init(AnimatorScheduler animator)
         {
             Animator = animator;
-            AttackTimer = 0;
+            ActTimer = 0;
         }
 
         public abstract void PerformOn(Actor actor);
@@ -24,7 +24,7 @@ namespace Gameplay.Units.Behaviours
         public virtual void Tick()
         {
             if (CooldownUp == false)
-                AttackTimer -= Time.deltaTime;
+                ActTimer -= Time.deltaTime;
         }
 
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, _range);

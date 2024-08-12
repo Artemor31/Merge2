@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 namespace Gameplay.Units.Behaviours
 {
-    public class RangeAttackAction : Action
+    public class RangeAttackAct : Act
     {
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private Transform _spawnPoint;
