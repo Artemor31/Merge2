@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.Services
+namespace Services
 {
     public interface IUpdateable : IService
     {

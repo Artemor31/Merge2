@@ -1,7 +1,6 @@
-﻿using CodeBase.Gameplay.Units.Behaviours;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CodeBase.Gameplay.Units.Weapon
+namespace Gameplay.Units.Weapon
 {
     public class SimpleFollowProjectile : Projectile
     {

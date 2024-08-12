@@ -1,11 +1,11 @@
 ﻿using System;
-using CodeBase.Services;
-using CodeBase.Services.SaveService;
+using Services;
+using Services.SaveService;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
 
-namespace CodeBase.LevelData
+namespace LevelData
 {
     public class GridService : IService
     {

@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using CodeBase.Databases;
-using CodeBase.Gameplay.Units;
-using CodeBase.Infrastructure;
-using CodeBase.LevelData;
-using CodeBase.Services;
-using CodeBase.Services.SaveService;
+using Databases;
+using Infrastructure;
+using Services;
+using Services.SaveService;
 using UnityEngine;
 
-namespace CodeBase.Gameplay
+namespace Gameplay
 {
     public class WaveBuilder : IService
     {

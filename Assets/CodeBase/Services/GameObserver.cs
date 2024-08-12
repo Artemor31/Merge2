@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CodeBase.Gameplay.Units;
-using CodeBase.Services.SaveService;
+using Gameplay.Units;
+using Services.SaveService;
 
-namespace CodeBase.Services
+namespace Services
 {
     public class GameObserver : IService
     {

@@ -1,8 +1,8 @@
-﻿using CodeBase.NaughtyAttributes.Core.ValidatorAttributes;
-using CodeBase.NaughtyAttributes.Editor.Utility;
+﻿using NaughtyAttributes.Core.ValidatorAttributes;
+using NaughtyAttributes.Editor.Utility;
 using UnityEditor;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyValidators
+namespace NaughtyAttributes.Editor.PropertyValidators
 {
     public class RequiredPropertyValidator : PropertyValidatorBase
     {

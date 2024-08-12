@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using CodeBase.NaughtyAttributes.Core.MetaAttributes;
+using NaughtyAttributes.Core.MetaAttributes;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.Utility
+namespace NaughtyAttributes.Editor.Utility
 {
     public static class ButtonUtility
     {

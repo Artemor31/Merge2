@@ -1,4 +1,4 @@
-﻿namespace CodeBase.NaughtyAttributes.Core
+﻿namespace NaughtyAttributes.Core
 {
     public interface INaughtyAttribute
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Databases
+namespace Databases
 {
     public class Database : ScriptableObject
     {

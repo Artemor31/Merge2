@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.NaughtyAttributes.Core.MetaAttributes
+namespace NaughtyAttributes.Core.MetaAttributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class FoldoutAttribute : MetaAttribute, IGroupAttribute

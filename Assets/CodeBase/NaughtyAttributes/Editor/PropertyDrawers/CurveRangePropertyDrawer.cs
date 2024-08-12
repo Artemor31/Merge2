@@ -1,9 +1,9 @@
-﻿using CodeBase.NaughtyAttributes.Core.DrawerAttributes;
-using CodeBase.NaughtyAttributes.Core.Utility;
+﻿using NaughtyAttributes.Core.DrawerAttributes;
+using NaughtyAttributes.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyDrawers
+namespace NaughtyAttributes.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(CurveRangeAttribute))]
     public class CurveRangePropertyDrawer : PropertyDrawerBase

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.NaughtyAttributes.Core.ValidatorAttributes;
+using NaughtyAttributes.Core.ValidatorAttributes;
 using UnityEditor;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyValidators
+namespace NaughtyAttributes.Editor.PropertyValidators
 {
     public abstract class PropertyValidatorBase
     {

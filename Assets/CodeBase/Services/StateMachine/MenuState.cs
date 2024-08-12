@@ -1,7 +1,7 @@
-﻿using CodeBase.UI;
-using CodeBase.UI.MenuWindow;
+﻿using UI;
+using UI.MenuWindow;
 
-namespace CodeBase.Services.StateMachine
+namespace Services.StateMachine
 {
     public class MenuState : IState
     {

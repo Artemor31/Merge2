@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Services;
+using Services;
 
-namespace CodeBase.Infrastructure
+namespace Infrastructure
 {
     public class ServiceLocator
     {

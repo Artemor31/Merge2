@@ -1,13 +1,13 @@
-﻿using CodeBase.Services;
+﻿using System;
+using Gameplay;
+using LevelData;
+using Services;
+using Services.SaveService;
+using Services.StateMachine;
+using UI;
 using UnityEngine;
-using System;
-using CodeBase.Gameplay;
-using CodeBase.LevelData;
-using CodeBase.Services.SaveService;
-using CodeBase.Services.StateMachine;
-using CodeBase.UI;
 
-namespace CodeBase.Infrastructure
+namespace Infrastructure
 {
     public class EntryPoint : MonoBehaviour, ICoroutineRunner, IUpdateable
     {

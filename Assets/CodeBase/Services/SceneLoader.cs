@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Services
+namespace Services
 {
     public class SceneLoader : IService
     {

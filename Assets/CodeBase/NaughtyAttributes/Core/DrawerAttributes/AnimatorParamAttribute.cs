@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Core.DrawerAttributes
+namespace NaughtyAttributes.Core.DrawerAttributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class AnimatorParamAttribute : DrawerAttribute

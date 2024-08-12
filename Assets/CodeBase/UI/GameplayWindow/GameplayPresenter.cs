@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Databases;
-using CodeBase.Gameplay.Units;
-using CodeBase.Infrastructure;
-using CodeBase.LevelData;
-using CodeBase.Services;
-using CodeBase.Services.SaveService;
+using Databases;
+using Gameplay.Units;
+using Infrastructure;
+using LevelData;
+using Services;
+using Services.SaveService;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.UI.GameplayWindow
+namespace UI.GameplayWindow
 {
     public class GameplayPresenter : Presenter
     {

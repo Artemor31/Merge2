@@ -1,9 +1,9 @@
-﻿using CodeBase.Databases;
+﻿using Databases;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace CodeBase.UI.GameplayWindow
+namespace UI.GameplayWindow
 {
     public class UnitCard : MonoBehaviour
     {

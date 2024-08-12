@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CodeBase.Services.SaveService
+namespace Services.SaveService
 {
     public class RepositoryProvider : IService
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.UI
+namespace UI
 {
     public abstract class Presenter : MonoBehaviour
     {

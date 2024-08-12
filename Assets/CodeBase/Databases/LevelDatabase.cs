@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Databases
+namespace Databases
 {
     [CreateAssetMenu(menuName = "Create LevelDatabase", fileName = "LevelDatabase", order = 0)]
     public class LevelDatabase : Database

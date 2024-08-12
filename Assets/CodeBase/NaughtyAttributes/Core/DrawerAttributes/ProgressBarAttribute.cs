@@ -1,7 +1,7 @@
 ﻿using System;
-using CodeBase.NaughtyAttributes.Core.Utility;
+using NaughtyAttributes.Core.Utility;
 
-namespace CodeBase.NaughtyAttributes.Core.DrawerAttributes
+namespace NaughtyAttributes.Core.DrawerAttributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class ProgressBarAttribute : DrawerAttribute

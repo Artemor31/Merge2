@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace CodeBase.NaughtyAttributes.Core.DrawerAttributes
+namespace NaughtyAttributes.Core.DrawerAttributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class DropdownAttribute : DrawerAttribute

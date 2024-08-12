@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.NaughtyAttributes.Core.MetaAttributes
+namespace NaughtyAttributes.Core.MetaAttributes
 {
     public class MetaAttribute : Attribute, INaughtyAttribute
     {

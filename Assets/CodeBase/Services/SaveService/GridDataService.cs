@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Databases;
-using CodeBase.Gameplay.Units;
-using CodeBase.LevelData;
+using Gameplay.Units;
+using LevelData;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace CodeBase.Services.SaveService
+namespace Services.SaveService
 {
     public class GridDataService : IService
     {

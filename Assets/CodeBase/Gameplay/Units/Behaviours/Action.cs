@@ -1,7 +1,6 @@
-﻿using CodeBase.Databases;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CodeBase.Gameplay.Units.Behaviours
+namespace Gameplay.Units.Behaviours
 {
     public abstract class Action : MonoBehaviour
     {

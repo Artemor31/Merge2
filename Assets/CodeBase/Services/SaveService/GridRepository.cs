@@ -1,9 +1,9 @@
 ﻿using System;
-using CodeBase.Databases;
+using Databases;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace CodeBase.Services.SaveService
+namespace Services.SaveService
 {
     public class GridRepository : IRepository<GridData>
     {

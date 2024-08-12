@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Databases;
+using Databases;
 
-namespace CodeBase.Services
+namespace Services
 {
     public class DatabaseProvider : IService
     {

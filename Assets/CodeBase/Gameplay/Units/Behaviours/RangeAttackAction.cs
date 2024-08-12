@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Gameplay.Units.Weapon;
+using Gameplay.Units.Weapon;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace CodeBase.Gameplay.Units.Behaviours
+namespace Gameplay.Units.Behaviours
 {
     public class RangeAttackAction : Action
     {

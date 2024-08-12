@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using CodeBase.Databases;
-using CodeBase.Gameplay.Units;
-using CodeBase.Gameplay.Units.Behaviours;
-using CodeBase.LevelData;
+using Databases;
+using Gameplay.Units;
+using Gameplay.Units.Behaviours;
+using LevelData;
 using UnityEngine;
 
-namespace CodeBase.Services
+namespace Services
 {
     
     public class GameFactory : IService

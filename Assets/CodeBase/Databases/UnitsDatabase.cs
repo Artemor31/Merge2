@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using CodeBase.NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
+using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UnityEngine;
 
-namespace CodeBase.Databases
+namespace Databases
 {
     [CreateAssetMenu(menuName = "Create UnitsDatabase", fileName = "UnitsDatabase", order = 0)]
     public class UnitsDatabase : Database

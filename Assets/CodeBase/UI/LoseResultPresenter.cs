@@ -1,4 +1,4 @@
-﻿namespace CodeBase.UI
+﻿namespace UI
 {
     public class LoseResultPresenter : BaseResultPresenter
     {

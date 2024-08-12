@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Core.DrawerAttributes
+namespace NaughtyAttributes.Core.DrawerAttributes
 {
     /// <summary>
     /// Base class for all drawer attributes

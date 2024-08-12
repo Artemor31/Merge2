@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.NaughtyAttributes.Core.ValidatorAttributes
+namespace NaughtyAttributes.Core.ValidatorAttributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class MinValueAttribute : ValidatorAttribute

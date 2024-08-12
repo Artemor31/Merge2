@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Gameplay.Units
+namespace Gameplay.Units
 {
     public class AnimatorScheduler : MonoBehaviour
     {

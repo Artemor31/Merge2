@@ -1,9 +1,9 @@
-﻿using CodeBase.Gameplay.Units.Behaviours;
+﻿using Gameplay.Units.Behaviours;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.Gameplay.Units
+namespace Gameplay.Units
 {
     public class Healthbar : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using CodeBase.NaughtyAttributes.Core.Utility;
+using NaughtyAttributes.Core.Utility;
 
-namespace CodeBase.NaughtyAttributes.Core.DrawerAttributes
+namespace NaughtyAttributes.Core.DrawerAttributes
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = true)]
     public class HorizontalLineAttribute : DrawerAttribute

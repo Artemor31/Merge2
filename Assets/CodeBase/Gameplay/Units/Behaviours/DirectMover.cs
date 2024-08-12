@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace CodeBase.Gameplay.Units.Behaviours
+namespace Gameplay.Units.Behaviours
 {
     public class DirectMover : Mover
     {

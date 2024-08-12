@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Gameplay;
-using CodeBase.LevelData;
-using CodeBase.Services.SaveService;
-using CodeBase.UI;
+using Gameplay;
+using LevelData;
+using Services.SaveService;
+using UI;
 
-namespace CodeBase.Services.StateMachine
+namespace Services.StateMachine
 {
     public class GameStateMachine : IService
     {

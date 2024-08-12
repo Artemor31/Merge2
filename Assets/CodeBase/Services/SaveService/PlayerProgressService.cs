@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeBase.Services.SaveService
+namespace Services.SaveService
 {
     public class PlayerProgressService : IService
     {

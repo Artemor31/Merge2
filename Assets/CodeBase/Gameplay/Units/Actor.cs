@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Databases;
-using CodeBase.Gameplay.Units.Behaviours;
-using CodeBase.Services;
+using Databases;
+using Gameplay.Units.Behaviours;
+using Services;
 using UnityEngine;
-using Action = CodeBase.Gameplay.Units.Behaviours.Action;
+using Action = Gameplay.Units.Behaviours.Action;
 
-namespace CodeBase.Gameplay.Units
+namespace Gameplay.Units
 {
     public class Actor : MonoBehaviour
     {

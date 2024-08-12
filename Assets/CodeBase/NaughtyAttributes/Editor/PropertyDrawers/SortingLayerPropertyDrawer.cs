@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using CodeBase.NaughtyAttributes.Core.DrawerAttributes;
+using NaughtyAttributes.Core.DrawerAttributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyDrawers
+namespace NaughtyAttributes.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(SortingLayerAttribute))]
     public class SortingLayerPropertyDrawer : PropertyDrawerBase

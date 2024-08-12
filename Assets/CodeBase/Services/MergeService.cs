@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using CodeBase.Databases;
-using CodeBase.Gameplay.Units;
+using Databases;
+using Gameplay.Units;
 
-namespace CodeBase.Services
+namespace Services
 {
     public class MergeService : IService
     {

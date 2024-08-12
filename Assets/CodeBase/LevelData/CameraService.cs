@@ -1,7 +1,7 @@
-﻿using CodeBase.Services;
+﻿using Services;
 using UnityEngine;
 
-namespace CodeBase.LevelData
+namespace LevelData
 {
     public class CameraService : IService
     {

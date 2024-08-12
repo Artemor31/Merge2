@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace Infrastructure
 {
     public static class Extensions
     {

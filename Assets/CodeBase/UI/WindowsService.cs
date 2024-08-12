@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CodeBase.Services;
+using Services;
 using UnityEngine;
 
-namespace CodeBase.UI
+namespace UI
 {
     public class WindowsService : MonoBehaviour, IService
     {

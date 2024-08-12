@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.LevelData
+namespace LevelData
 {
     public class Platform : MonoBehaviour
     {

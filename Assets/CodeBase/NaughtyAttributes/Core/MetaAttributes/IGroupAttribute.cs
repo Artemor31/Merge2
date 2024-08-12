@@ -1,4 +1,4 @@
-﻿namespace CodeBase.NaughtyAttributes.Core.MetaAttributes
+﻿namespace NaughtyAttributes.Core.MetaAttributes
 {
     public interface IGroupAttribute
     {

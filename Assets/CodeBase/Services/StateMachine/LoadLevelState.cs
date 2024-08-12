@@ -1,8 +1,8 @@
-﻿using CodeBase.Gameplay;
-using CodeBase.LevelData;
-using CodeBase.Services.SaveService;
+﻿using Gameplay;
+using LevelData;
+using Services.SaveService;
 
-namespace CodeBase.Services.StateMachine
+namespace Services.StateMachine
 {
     public class LoadLevelState : IState, IExitableState
     {

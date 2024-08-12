@@ -1,10 +1,10 @@
-﻿using CodeBase.Infrastructure;
-using CodeBase.Services.StateMachine;
+﻿using Infrastructure;
+using Services.StateMachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.UI
+namespace UI
 {
     public abstract class BaseResultPresenter : Presenter
     {

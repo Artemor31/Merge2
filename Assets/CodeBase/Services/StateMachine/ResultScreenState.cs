@@ -1,7 +1,7 @@
-﻿using CodeBase.Services.SaveService;
-using CodeBase.UI;
+﻿using Services.SaveService;
+using UI;
 
-namespace CodeBase.Services.StateMachine
+namespace Services.StateMachine
 {
     public class ResultScreenState : IState
     {

@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Gameplay.Units
+﻿namespace Gameplay.Units
 {
     public enum UnitState
     {

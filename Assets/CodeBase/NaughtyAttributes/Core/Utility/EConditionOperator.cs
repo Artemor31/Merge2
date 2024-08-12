@@ -1,4 +1,4 @@
-﻿namespace CodeBase.NaughtyAttributes.Core.Utility
+﻿namespace NaughtyAttributes.Core.Utility
 {
     public enum EConditionOperator
     {

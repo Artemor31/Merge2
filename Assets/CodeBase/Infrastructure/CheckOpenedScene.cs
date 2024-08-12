@@ -1,8 +1,8 @@
-﻿using CodeBase.Services;
+﻿using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Infrastructure
+namespace Infrastructure
 {
     public class CheckOpenedScene : MonoBehaviour
     {

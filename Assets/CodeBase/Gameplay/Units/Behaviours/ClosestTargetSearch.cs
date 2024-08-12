@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Units.Behaviours
+namespace Gameplay.Units.Behaviours
 {
     public class ClosestTargetSearch : TargetSearch
     {

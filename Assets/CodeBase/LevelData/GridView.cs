@@ -1,7 +1,7 @@
-﻿using CodeBase.Services.SaveService;
+﻿using Services.SaveService;
 using UnityEngine;
 
-namespace CodeBase.LevelData
+namespace LevelData
 {
     public class GridView : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using CodeBase.Gameplay.Units.Behaviours;
+using Gameplay.Units.Behaviours;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Units.Weapon
+namespace Gameplay.Units.Weapon
 {
     public abstract class Projectile : MonoBehaviour
     {

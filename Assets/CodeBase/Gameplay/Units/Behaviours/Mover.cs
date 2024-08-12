@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Gameplay.Units.Behaviours
+namespace Gameplay.Units.Behaviours
 {
     public abstract class Mover : MonoBehaviour
     {

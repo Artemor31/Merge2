@@ -1,9 +1,7 @@
-﻿using System;
-using CodeBase.UI;
-using CodeBase.UI.GameplayWindow;
-using UnityEngine;
+﻿using UI;
+using UI.GameplayWindow;
 
-namespace CodeBase.Services.StateMachine
+namespace Services.StateMachine
 {
     public class GameLoopState : IState
     {

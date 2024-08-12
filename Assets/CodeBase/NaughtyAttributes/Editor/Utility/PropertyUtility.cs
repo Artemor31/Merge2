@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using CodeBase.NaughtyAttributes.Core.MetaAttributes;
-using CodeBase.NaughtyAttributes.Core.Utility;
+using NaughtyAttributes.Core.MetaAttributes;
+using NaughtyAttributes.Core.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.Utility
+namespace NaughtyAttributes.Editor.Utility
 {
     public static class PropertyUtility
     {

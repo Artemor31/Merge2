@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Services.SaveService
+﻿namespace Services.SaveService
 {
     public interface IRepository<TData> : IRepository
     {

@@ -1,8 +1,8 @@
-﻿using CodeBase.NaughtyAttributes.Core.DrawerAttributes;
+﻿using NaughtyAttributes.Core.DrawerAttributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyDrawers
+namespace NaughtyAttributes.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(AllowNestingAttribute))]
     public class AllowNestingPropertyDrawer : PropertyDrawerBase

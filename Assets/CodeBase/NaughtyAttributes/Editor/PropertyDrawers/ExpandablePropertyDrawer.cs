@@ -1,9 +1,9 @@
-﻿using CodeBase.NaughtyAttributes.Core.DrawerAttributes;
-using CodeBase.NaughtyAttributes.Editor.Utility;
+﻿using NaughtyAttributes.Core.DrawerAttributes;
+using NaughtyAttributes.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyDrawers
+namespace NaughtyAttributes.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(ExpandableAttribute))]
     public class ExpandablePropertyDrawer : PropertyDrawerBase

@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using CodeBase.NaughtyAttributes.Core.DrawerAttributes;
-using CodeBase.NaughtyAttributes.Editor.Utility;
+using NaughtyAttributes.Core.DrawerAttributes;
+using NaughtyAttributes.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.NaughtyAttributes.Editor.PropertyDrawers
+namespace NaughtyAttributes.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(DropdownAttribute))]
     public class DropdownPropertyDrawer : PropertyDrawerBase

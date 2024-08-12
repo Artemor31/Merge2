@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Gameplay.Units.Behaviours
+﻿namespace Gameplay.Units.Behaviours
 {
     public class AllyHealAction : Action
     {

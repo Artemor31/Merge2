@@ -1,8 +1,8 @@
 ﻿using System;
-using CodeBase.Gameplay.Units;
+using Gameplay.Units;
 using UnityEngine;
 
-namespace CodeBase.Gameplay
+namespace Gameplay
 {
     public class UnitCell : MonoBehaviour
     {
