@@ -30,10 +30,10 @@ namespace Services
 
         public Actor CreateActor(Race race, Mastery mastery, int level)
         {
-            ActorConfig config = _unitsDatabase.Units.First(u => u.Race == race && u.Mastery == mastery && u.Level == level);
+            ActorConfig config = _unitsDatabase.ConfigFor(race, mastery, level);
             GameObject view = Object.Instantiate(config.Prefab);
-            Actor instance = Object.Instantiate(_assetsProvider.Load<Actor>(AssetsPath.SimpleMeleeUnit));
-            instance.Initialize(config.Level, view, _updateable, race, mastery);
+            Actor instance = Object.Instantiate(config.BaseView);
+            instance.Initialize(level, view, _updateable, race, mastery);
             CreateHealthbar(instance);
             return instance;
         }

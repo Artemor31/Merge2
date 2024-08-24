@@ -15,6 +15,7 @@ MonoBehaviour:
   Race: 1
   Mastery: 2
   Icon: {fileID: 21300016, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
+  BaseView: {fileID: 6787395453057676287, guid: 14ae8deda5306634fbe5b161f0ab512b, type: 3}
   Prefab: {fileID: 8340937838891581338, guid: 2075ea4aef117624c93088214fdd7add, type: 3}
   Name: Ranger
   Level: 3

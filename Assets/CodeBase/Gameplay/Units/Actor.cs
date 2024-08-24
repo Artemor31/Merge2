@@ -48,22 +48,19 @@ namespace Gameplay.Units
         private void Tick()
         {
             if (IsDead || _state == UnitState.Idle) return;
-
-            if (_targetSearch.NeedNewTarget())
-            {
-                _targetSearch.SearchTarget(_candidates);
-            }
-            
-            if (_targetSearch.Target == null) return;
             
             _act.Tick();
-            if (_act.InRange(_targetSearch.Target))
+
+            TrySearchTarget();
+            
+            if (_targetSearch.Target == null) return;
+
+            bool inRange = _act.InRange(_targetSearch.Target);
+            Debug.LogError("in range = " + inRange);
+            if (inRange)
             {
                 _mover.Stop();
-                if (_act.CanAttack(_targetSearch.Target))
-                {
-                    _act.PerformOn(_targetSearch.Target);
-                }
+                TryPerform();
             }
             else
             {
@@ -78,7 +75,19 @@ namespace Gameplay.Units
             _targetSearch.SearchTarget(_candidates);
             _health.Died += OnDies;
         }
-        
+
+        private void TryPerform()
+        {
+            if (_act.CanAttack(_targetSearch.Target)) 
+                _act.PerformOn(_targetSearch.Target);
+        }
+
+        private void TrySearchTarget()
+        {
+            if (_targetSearch.NeedNewTarget()) 
+                _targetSearch.SearchTarget(_candidates);
+        }
+
         private void OnDies()
         {
             _health.Died -= OnDies;

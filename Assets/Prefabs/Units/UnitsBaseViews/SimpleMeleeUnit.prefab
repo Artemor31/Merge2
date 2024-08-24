@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3391169263167272358}
   - component: {fileID: 1967405186381835594}
   - component: {fileID: 1009123850742208360}
+  - component: {fileID: 5179791429395551191}
   - component: {fileID: 8663909268866682283}
-  - component: {fileID: 6572463693300909332}
   - component: {fileID: 8408939481474730509}
   m_Layer: 0
-  m_Name: SimpleRangeUnit
+  m_Name: SimpleMeleeUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   _health: {fileID: 3391169263167272358}
   _mover: {fileID: 1967405186381835594}
   _targetSearch: {fileID: 1009123850742208360}
-  _attacker: {fileID: 6572463693300909332}
+  _act: {fileID: 5179791429395551191}
   _animator: {fileID: 8663909268866682283}
 --- !u!114 &3391169263167272358
 MonoBehaviour:
@@ -94,6 +94,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3038dff8868e4684b038727fa52c4c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5179791429395551191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105839209840734736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b6da52c1ea44229e1d92a51b6ce16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _range: 1.5
+  _actCooldown: 2
 --- !u!114 &8663909268866682283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,23 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284e6109c6184dd4937b5fd96476789a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6572463693300909332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7105839209840734736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7001b34a81454212b038a090015c1273, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 0
-  _range: 0
-  _attackCooldown: 0
-  _projectilePrefab: {fileID: 0}
-  _spawnPoint: {fileID: 0}
 --- !u!195 &8408939481474730509
 NavMeshAgent:
   m_ObjectHideFlags: 0

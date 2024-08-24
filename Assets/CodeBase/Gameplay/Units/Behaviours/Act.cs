@@ -29,7 +29,7 @@ namespace Gameplay.Units.Behaviours
 
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, _range);
         public virtual bool CanAttack(Actor actor) => InRange(actor) && CooldownUp;
-        public virtual bool InRange(Actor actor) =>
+        public virtual bool InRange(Actor actor) => 
             Vector3.Distance(transform.position, actor.transform.position) <= _range;
     }
 }

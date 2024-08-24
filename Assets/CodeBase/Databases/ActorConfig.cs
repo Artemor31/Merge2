@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Units;
+using UnityEngine;
 
 namespace Databases
 {
@@ -8,12 +9,13 @@ namespace Databases
         public Race Race;
         public Mastery Mastery;
         public Sprite Icon;
+        public Actor BaseView;
         public GameObject Prefab;
         public string Name;
         public int Level;
         public int Cost;
     }
-
+    
     public enum Race
     {
         None = 0,

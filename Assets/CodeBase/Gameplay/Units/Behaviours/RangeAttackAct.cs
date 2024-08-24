@@ -8,17 +8,18 @@ namespace Gameplay.Units.Behaviours
     public class RangeAttackAct : Act
     {
         [SerializeField] private Projectile _projectilePrefab;
-        [SerializeField] private Transform _spawnPoint;
-
+        [SerializeField] private Vector3 _spawnPoint;
+        
         private ObjectPool<Projectile> _pool;
         private List<Projectile> _projectiles;
 
         public override void Init(AnimatorScheduler animator)
         {
             base.Init(animator);
+            _spawnPoint = transform.position + Vector3.up;
             _projectiles = new List<Projectile>();
             _pool = new ObjectPool<Projectile>(
-                () => Instantiate(_projectilePrefab, _spawnPoint.position, Quaternion.identity),
+                () => Instantiate(_projectilePrefab, _spawnPoint, Quaternion.identity),
                 projectile => projectile.gameObject.SetActive(true),
                 projectile => projectile.gameObject.SetActive(false));
         }
