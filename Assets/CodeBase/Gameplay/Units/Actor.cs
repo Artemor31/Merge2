@@ -55,9 +55,7 @@ namespace Gameplay.Units
             
             if (_targetSearch.Target == null) return;
 
-            bool inRange = _act.InRange(_targetSearch.Target);
-            Debug.LogError("in range = " + inRange);
-            if (inRange)
+            if (_act.InRange(_targetSearch.Target))
             {
                 _mover.Stop();
                 TryPerform();

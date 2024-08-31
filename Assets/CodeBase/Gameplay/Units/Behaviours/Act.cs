@@ -27,6 +27,7 @@ namespace Gameplay.Units.Behaviours
                 ActTimer -= Time.deltaTime;
         }
 
+        protected void ResetCooldown() => ActTimer = _actCooldown;
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, _range);
         public virtual bool CanAttack(Actor actor) => InRange(actor) && CooldownUp;
         public virtual bool InRange(Actor actor) => 

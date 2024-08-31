@@ -1,10 +1,11 @@
 ﻿using System;
 using Gameplay.Units.Behaviours;
+using Infrastructure;
 using UnityEngine;
 
 namespace Gameplay.Units.Weapon
 {
-    public abstract class Projectile : MonoBehaviour
+    public abstract class Projectile : MonoBehaviour, IPoolable
     {
         public event Action<Projectile> OnHited; 
         
@@ -13,12 +14,15 @@ namespace Gameplay.Units.Weapon
         [SerializeField] protected ParticleSystem _hitVFX;
 
         protected Transform Target;
-        protected float Damage;
+        private float _damage;
+        private Action<Projectile> _hitedAction;
 
-        public virtual void Init(Transform target, float damage)
+        public virtual void Init(Transform target, float damage, Action<Projectile> hitedAction)
         {
             Target = target;
-            Damage = damage;
+            _damage = damage;
+            _hitedAction = hitedAction;
+            OnHited += _hitedAction;
         }
 
         public abstract void Tick();
@@ -32,10 +36,15 @@ namespace Gameplay.Units.Weapon
 
             if (Target.TryGetComponent<Health>(out var health))
             {
-                health.TakeDamage(Damage);
+                health.TakeDamage(_damage);
             }
 
             OnHited?.Invoke(this);
+            OnHited -= _hitedAction;
         }
+
+        public void Collect() => gameObject.SetActive(false);
+
+        public void Release() => gameObject.SetActive(true);
     }
 }

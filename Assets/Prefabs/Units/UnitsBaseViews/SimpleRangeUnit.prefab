@@ -119,10 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _range: 5
+  _range: 8
   _actCooldown: 3
   _projectilePrefab: {fileID: 7345155930059112006, guid: ceda6812cc9ec3244b73ad13213ff3d5, type: 3}
-  _spawnPoint: {x: 0, y: 0, z: 0}
+  _spawnPoint: {fileID: 0}
 --- !u!195 &8408939481474730509
 NavMeshAgent:
   m_ObjectHideFlags: 0
