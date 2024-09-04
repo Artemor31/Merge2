@@ -74,7 +74,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.4
+  m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -83,22 +83,22 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.45142734
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.07999629
-        inSlope: 0
-        outSlope: 0
+        time: 0.037480086
+        value: 0.30095243
+        inSlope: -0.18660711
+        outSlope: -0.18660711
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
+        outWeight: 0.21069957
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.09994028
+        outSlope: -0.09994028
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.19670774
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1ca79ad7bb429e87db1374e61623a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1.5
+  _speed: 9
   _damageArea: 0.5
   _hitVFX: {fileID: 0}
 --- !u!1 &6948216793763285144

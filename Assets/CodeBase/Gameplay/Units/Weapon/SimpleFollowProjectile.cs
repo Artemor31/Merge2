@@ -14,15 +14,16 @@ namespace Gameplay.Units.Weapon
         public override void Tick()
         {
             Vector3 center = Target.transform.position + Vector3.up;
-            transform.Translate(Time.deltaTime * _speed * -center);
-            transform.LookAt(center);
+            Vector3 direction = center - transform.position + Vector3.up;
 
-            _cube.transform.position = Target.position;
-
-            if (Vector3.Distance(transform.position, center) < _damageArea)
+            if (direction.magnitude < _damageArea)
             {
                 Hit();
+                return;
             }
+
+            transform.position += direction.normalized * Time.deltaTime * _speed;
+            transform.LookAt(center);
         }
     }
 }

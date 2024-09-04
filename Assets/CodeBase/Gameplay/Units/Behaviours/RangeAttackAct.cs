@@ -33,7 +33,7 @@ namespace Gameplay.Units.Behaviours
 
         private IEnumerator DoDamage(Transform target)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(2.5f);
             Projectile projectile = _pool.Get();
             projectile.transform.position = Center;
             projectile.Init(target, _damage, ProjectileOnHited);
