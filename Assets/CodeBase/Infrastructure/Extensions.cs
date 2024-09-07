@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,22 +7,32 @@ namespace Infrastructure
 {
     public static class Extensions
     {
-        public static T Random<T>(this IList<T> collection)
+        public static T Random<T>(this IEnumerable<T> collection)
         {
-            int range = UnityEngine.Random.Range(0, collection.Count());
-            return collection[range];
-        }
-    
-        public static T Random<T>(this T[] collection)
-        {
-            int range = UnityEngine.Random.Range(0, collection.Length);
-            return collection[range];
-        }
-        
-        public static T Random<T>(this IReadOnlyList<T> collection)
-        {
-            int range = UnityEngine.Random.Range(0, collection.Count);
-            return collection[range];
+            if (collection == null)
+            {
+                throw new Exception("null collection");
+            }
+
+            int count;
+            if (collection is IList<T> list)
+            {
+                count = list.Count;
+                if (count < 1)
+                {
+                    throw new Exception("Collection is empty");
+                }
+                return list[UnityEngine.Random.Range(0, count)];
+            }
+            
+            IEnumerable<T> enumerable = collection.ToList();
+            count = enumerable.Count();
+            if (count < 1)
+            {
+                throw new Exception("Collection is empty");
+            }
+            
+            return enumerable.ElementAt(UnityEngine.Random.Range(0, count));
         }
         
         public static Vector3 ToV3(this Vector2 vector2)

@@ -8,18 +8,16 @@ namespace Services
 {
     public class GameObserver : IService
     {
+        public event Action OnGameplaySrated;
         public event Action<bool> OnGameplayEnded;
-        
+
         public bool IsWin { get; private set; }
         public int Profit { get; private set; }
 
         private readonly GridDataService _gridService;
         private readonly PlayerProgressService _playerService;
-
         private IEnumerable<Actor> _actors;
-        //private List<Actor> _enemies;
-        //private List<Actor> _allies;
-
+        
         public GameObserver(GridDataService gridService, PlayerProgressService playerService)
         {
             _gridService = gridService;
@@ -29,11 +27,9 @@ namespace Services
         public void StartWatch()
         {
             Profit = _playerService.Money;
-
-            //_enemies = _dataProvider.EnemyUnits.Select(e => e).ToList();
-            //_allies = _dataProvider.GetPlayerUnits().Select(a => a).ToList();
             _gridService.EnemyUnits.ForEach(e => e.OnDied += OnEnemyDied);
             _gridService.GetPlayerUnits().ForEach(a => a.OnDied += OnAllyDied);
+            OnGameplaySrated?.Invoke();
         }
 
         private void OnAllyDied(Actor actor)

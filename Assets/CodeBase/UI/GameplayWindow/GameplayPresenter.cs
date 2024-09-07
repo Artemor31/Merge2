@@ -62,7 +62,7 @@ namespace UI.GameplayWindow
             if (platform == null) return;
 
             if (!_playerService.TryBuy(card.Cost)) return;
-            
+
             Actor actor = _factory.CreateActor(_unitCards[card]);
             actor.transform.position = platform.transform.position;
             _gridDataService.AddPlayerUnit(actor, platform);
@@ -74,13 +74,13 @@ namespace UI.GameplayWindow
             _gridDataService.Save();
             var playerUnits = _gridDataService.GetPlayerUnits();
             var enemyUnits = _gridDataService.EnemyUnits;
-            
-            foreach (Actor actor in playerUnits) 
+
+            foreach (Actor actor in playerUnits)
                 actor.Unleash(enemyUnits);
 
-            foreach (Actor actor in enemyUnits) 
+            foreach (Actor actor in enemyUnits)
                 actor.Unleash(playerUnits);
-            
+
             gameObject.SetActive(false);
         }
     }
