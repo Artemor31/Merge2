@@ -31,13 +31,19 @@ namespace Gameplay
         {
             _gridDataService.RemoveEnemies();
             var enemiesPositions = GetPositions();
+            var enemyDatas = _wavesDatabase.WavesData[_playerProgress.Wave].Enemies;
+            
+            BuildWave(enemyDatas, enemiesPositions);
+        }
 
-            foreach (WavesDatabase.EnemyAmount data in _wavesDatabase.WavesData[_playerProgress.Wave].Enemies)
+        private void BuildWave(List<WavesDatabase.EnemyAmount> enemyDatas, IReadOnlyList<Vector3> positions)
+        {
+            foreach (var data in enemyDatas)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateActor(data.Race, data.Mastery, data.Level);
-                    enemy.transform.position = enemiesPositions.Random();
+                    enemy.transform.position = positions.Random();
                     _gridDataService.AddEnemy(enemy);
                 }
             }

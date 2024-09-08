@@ -9,7 +9,6 @@ namespace Services.SaveService
 {
     public class GridDataService : IService
     {
-        private readonly GameFactory _gameFactory;
         public event Action<GridRuntimeData> OnPlatformClicked;
         public event Action<GridRuntimeData> OnPlatformReleased;
         public event Action<GridRuntimeData> OnPlatformHovered;
@@ -17,9 +16,10 @@ namespace Services.SaveService
         public Vector2Int GridSize = new(3, 5);
         public List<Actor> EnemyUnits { get; }
 
+        private readonly GameFactory _gameFactory;
         private readonly GridRuntimeData[,] _gridData;
-        private Vector2Int? _selected;  
         private readonly GridRepository _gridRepo;
+        private Vector2Int? _selected;
 
         public GridDataService(GameFactory gameFactory)
         {
@@ -47,16 +47,16 @@ namespace Services.SaveService
                 DoForeach((i, j) =>
                 {
                     GridRuntimeData data = _gridData[i, j];
-                    UnitData unitData = restore.UnitIds[i, j];
-                    if (data == null || unitData.Equals(UnitData.None)) return;
+                    ActorData actorData = restore.UnitIds[i, j];
+                    if (data == null || actorData.Equals(ActorData.None)) return;
                     
-                    data.Actor = _gameFactory.CreateActor(unitData.Race, unitData.Mastery, unitData.Level, data.Platform);
+                    data.Actor = _gameFactory.CreateActor(actorData.Race, actorData.Mastery, actorData.Level, data.Platform);
                     AddPlayerUnit(data.Actor, data.Platform);
                 });
             }
         }
 
-        public void UninitPlatforms()
+        private void UninitPlatforms()
         {
             DoForeach((i, j) =>
             {
@@ -70,17 +70,17 @@ namespace Services.SaveService
         
         public void Save()
         {
-            var unitDatas = new UnitData[GridSize.x, GridSize.y];
+            var unitDatas = new ActorData[GridSize.x, GridSize.y];
             DoForeach((i, j) =>
             {
                 if (_gridData[i, j].Busy)
                 {
                     Actor actor = _gridData[i, j].Actor;
-                    unitDatas[i, j] =  new UnitData(actor.Race, actor.Mastery, actor.Level);
+                    unitDatas[i, j] =  new ActorData(actor.Race, actor.Mastery, actor.Level);
                 }
                 else
                 {
-                    unitDatas[i, j] = UnitData.None;
+                    unitDatas[i, j] = ActorData.None;
                 }
             });
 
@@ -145,5 +145,23 @@ namespace Services.SaveService
         private void PlatformOnOnHovered(Vector2Int vect) => OnPlatformHovered?.Invoke(_gridData[vect.x, vect.y]);
         private void PlatformOnOnReleased(Vector2Int vect) => OnPlatformReleased?.Invoke(_gridData[vect.x, vect.y]);
         private void PlatformOnOnClicked(Vector2Int vect) => OnPlatformClicked?.Invoke(_gridData[vect.x, vect.y]);
+
+        public void Dispose()
+        {
+            
+            DoForeach((i, j) =>
+            {
+                _gridData[i, j].Platform.OnClicked -= PlatformOnOnClicked;
+                _gridData[i, j].Platform.OnReleased -= PlatformOnOnReleased;
+                _gridData[i, j].Platform.OnHovered -= PlatformOnOnHovered;
+                if (_gridData[i, j].Actor != null)
+                {
+                    _gridData[i,j].Actor.Dispose();
+                    Object.Destroy(_gridData[i,j].Actor);
+                }
+                Object.Destroy(_gridData[i, j].Platform);
+                _gridData[i, j] = null;
+            });
+        }
     }
 }

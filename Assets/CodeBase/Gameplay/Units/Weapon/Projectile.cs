@@ -36,7 +36,7 @@ namespace Gameplay.Units.Weapon
 
             if (Target.TryGetComponent<Health>(out var health))
             {
-                health.TakeDamage(_damage);
+                health.ChangeHealth(_damage, HealthContext.Damage);
             }
 
             OnHited?.Invoke(this);

@@ -70,8 +70,8 @@ namespace UI.GameplayWindow
 
         private void StartWave()
         {
-            _observer.StartWatch();
             _gridDataService.Save();
+            _observer.StartWatch();
             var playerUnits = _gridDataService.GetPlayerUnits();
             var enemyUnits = _gridDataService.EnemyUnits;
 

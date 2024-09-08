@@ -9,10 +9,10 @@ namespace Gameplay.Units
 {
     public class Actor : MonoBehaviour
     {
-        public event Action<Actor> OnDied;
+        public event Action Died;
+        public event Action<float, float> HealthChanged;
         
         public bool IsDead => _health.Current <= 0;
-        public Health Health => _health;
         public int Level { get; private set; }
         public Race Race { get; private set; }
         public Mastery Mastery { get; private set; }
@@ -26,16 +26,18 @@ namespace Gameplay.Units
         private UnitState _state = UnitState.Idle;
         private IReadOnlyList<Actor> _candidates;
         private IUpdateable _updateable;
-        
+
         public void Initialize(int level, GameObject view, IUpdateable updateable, Race race, Mastery mastery)
         {
             Mastery = mastery;
             Race = race;
             Level = level;
-            _state = UnitState.Idle;
             _updateable = updateable;
+            _state = UnitState.Idle;
+            
             _updateable.Tick += Tick;
-
+            _health.HealthChanged += OnHealthChanged;
+            
             _animator.Init(view.GetComponent<Animator>());
             _health.Init(_animator);
             _mover.Init(_animator);
@@ -43,6 +45,13 @@ namespace Gameplay.Units
             
             view.transform.SetParent(transform);
             view.transform.position = Vector3.zero;
+        }
+
+        public void Dispose()
+        {
+            _mover.Stop();
+            _updateable.Tick -= Tick;
+            _health.HealthChanged -= OnHealthChanged;
         }
 
         private void Tick()
@@ -66,12 +75,23 @@ namespace Gameplay.Units
             }
         }
 
+        public void ChangeHealth(float value, HealthContext context) => 
+            _health.ChangeHealth(value, context);
+
         public void Unleash(IReadOnlyList<Actor> candidates)
         {
             _state = UnitState.Fighting;
             _candidates = candidates;
             _targetSearch.SearchTarget(_candidates);
-            _health.Died += OnDies;
+        }
+
+        private void OnHealthChanged(float current, float max)
+        {
+            HealthChanged?.Invoke(current, max);
+            if (current > max) return;
+            
+            Died?.Invoke();
+            Dispose();
         }
 
         private void TryPerform()
@@ -84,14 +104,6 @@ namespace Gameplay.Units
         {
             if (_targetSearch.NeedNewTarget()) 
                 _targetSearch.SearchTarget(_candidates);
-        }
-
-        private void OnDies()
-        {
-            _health.Died -= OnDies;
-            _updateable.Tick -= Tick;
-            _mover.Stop();
-            OnDied?.Invoke(this);
         }
     }
 }

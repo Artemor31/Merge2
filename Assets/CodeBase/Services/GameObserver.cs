@@ -27,12 +27,12 @@ namespace Services
         public void StartWatch()
         {
             Profit = _playerService.Money;
-            _gridService.EnemyUnits.ForEach(e => e.OnDied += OnEnemyDied);
-            _gridService.GetPlayerUnits().ForEach(a => a.OnDied += OnAllyDied);
+            _gridService.EnemyUnits.ForEach(e => e.Died += OnEnemyDied);
+            _gridService.GetPlayerUnits().ForEach(a => a.Died += OnAllyDied);
             OnGameplaySrated?.Invoke();
         }
 
-        private void OnAllyDied(Actor actor)
+        private void OnAllyDied()
         {
             if (_gridService.GetPlayerUnits().All(a => a.IsDead))
             {
@@ -41,7 +41,7 @@ namespace Services
             }
         }
 
-        private void OnEnemyDied(Actor actor)
+        private void OnEnemyDied()
         {
             if (_gridService.EnemyUnits.All(e => e.IsDead))
             {
@@ -52,8 +52,8 @@ namespace Services
 
         private void EndGameplayLoop()
         {
-            _gridService.EnemyUnits.ForEach(e => e.OnDied -= OnEnemyDied);
-            _gridService.GetPlayerUnits().ForEach(a => a.OnDied -= OnAllyDied);
+            _gridService.EnemyUnits.ForEach(e => e.Died -= OnEnemyDied);
+            _gridService.GetPlayerUnits().ForEach(a => a.Died -= OnAllyDied);
             Profit = _playerService.Money - Profit;
             OnGameplayEnded?.Invoke(IsWin);
         }

@@ -35,7 +35,7 @@ namespace Services.SaveService
     [Serializable]
     public class PlayerData
     {
-        public int Money = 10;
+        public int Money = 100;
         public int Wave;
         public int Coins;
     }

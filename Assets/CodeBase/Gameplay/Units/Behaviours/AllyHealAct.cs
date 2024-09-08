@@ -13,7 +13,7 @@ namespace Gameplay.Units.Behaviours
             transform.LookAt(actor.transform);
             Animator.PerformAct();
             SpawnVFX(actor.transform.position);
-            actor.Health.Heal(_damage);
+            actor.ChangeHealth(_damage, HealthContext.Heal);
             ActTimer = _actCooldown;
         }
 

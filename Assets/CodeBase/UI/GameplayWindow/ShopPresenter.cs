@@ -31,24 +31,24 @@ namespace UI.GameplayWindow
             _playerService = ServiceLocator.Resolve<PlayerProgressService>();
             _factory = ServiceLocator.Resolve<GameFactory>();
             
-            _box1Button.onClick.AddListener(() => OnBoxClicked(1));
-            _box2Button.onClick.AddListener(() => OnBoxClicked(2));
-            _box3Button.onClick.AddListener(() => OnBoxClicked(3));
+            _box1Button.onClick.AddListener(() => OnBoxClicked(1, 10));
+            _box2Button.onClick.AddListener(() => OnBoxClicked(2, 19));
+            _box3Button.onClick.AddListener(() => OnBoxClicked(3, 26));
             ConstructRandomCarousel();
         }
 
-        private void OnBoxClicked(int level)
+        private void OnBoxClicked(int level, int cost)
         {
             ActorConfig actorConfig = _unitsDatabase.Units.Where(c => c.Level == level).Random();
-            CreateUnit(actorConfig);
+            CreateUnit(actorConfig, cost);
         }
         
-        private void CreateUnit(ActorConfig config)
+        private void CreateUnit(ActorConfig config, int cost)
         {
             Platform platform = _gridDataService.GetFreePlatform();
             if (platform == null) return;
 
-            if (!_playerService.TryBuy(config.Cost)) return;
+            if (!_playerService.TryBuy(cost)) return;
 
             Actor actor = _factory.CreateActor(config);
             actor.transform.position = platform.transform.position;
@@ -57,7 +57,7 @@ namespace UI.GameplayWindow
 
         private void ConstructRandomCarousel()
         {
-            
+            // TODO
         }
     }
 }

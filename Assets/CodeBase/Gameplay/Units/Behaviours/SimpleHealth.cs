@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Gameplay.Units.Behaviours
 {
@@ -7,36 +8,35 @@ namespace Gameplay.Units.Behaviours
         [SerializeField] private float _maxHealth;
         private AnimatorScheduler _animator;
 
-        public override event System.Action Died;
-        public override event System.Action HealthChanged;
+        public override event Action<float, float> HealthChanged;
         public override float Current { get; protected set; }
-        public override float Ratio => Current / _maxHealth;
 
         public override void Init(AnimatorScheduler animator)
         {
             _animator = animator;
             Current = _maxHealth;
-            HealthChanged?.Invoke();
         }
 
-        public override void TakeDamage(float damage)
+        public override void ChangeHealth(float value, HealthContext contexts)
         {
-            Current -= damage;
-            HealthChanged?.Invoke();
-            if (Current <= 0)
-                Die();
+            switch (contexts)
+            {
+                case HealthContext.None: break;
+                case HealthContext.Damage:
+                    Current -= value;
+                    if (Current <= 0)
+                        Die();
+                    break;
+                case HealthContext.Heal:
+                    Current = Mathf.Min(_maxHealth, Current + value);
+                    break;
+                case HealthContext.PureDamage:
+                    break;
+            }
+            
+            HealthChanged?.Invoke(Current, _maxHealth);
         }
 
-        public override void Heal(float damage)
-        {
-            Current = Mathf.Min(Current += damage, _maxHealth);
-            HealthChanged?.Invoke();
-        }
-
-        private void Die()
-        {
-            Died?.Invoke();
-            _animator.Die();
-        }
+        private void Die() => _animator.Die();
     }
 }

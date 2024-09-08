@@ -92,12 +92,14 @@ namespace LevelData
             ended.Actor.GetComponent<NavMeshAgent>().enabled = true;
         }
 
-        private static void DestroyOldActors(GridRuntimeData casted, GridRuntimeData selected)
+        private void DestroyOldActors(GridRuntimeData casted, GridRuntimeData selected)
         {
             Object.Destroy(casted.Actor.gameObject);
+            casted.Actor.Dispose();
             casted.Actor = null;
 
             Object.Destroy(selected.Actor.gameObject);
+            selected.Actor.Dispose();
             selected.Actor = null;
         }
 

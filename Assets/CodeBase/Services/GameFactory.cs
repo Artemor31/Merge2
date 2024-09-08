@@ -51,9 +51,8 @@ namespace Services
             Healthbar asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
             Healthbar healthbar = Object.Instantiate(asset);
             Camera camera = _cameraService.CurrentMainCamera();
-            Health health = actor.GetComponent<Health>();
             
-            healthbar.Initialize(camera, actor, health);
+            healthbar.Initialize(camera, actor, _updateable);
         }
 
         public void CreateGridView(GridService gridService)

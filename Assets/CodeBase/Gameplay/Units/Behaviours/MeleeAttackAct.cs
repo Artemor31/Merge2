@@ -8,7 +8,7 @@
 
             transform.LookAt(actor.transform);
             Animator.PerformAct();
-            actor.Health.TakeDamage(_damage);
+            actor.ChangeHealth(_damage, HealthContext.Damage);
             ResetCooldown();
         }
     }

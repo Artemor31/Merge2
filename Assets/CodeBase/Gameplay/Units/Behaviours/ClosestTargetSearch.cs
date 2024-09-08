@@ -6,7 +6,6 @@ namespace Gameplay.Units.Behaviours
     public class ClosestTargetSearch : TargetSearch
     {
         public override Actor Target { get; protected set; }
-        public override Vector3 TargetPoint => Target.transform.position;
         
         public override void SearchTarget(IReadOnlyList<Actor> candidates)
         {
@@ -24,10 +23,7 @@ namespace Gameplay.Units.Behaviours
             }
         }
 
-        public override bool NeedNewTarget() => 
-            Target == null || Target.IsDead;
-
-        private float DistanceTo(Actor target) => 
-            Vector3.Distance(target.transform.position, transform.position);
+        public override bool NeedNewTarget() => Target == null || Target.IsDead;
+        private float DistanceTo(Actor target) => Vector3.Distance(target.transform.position, transform.position);
     }
 }
