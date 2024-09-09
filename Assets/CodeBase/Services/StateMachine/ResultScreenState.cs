@@ -3,7 +3,7 @@ using UI;
 
 namespace Services.StateMachine
 {
-    public class ResultScreenState : IState
+    public class ResultScreenState : IState<bool>
     {
         private readonly WindowsService _windowsService;
         private readonly GridDataService _gridData;
@@ -17,13 +17,12 @@ namespace Services.StateMachine
             _gridData = gridData;
             _playerService = playerService;
         }
-        
-        public void Enter()
+
+        public void Enter(bool isWin)
         {
             _gridData.Save();
             _gridData.Dispose();
-            bool IsWin = true;
-            if (IsWin)
+            if (isWin)
             {
                 _windowsService.Show<WinResultPresenter>();
                 _playerService.CompleteLevel();
@@ -32,7 +31,12 @@ namespace Services.StateMachine
             {
                 _windowsService.Show<LoseResultPresenter>();
             }
+            
+        }
 
+        public void Enter()
+        {
+            
         }
     }
 }

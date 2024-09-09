@@ -35,9 +35,21 @@ namespace Services.StateMachine
             if (_currentState is IExitableState state)
                 state.Exit();
 
-            IState newState = _states[typeof(T)];
-            _currentState = newState;
+            _currentState = _states[typeof(T)];
             _currentState.Enter();
+        }
+        
+        public void Enter<T, TParam>(TParam param) where T : IState
+        {
+            if (_currentState is IExitableState state)
+                state.Exit();
+
+            _currentState = _states[typeof(T)];
+            
+            if (_currentState is IState<TParam> paramState)
+                paramState.Enter(param);
+            else
+                _currentState.Enter();
         }
     }
 }

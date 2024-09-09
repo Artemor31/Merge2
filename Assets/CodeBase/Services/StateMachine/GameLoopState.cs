@@ -5,14 +5,14 @@ using Services.SaveService;
 namespace Services.StateMachine
 {
     public class GameLoopState : IExitableState
-    {     
-        public bool IsWin { get; private set; }
-        private int Profit { get; set; }
-
+    {
         private readonly GameStateMachine _gameStateMachine;
         private readonly GridDataService _gridService;
         private readonly PlayerProgressService _playerService;
         private readonly WaveBuilder _waveBuilder;
+        
+        private int _profit;
+        private bool _isWin;
 
         public GameLoopState(GameStateMachine gameStateMachine,
                              GridDataService gridService, 
@@ -28,7 +28,7 @@ namespace Services.StateMachine
         public void Enter()
         {
             _gridService.Save();
-            Profit = _playerService.Money;
+            _profit = _playerService.Money;
 
             foreach (Actor actor in _gridService.PlayerUnits)
             {
@@ -51,22 +51,22 @@ namespace Services.StateMachine
             foreach (Actor actor in _gridService.PlayerUnits)
                 actor.Died -= OnAllyDied;
 
-            Profit = _playerService.Money - Profit;
+            _profit = _playerService.Money - _profit;
             
-            _gameStateMachine.Enter<ResultScreenState>();
+            _gameStateMachine.Enter<ResultScreenState, bool>(_isWin);
         }
         
         private void OnAllyDied()
         {
             if (_gridService.PlayerUnits.Any(a => !a.IsDead)) return;
-            IsWin = false;
+            _isWin = false;
             Exit();
         }
 
         private void OnEnemyDied()
         {
             if (_waveBuilder.EnemyUnits.Any(a => !a.IsDead)) return;
-            IsWin = true;
+            _isWin = true;
             Exit();
         }
     }
