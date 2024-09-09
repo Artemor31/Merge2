@@ -31,7 +31,7 @@ namespace Services.StateMachine
         }
 
         public void Enter() => _sceneLoader.Load(GameplaySceneName,
-            then: () => _gameStateMachine.Enter<GameLoopState>());
+            then: () => _gameStateMachine.Enter<SetupLevelState>());
 
         public void Exit()
         {

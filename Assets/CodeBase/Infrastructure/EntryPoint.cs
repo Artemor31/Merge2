@@ -49,10 +49,9 @@ namespace Infrastructure
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
             MergeService mergeService = new(gameFactory, databaseProvider);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
-            GameObserver gameObserver = new(gridDataService, playerService, waveBuilder);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gameFactory, gridViewService, gridDataService, gameObserver, playerService);
+                gridDataService, gameFactory, gridViewService, gridDataService, playerService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -65,7 +64,6 @@ namespace Infrastructure
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);
             ServiceLocator.Bind(mergeService);
-            ServiceLocator.Bind(gameObserver);
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(playerService);
             ServiceLocator.Bind(repositoryProvider);

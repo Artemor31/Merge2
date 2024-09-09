@@ -1,33 +1,73 @@
-﻿using UI;
-using UI.GameplayWindow;
+﻿using System.Linq;
+using Gameplay.Units;
+using Services.SaveService;
 
 namespace Services.StateMachine
 {
-    public class GameLoopState : IState
-    {
+    public class GameLoopState : IExitableState
+    {     
+        public bool IsWin { get; private set; }
+        private int Profit { get; set; }
+
         private readonly GameStateMachine _gameStateMachine;
-        private readonly WindowsService _windowsService;
-        private readonly GameObserver _gameObserver;
+        private readonly GridDataService _gridService;
+        private readonly PlayerProgressService _playerService;
+        private readonly WaveBuilder _waveBuilder;
 
         public GameLoopState(GameStateMachine gameStateMachine,
-                             WindowsService windowsService,
-                             GameObserver gameObserver)
+                             GridDataService gridService, 
+                             PlayerProgressService playerService,
+                             WaveBuilder waveBuilder)
         {
             _gameStateMachine = gameStateMachine;
-            _windowsService = windowsService;
-            _gameObserver = gameObserver;
+            _gridService = gridService;
+            _playerService = playerService;
+            _waveBuilder = waveBuilder;
         }
 
         public void Enter()
         {
-            _windowsService.Show<GameplayPresenter>();
-            _gameObserver.OnGameplayEnded += MoveNext;
+            _gridService.Save();
+            Profit = _playerService.Money;
+
+            foreach (Actor actor in _gridService.PlayerUnits)
+            {
+                actor.Died += OnAllyDied;
+                actor.Unleash(_waveBuilder.EnemyUnits);
+            }
+
+            foreach (Actor actor in _waveBuilder.EnemyUnits)
+            {
+                actor.Died += OnEnemyDied;
+                actor.Unleash(_gridService.PlayerUnits);
+            }
         }
 
-        private void MoveNext(bool isWin)
+        public void Exit()
         {
-            _gameObserver.OnGameplayEnded -= MoveNext;
+            foreach (Actor actor in _waveBuilder.EnemyUnits)
+                actor.Died -= OnEnemyDied;
+
+            foreach (Actor actor in _gridService.PlayerUnits)
+                actor.Died -= OnAllyDied;
+
+            Profit = _playerService.Money - Profit;
+            
             _gameStateMachine.Enter<ResultScreenState>();
+        }
+        
+        private void OnAllyDied()
+        {
+            if (_gridService.PlayerUnits.Any(a => !a.IsDead)) return;
+            IsWin = false;
+            Exit();
+        }
+
+        private void OnEnemyDied()
+        {
+            if (_waveBuilder.EnemyUnits.Any(a => !a.IsDead)) return;
+            IsWin = true;
+            Exit();
         }
     }
 }

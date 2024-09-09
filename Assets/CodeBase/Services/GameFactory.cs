@@ -38,13 +38,7 @@ namespace Services
             return instance;
         }
 
-        public Actor CreateActor(Race race, Mastery mastery, int level, Platform platform)
-        {
-            Actor actor = CreateActor(race, mastery, level);
-            actor.transform.position = platform.transform.position;
-            return actor;
-        }
-
+        public Actor CreateActor(ActorData data) => CreateActor(data.Race, data.Mastery, data.Level);
         public Actor CreateActor(ActorConfig config) => CreateActor(config.Race, config.Mastery, config.Level);
 
         private void CreateHealthbar(Actor actor)

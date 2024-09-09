@@ -1,6 +1,6 @@
 ﻿namespace Services.StateMachine
 {
-    public interface IExitableState
+    public interface IExitableState : IState
     {
         void Exit();
     }

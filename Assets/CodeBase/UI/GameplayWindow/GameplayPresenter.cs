@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Databases;
-using Gameplay.LevelItems;
 using Gameplay.Units;
 using Infrastructure;
 using Services;
 using Services.SaveService;
+using Services.StateMachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,22 +20,20 @@ namespace UI.GameplayWindow
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
         private Dictionary<UnitCard, ActorConfig> _unitCards;
-        private bool _refreshed;
-        private GameFactory _factory;
         private GridDataService _gridDataService;
-        private GameObserver _observer;
         private PlayerProgressService _playerService;
         private WaveBuilder _waveBuilder;
+        private bool _refreshed;
+        private GameStateMachine _stateMachine;
 
         public override void Init()
         {
-            _factory = ServiceLocator.Resolve<GameFactory>();
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
             _playerService = ServiceLocator.Resolve<PlayerProgressService>();
-            _observer = ServiceLocator.Resolve<GameObserver>();
+            _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             _playerService.OnMoneyChanged += RuntimeServiceOnOnMoneyChanged;
@@ -60,29 +58,15 @@ namespace UI.GameplayWindow
 
         private void CardClicked(UnitCard card)
         {
-            Platform platform = _gridDataService.GetFreePlatform();
-            if (platform == null) return;
-
+            if (_gridDataService.HasFreePlatform() == false) return;
             if (!_playerService.TryBuy(card.Cost)) return;
 
-            Actor actor = _factory.CreateActor(_unitCards[card]);
-            actor.transform.position = platform.transform.position;
-            _gridDataService.AddPlayerUnit(actor, platform);
+            _gridDataService.AddPlayerUnit(_unitCards[card]);
         }
 
         private void StartWave()
         {
-            _gridDataService.Save();
-            _observer.StartGameplayLoop();
-            var playerUnits = _gridDataService.PlayerUnits;
-            var enemyUnits = _waveBuilder.EnemyUnits;
-
-            foreach (Actor actor in playerUnits)
-                actor.Unleash(enemyUnits);
-
-            foreach (Actor actor in enemyUnits)
-                actor.Unleash(playerUnits);
-
+            _stateMachine.Enter<GameLoopState>();
             gameObject.SetActive(false);
         }
     }
