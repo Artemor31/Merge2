@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Services.SaveService
+namespace Data
 {
     public class PlayerDataRepository : IRepository<PlayerData>
     {

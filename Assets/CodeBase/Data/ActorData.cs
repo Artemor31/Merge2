@@ -1,7 +1,7 @@
 ﻿using System;
 using Databases;
 
-namespace Services.SaveService
+namespace Data
 {
     [Serializable]
     public struct ActorData

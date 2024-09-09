@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Services;
 
-namespace Services.SaveService
+namespace Data
 {
     public class RepositoryProvider : IService
     {

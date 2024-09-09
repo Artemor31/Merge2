@@ -1,4 +1,4 @@
-﻿namespace Services.SaveService
+﻿namespace Data
 {
     public interface IRepository<TData> : IRepository
     {

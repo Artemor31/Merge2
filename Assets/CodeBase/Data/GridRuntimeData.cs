@@ -2,7 +2,7 @@
 using Gameplay.Units;
 using UnityEngine;
 
-namespace Services.SaveService
+namespace Data
 {
     public class GridRuntimeData
     {
