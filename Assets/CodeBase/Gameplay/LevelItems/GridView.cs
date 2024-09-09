@@ -1,7 +1,8 @@
-﻿using Services.SaveService;
+﻿using Services;
+using Services.SaveService;
 using UnityEngine;
 
-namespace LevelData
+namespace Gameplay.LevelItems
 {
     public class GridView : MonoBehaviour
     {
@@ -10,15 +11,15 @@ namespace LevelData
         private static readonly int SelectedCellY = Shader.PropertyToID("_SelectedCellY");
 
         [SerializeField] private Material _material;
-        private GridService _gridService;
+        private GridViewService _gridViewService;
 
-        public void Init(GridService gridService)
+        public void Init(GridViewService gridViewService)
         {
-            _gridService = gridService;
+            _gridViewService = gridViewService;
             _material.SetFloat(SelectCell, 0);
-            _gridService.OnPlatformClicked += PlatformOnOnClicked;
-            _gridService.OnPlatformHovered += PlatformOnOnHovered;
-            _gridService.OnPlatformReleased += PlatformOnOnReleased;
+            _gridViewService.OnPlatformClicked += PlatformOnOnClicked;
+            _gridViewService.OnPlatformHovered += PlatformOnOnHovered;
+            _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
 
         private void PlatformOnOnClicked(GridRuntimeData gridData)

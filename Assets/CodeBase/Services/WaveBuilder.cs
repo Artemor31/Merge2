@@ -1,50 +1,53 @@
 ﻿using System.Collections.Generic;
 using Databases;
+using Gameplay.Units;
 using Infrastructure;
-using Services;
 using Services.SaveService;
 using UnityEngine;
 
-namespace Gameplay
+namespace Services
 {
     public class WaveBuilder : IService
     {
         private readonly GameFactory _factory;
         private readonly PlayerProgressService _playerProgress;
-        private readonly GridDataService _gridDataService;
         private readonly WavesDatabase _wavesDatabase;
         private readonly LevelDatabase _levelDatabase;
+        
+        public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
+        private readonly List<Actor> _enemyUnits;
+
 
         public WaveBuilder(GameFactory factory, 
                            DatabaseProvider provider, 
-                           PlayerProgressService playerProgress,
-                           GridDataService gridDataService)
+                           PlayerProgressService playerProgress)
         {
             _factory = factory;
             _playerProgress = playerProgress;
-            _gridDataService = gridDataService;
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
             _levelDatabase = provider.GetDatabase<LevelDatabase>();
+            _enemyUnits = new List<Actor>();
         }
 
         public void BuildEnemyWave()
         {
-            _gridDataService.RemoveEnemies();
-            var enemiesPositions = GetPositions();
-            var enemyDatas = _wavesDatabase.WavesData[_playerProgress.Wave].Enemies;
-            
-            BuildWave(enemyDatas, enemiesPositions);
+            _enemyUnits.ForEach(Object.Destroy);
+            _enemyUnits.Clear();
+            BuildWave();
         }
 
-        private void BuildWave(List<WavesDatabase.EnemyAmount> enemyDatas, IReadOnlyList<Vector3> positions)
+        private void BuildWave()
         {
+            var enemyDatas = _wavesDatabase.WavesData[_playerProgress.Wave].Enemies;
+            var positions = GetPositions();
+
             foreach (var data in enemyDatas)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
                     var enemy = _factory.CreateActor(data.Race, data.Mastery, data.Level);
                     enemy.transform.position = positions.Random();
-                    _gridDataService.AddEnemy(enemy);
+                    _enemyUnits.Add(enemy);
                 }
             }
         }

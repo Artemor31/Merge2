@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.LevelItems;
 using Gameplay.Units;
-using LevelData;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -14,7 +14,7 @@ namespace Services.SaveService
         public event Action<GridRuntimeData> OnPlatformHovered;
 
         public Vector2Int GridSize = new(3, 5);
-        public List<Actor> EnemyUnits { get; }
+        public IReadOnlyList<Actor> PlayerUnits => GetPlayerUnits();
 
         private readonly GameFactory _gameFactory;
         private readonly GridRuntimeData[,] _gridData;
@@ -24,13 +24,14 @@ namespace Services.SaveService
         public GridDataService(GameFactory gameFactory)
         {
             _gameFactory = gameFactory;
-            EnemyUnits = new List<Actor>();
             _gridData = new GridRuntimeData[GridSize.x, GridSize.y];
             _gridRepo = new GridRepository();
         }
 
-        public void InitPlatforms(Platform[,] platforms)
+        public void SpawnPlatforms()
         {
+            Platform[,] platforms =  _gameFactory.CreatePlatforms(GridSize);
+            
             DoForeach((i, j) =>
             {
                 _gridData[i, j] = new GridRuntimeData();
@@ -56,7 +57,7 @@ namespace Services.SaveService
             }
         }
 
-        private void UninitPlatforms()
+        public void UninitPlatforms()
         {
             DoForeach((i, j) =>
             {
@@ -76,7 +77,7 @@ namespace Services.SaveService
                 if (_gridData[i, j].Busy)
                 {
                     Actor actor = _gridData[i, j].Actor;
-                    unitDatas[i, j] =  new ActorData(actor.Race, actor.Mastery, actor.Level);
+                    unitDatas[i, j] = actor.Data;
                 }
                 else
                 {
@@ -87,15 +88,8 @@ namespace Services.SaveService
             _gridRepo.Save(new GridData(unitDatas));
         }
 
-        public void AddEnemy(Actor actor) => EnemyUnits.Add(actor);
         public GridRuntimeData GetDataAt(Vector2Int selected) => _gridData[selected.x, selected.y];
-
-        public void RemoveEnemies()
-        {
-            EnemyUnits.ForEach(Object.Destroy);
-            EnemyUnits.Clear();
-        }
-
+        
         public Platform GetFreePlatform()
         {
             for (int i = 0; i < _gridData.GetLength(0); i++)
@@ -123,7 +117,7 @@ namespace Services.SaveService
             }
         }
 
-        public List<Actor> GetPlayerUnits()
+        private List<Actor> GetPlayerUnits()
         {
             List<Actor> units = new();
             DoForeach((i, j) =>

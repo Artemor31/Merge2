@@ -6,13 +6,13 @@ namespace Services.SaveService
     [Serializable]
     public struct ActorData
     {
-        public static ActorData None => new(Race.None, Mastery.None, 0);
-        
-        public Race Race;
+        public static ActorData None => new(0, Mastery.None, Race.None);
+
         public Mastery Mastery;
         public int Level;
-
-        public ActorData(Race race, Mastery mastery, int level)
+        public Race Race;
+        
+        public ActorData(int level, Mastery mastery, Race race)
         {
             Race = race;
             Mastery = mastery;

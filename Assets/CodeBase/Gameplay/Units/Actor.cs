@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Databases;
 using Gameplay.Units.Behaviours;
 using Services;
+using Services.SaveService;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -13,10 +14,8 @@ namespace Gameplay.Units
         public event Action<float, float> HealthChanged;
         
         public bool IsDead => _health.Current <= 0;
-        public int Level { get; private set; }
-        public Race Race { get; private set; }
-        public Mastery Mastery { get; private set; }
-        
+        public ActorData Data { get; private set; }
+
         [SerializeField] private Health _health;
         [SerializeField] private Mover _mover;
         [SerializeField] private TargetSearch _targetSearch;
@@ -27,14 +26,12 @@ namespace Gameplay.Units
         private IReadOnlyList<Actor> _candidates;
         private IUpdateable _updateable;
 
-        public void Initialize(int level, GameObject view, IUpdateable updateable, Race race, Mastery mastery)
+        public void Initialize(GameObject view, IUpdateable updateable, ActorData data)
         {
-            Mastery = mastery;
-            Race = race;
-            Level = level;
-            _updateable = updateable;
+            Data = data;
             _state = UnitState.Idle;
-            
+            _updateable = updateable;
+
             _updateable.Tick += Tick;
             _health.HealthChanged += OnHealthChanged;
             
@@ -50,6 +47,7 @@ namespace Gameplay.Units
         public void Dispose()
         {
             _mover.Stop();
+            _targetSearch.Dispose();
             _updateable.Tick -= Tick;
             _health.HealthChanged -= OnHealthChanged;
         }

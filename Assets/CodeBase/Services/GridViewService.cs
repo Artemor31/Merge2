@@ -1,13 +1,12 @@
 ﻿using System;
-using Services;
+using Gameplay.LevelItems;
 using Services.SaveService;
 using UnityEngine;
 using UnityEngine.AI;
-using Object = UnityEngine.Object;
 
-namespace LevelData
+namespace Services
 {
-    public class GridService : IService
+    public class GridViewService : IService
     {
         private readonly IUpdateable _updateable;
         private readonly GridDataService _service;
@@ -24,13 +23,16 @@ namespace LevelData
         public event Action<GridRuntimeData> OnPlatformReleased;
         public event Action<GridRuntimeData> OnPlatformHovered;
 
-        public GridService(IUpdateable updateable, GridDataService service, MergeService mergeService, CameraService cameraService)
+        public GridViewService(IUpdateable updateable, 
+                           GridDataService service, 
+                           MergeService mergeService,
+                           CameraService cameraService)
         {
             _updateable = updateable;
             _service = service;
             _mergeService = mergeService;
             _cameraService = cameraService;
-            _hits = new RaycastHit[5];
+            _hits = new RaycastHit[3];
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
 
             _updateable.Tick += OnTick;
@@ -73,10 +75,7 @@ namespace LevelData
         {
             if (_mergeService.TryMerge(started.Actor, ended.Actor, out var newActor))
             {
-                DestroyOldActors(started, ended);
-
-                newActor.transform.position = ended.Platform.transform.position;
-                ended.Actor = newActor;
+     
             }
             else
             {
@@ -90,17 +89,6 @@ namespace LevelData
             started.Actor = null;
             ResetActorPosition(ended);
             ended.Actor.GetComponent<NavMeshAgent>().enabled = true;
-        }
-
-        private void DestroyOldActors(GridRuntimeData casted, GridRuntimeData selected)
-        {
-            Object.Destroy(casted.Actor.gameObject);
-            casted.Actor.Dispose();
-            casted.Actor = null;
-
-            Object.Destroy(selected.Actor.gameObject);
-            selected.Actor.Dispose();
-            selected.Actor = null;
         }
 
         private void OnClicked(GridRuntimeData gridData)
@@ -149,7 +137,10 @@ namespace LevelData
         private bool CastPlane(Platform platform, Ray ray, out float distance) =>
             new Plane(Vector3.up, platform.transform.position).Raycast(ray, out distance);
 
-        private void ResetActorPosition(GridRuntimeData data) =>
+        private void ResetActorPosition(GridRuntimeData data)
+        {
+            
             data.Actor.transform.position = data.Platform.transform.position;
+        }
     }
 }

@@ -6,10 +6,9 @@ namespace Services.SaveService
 {
     public class GridRepository : IRepository<GridData>
     {
-        private readonly GridData _data;
+        public GridData Data { get; }
 
-        public GridRepository() => _data = Restore();
-        public GridData GetData() => _data;
+        public GridRepository() => Data = Restore();
 
         public void Save(GridData saveData)
         {

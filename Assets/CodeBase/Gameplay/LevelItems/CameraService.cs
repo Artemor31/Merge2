@@ -1,7 +1,7 @@
 ﻿using Services;
 using UnityEngine;
 
-namespace LevelData
+namespace Gameplay.LevelItems
 {
     public class CameraService : IService
     {

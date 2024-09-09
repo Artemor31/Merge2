@@ -17,27 +17,28 @@ namespace Gameplay.Units
 
         public void Initialize(Camera camera, Actor actor, IUpdateable updateable)
         {
-            _updateable = updateable;
             _owner = actor;
-            _level.text = actor.Level.ToString();
-            ChangeHealth(1,1);
+            _updateable = updateable;
+            _level.text = actor.Data.Level.ToString();
             _canvas.worldCamera = camera;
             transform.LookAt(-camera.transform.position);
-            
+
+            ChangeHealth(1,1);
             actor.HealthChanged += ChangeHealth;
-            actor.Died += OnDied;
-            _updateable.Tick += UpdateableOnTick;
+            actor.Died += Dispose;
+            _updateable.Tick += Tick;
         }
 
-        private void UpdateableOnTick() => transform.position = _owner.transform.position + _offset;
+        private void Tick() => transform.position = _owner.transform.position + _offset;
         private void ChangeHealth(float current, float max) => _value.fillAmount = current / max;
         
-        private void OnDied()
+        private void Dispose()
         {
             _owner.HealthChanged -= ChangeHealth;
-            _owner.Died -= OnDied;
-            _updateable.Tick -= UpdateableOnTick;
-            Destroy(gameObject);
+            _owner.Died -= Dispose;
+            _updateable.Tick -= Tick;
+           // Destroy(this);
+           // Destroy(gameObject);
         }
     }
 }

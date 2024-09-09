@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Databases;
+using Gameplay.LevelItems;
 using Gameplay.Units;
 using Infrastructure;
-using LevelData;
 using Services;
 using Services.SaveService;
 using TMPro;
@@ -25,6 +25,7 @@ namespace UI.GameplayWindow
         private GridDataService _gridDataService;
         private GameObserver _observer;
         private PlayerProgressService _playerService;
+        private WaveBuilder _waveBuilder;
 
         public override void Init()
         {
@@ -32,6 +33,7 @@ namespace UI.GameplayWindow
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
+            _waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
             _playerService = ServiceLocator.Resolve<PlayerProgressService>();
             _observer = ServiceLocator.Resolve<GameObserver>();
 
@@ -71,9 +73,9 @@ namespace UI.GameplayWindow
         private void StartWave()
         {
             _gridDataService.Save();
-            _observer.StartWatch();
-            var playerUnits = _gridDataService.GetPlayerUnits();
-            var enemyUnits = _gridDataService.EnemyUnits;
+            _observer.StartGameplayLoop();
+            var playerUnits = _gridDataService.PlayerUnits;
+            var enemyUnits = _waveBuilder.EnemyUnits;
 
             foreach (Actor actor in playerUnits)
                 actor.Unleash(enemyUnits);

@@ -1,6 +1,6 @@
 ﻿using System;
 using Gameplay;
-using LevelData;
+using Gameplay.LevelItems;
 using Services;
 using Services.SaveService;
 using Services.StateMachine;
@@ -45,13 +45,13 @@ namespace Infrastructure
             CameraService cameraService = new(sceneLoader);
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
             GridDataService gridDataService = new(gameFactory);
-            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService, gridDataService);
+            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
             MergeService mergeService = new(gameFactory, databaseProvider);
-            GridService gridService = new(this, gridDataService, mergeService, cameraService);
-            GameObserver gameObserver = new(gridDataService, playerService);
+            GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
+            GameObserver gameObserver = new(gridDataService, playerService, waveBuilder);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gameFactory, gridService, gridDataService, gameObserver, playerService);
+                gridDataService, gameFactory, gridViewService, gridDataService, gameObserver, playerService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);

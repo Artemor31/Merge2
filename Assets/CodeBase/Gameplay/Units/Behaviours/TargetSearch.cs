@@ -8,5 +8,6 @@ namespace Gameplay.Units.Behaviours
         public abstract Actor Target { get; protected set; }
         public abstract void SearchTarget(IReadOnlyList<Actor> candidates);
         public abstract bool NeedNewTarget();
+        public abstract void Dispose();
     }
 }

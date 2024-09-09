@@ -1,5 +1,5 @@
 ﻿using Gameplay;
-using LevelData;
+using Gameplay.LevelItems;
 using Services.SaveService;
 
 namespace Services.StateMachine
@@ -13,21 +13,21 @@ namespace Services.StateMachine
         private readonly WaveBuilder _waveBuilder;
         private readonly GridDataService _gridDataService;
         private readonly GameFactory _gameFactory;
-        private readonly GridService _gridService;
+        private readonly GridViewService _gridViewService;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
                               GridDataService gridDataService,
                               GameFactory gameFactory,
-                              GridService gridService)
+                              GridViewService gridViewService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _waveBuilder = waveBuilder;
             _gridDataService = gridDataService;
             _gameFactory = gameFactory;
-            _gridService = gridService;
+            _gridViewService = gridViewService;
         }
 
         public void Enter() => _sceneLoader.Load(GameplaySceneName,
@@ -35,10 +35,8 @@ namespace Services.StateMachine
 
         public void Exit()
         {
-            var platforms = _gameFactory.CreatePlatforms(_gridDataService.GridSize);
-            _gridDataService.InitPlatforms(platforms);
-
-            _gameFactory.CreateGridView(_gridService);
+            _gridDataService.SpawnPlatforms();
+            _gameFactory.CreateGridView(_gridViewService);
             _waveBuilder.BuildEnemyWave();
         }
     }

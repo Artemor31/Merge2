@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gameplay;
-using LevelData;
+using Gameplay.LevelItems;
 using Services.SaveService;
 using UI;
 
@@ -17,7 +17,7 @@ namespace Services.StateMachine
                                 WaveBuilder waveBuilder,
                                 GridDataService gridDataService,
                                 GameFactory gameFactory,
-                                GridService gridService,
+                                GridViewService gridViewService,
                                 GridDataService service,
                                 GameObserver gameObserver, 
                                 PlayerProgressService playerProgress)
@@ -26,7 +26,7 @@ namespace Services.StateMachine
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridDataService, gameFactory, gridService)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridDataService, gameFactory, gridViewService)},
                 {typeof(GameLoopState), new GameLoopState(this, windowsService, gameObserver)},
                 {typeof(ResultScreenState), new ResultScreenState(this, windowsService, service, gameObserver, playerProgress)},
             };

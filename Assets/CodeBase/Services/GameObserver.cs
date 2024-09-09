@@ -8,7 +8,6 @@ namespace Services
 {
     public class GameObserver : IService
     {
-        public event Action OnGameplaySrated;
         public event Action<bool> OnGameplayEnded;
 
         public bool IsWin { get; private set; }
@@ -16,46 +15,53 @@ namespace Services
 
         private readonly GridDataService _gridService;
         private readonly PlayerProgressService _playerService;
+        private readonly WaveBuilder _waveBuilder;
         private IEnumerable<Actor> _actors;
-        
-        public GameObserver(GridDataService gridService, PlayerProgressService playerService)
+
+        public GameObserver(GridDataService gridService, 
+                            PlayerProgressService playerService,
+                            WaveBuilder waveBuilder)
         {
             _gridService = gridService;
             _playerService = playerService;
+            _waveBuilder = waveBuilder;
         }
 
-        public void StartWatch()
+        public void StartGameplayLoop()
         {
+            foreach (Actor actor in _waveBuilder.EnemyUnits)
+                actor.Died += OnEnemyDied;
+
+            foreach (Actor actor in _gridService.PlayerUnits)
+                actor.Died += OnAllyDied;
+
             Profit = _playerService.Money;
-            _gridService.EnemyUnits.ForEach(e => e.Died += OnEnemyDied);
-            _gridService.GetPlayerUnits().ForEach(a => a.Died += OnAllyDied);
-            OnGameplaySrated?.Invoke();
-        }
-
-        private void OnAllyDied()
-        {
-            if (_gridService.GetPlayerUnits().All(a => a.IsDead))
-            {
-                IsWin = false;
-                EndGameplayLoop();
-            }
-        }
-
-        private void OnEnemyDied()
-        {
-            if (_gridService.EnemyUnits.All(e => e.IsDead))
-            {
-                IsWin = true;
-                EndGameplayLoop();
-            }
         }
 
         private void EndGameplayLoop()
         {
-            _gridService.EnemyUnits.ForEach(e => e.Died -= OnEnemyDied);
-            _gridService.GetPlayerUnits().ForEach(a => a.Died -= OnAllyDied);
+            foreach (Actor actor in _waveBuilder.EnemyUnits)
+                actor.Died -= OnEnemyDied;
+
+            foreach (Actor actor in _gridService.PlayerUnits)
+                actor.Died -= OnAllyDied;
+
             Profit = _playerService.Money - Profit;
             OnGameplayEnded?.Invoke(IsWin);
+        }
+
+        private void OnAllyDied()
+        {
+            if (_gridService.PlayerUnits.Any(a => !a.IsDead)) return;
+            IsWin = false;
+            EndGameplayLoop();
+        }
+
+        private void OnEnemyDied()
+        {
+            if (_waveBuilder.EnemyUnits.Any(a => !a.IsDead)) return;
+            IsWin = true;
+            EndGameplayLoop();
         }
     }
 }

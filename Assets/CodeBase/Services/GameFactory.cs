@@ -1,7 +1,7 @@
 ﻿using Databases;
+using Gameplay.LevelItems;
 using Gameplay.Units;
-using Gameplay.Units.Behaviours;
-using LevelData;
+using Services.SaveService;
 using UnityEngine;
 
 namespace Services
@@ -32,7 +32,7 @@ namespace Services
             ActorConfig config = _unitsDatabase.ConfigFor(race, mastery, level);
             GameObject view = Object.Instantiate(config.Prefab);
             Actor instance = Object.Instantiate(config.BaseView);
-            instance.Initialize(level, view, _updateable, race, mastery);
+            instance.Initialize(view, _updateable, new ActorData(level, mastery, race));
             CreateHealthbar(instance);
             return instance;
         }
@@ -55,10 +55,10 @@ namespace Services
             healthbar.Initialize(camera, actor, _updateable);
         }
 
-        public void CreateGridView(GridService gridService)
+        public void CreateGridView(GridViewService gridViewService)
         {
             GridView gridView = Object.Instantiate(_assetsProvider.Load<GridView>(AssetsPath.GridView));
-            gridView.Init(gridService);
+            gridView.Init(gridViewService);
             gridView.transform.position = _levelDatabase.GridPosition;
         }
 
