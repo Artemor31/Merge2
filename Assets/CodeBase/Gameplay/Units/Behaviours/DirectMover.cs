@@ -22,8 +22,8 @@ namespace Gameplay.Units.Behaviours
             _agent.destination = target;
         }
 
-        public override void MoveTo(Actor target) => 
-            MoveTo(target.transform.position);
+        public override void MoveTo(Actor target) => MoveTo(target.transform.position);
+        public override void Dispose() => _agent.enabled = false;
 
         public override void Stop()
         {

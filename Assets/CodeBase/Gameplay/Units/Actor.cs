@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Data;
+﻿using System.Collections.Generic;
 using Gameplay.Units.Behaviours;
-using Services;
 using UnityEngine;
+using Services;
+using System;
+using Data;
 
 namespace Gameplay.Units
 {
@@ -11,6 +11,7 @@ namespace Gameplay.Units
     {
         public event Action Died;
         public event Action<float, float> HealthChanged;
+        public event Action Disposed;
         
         public bool IsDead => _health.Current <= 0;
         public ActorData Data { get; private set; }
@@ -45,10 +46,12 @@ namespace Gameplay.Units
 
         public void Dispose()
         {
-            _mover.Stop();
+            _mover.Dispose();
             _targetSearch.Dispose();
             _updateable.Tick -= Tick;
             _health.HealthChanged -= OnHealthChanged;
+            _animator.enabled = false;
+            Disposed?.Invoke();
         }
 
         private void Tick()

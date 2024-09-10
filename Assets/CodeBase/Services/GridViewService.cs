@@ -58,30 +58,21 @@ namespace Services
             {
                 ResetActorPosition(started);
             }
-            else if (ended.Busy == false)
+            else if (ended.Free)
             {
                 MoveActor(started, ended);
             }
             else
             {
-                TryMerge(started, ended);
+                if (!_mergeService.TryMerge(started, ended))
+                {
+                    ResetActorPosition(started);
+                }
             }
 
             _dragging = false;
             _selected = Vector2Int.zero;
             OnPlatformReleased?.Invoke(ended);
-        }
-
-        private void TryMerge( GridRuntimeData started, GridRuntimeData ended)
-        {
-            if (_mergeService.TryMerge(started.Actor, ended.Actor, out var newActor))
-            {
-     
-            }
-            else
-            {
-                ResetActorPosition(started);
-            }
         }
 
         private void MoveActor(GridRuntimeData started, GridRuntimeData ended)
@@ -94,7 +85,7 @@ namespace Services
 
         private void OnClicked(GridRuntimeData gridData)
         {
-            if (gridData.Busy == false) return;
+            if (gridData.Free) return;
 
             _dragging = true;
             _selected = gridData.Index;
@@ -137,11 +128,7 @@ namespace Services
 
         private bool CastPlane(Platform platform, Ray ray, out float distance) =>
             new Plane(Vector3.up, platform.transform.position).Raycast(ray, out distance);
-
-        private void ResetActorPosition(GridRuntimeData data)
-        {
-            
+        private void ResetActorPosition(GridRuntimeData data) => 
             data.Actor.transform.position = data.Platform.transform.position;
-        }
     }
 }

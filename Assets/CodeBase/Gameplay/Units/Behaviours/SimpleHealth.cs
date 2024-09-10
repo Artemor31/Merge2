@@ -6,10 +6,10 @@ namespace Gameplay.Units.Behaviours
     public class SimpleHealth : Health
     {
         [SerializeField] private float _maxHealth;
-        private AnimatorScheduler _animator;
-
         public override event Action<float, float> HealthChanged;
         public override float Current { get; protected set; }
+        
+        private AnimatorScheduler _animator;
 
         public override void Init(AnimatorScheduler animator)
         {

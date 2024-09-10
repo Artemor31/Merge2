@@ -2,7 +2,6 @@
 using Data;
 using Databases;
 using Gameplay.Units;
-using Services.SaveService;
 using UnityEngine;
 
 namespace Services
@@ -18,35 +17,25 @@ namespace Services
             _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
         }
 
-        public void Merge(GridRuntimeData started, GridRuntimeData ended)
+        public bool TryMerge(GridRuntimeData started, GridRuntimeData ended)
         {
-            if (TryMerge(started.Actor, ended.Actor, out var newActor))
-            {
-                Object.Destroy(started.Actor.gameObject);
-                started.Actor.Dispose();
-                started.Actor = null;
+            if (started.Actor.Data.Level != ended.Actor.Data.Level) return false;
 
-                Object.Destroy(ended.Actor.gameObject);
-                ended.Actor.Dispose();
-                ended.Actor = null;
+            var config = _unitsDatabase.Units.FirstOrDefault(u => u.Level == started.Actor.Data.Level + 1);
+            if (config == null) return false;
 
-                newActor.transform.position = ended.Platform.transform.position;
-                ended.Actor = newActor;
-            }
-        }
+            started.Actor.Dispose();
+            Object.Destroy(started.Actor.gameObject);
+            started.Actor = null;
 
-        public bool TryMerge(Actor actor, Actor actor2, out Actor result)
-        {
-            result = null;
-            if (actor.Data.Level != actor2.Data.Level) return false;
+            ended.Actor.Dispose();
+            Object.Destroy(ended.Actor.gameObject);
+            ended.Actor = null;
 
-            var unit = _unitsDatabase.Units.FirstOrDefault(u => u.Level == actor.Data.Level + 1);
-            if (unit == null) return false;
-            
-            result = _gameFactory.CreateActor(unit.Race, unit.Mastery, unit.Level);
-            
-            
-            
+            Actor result = _gameFactory.CreateActor(config);
+            result.transform.position = ended.Platform.transform.position;
+            ended.Actor = result;
+
             return true;
         }
     }

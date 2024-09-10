@@ -26,6 +26,7 @@ namespace Gameplay.Units
             ChangeHealth(1,1);
             actor.HealthChanged += ChangeHealth;
             actor.Died += Dispose;
+            actor.Disposed += Dispose;
             _updateable.Tick += Tick;
         }
 
@@ -36,9 +37,9 @@ namespace Gameplay.Units
         {
             _owner.HealthChanged -= ChangeHealth;
             _owner.Died -= Dispose;
+            _owner.Disposed -= Dispose;
             _updateable.Tick -= Tick;
-           // Destroy(this);
-           // Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

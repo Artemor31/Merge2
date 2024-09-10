@@ -83,7 +83,7 @@ namespace Services.SaveService
             Platform platform = null;
             DoForeach((i, j) =>
             {
-                if (_gridData[i, j].Busy == false)
+                if (_gridData[i, j].Free)
                     platform = _gridData[i, j].Platform;
             });
             return platform;
