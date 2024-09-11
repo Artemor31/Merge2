@@ -45,6 +45,11 @@ namespace Services.StateMachine
 
         public void Exit()
         {
+            EndGameplayLoop();
+        }
+
+        private void EndGameplayLoop()
+        {
             foreach (Actor actor in _waveBuilder.EnemyUnits)
                 actor.Died -= OnEnemyDied;
 
@@ -52,22 +57,20 @@ namespace Services.StateMachine
                 actor.Died -= OnAllyDied;
 
             _profit = _playerService.Money - _profit;
-            
-            _gameStateMachine.Enter<ResultScreenState, bool>(_isWin);
         }
-        
+
         private void OnAllyDied()
         {
             if (_gridService.PlayerUnits.Any(a => !a.IsDead)) return;
             _isWin = false;
-            Exit();
+            _gameStateMachine.Enter<ResultScreenState, bool>(_isWin);
         }
 
         private void OnEnemyDied()
         {
             if (_waveBuilder.EnemyUnits.Any(a => !a.IsDead)) return;
             _isWin = true;
-            Exit();
+            _gameStateMachine.Enter<ResultScreenState, bool>(_isWin);
         }
     }
 }

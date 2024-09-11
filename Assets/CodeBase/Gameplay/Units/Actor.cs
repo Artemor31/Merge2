@@ -88,7 +88,7 @@ namespace Gameplay.Units
         private void OnHealthChanged(float current, float max)
         {
             HealthChanged?.Invoke(current, max);
-            if (current > max) return;
+            if (current > 0) return;
             
             Died?.Invoke();
             Dispose();

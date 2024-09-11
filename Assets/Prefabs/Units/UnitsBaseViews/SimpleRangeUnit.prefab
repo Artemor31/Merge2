@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7001b34a81454212b038a090015c1273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 30
   _range: 8
   _actCooldown: 3
   _projectilePrefab: {fileID: 7345155930059112006, guid: ceda6812cc9ec3244b73ad13213ff3d5, type: 3}

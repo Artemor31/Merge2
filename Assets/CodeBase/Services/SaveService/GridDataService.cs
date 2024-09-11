@@ -25,7 +25,6 @@ namespace Services.SaveService
         public GridDataService(GameFactory factory)
         {
             _factory = factory;
-            _gridData = new GridRuntimeData[_gridSize.x, _gridSize.y];
             _gridRepo = new GridRepository();
             _gridRepo.Restore();
         }
@@ -33,6 +32,7 @@ namespace Services.SaveService
         public void SpawnPlatforms()
         {
             Platform[,] platforms =  _factory.CreatePlatforms(_gridSize);
+            _gridData = new GridRuntimeData[_gridSize.x, _gridSize.y];
             
             DoForeach((i, j) =>
             {
@@ -58,8 +58,9 @@ namespace Services.SaveService
                 {
                     _gridData[i,j].Actor.Dispose();
                 }
-                _gridData = null;
             });
+            
+            _gridData = null;
         }
         
         public GridRuntimeData GetDataAt(Vector2Int selected) => _gridData[selected.x, selected.y];

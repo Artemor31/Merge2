@@ -34,6 +34,7 @@ namespace Services
             GameObject view = Object.Instantiate(config.Prefab);
             Actor instance = Object.Instantiate(config.BaseView);
             instance.Initialize(view, _updateable, new ActorData(level, mastery, race));
+            instance.gameObject.name += Random.Range(0, 100000); 
             CreateHealthbar(instance);
             return instance;
         }

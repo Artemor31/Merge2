@@ -32,6 +32,8 @@ namespace Services.StateMachine
 
         public void Enter<T>() where T : IState
         {
+            if (_currentState?.GetType() == typeof(T)) return;
+
             if (_currentState is IExitableState state)
                 state.Exit();
 
@@ -41,15 +43,13 @@ namespace Services.StateMachine
         
         public void Enter<T, TParam>(TParam param) where T : IState
         {
+            if (_currentState?.GetType() == typeof(T)) return;
+            
             if (_currentState is IExitableState state)
                 state.Exit();
 
             _currentState = _states[typeof(T)];
-            
-            if (_currentState is IState<TParam> paramState)
-                paramState.Enter(param);
-            else
-                _currentState.Enter();
+            ((IState<TParam>)_currentState).Enter(param);
         }
     }
 }

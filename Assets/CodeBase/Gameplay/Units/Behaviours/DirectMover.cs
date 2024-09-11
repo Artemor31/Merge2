@@ -28,6 +28,11 @@ namespace Gameplay.Units.Behaviours
         public override void Stop()
         {
             _animator.Move(0);
+            if (_agent.enabled == false || _agent.isOnNavMesh == false)
+            {
+                Debug.LogError(gameObject.name);
+            }
+
             _agent.isStopped = true;
         }
     }
