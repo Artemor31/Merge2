@@ -4,6 +4,7 @@ using UnityEngine;
 using Services;
 using System;
 using Data;
+using Databases;
 
 namespace Gameplay.Units
 {
@@ -26,7 +27,7 @@ namespace Gameplay.Units
         private IReadOnlyList<Actor> _candidates;
         private IUpdateable _updateable;
 
-        public void Initialize(GameObject view, IUpdateable updateable, ActorData data)
+        public void Initialize(GameObject view, IUpdateable updateable, ActorData data, ActorStats stats)
         {
             Data = data;
             _state = UnitState.Idle;
@@ -36,9 +37,9 @@ namespace Gameplay.Units
             _health.HealthChanged += OnHealthChanged;
             
             _animator.Init(view.GetComponent<Animator>());
-            _health.Init(_animator);
-            _mover.Init(_animator);
-            _act.Init(_animator);
+            _health.Init(_animator, stats);
+            _mover.Init(_animator, stats);
+            _act.Init(_animator, stats);
             
             view.transform.SetParent(transform);
             view.transform.position = Vector3.zero;

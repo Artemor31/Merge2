@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System;
+using Data;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -7,12 +8,29 @@ namespace Databases
     [CreateAssetMenu(menuName = "Create ActorConfig", fileName = "ActorConfig", order = 0)]
     public class ActorConfig : ScriptableObject
     {
+        public int Cost;
+        public string Name;
         public ActorData Data;
+        public ActorStats Stats;
+        public ActorViewData ViewData;
+    }
+
+    [Serializable]
+    public class ActorViewData
+    {
         public Sprite Icon;
         public Actor BaseView;
         public GameObject Prefab;
-        public string Name;
-        public int Cost;
+    }
+
+    [Serializable]
+    public class ActorStats
+    {
+        public float Health;
+        public float Damage;
+        public float Range;
+        public float ActCooldown;
+        public float MoveSpeed;
     }
     
     public enum Race

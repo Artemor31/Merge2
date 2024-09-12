@@ -16,7 +16,7 @@ namespace UI.GameplayWindow
 
         public void Setup(ActorConfig unitData)
         {
-            _icon.sprite = unitData.Icon;
+            _icon.sprite = unitData.ViewData.Icon;
             _title.text = unitData.Name;
             Cost = unitData.Cost;
             _cost.text = Cost.ToString();

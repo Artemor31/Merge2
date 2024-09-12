@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Databases;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Gameplay.Units.Behaviours
@@ -6,20 +7,13 @@ namespace Gameplay.Units.Behaviours
     public class DirectMover : Mover
     {
         [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private float _speed;
         private AnimatorScheduler _animator;
+        private float _speed;
 
-        public override void Init(AnimatorScheduler animator)
+        public override void Init(AnimatorScheduler animator, ActorStats stats)
         {
             _animator = animator;
-            _agent.speed = _speed;
-        }
-
-        public override void MoveTo(Vector3 target)
-        {
-            _animator.Move(_speed);
-            _agent.isStopped = false;
-            _agent.destination = target;
+            _agent.speed = _speed = stats.MoveSpeed;
         }
 
         public override void MoveTo(Actor target) => MoveTo(target.transform.position);
@@ -34,6 +28,13 @@ namespace Gameplay.Units.Behaviours
             }
 
             _agent.isStopped = true;
+        }
+
+        private void MoveTo(Vector3 target)
+        {
+            _animator.Move(_speed);
+            _agent.isStopped = false;
+            _agent.destination = target;
         }
     }
 }

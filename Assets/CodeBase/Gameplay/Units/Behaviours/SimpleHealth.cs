@@ -1,20 +1,21 @@
 ﻿using System;
+using Databases;
 using UnityEngine;
 
 namespace Gameplay.Units.Behaviours
 {
     public class SimpleHealth : Health
     {
-        [SerializeField] private float _maxHealth;
         public override event Action<float, float> HealthChanged;
         public override float Current { get; protected set; }
-        
+        private float _maxHealth;
+
         private AnimatorScheduler _animator;
 
-        public override void Init(AnimatorScheduler animator)
+        public override void Init(AnimatorScheduler animator, ActorStats stats)
         {
             _animator = animator;
-            Current = _maxHealth;
+            Current = _maxHealth = stats.Health;
         }
 
         public override void ChangeHealth(float value, HealthContext contexts)
@@ -33,7 +34,7 @@ namespace Gameplay.Units.Behaviours
                 case HealthContext.PureDamage:
                     break;
             }
-            
+
             HealthChanged?.Invoke(Current, _maxHealth);
         }
 
