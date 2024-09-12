@@ -13,8 +13,8 @@ namespace Gameplay.Units.Behaviours
             transform.LookAt(actor.transform);
             Animator.PerformAct();
             SpawnVFX(actor.transform.position);
-            actor.ChangeHealth(_damage, HealthContext.Heal);
-            ActTimer = _actCooldown;
+            actor.ChangeHealth(Stats.Damage, HealthContext.Heal);
+            ActTimer = Stats.ActCooldown;
         }
 
         private void SpawnVFX(Vector3 point)
