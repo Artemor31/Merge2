@@ -65,7 +65,7 @@ namespace Services.SaveService
         
         public GridRuntimeData GetDataAt(Vector2Int selected) => _gridData[selected.x, selected.y];
         public bool HasFreePlatform() => FreePlatform() != null;
-        public void AddPlayerUnit(ActorConfig config) => AddUnit(_factory.CreateActor(config), FreePlatform());
+        public void AddPlayerUnit(ActorConfig config) => AddUnit(_factory.CreateActor(config.Data), FreePlatform());
 
         private List<Actor> GetPlayerUnits()
         {

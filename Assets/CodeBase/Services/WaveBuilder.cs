@@ -38,21 +38,25 @@ namespace Services
 
         private void BuildWave()
         {
-            var enemyDatas = _wavesDatabase.WavesData[_playerProgress.Wave].Enemies;
-            var positions = GetPositions();
+            WaveData waveData = CurrentWaveData();
+            List<Vector3> positions = GetPositions();
 
-            foreach (var data in enemyDatas)
+            foreach (var data in waveData.Enemies)
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
-                    var enemy = _factory.CreateActor(data.Race, data.Mastery, data.Level);
-                    enemy.transform.position = positions.Random();
+                    Actor enemy = _factory.CreateActor(data.ActorData, positions.Random());
                     _enemyUnits.Add(enemy);
                 }
             }
         }
 
-        private IReadOnlyList<Vector3> GetPositions()
+        private WaveData CurrentWaveData()
+        {
+            return _wavesDatabase.WavesData[_playerProgress.Wave];
+        }
+
+        private List<Vector3> GetPositions()
         {
             var positions = new List<Vector3>();
             Vector2 size = _levelDatabase.SpawnerSize;

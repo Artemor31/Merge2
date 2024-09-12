@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 namespace Databases
@@ -8,20 +9,18 @@ namespace Databases
     public class WavesDatabase : Database
     {
         public List<WaveData> WavesData;
-        
-        [Serializable]
-        public class WaveData
-        {
-            public List<EnemyAmount> Enemies;
-        }
-    
-        [Serializable]
-        public class EnemyAmount
-        {
-            public Race Race;
-            public Mastery Mastery;
-            public int Level;
-            public int Amount;
-        } 
     }
+    
+    [Serializable]
+    public class WaveData
+    {
+        public List<EnemyAmount> Enemies;
+    }
+    
+    [Serializable]
+    public class EnemyAmount
+    {
+        public ActorData ActorData;
+        public int Amount;
+    } 
 }

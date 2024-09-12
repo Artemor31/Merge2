@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Data;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UnityEngine;
 
@@ -11,8 +12,7 @@ namespace Databases
         [SerializeField] private string _assetsPath;
         public List<ActorConfig> Units;
 
-        public ActorConfig ConfigFor(Race race, Mastery mastery, int level) => 
-            Units.First(u => u.Race == race && u.Mastery == mastery && u.Level == level);
+        public ActorConfig ConfigFor(ActorData actorData) => Units.First(data => data.Data == actorData);
 
         [Button]
         public void CollectData()

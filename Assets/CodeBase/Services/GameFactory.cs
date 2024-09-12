@@ -2,7 +2,6 @@
 using Databases;
 using Gameplay.LevelItems;
 using Gameplay.Units;
-using Services.SaveService;
 using UnityEngine;
 
 namespace Services
@@ -28,26 +27,29 @@ namespace Services
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
-        public Actor CreateActor(Race race, Mastery mastery, int level)
+        public Actor CreateActor(ActorData data, Vector3 position)
         {
-            ActorConfig config = _unitsDatabase.ConfigFor(race, mastery, level);
+            var actor = CreateActor(data);
+            actor.transform.position = position;
+            return actor;
+        }
+        
+        public Actor CreateActor(ActorData data)
+        {
+            ActorConfig config = _unitsDatabase.ConfigFor(data);
             GameObject view = Object.Instantiate(config.Prefab);
             Actor instance = Object.Instantiate(config.BaseView);
-            instance.Initialize(view, _updateable, new ActorData(level, mastery, race));
+            instance.Initialize(view, _updateable, data);
             instance.gameObject.name += Random.Range(0, 100000); 
             CreateHealthbar(instance);
             return instance;
         }
-
-        public Actor CreateActor(ActorData data) => CreateActor(data.Race, data.Mastery, data.Level);
-        public Actor CreateActor(ActorConfig config) => CreateActor(config.Race, config.Mastery, config.Level);
-
+        
         private void CreateHealthbar(Actor actor)
         {
             Healthbar asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
             Healthbar healthbar = Object.Instantiate(asset);
             Camera camera = _cameraService.CurrentMainCamera();
-            
             healthbar.Initialize(camera, actor, _updateable);
         }
 

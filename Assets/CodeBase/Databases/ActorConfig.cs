@@ -1,4 +1,5 @@
-﻿using Gameplay.Units;
+﻿using Data;
+using Gameplay.Units;
 using UnityEngine;
 
 namespace Databases
@@ -6,13 +7,11 @@ namespace Databases
     [CreateAssetMenu(menuName = "Create ActorConfig", fileName = "ActorConfig", order = 0)]
     public class ActorConfig : ScriptableObject
     {
-        public Race Race;
-        public Mastery Mastery;
+        public ActorData Data;
         public Sprite Icon;
         public Actor BaseView;
         public GameObject Prefab;
         public string Name;
-        public int Level;
         public int Cost;
     }
     

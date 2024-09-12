@@ -21,7 +21,7 @@ namespace Services
         {
             if (started.Actor.Data.Level != ended.Actor.Data.Level) return false;
 
-            var config = _unitsDatabase.Units.FirstOrDefault(u => u.Level == started.Actor.Data.Level + 1);
+            var config = _unitsDatabase.Units.FirstOrDefault(u => u.Data.Level == started.Actor.Data.Level + 1);
             if (config == null) return false;
 
             started.Actor.Dispose();
@@ -32,8 +32,7 @@ namespace Services
             Object.Destroy(ended.Actor.gameObject);
             ended.Actor = null;
 
-            Actor result = _gameFactory.CreateActor(config);
-            result.transform.position = ended.Platform.transform.position;
+            Actor result = _gameFactory.CreateActor(config.Data, ended.Platform.transform.position);
             ended.Actor = result;
 
             return true;
