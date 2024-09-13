@@ -33,7 +33,7 @@ namespace UI.GameplayWindow
 
         private void OnBoxClicked(int level, int cost)
         {
-            ActorConfig actorConfig = _unitsDatabase.Units.Random(c => c.Data.Level == level);
+            ActorConfig actorConfig = _unitsDatabase.ConfigFor(level);
             CreateUnit(actorConfig, cost);
         }
         

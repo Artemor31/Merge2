@@ -21,7 +21,9 @@ namespace Services
         {
             if (started.Actor.Data.Level != ended.Actor.Data.Level) return false;
 
-            var config = _unitsDatabase.Units.FirstOrDefault(u => u.Data.Level == started.Actor.Data.Level + 1);
+            var data = started.Actor.Data;
+            data.Level++;
+            var config = _unitsDatabase.ConfigFor(data);
             if (config == null) return false;
 
             started.Actor.Dispose();

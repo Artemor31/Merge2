@@ -13,6 +13,7 @@ namespace Databases
         public ActorData Data;
         public ActorStats Stats;
         public ActorViewData ViewData;
+        public int Power;
     }
 
     [Serializable]

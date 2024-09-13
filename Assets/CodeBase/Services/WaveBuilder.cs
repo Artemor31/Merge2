@@ -9,23 +9,24 @@ namespace Services
 {
     public class WaveBuilder : IService
     {
-        private readonly GameFactory _factory;
+        public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
+        
         private readonly PlayerProgressService _playerProgress;
         private readonly WavesDatabase _wavesDatabase;
         private readonly LevelDatabase _levelDatabase;
-        
-        public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
+        private readonly UnitsDatabase _unitsDatabase;
+        private readonly GameFactory _factory;
         private readonly List<Actor> _enemyUnits;
 
-
-        public WaveBuilder(GameFactory factory, 
-                           DatabaseProvider provider, 
+        public WaveBuilder(GameFactory factory,
+                           DatabaseProvider provider,
                            PlayerProgressService playerProgress)
         {
-            _factory = factory;
-            _playerProgress = playerProgress;
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
             _levelDatabase = provider.GetDatabase<LevelDatabase>();
+            _unitsDatabase = provider.GetDatabase<UnitsDatabase>();
+            _playerProgress = playerProgress;
+            _factory = factory;
             _enemyUnits = new List<Actor>();
         }
 
@@ -45,14 +46,37 @@ namespace Services
             {
                 for (int i = 0; i < data.Amount; i++)
                 {
-                    Actor enemy = _factory.CreateActor(data.ActorData, positions.Random());
-                    _enemyUnits.Add(enemy);
+                    _enemyUnits.Add(_factory.CreateActor(data.ActorData, positions.Random()));
                 }
             }
         }
 
         private WaveData CurrentWaveData()
         {
+            // hardcode power levels in configs
+            int powerLevel = 5;
+            Race[] races = {Race.Human};
+            Mastery[] masteries = {Mastery.Warrior, Mastery.Ranger};
+
+            // определить пул юнитов доступных
+            // определить лимиты по силе
+            // выбирать рандомных юнитов
+
+            List<List<ActorConfig>> _variants = new();
+
+            for (int i = powerLevel; i >= 1; i--)
+            {
+                _variants.Add(_unitsDatabase.ConfigsFor(powerLevel, races, masteries));
+            }
+            
+            while (powerLevel > 0)
+            {
+                
+            }
+            
+            // спавнить их
+
+
             return _wavesDatabase.WavesData[_playerProgress.Wave];
         }
 

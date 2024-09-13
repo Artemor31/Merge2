@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Infrastructure;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UnityEngine;
 
@@ -10,9 +11,16 @@ namespace Databases
     public class UnitsDatabase : Database
     {
         [SerializeField] private string _assetsPath;
-        public List<ActorConfig> Units;
+        [SerializeField] public List<ActorConfig> Units;
 
-        public ActorConfig ConfigFor(ActorData actorData) => Units.First(data => data.Data == actorData);
+        public ActorConfig ConfigFor(ActorData actorData) => Units.FirstOrDefault(data => data.Data == actorData);
+        public ActorConfig ConfigFor(int level) => Units.Random(u => u.Data.Level == level);
+
+        public List<ActorConfig> ConfigsFor(int maxPower, Race[] races, Mastery[] masteries) => Units
+            .Where(u => u.Power <= maxPower)
+            .Where(u => races.Contains(u.Data.Race))
+            .Where(u => masteries.Contains(u.Data.Mastery))
+            .ToList();
 
         [Button]
         public void CollectData()
