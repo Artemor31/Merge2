@@ -70,6 +70,10 @@ namespace Services
                             _datas.Add(variants[i-1].Random().Data);
                             powerLimit -= i;
                         }
+                        else
+                        {
+                            i--;
+                        }
                     }
                     else
                     {

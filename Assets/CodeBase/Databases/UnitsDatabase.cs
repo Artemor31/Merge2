@@ -17,7 +17,7 @@ namespace Databases
         public ActorConfig ConfigFor(int level) => Units.Random(u => u.Data.Level == level);
 
         public List<ActorConfig> ConfigsFor(int maxPower, Race[] races, Mastery[] masteries) => Units
-            .Where(u => u.Power <= maxPower)
+            .Where(u => u.Power == maxPower)
             .Where(u => races.Contains(u.Data.Race))
             .Where(u => masteries.Contains(u.Data.Mastery))
             .ToList();
