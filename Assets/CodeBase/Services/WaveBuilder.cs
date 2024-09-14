@@ -53,7 +53,7 @@ namespace Services
 
         private List<ActorData> CreateActorsWave(WaveData waveData)
         {
-            List<ActorData> _datas = new();
+            List<ActorData> datas = new();
             var variants = FillVariants(waveData);
             int powerLimit = waveData.PowerLimit;
             for (int i = powerLimit; i >= 1;)
@@ -61,13 +61,13 @@ namespace Services
                 // if est' voobwe s takoi siloi
                 // i est' ewe za chto kypit' vraga
                 // to roll na to, chto kypim etot lvl vraga
-                if (variants[i-1].Count > 0 && powerLimit >= i) 
+                if (variants[i - 1].Count > 0 && powerLimit >= i)
                 {
                     if (powerLimit == i)
                     {
                         if (Random.Range(1, 11) >= 7)
                         {
-                            _datas.Add(variants[i-1].Random().Data);
+                            datas.Add(variants[i - 1].Random().Data);
                             powerLimit -= i;
                         }
                         else
@@ -77,7 +77,7 @@ namespace Services
                     }
                     else
                     {
-                        _datas.Add(variants[i-1].Random().Data);
+                        datas.Add(variants[i - 1].Random().Data);
                         powerLimit -= i;
                     }
                 }
@@ -87,18 +87,18 @@ namespace Services
                 }
             }
 
-            return _datas;
+            return datas;
         }
 
         private List<List<ActorConfig>> FillVariants(WaveData waveData)
         {
-            List<List<ActorConfig>> _variants = new();
+            List<List<ActorConfig>> variants = new();
             for (int i = 1; i <= waveData.PowerLimit; i++)
             {
-                _variants.Add(_unitsDatabase.ConfigsFor(i, waveData.Races, waveData.Masteries));
+                variants.Add(_unitsDatabase.ConfigsFor(i, waveData.Races, waveData.Masteries));
             }
 
-            return _variants;
+            return variants;
         }
     }
 }
