@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
+  m_Name: OrcMage3
+  m_EditorClassIdentifier: 
+  Cost: 3
+  Name: OrcMage
+  Data:
+    Level: 3
+    Race: 2
+    Mastery: 3
+  Stats:
+    Health: 100
+    Damage: 50
+    Range: 5
+    ActCooldown: 2
+    MoveSpeed: 3
+  ViewData:
+    Icon: {fileID: 21300006, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    BaseView: {fileID: 6787395453057676287, guid: 5e219ace06927e44c88164de3e106970, type: 3}
+    Prefab: {fileID: 3903264607414344985, guid: 2e390385fc455b64288c1c9ae69ef850, type: 3}
+  Power: 3
