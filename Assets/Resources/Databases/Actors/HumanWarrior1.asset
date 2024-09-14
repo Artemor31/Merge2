@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
   m_Name: HumanWarrior1
   m_EditorClassIdentifier: 
-  Race: 1
-  Mastery: 1
-  Icon: {fileID: 21300000, guid: a8166ea434d337349818825bff42d2f6, type: 3}
-  BaseView: {fileID: 6787395453057676287, guid: 5e219ace06927e44c88164de3e106970, type: 3}
-  Prefab: {fileID: 3487113121582541197, guid: 065eb6cf8ad47d0498cd651a7cd4b9e4, type: 3}
-  Name: Warrior
-  Level: 1
   Cost: 1
+  Name: Warrior
+  Data:
+    Level: 1
+    Race: 1
+    Mastery: 1
+  Stats:
+    Health: 150
+    Damage: 20
+    Range: 2
+    ActCooldown: 2
+    MoveSpeed: 3
+  ViewData:
+    Icon: {fileID: 21300006, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    BaseView: {fileID: 6787395453057676287, guid: 5e219ace06927e44c88164de3e106970, type: 3}
+    Prefab: {fileID: 3487113121582541197, guid: 065eb6cf8ad47d0498cd651a7cd4b9e4, type: 3}
+  Power: 1

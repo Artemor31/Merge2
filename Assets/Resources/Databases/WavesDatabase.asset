@@ -12,23 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d468ca9e584777b5f69127fd2c7a25, type: 3}
   m_Name: WavesDatabase
   m_EditorClassIdentifier: 
-  WavesData:
-  - Enemies:
-    - Race: 1
-      Mastery: 1
-      Level: 1
-      Amount: 1
-  - Enemies:
-    - Race: 1
-      Mastery: 1
-      Level: 1
-      Amount: 2
-  - Enemies:
-    - Race: 1
-      Mastery: 1
-      Level: 2
-      Amount: 1
-    - Race: 1
-      Mastery: 2
-      Level: 1
-      Amount: 1
+  _wavesData:
+  - PowerLimit: 5
+    Masteries: 0000000001000000020000000300000004000000
+    Races: 0000000001000000020000000300000004000000
+  - PowerLimit: 10
+    Masteries: 0000000001000000020000000300000004000000
+    Races: 0000000001000000020000000300000004000000

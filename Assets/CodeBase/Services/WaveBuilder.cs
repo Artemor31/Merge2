@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Data;
 using Databases;
 using Gameplay.Units;
 using Infrastructure;
@@ -10,7 +12,7 @@ namespace Services
     public class WaveBuilder : IService
     {
         public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
-        
+
         private readonly PlayerProgressService _playerProgress;
         private readonly WavesDatabase _wavesDatabase;
         private readonly LevelDatabase _levelDatabase;
@@ -39,65 +41,60 @@ namespace Services
 
         private void BuildWave()
         {
-            WaveData waveData = CurrentWaveData();
-            List<Vector3> positions = GetPositions();
+            WaveData waveData = _wavesDatabase.WavesData[_playerProgress.Wave];
+            List<ActorData> actorsWave = CreateActorsWave(waveData);
+            List<Vector3> positions = _levelDatabase.GetPositions();
 
-            foreach (var data in waveData.Enemies)
+            foreach (ActorData data in actorsWave)
             {
-                for (int i = 0; i < data.Amount; i++)
-                {
-                    _enemyUnits.Add(_factory.CreateActor(data.ActorData, positions.Random()));
-                }
+                _enemyUnits.Add(_factory.CreateActor(data, positions.Random()));
             }
         }
 
-        private WaveData CurrentWaveData()
+        private List<ActorData> CreateActorsWave(WaveData waveData)
         {
-            // hardcode power levels in configs
-            int powerLevel = 5;
-            Race[] races = {Race.Human};
-            Mastery[] masteries = {Mastery.Warrior, Mastery.Ranger};
+            List<ActorData> _datas = new();
+            var variants = FillVariants(waveData);
+            int powerLimit = waveData.PowerLimit;
+            for (int i = powerLimit; i >= 1;)
+            {
+                // if est' voobwe s takoi siloi
+                // i est' ewe za chto kypit' vraga
+                // to roll na to, chto kypim etot lvl vraga
+                if (variants[i-1].Count > 0 && powerLimit >= i) 
+                {
+                    if (powerLimit == i)
+                    {
+                        if (Random.Range(1, 11) >= 7)
+                        {
+                            _datas.Add(variants[i-1].Random().Data);
+                            powerLimit -= i;
+                        }
+                    }
+                    else
+                    {
+                        _datas.Add(variants[i-1].Random().Data);
+                        powerLimit -= i;
+                    }
+                }
+                else
+                {
+                    i--;
+                }
+            }
 
-            // определить пул юнитов доступных
-            // определить лимиты по силе
-            // выбирать рандомных юнитов
+            return _datas;
+        }
 
+        private List<List<ActorConfig>> FillVariants(WaveData waveData)
+        {
             List<List<ActorConfig>> _variants = new();
-
-            for (int i = powerLevel; i >= 1; i--)
+            for (int i = 1; i <= waveData.PowerLimit; i++)
             {
-                _variants.Add(_unitsDatabase.ConfigsFor(powerLevel, races, masteries));
-            }
-            
-            while (powerLevel > 0)
-            {
-                
-            }
-            
-            // спавнить их
-
-
-            return _wavesDatabase.WavesData[_playerProgress.Wave];
-        }
-
-        private List<Vector3> GetPositions()
-        {
-            var positions = new List<Vector3>();
-            Vector2 size = _levelDatabase.SpawnerSize;
-            for (int i = 0; i < size.x; i++)
-            {
-                Vector3 position = _levelDatabase.SpawnerPosition;
-                float delta = _levelDatabase.SpawnerDelta;
-                float currentX = position.x + delta * i;
-
-                for (int j = 0; j < size.y; j++)
-                {
-                    float currentZ = position.z + delta * j;
-                    positions.Add(new Vector3(currentX, 0, currentZ));
-                }
+                _variants.Add(_unitsDatabase.ConfigsFor(i, waveData.Races, waveData.Masteries));
             }
 
-            return positions;
+            return _variants;
         }
     }
 }

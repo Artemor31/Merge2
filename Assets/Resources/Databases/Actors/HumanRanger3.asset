@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
   m_Name: HumanRanger3
   m_EditorClassIdentifier: 
-  Race: 1
-  Mastery: 2
-  Icon: {fileID: 21300016, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
-  BaseView: {fileID: 6787395453057676287, guid: 14ae8deda5306634fbe5b161f0ab512b, type: 3}
-  Prefab: {fileID: 8340937838891581338, guid: 2075ea4aef117624c93088214fdd7add, type: 3}
-  Name: Ranger
-  Level: 3
   Cost: 3
+  Name: Ranger
+  Data:
+    Level: 3
+    Race: 1
+    Mastery: 2
+  Stats:
+    Health: 225
+    Damage: 75
+    Range: 6
+    ActCooldown: 2
+    MoveSpeed: 5
+  ViewData:
+    Icon: {fileID: 21300020, guid: addd2af175d074643a3b1f29f6c23041, type: 3}
+    BaseView: {fileID: 6787395453057676287, guid: 14ae8deda5306634fbe5b161f0ab512b, type: 3}
+    Prefab: {fileID: 8340937838891581338, guid: 2075ea4aef117624c93088214fdd7add, type: 3}
+  Power: 3
