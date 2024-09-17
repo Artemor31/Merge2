@@ -7,11 +7,11 @@ namespace Services.StateMachine
     {
         private readonly WindowsService _windowsService;
         private readonly GridDataService _gridData;
-        private readonly PlayerProgressService _playerService;
+        private readonly PlayerDataService _playerService;
 
         public ResultScreenState(WindowsService windowsService,
                                  GridDataService gridData,
-                                 PlayerProgressService playerService)
+                                 PlayerDataService playerService)
         {
             _windowsService = windowsService;
             _gridData = gridData;

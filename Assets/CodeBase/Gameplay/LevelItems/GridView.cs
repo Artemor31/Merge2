@@ -25,12 +25,12 @@ namespace Gameplay.LevelItems
 
         private void PlatformOnOnClicked(GridRuntimeData gridData)
         {
-            SetSelected(gridData.Index);
+            SetSelected(gridData.Platform.Index);
             SetHightighted(true);
         }
 
         private void PlatformOnOnReleased(GridRuntimeData gridData) => SetHightighted(false);
-        private void PlatformOnOnHovered(GridRuntimeData gridData) => SetSelected(gridData.Index);
+        private void PlatformOnOnHovered(GridRuntimeData gridData) => SetSelected(gridData.Platform.Index);
         
         private void SetHightighted(bool highlight) => _material.SetFloat(SelectCell, highlight ? 1 : 0);
 

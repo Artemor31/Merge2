@@ -40,12 +40,12 @@ namespace Infrastructure
 
             SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
+            SaveService saveService = new();
             DatabaseProvider databaseProvider = new(assetsProvider);
-            RepositoryProvider repositoryProvider = new();
-            PlayerProgressService playerService = new(repositoryProvider);
+            PlayerDataService playerService = new(saveService);
             CameraService cameraService = new(sceneLoader);
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
-            GridDataService gridDataService = new(gameFactory);
+            GridDataService gridDataService = new(gameFactory, saveService);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
             MergeService mergeService = new(gameFactory, databaseProvider);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
@@ -55,6 +55,7 @@ namespace Infrastructure
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
+            ServiceLocator.Bind(saveService);
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);
             ServiceLocator.Bind(assetsProvider);
@@ -66,7 +67,6 @@ namespace Infrastructure
             ServiceLocator.Bind(mergeService);
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(playerService);
-            ServiceLocator.Bind(repositoryProvider);
             
             _windowsService.InitWindows();
 

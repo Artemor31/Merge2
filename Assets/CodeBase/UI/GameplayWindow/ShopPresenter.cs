@@ -16,14 +16,14 @@ namespace UI.GameplayWindow
         [SerializeField] private Button _box3Button;
         private UnitsDatabase _unitsDatabase;
         private GridDataService _gridDataService;
-        private PlayerProgressService _playerService;
+        private PlayerDataService _playerService;
 
         public override void Init()
         {
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
-            _playerService = ServiceLocator.Resolve<PlayerProgressService>();
+            _playerService = ServiceLocator.Resolve<PlayerDataService>();
             
             _box1Button.onClick.AddListener(() => OnBoxClicked(1, 10));
             _box2Button.onClick.AddListener(() => OnBoxClicked(2, 19));

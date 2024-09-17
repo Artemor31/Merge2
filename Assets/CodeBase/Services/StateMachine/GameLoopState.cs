@@ -8,7 +8,7 @@ namespace Services.StateMachine
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly GridDataService _gridService;
-        private readonly PlayerProgressService _playerService;
+        private readonly PlayerDataService _playerService;
         private readonly WaveBuilder _waveBuilder;
         
         private int _profit;
@@ -16,7 +16,7 @@ namespace Services.StateMachine
 
         public GameLoopState(GameStateMachine gameStateMachine,
                              GridDataService gridService, 
-                             PlayerProgressService playerService,
+                             PlayerDataService playerService,
                              WaveBuilder waveBuilder)
         {
             _gameStateMachine = gameStateMachine;

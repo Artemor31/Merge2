@@ -21,7 +21,7 @@ namespace UI.GameplayWindow
         private UnitCard _cardPrefab;
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GridDataService _gridDataService;
-        private PlayerProgressService _playerService;
+        private PlayerDataService _playerService;
         private WaveBuilder _waveBuilder;
         private bool _refreshed;
         private GameStateMachine _stateMachine;
@@ -32,7 +32,7 @@ namespace UI.GameplayWindow
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
-            _playerService = ServiceLocator.Resolve<PlayerProgressService>();
+            _playerService = ServiceLocator.Resolve<PlayerDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
 
             StartWaveButton.onClick.AddListener(StartWave);

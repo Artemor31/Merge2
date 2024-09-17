@@ -54,7 +54,7 @@ namespace Services
 
             GridRuntimeData ended = _service.GetDataAt(platform.Index);
             
-            if (started.Index == ended.Index)
+            if (started.Platform.Index == ended.Platform.Index)
             {
                 ResetActorPosition(started);
             }
@@ -88,7 +88,7 @@ namespace Services
             if (gridData.Free) return;
 
             _dragging = true;
-            _selected = gridData.Index;
+            _selected = gridData.Platform.Index;
             gridData.Actor.GetComponent<NavMeshAgent>().enabled = false;
             OnPlatformClicked?.Invoke(gridData);
         }

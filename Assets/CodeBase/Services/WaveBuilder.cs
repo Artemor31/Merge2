@@ -13,7 +13,7 @@ namespace Services
     {
         public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
 
-        private readonly PlayerProgressService _playerProgress;
+        private readonly PlayerDataService _playerData;
         private readonly WavesDatabase _wavesDatabase;
         private readonly LevelDatabase _levelDatabase;
         private readonly UnitsDatabase _unitsDatabase;
@@ -22,12 +22,12 @@ namespace Services
 
         public WaveBuilder(GameFactory factory,
                            DatabaseProvider provider,
-                           PlayerProgressService playerProgress)
+                           PlayerDataService playerData)
         {
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
             _levelDatabase = provider.GetDatabase<LevelDatabase>();
             _unitsDatabase = provider.GetDatabase<UnitsDatabase>();
-            _playerProgress = playerProgress;
+            _playerData = playerData;
             _factory = factory;
             _enemyUnits = new List<Actor>();
         }
@@ -41,7 +41,7 @@ namespace Services
 
         private void BuildWave()
         {
-            WaveData waveData = _wavesDatabase.WavesData[_playerProgress.Wave];
+            WaveData waveData = _wavesDatabase.WavesData[_playerData.Wave];
             List<ActorData> actorsWave = CreateActorsWave(waveData);
             List<Vector3> positions = _levelDatabase.GetPositions();
 
