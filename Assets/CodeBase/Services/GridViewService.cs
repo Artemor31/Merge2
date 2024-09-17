@@ -1,5 +1,4 @@
 ﻿using System;
-using Data;
 using Gameplay.LevelItems;
 using Services.SaveService;
 using UnityEngine;
@@ -20,9 +19,9 @@ namespace Services
         private Vector2 _size;
         private Vector2Int _selected;
 
-        public event Action<GridRuntimeData> OnPlatformClicked;
-        public event Action<GridRuntimeData> OnPlatformReleased;
-        public event Action<GridRuntimeData> OnPlatformHovered;
+        public event Action<Platform> OnPlatformClicked;
+        public event Action<Platform> OnPlatformReleased;
+        public event Action<Platform> OnPlatformHovered;
 
         public GridViewService(IUpdateable updateable, 
                            GridDataService service, 
@@ -42,19 +41,19 @@ namespace Services
             _service.OnPlatformReleased += OnReleased;
         }
 
-        private void OnHovered(GridRuntimeData gridData)
+        private void OnHovered(Platform gridData)
         {
             if (!_dragging) return;
             OnPlatformHovered?.Invoke(gridData);
         }
 
-        private void OnReleased(GridRuntimeData started)
+        private void OnReleased(Platform started)
         {
             if (!_dragging || !RaycastPlatform(out Platform platform)) return;
 
-            GridRuntimeData ended = _service.GetDataAt(platform.Index);
+            Platform ended = _service.GetDataAt(platform.Index);
             
-            if (started.Platform.Index == ended.Platform.Index)
+            if (started.Index == ended.Index)
             {
                 ResetActorPosition(started);
             }
@@ -75,7 +74,7 @@ namespace Services
             OnPlatformReleased?.Invoke(ended);
         }
 
-        private void MoveActor(GridRuntimeData started, GridRuntimeData ended)
+        private void MoveActor(Platform started, Platform ended)
         {
             ended.Actor = started.Actor;
             started.Actor = null;
@@ -83,12 +82,12 @@ namespace Services
             ended.Actor.GetComponent<NavMeshAgent>().enabled = true;
         }
 
-        private void OnClicked(GridRuntimeData gridData)
+        private void OnClicked(Platform gridData)
         {
             if (gridData.Free) return;
 
             _dragging = true;
-            _selected = gridData.Platform.Index;
+            _selected = gridData.Index;
             gridData.Actor.GetComponent<NavMeshAgent>().enabled = false;
             OnPlatformClicked?.Invoke(gridData);
         }
@@ -102,7 +101,7 @@ namespace Services
 
             foreach (RaycastHit hit in _hits)
             {
-                if (hit.transform.TryGetComponent(out Platform platform) && CastPlane(platform, ray, out var distance))
+                if (hit.transform.TryGetComponent(out Platform platform) && CastPlane(platform, ray, out float distance))
                 {
                     Vector3 point = ray.GetPoint(distance);
                     _service.GetDataAt(_selected).Actor.transform.position = point;
@@ -128,7 +127,8 @@ namespace Services
 
         private bool CastPlane(Platform platform, Ray ray, out float distance) =>
             new Plane(Vector3.up, platform.transform.position).Raycast(ray, out distance);
-        private void ResetActorPosition(GridRuntimeData data) => 
-            data.Actor.transform.position = data.Platform.transform.position;
+        
+        private void ResetActorPosition(Platform data) => 
+            data.Actor.transform.position = data.transform.position;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Units;
 using UnityEngine;
 
 namespace Gameplay.LevelItems
@@ -9,6 +10,10 @@ namespace Gameplay.LevelItems
         public event Action<Vector2Int> OnReleased;
         public event Action<Vector2Int> OnHovered;
         public Vector2Int Index { get; private set; }
+        public Actor Actor;
+        public bool Busy => Actor != null;
+        public bool Free => Actor == null;
+
 
         public void Init(int i, int j) => Index = new Vector2Int(i, j);
         public void OnMouseDown() => OnClicked?.Invoke(Index);

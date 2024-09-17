@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using Data;
-using Databases;
+﻿using Databases;
+using Gameplay.LevelItems;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace Services
             _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
         }
 
-        public bool TryMerge(GridRuntimeData started, GridRuntimeData ended)
+        public bool TryMerge(Platform started, Platform ended)
         {
             if (started.Actor.Data.Level != ended.Actor.Data.Level) return false;
 
@@ -34,7 +33,7 @@ namespace Services
             Object.Destroy(ended.Actor.gameObject);
             ended.Actor = null;
 
-            Actor result = _gameFactory.CreateActor(config.Data, ended.Platform.transform.position);
+            Actor result = _gameFactory.CreateActor(config.Data, ended.transform.position);
             ended.Actor = result;
 
             return true;

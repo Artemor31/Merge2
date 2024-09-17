@@ -1,6 +1,4 @@
-﻿using Data;
-using Services;
-using Services.SaveService;
+﻿using Services;
 using UnityEngine;
 
 namespace Gameplay.LevelItems
@@ -23,14 +21,14 @@ namespace Gameplay.LevelItems
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
 
-        private void PlatformOnOnClicked(GridRuntimeData gridData)
+        private void PlatformOnOnClicked(Platform gridData)
         {
-            SetSelected(gridData.Platform.Index);
+            SetSelected(gridData.Index);
             SetHightighted(true);
         }
 
-        private void PlatformOnOnReleased(GridRuntimeData gridData) => SetHightighted(false);
-        private void PlatformOnOnHovered(GridRuntimeData gridData) => SetSelected(gridData.Platform.Index);
+        private void PlatformOnOnReleased(Platform gridData) => SetHightighted(false);
+        private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
         
         private void SetHightighted(bool highlight) => _material.SetFloat(SelectCell, highlight ? 1 : 0);
 

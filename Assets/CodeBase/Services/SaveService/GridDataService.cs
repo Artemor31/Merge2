@@ -10,9 +10,9 @@ namespace Services.SaveService
 {
     public class GridDataService : IService
     {
-        public event Action<GridRuntimeData> OnPlatformClicked;
-        public event Action<GridRuntimeData> OnPlatformReleased;
-        public event Action<GridRuntimeData> OnPlatformHovered;
+        public event Action<Platform> OnPlatformClicked;
+        public event Action<Platform> OnPlatformReleased;
+        public event Action<Platform> OnPlatformHovered;
         
         public IReadOnlyList<Actor> PlayerUnits => GetPlayerUnits();
 
@@ -20,7 +20,7 @@ namespace Services.SaveService
         private GridData _gridData;
         private readonly GameFactory _factory;
         private readonly SaveService _saveService;
-        private GridRuntimeData[,] _gridRuntimeArray;
+        private Platform[,] _platforms;
         private Vector2Int _gridSize = new(3, 5);
         private Vector2Int? _selected;
 
@@ -33,16 +33,15 @@ namespace Services.SaveService
         public void SpawnPlatforms()
         {
             Platform[,] platforms =  _factory.CreatePlatforms(_gridSize);
-            _gridRuntimeArray = new GridRuntimeData[_gridSize.x, _gridSize.y];
+            _platforms = new Platform[_gridSize.x, _gridSize.y];
             
             DoForeach((i, j) =>
             {
-                _gridRuntimeArray[i, j] = new GridRuntimeData();
-                _gridRuntimeArray[i, j].Platform = platforms[i, j];
-                _gridRuntimeArray[i, j].Platform.Init(i, j);
-                _gridRuntimeArray[i, j].Platform.OnClicked += PlatformOnOnClicked;
-                _gridRuntimeArray[i, j].Platform.OnReleased += PlatformOnOnReleased;
-                _gridRuntimeArray[i, j].Platform.OnHovered += PlatformOnOnHovered;
+                _platforms[i, j] = platforms[i, j];
+                _platforms[i, j].Init(i, j);
+                _platforms[i, j].OnClicked += PlatformOnOnClicked;
+                _platforms[i, j].OnReleased += PlatformOnOnReleased;
+                _platforms[i, j].OnHovered += PlatformOnOnHovered;
             });
 
             Restore();
@@ -52,19 +51,19 @@ namespace Services.SaveService
         {
             DoForeach((i, j) =>
             {
-                _gridRuntimeArray[i, j].Platform.OnClicked -= PlatformOnOnClicked;
-                _gridRuntimeArray[i, j].Platform.OnReleased -= PlatformOnOnReleased;
-                _gridRuntimeArray[i, j].Platform.OnHovered -= PlatformOnOnHovered;
-                if (_gridRuntimeArray[i, j].Actor != null)
+                _platforms[i, j].OnClicked -= PlatformOnOnClicked;
+                _platforms[i, j].OnReleased -= PlatformOnOnReleased;
+                _platforms[i, j].OnHovered -= PlatformOnOnHovered;
+                if (_platforms[i, j].Actor != null)
                 {
-                    _gridRuntimeArray[i,j].Actor.Dispose();
+                    _platforms[i,j].Actor.Dispose();
                 }
             });
             
-            _gridRuntimeArray = null;
+            _platforms = null;
         }
         
-        public GridRuntimeData GetDataAt(Vector2Int selected) => _gridRuntimeArray[selected.x, selected.y];
+        public Platform GetDataAt(Vector2Int selected) => _platforms[selected.x, selected.y];
         public bool HasFreePlatform() => FreePlatform() != null;
         public void AddPlayerUnit(ActorConfig config) => AddUnit(_factory.CreateActor(config.Data), FreePlatform());
 
@@ -73,8 +72,8 @@ namespace Services.SaveService
             List<Actor> units = new();
             DoForeach((i, j) =>
             {
-                if (_gridRuntimeArray[i, j].Busy)
-                    units.Add(_gridRuntimeArray[i, j].Actor);
+                if (_platforms[i, j].Busy)
+                    units.Add(_platforms[i, j].Actor);
             });
 
             return units;
@@ -85,20 +84,20 @@ namespace Services.SaveService
             Platform platform = null;
             DoForeach((i, j) =>
             {
-                if (_gridRuntimeArray[i, j].Free)
-                    platform = _gridRuntimeArray[i, j].Platform;
+                if (_platforms[i, j].Free)
+                    platform = _platforms[i, j];
             });
             return platform;
         }
 
         private void AddUnit(Actor actor, Platform platform)
         {
-            for (int i = 0; i < _gridRuntimeArray.GetLength(0); i++)
+            for (int i = 0; i < _platforms.GetLength(0); i++)
             {
-                for (int j = 0; j < _gridRuntimeArray.GetLength(1); j++)
+                for (int j = 0; j < _platforms.GetLength(1); j++)
                 {
-                    if (_gridRuntimeArray[i, j].Platform != platform) continue;
-                    _gridRuntimeArray[i, j].Actor = actor;
+                    if (_platforms[i, j] != platform) continue;
+                    _platforms[i, j].Actor = actor;
                     actor.transform.position = platform.transform.position;
                     return;
                 }
@@ -110,9 +109,9 @@ namespace Services.SaveService
             var unitDatas = new ActorData[_gridSize.x, _gridSize.y];
             DoForeach((i, j) =>
             {
-                if (_gridRuntimeArray[i, j].Busy)
+                if (_platforms[i, j].Busy)
                 {
-                    Actor actor = _gridRuntimeArray[i, j].Actor;
+                    Actor actor = _platforms[i, j].Actor;
                     unitDatas[i, j] = actor.Data;
                 }
                 else
@@ -137,25 +136,25 @@ namespace Services.SaveService
             
             DoForeach((i, j) =>
             {
-                GridRuntimeData data = _gridRuntimeArray[i, j];
-                if (data != null && !_gridData.UnitIds[i, j].Equals(ActorData.None))
+                Platform platform = _platforms[i, j];
+                if (platform != null && !_gridData.UnitIds[i, j].Equals(ActorData.None))
                 {
-                    data.Actor = _factory.CreateActor(_gridData.UnitIds[i, j]);
-                    AddUnit(data.Actor, data.Platform);
+                    platform.Actor = _factory.CreateActor(_gridData.UnitIds[i, j]);
+                    AddUnit(platform.Actor, platform);
                 }
             });
         }
 
         private void DoForeach(Action<int, int> action)
         {
-            for (int i = 0; i < _gridRuntimeArray.GetLength(0); i++)
-                for (int j = 0; j < _gridRuntimeArray.GetLength(1); j++)
+            for (int i = 0; i < _platforms.GetLength(0); i++)
+                for (int j = 0; j < _platforms.GetLength(1); j++)
                     action.Invoke(i, j);
         }
         
-        private void PlatformOnOnHovered(Vector2Int vect) => OnPlatformHovered?.Invoke(_gridRuntimeArray[vect.x, vect.y]);
-        private void PlatformOnOnReleased(Vector2Int vect) => OnPlatformReleased?.Invoke(_gridRuntimeArray[vect.x, vect.y]);
-        private void PlatformOnOnClicked(Vector2Int vect) => OnPlatformClicked?.Invoke(_gridRuntimeArray[vect.x, vect.y]);
+        private void PlatformOnOnHovered(Vector2Int vect) => OnPlatformHovered?.Invoke(_platforms[vect.x, vect.y]);
+        private void PlatformOnOnReleased(Vector2Int vect) => OnPlatformReleased?.Invoke(_platforms[vect.x, vect.y]);
+        private void PlatformOnOnClicked(Vector2Int vect) => OnPlatformClicked?.Invoke(_platforms[vect.x, vect.y]);
     }
     
     [Serializable]
