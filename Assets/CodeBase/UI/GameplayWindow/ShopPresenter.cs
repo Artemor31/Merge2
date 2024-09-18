@@ -15,14 +15,14 @@ namespace UI.GameplayWindow
         [SerializeField] private Button _box2Button;
         [SerializeField] private Button _box3Button;
         private UnitsDatabase _unitsDatabase;
-        private GridDataService _gridDataService;
+        private GridLogicService _gridService;
         private PlayerDataService _playerService;
 
         public override void Init()
         {
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            _gridDataService = ServiceLocator.Resolve<GridDataService>();
+            _gridService = ServiceLocator.Resolve<GridLogicService>();
             _playerService = ServiceLocator.Resolve<PlayerDataService>();
             
             _box1Button.onClick.AddListener(() => OnBoxClicked(1, 10));
@@ -39,10 +39,10 @@ namespace UI.GameplayWindow
         
         private void CreateUnit(ActorConfig config, int cost)
         {
-            if (_gridDataService.HasFreePlatform() == false) return;
+            if (_gridService.CanAddUnit() == false) return;
             if (!_playerService.TryBuy(cost)) return;
 
-            _gridDataService.AddPlayerUnit(config);
+            _gridService.TryCreatePlayerUnit(config);
         }
 
         private void ConstructRandomCarousel()

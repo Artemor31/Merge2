@@ -53,10 +53,10 @@ namespace Services
             healthbar.Initialize(camera, actor, _updateable);
         }
 
-        public void CreateGridView(GridViewService gridViewService)
+        public void CreateGridView()
         {
             GridView gridView = Object.Instantiate(_assetsProvider.Load<GridView>(AssetsPath.GridView));
-            gridView.Init(gridViewService);
+            gridView.Init();
             gridView.transform.position = _levelDatabase.GridPosition;
         }
 

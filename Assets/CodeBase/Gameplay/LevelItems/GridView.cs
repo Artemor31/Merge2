@@ -1,4 +1,5 @@
-﻿using Services;
+﻿using Infrastructure;
+using Services;
 using UnityEngine;
 
 namespace Gameplay.LevelItems
@@ -12,26 +13,24 @@ namespace Gameplay.LevelItems
         [SerializeField] private Material _material;
         private GridViewService _gridViewService;
 
-        public void Init(GridViewService gridViewService)
+        public void Init()
         {
-            _gridViewService = gridViewService;
             _material.SetFloat(SelectCell, 0);
+            _gridViewService = ServiceLocator.Resolve<GridViewService>();
             _gridViewService.OnPlatformClicked += PlatformOnOnClicked;
             _gridViewService.OnPlatformHovered += PlatformOnOnHovered;
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
 
-        private void PlatformOnOnClicked(Platform gridData)
+        public void PlatformOnOnClicked(Platform gridData)
         {
             SetSelected(gridData.Index);
             SetHightighted(true);
         }
 
-        private void PlatformOnOnReleased(Platform gridData) => SetHightighted(false);
-        private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
-        
+        public void PlatformOnOnReleased(Platform gridData) => SetHightighted(false);
+        public void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
         private void SetHightighted(bool highlight) => _material.SetFloat(SelectCell, highlight ? 1 : 0);
-
         private void SetSelected(Vector2Int position)
         {
             _material.SetFloat(SelectedCellX, position.y);

@@ -9,7 +9,7 @@ namespace Services
     public class GridViewService : IService
     {
         private readonly IUpdateable _updateable;
-        private readonly GridDataService _service;
+        private readonly GridDataService _dataService;
         private readonly LayerMask _platformMask;
         private readonly RaycastHit[] _hits;
         private readonly MergeService _mergeService;
@@ -23,36 +23,33 @@ namespace Services
         public event Action<Platform> OnPlatformReleased;
         public event Action<Platform> OnPlatformHovered;
 
-        public GridViewService(IUpdateable updateable, 
-                           GridDataService service, 
-                           MergeService mergeService,
-                           CameraService cameraService)
+        public GridViewService(IUpdateable updateable,
+                               GridDataService dataService,
+                               MergeService mergeService,
+                               CameraService cameraService)
         {
             _updateable = updateable;
-            _service = service;
+            _dataService = dataService;
             _mergeService = mergeService;
             _cameraService = cameraService;
             _hits = new RaycastHit[3];
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
 
             _updateable.Tick += OnTick;
-            _service.OnPlatformClicked += OnClicked;
-            _service.OnPlatformHovered += OnHovered;
-            _service.OnPlatformReleased += OnReleased;
         }
 
-        private void OnHovered(Platform gridData)
+        public void OnHovered(Platform gridData)
         {
             if (!_dragging) return;
             OnPlatformHovered?.Invoke(gridData);
         }
 
-        private void OnReleased(Platform started)
+        public void OnReleased(Platform started)
         {
             if (!_dragging || !RaycastPlatform(out Platform platform)) return;
 
-            Platform ended = _service.GetDataAt(platform.Index);
-            
+            Platform ended = _dataService.GetDataAt(platform.Index);
+
             if (started.Index == ended.Index)
             {
                 ResetActorPosition(started);
@@ -82,7 +79,7 @@ namespace Services
             ended.Actor.GetComponent<NavMeshAgent>().enabled = true;
         }
 
-        private void OnClicked(Platform gridData)
+        public void OnClicked(Platform gridData)
         {
             if (gridData.Free) return;
 
@@ -101,15 +98,16 @@ namespace Services
 
             foreach (RaycastHit hit in _hits)
             {
-                if (hit.transform.TryGetComponent(out Platform platform) && CastPlane(platform, ray, out float distance))
+                if (hit.transform.TryGetComponent(out Platform platform) &&
+                    CastPlane(platform, ray, out float distance))
                 {
                     Vector3 point = ray.GetPoint(distance);
-                    _service.GetDataAt(_selected).Actor.transform.position = point;
+                    _dataService.GetDataAt(_selected).Actor.transform.position = point;
                     break;
                 }
             }
         }
-        
+
         private bool RaycastPlatform(out Platform platform)
         {
             Physics.RaycastNonAlloc(_cameraService.TouchPointRay(), _hits, 1000, _platformMask);
@@ -127,8 +125,8 @@ namespace Services
 
         private bool CastPlane(Platform platform, Ray ray, out float distance) =>
             new Plane(Vector3.up, platform.transform.position).Raycast(ray, out distance);
-        
-        private void ResetActorPosition(Platform data) => 
+
+        private void ResetActorPosition(Platform data) =>
             data.Actor.transform.position = data.transform.position;
     }
 }

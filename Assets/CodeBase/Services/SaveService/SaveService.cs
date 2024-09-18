@@ -5,10 +5,8 @@ namespace Services.SaveService
 {
     public class SaveService : IService
     {
-        public void Save<TData>(string path, TData data)
-        {
+        public void Save<TData>(string path, TData data) => 
             PlayerPrefs.SetString(path, JsonConvert.SerializeObject(data));
-        }
 
         public TData Restore<TData>(string path) where TData : class, new()
         {

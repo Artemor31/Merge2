@@ -20,7 +20,7 @@ namespace UI.GameplayWindow
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
         private Dictionary<UnitCard, ActorConfig> _unitCards;
-        private GridDataService _gridDataService;
+        private GridLogicService _gridService;
         private PlayerDataService _playerService;
         private WaveBuilder _waveBuilder;
         private bool _refreshed;
@@ -30,7 +30,7 @@ namespace UI.GameplayWindow
         {
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            _gridDataService = ServiceLocator.Resolve<GridDataService>();
+            _gridService = ServiceLocator.Resolve<GridLogicService>();
             _waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
             _playerService = ServiceLocator.Resolve<PlayerDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
@@ -58,10 +58,10 @@ namespace UI.GameplayWindow
 
         private void CardClicked(UnitCard card)
         {
-            if (_gridDataService.HasFreePlatform() == false) return;
+            if (_gridService.CanAddUnit() == false) return;
             if (!_playerService.TryBuy(card.Cost)) return;
 
-            _gridDataService.AddPlayerUnit(_unitCards[card]);
+            _gridService.TryCreatePlayerUnit(_unitCards[card]);
         }
 
         private void StartWave()

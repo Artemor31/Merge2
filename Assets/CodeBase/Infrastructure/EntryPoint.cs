@@ -45,13 +45,14 @@ namespace Infrastructure
             PlayerDataService playerService = new(saveService);
             CameraService cameraService = new(sceneLoader);
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
-            GridDataService gridDataService = new(gameFactory, saveService);
+            GridDataService gridDataService = new(saveService);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
             MergeService mergeService = new(gameFactory, databaseProvider);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
+            GridLogicService gridLogicService = new(gridDataService, gridViewService, gameFactory);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gameFactory, gridViewService, gridDataService, playerService);
+                gridDataService, gameFactory, gridDataService, playerService, gridLogicService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
