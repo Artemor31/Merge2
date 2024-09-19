@@ -26,17 +26,16 @@ namespace Services.SaveService
             _gameFactory.CreateGridView();
             var platforms = _gameFactory.CreatePlatforms(GridSize);
             _dataService.InitPlatforms(platforms);
-            
+
             for (int i = 0; i < platforms.GetLength(0); i++)
             {
                 for (int j = 0; j < platforms.GetLength(1); j++)
                 {
-                    platforms[i,j].Init(_viewService, i, j);
+                    platforms[i, j].Init(_viewService, i, j);
                     var data = _dataService.ActorDataAt(i, j);
                     if (!data.Equals(ActorData.None))
                     {
-                        Vector3 position = platforms[i, j].transform.position;
-                        platforms[i, j].Actor = _gameFactory.CreateActor(data, position);
+                        _gameFactory.CreateActorAt(data, platforms[i, j]);
                     }
                 }
             }
@@ -48,7 +47,7 @@ namespace Services.SaveService
         {
             if (_dataService.HasFreePlatform(out var platform))
             {
-                platform.Actor = _gameFactory.CreateActor(config.Data);
+                _gameFactory.CreateActorAt(config.Data, platform);
                 return true;
             }
 

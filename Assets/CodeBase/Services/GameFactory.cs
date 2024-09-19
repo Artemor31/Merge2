@@ -27,6 +27,12 @@ namespace Services
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
+        public void CreateActorAt(ActorData actorData, Platform platform)
+        {
+            platform.Actor = CreateActor(actorData);
+            platform.Actor.transform.position = platform.transform.position;
+        }
+
         public Actor CreateActor(ActorData data, Vector3 position)
         {
             var actor = CreateActor(data);

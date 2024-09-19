@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8663909268866682283}
   - component: {fileID: 6572463693300909332}
   - component: {fileID: 8408939481474730509}
+  - component: {fileID: 3358308632931435410}
   m_Layer: 0
   m_Name: SimpleRangeUnit
   m_TagString: Untagged
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 3391169263167272358}
   _mover: {fileID: 1967405186381835594}
-  _targetSearch: {fileID: 1009123850742208360}
+  _targetSearch: {fileID: 3358308632931435410}
   _act: {fileID: 6572463693300909332}
   _animator: {fileID: 8663909268866682283}
 --- !u!114 &3391169263167272358
@@ -67,7 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766e60318b7341e7b43d6b83e3b41cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
 --- !u!114 &1967405186381835594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 8408939481474730509}
-  _speed: 4
 --- !u!114 &1009123850742208360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,11 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7001b34a81454212b038a090015c1273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 30
-  _range: 8
-  _actCooldown: 3
   _projectilePrefab: {fileID: 7345155930059112006, guid: ceda6812cc9ec3244b73ad13213ff3d5, type: 3}
-  _spawnPoint: {fileID: 0}
 --- !u!195 &8408939481474730509
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -145,3 +140,15 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3358308632931435410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105839209840734736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99fcda30e5d457aa9f944c1a7c6b7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

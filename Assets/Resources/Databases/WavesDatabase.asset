@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WavesDatabase
   m_EditorClassIdentifier: 
   _wavesData:
-  - PowerLimit: 20
+  - PowerLimit: 40
     Masteries: 0000000001000000020000000300000004000000
     Races: 0000000001000000020000000300000004000000
   - PowerLimit: 2

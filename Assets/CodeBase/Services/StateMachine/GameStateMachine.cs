@@ -14,7 +14,6 @@ namespace Services.StateMachine
                                 WindowsService windowsService,
                                 WaveBuilder waveBuilder,
                                 GridDataService gridDataService,
-                                GameFactory gameFactory,
                                 GridDataService service,
                                 PlayerDataService playerData,
                                 GridLogicService gridLogicService)
@@ -23,7 +22,7 @@ namespace Services.StateMachine
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, gameFactory)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
                 {typeof(GameLoopState), new GameLoopState(this, gridDataService, playerData, waveBuilder)},
                 {typeof(ResultScreenState), new ResultScreenState(windowsService, service, playerData)},

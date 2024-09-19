@@ -10,19 +10,16 @@ namespace Services.StateMachine
         private readonly SceneLoader _sceneLoader;
         private readonly WaveBuilder _waveBuilder;
         private readonly GridLogicService _gridLogicService;
-        private readonly GameFactory _gameFactory;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
-                              GridLogicService gridLogicService,
-                              GameFactory gameFactory)
+                              GridLogicService gridLogicService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _waveBuilder = waveBuilder;
             _gridLogicService = gridLogicService;
-            _gameFactory = gameFactory;
         }
 
         public void Enter() => _sceneLoader.Load(GameplaySceneName,

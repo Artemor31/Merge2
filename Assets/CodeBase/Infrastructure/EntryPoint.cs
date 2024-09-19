@@ -52,7 +52,7 @@ namespace Infrastructure
             GridLogicService gridLogicService = new(gridDataService, gridViewService, gameFactory);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gameFactory, gridDataService, playerService, gridLogicService);
+                gridDataService, gridDataService, playerService, gridLogicService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -62,13 +62,15 @@ namespace Infrastructure
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(databaseProvider);
             ServiceLocator.Bind(gridDataService);
+            ServiceLocator.Bind(gridViewService);
+            ServiceLocator.Bind(gridLogicService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);
             ServiceLocator.Bind(mergeService);
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(playerService);
-            
+
             _windowsService.InitWindows();
 
             // game pipeline

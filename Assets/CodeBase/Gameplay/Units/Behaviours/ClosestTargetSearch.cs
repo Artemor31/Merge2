@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace Gameplay.Units.Behaviours
 {
     public class ClosestTargetSearch : TargetSearch
     {
-        public override Actor Target { get; protected set; }
-        
         public override void SearchTarget(IReadOnlyList<Actor> candidates)
         {
             Target = null;
@@ -22,9 +19,5 @@ namespace Gameplay.Units.Behaviours
                 }
             }
         }
-
-        public override void Dispose() => Target = null;
-        public override bool NeedNewTarget() => Target == null || Target.IsDead;
-        private float DistanceTo(Actor target) => Vector3.Distance(target.transform.position, transform.position);
     }
 }
