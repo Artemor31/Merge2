@@ -1,4 +1,5 @@
-﻿using Databases;
+﻿using Data;
+using Databases;
 using Gameplay.LevelItems;
 using Gameplay.Units;
 using UnityEngine;
@@ -18,11 +19,13 @@ namespace Services
 
         public bool TryMerge(Platform started, Platform ended)
         {
-            if (started.Actor.Data.Level != ended.Actor.Data.Level) return false;
+            ActorData startData = started.Actor.Data;
+            ActorData endedData = ended.Actor.Data;
 
-            var data = started.Actor.Data;
-            data.Level++;
-            var config = _unitsDatabase.ConfigFor(data);
+            if (startData != endedData) return false;
+            
+            startData.Level++;
+            var config = _unitsDatabase.ConfigFor(startData);
             if (config == null) return false;
 
             started.Actor.Dispose();
@@ -37,6 +40,7 @@ namespace Services
             ended.Actor = result;
 
             return true;
+
         }
     }
 }

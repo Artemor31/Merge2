@@ -24,6 +24,13 @@ namespace Services.SaveService
             Save();
         }
 
+        public void AddMoney(int value)
+        {
+            _progress.Money += value;
+            OnMoneyChanged?.Invoke(Money);
+            Save();
+        }
+
         public bool TryBuy(int cost)
         {
             if (!(_progress.Money >= cost)) return false;

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Databases;
-using Gameplay.Units;
 using Infrastructure;
 using Services;
 using Services.SaveService;
@@ -15,6 +14,7 @@ namespace UI.GameplayWindow
     {
         [SerializeField] public Transform UnitsParent;
         [SerializeField] public Button StartWaveButton;
+        [SerializeField] public Button GreedButton;
         [SerializeField] public TMP_Text Money;
 
         private UnitsDatabase _unitsDatabase;
@@ -36,10 +36,13 @@ namespace UI.GameplayWindow
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
 
             StartWaveButton.onClick.AddListener(StartWave);
+            GreedButton.onClick.AddListener(AddMoney);
             _playerService.OnMoneyChanged += RuntimeServiceOnOnMoneyChanged;
             RuntimeServiceOnOnMoneyChanged(_playerService.Money);
             CreatePlayerCards();
         }
+
+        private void AddMoney() => _playerService.AddMoney(50);
 
         private void RuntimeServiceOnOnMoneyChanged(int money) => Money.text = "Money: " + money;
 
