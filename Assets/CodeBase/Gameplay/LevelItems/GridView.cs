@@ -22,15 +22,15 @@ namespace Gameplay.LevelItems
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
 
-        public void PlatformOnOnClicked(Platform gridData)
+        private void PlatformOnOnClicked(Platform gridData)
         {
             SetSelected(gridData.Index);
-            SetHightighted(true);
+            SetHighlighted(true);
         }
 
-        public void PlatformOnOnReleased(Platform gridData) => SetHightighted(false);
-        public void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
-        private void SetHightighted(bool highlight) => _material.SetFloat(SelectCell, highlight ? 1 : 0);
+        private void PlatformOnOnReleased(Platform gridData) => SetHighlighted(false);
+        private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
+        private void SetHighlighted(bool highlight) => _material.SetFloat(SelectCell, highlight ? 1 : 0);
         private void SetSelected(Vector2Int position)
         {
             _material.SetFloat(SelectedCellX, position.y);

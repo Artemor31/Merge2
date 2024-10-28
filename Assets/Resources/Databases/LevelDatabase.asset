@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelDatabase
   m_EditorClassIdentifier: 
   GridPosition: {x: 0, y: 0, z: -10}
-  SpawnerPosition: {x: -4, y: 0, z: -0.77}
+  SpawnerPosition: {x: -3, y: 0, z: -0.5}
   SpawnerSize: {x: 5, y: 3}
-  SpawnerDelta: 2
+  SpawnerDelta: 1.52
   StartPlatformPoint: {x: -3.15, y: -0.2, z: -8.5}
   DeltaPlatformDistance: {x: 1.57, y: -1.5}
