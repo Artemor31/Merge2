@@ -17,11 +17,12 @@ namespace Data
             Mastery = mastery;
         }
         
-        public static bool operator==(ActorData our,  ActorData other) => our.Level == other.Level && 
-                                                                          our.Mastery == other.Mastery && 
-                                                                          our.Race == other.Race;
-        
-        public static bool operator !=(ActorData our, ActorData other) => !(our == other);
+        public static bool operator==(ActorData our,  ActorData other) => our.Race == other.Race && 
+                                                                          our.Level == other.Level && 
+                                                                          our.Mastery == other.Mastery;
+        public static bool operator !=(ActorData our, ActorData other) => our.Race != other.Race || 
+                                                                          our.Level != other.Level || 
+                                                                          our.Mastery != other.Mastery;
 
         public static ActorData None => new(0, Race.None, Mastery.None);
         public override int GetHashCode() => HashCode.Combine((int)Race, (int)Mastery);

@@ -3,6 +3,7 @@ using Data;
 using Gameplay;
 using Gameplay.LevelItems;
 using Services;
+using Services.BuffService;
 using Services.SaveService;
 using Services.StateMachine;
 using UI;
@@ -50,6 +51,7 @@ namespace Infrastructure
             MergeService mergeService = new(gameFactory, databaseProvider);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
             GridLogicService gridLogicService = new(gridDataService, gridViewService, gameFactory);
+            BuffService buffService = new();
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, playerService, gridLogicService);
@@ -70,6 +72,7 @@ namespace Infrastructure
             ServiceLocator.Bind(mergeService);
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(playerService);
+            ServiceLocator.Bind(buffService);
 
             _windowsService.InitWindows();
 

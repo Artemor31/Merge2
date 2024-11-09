@@ -8,7 +8,7 @@ namespace Gameplay.Units.Behaviours
         public Actor Target { get; protected set; }
         public abstract void SearchTarget(IReadOnlyList<Actor> candidates);
         public virtual void Dispose() => Target = null;
-        public virtual bool NeedNewTarget() => Target == null || Target.IsDead;
+        public virtual bool NeedNewTarget() => !Target || Target.IsDead;
         protected float DistanceTo(Actor target) => Vector3.Distance(target.transform.position, transform.position);
     }
 }

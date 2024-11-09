@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Gameplay.Units.Behaviours
@@ -13,7 +12,7 @@ namespace Gameplay.Units.Behaviours
             int tries = 1;
             float positionX = transform.position.x;
             var actualTargets = new List<Actor>();
-            while (actualTargets.Count < 1 && tries < 5)
+            while (actualTargets.Count < 1 && tries < 9)
             {
                 foreach (var candidate in candidates)
                 {
@@ -28,13 +27,10 @@ namespace Gameplay.Units.Behaviours
                 }
                 
                 if (actualTargets.Count > 0) break;
-                
-                //var list = candidates.Where(c => !c.IsDead && Mathf.Abs(c.transform.position.x - positionX) < tries);
-                //actualTargets = list.ToList();
                 tries *= 2;
             }
             
-            if (tries >= 5) return;
+            if (tries >= 9) return;
             
             float currentDistance = float.MaxValue;
             foreach (Actor actor in candidates)

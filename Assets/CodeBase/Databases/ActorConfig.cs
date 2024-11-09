@@ -25,7 +25,7 @@ namespace Databases
     }
 
     [Serializable]
-    public class ActorStats
+    public struct ActorStats
     {
         public float Health;
         public float Damage;
@@ -49,6 +49,6 @@ namespace Databases
         Warrior = 1,
         Ranger = 2,
         Mage = 3,
-        Assasin = 4
+        Assassin = 4
     }
 }
