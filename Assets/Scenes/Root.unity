@@ -390,10 +390,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 5207946220980710744, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5207946220980710745, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -401,10 +397,6 @@ PrefabInstance:
     - target: {fileID: 5207946220980710745, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207946220980710745, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5207946220980710745, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -614,10 +606,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayWIndow
       objectReference: {fileID: 0}
-    - target: {fileID: 2737374870952449229, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2737374870952449230, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -697,10 +685,6 @@ PrefabInstance:
     - target: {fileID: 2737374870952449230, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8100219852333952432, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1.5994873
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -820,10 +804,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 5680592225152799454, guid: 4e8824d7f623dce45bb419f8b2a637a9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -840,10 +820,6 @@ PrefabInstance:
     - target: {fileID: 2087038246089371523, guid: 9809cf100d4b06a4686af812c144d156, type: 3}
       propertyPath: m_Name
       value: BuffInfoPresenter
-      objectReference: {fileID: 0}
-    - target: {fileID: 2087038246089371523, guid: 9809cf100d4b06a4686af812c144d156, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5279645666213766621, guid: 9809cf100d4b06a4686af812c144d156, type: 3}
       propertyPath: m_Pivot.x
@@ -1021,10 +997,6 @@ PrefabInstance:
     - target: {fileID: 7123535693926893246, guid: aea330d6aca808e4d8c4914142531ff1, type: 3}
       propertyPath: m_Name
       value: LoseWindow
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123535693926893246, guid: aea330d6aca808e4d8c4914142531ff1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
