@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using UI;
+using System;
 using Services.SaveService;
-using UI;
+using System.Collections.Generic;
 
 namespace Services.StateMachine
 {
     public class GameStateMachine : IService
     {
+        public event Action<IState> OnStateChanged;
         private readonly Dictionary<Type, IState> _states;
         private IState _currentState;
 
@@ -35,9 +36,10 @@ namespace Services.StateMachine
 
             if (_currentState is IExitableState state)
                 state.Exit();
-
+            
             _currentState = _states[typeof(T)];
             _currentState.Enter();
+            OnStateChanged?.Invoke(_currentState);
         }
         
         public void Enter<T, TParam>(TParam param) where T : IState
@@ -49,6 +51,7 @@ namespace Services.StateMachine
 
             _currentState = _states[typeof(T)];
             ((IState<TParam>)_currentState).Enter(param);
+            OnStateChanged?.Invoke(_currentState);
         }
     }
 }

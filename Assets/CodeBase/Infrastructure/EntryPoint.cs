@@ -39,22 +39,26 @@ namespace Infrastructure
         {
             ServiceLocator.Clear();
 
-            SceneLoader sceneLoader = new(this);
             AssetsProvider assetsProvider = new();
             SaveService saveService = new();
+            SceneLoader sceneLoader = new(this);
+            CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
             PlayerDataService playerService = new(saveService);
-            CameraService cameraService = new(sceneLoader);
+
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
-            GridDataService gridDataService = new(saveService);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
-            MergeService mergeService = new(gameFactory, databaseProvider);
+            
+            GridDataService gridDataService = new(saveService);
+            GridLogicService gridLogicService = new(gridDataService, gameFactory);
+            MergeService mergeService = new(databaseProvider, gridLogicService);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
-            GridLogicService gridLogicService = new(gridDataService, gridViewService, gameFactory);
-            BuffService buffService = new();
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, playerService, gridLogicService);
+
+            BuffService buffService = new();
+            BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -73,6 +77,7 @@ namespace Infrastructure
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(playerService);
             ServiceLocator.Bind(buffService);
+            ServiceLocator.Bind(buffViewService);
 
             _windowsService.InitWindows();
 

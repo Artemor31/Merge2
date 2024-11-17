@@ -1,19 +1,19 @@
 ﻿using Data;
 using Databases;
 using Gameplay.LevelItems;
-using Gameplay.Units;
+using Services.SaveService;
 using UnityEngine;
 
 namespace Services
 {
     public class MergeService : IService
     {
-        private readonly GameFactory _gameFactory;
+        private readonly GridLogicService _gridService;
         private readonly UnitsDatabase _unitsDatabase;
 
-        public MergeService(GameFactory gameFactory, DatabaseProvider databaseProvider)
+        public MergeService(DatabaseProvider databaseProvider, GridLogicService gridService)
         {
-            _gameFactory = gameFactory;
+            _gridService = gridService;
             _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
         }
 
@@ -36,8 +36,7 @@ namespace Services
             Object.Destroy(ended.Actor.gameObject);
             ended.Actor = null;
 
-            Actor result = _gameFactory.CreateActor(config.Data, ended.transform.position);
-            ended.Actor = result;
+            _gridService.TryCreatePlayerUnitAt(config, ended);
 
             return true;
 

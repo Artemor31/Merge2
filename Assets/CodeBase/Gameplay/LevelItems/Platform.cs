@@ -1,4 +1,5 @@
 ﻿using Gameplay.Units;
+using Infrastructure;
 using Services;
 using UnityEngine;
 
@@ -12,9 +13,9 @@ namespace Gameplay.LevelItems
         public bool Free => !Actor;
         private GridViewService _viewService;
         
-        public void Init(GridViewService viewService, int i, int j)
+        public void Init(int i, int j)
         {
-            _viewService = viewService;
+            _viewService = ServiceLocator.Resolve<GridViewService>();
             Index = new Vector2Int(i, j);
         }
 

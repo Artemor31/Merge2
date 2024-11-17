@@ -22,7 +22,6 @@ namespace UI.GameplayWindow
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GridLogicService _gridService;
         private PlayerDataService _playerService;
-        private WaveBuilder _waveBuilder;
         private bool _refreshed;
         private GameStateMachine _stateMachine;
 
@@ -31,7 +30,6 @@ namespace UI.GameplayWindow
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridService = ServiceLocator.Resolve<GridLogicService>();
-            _waveBuilder = ServiceLocator.Resolve<WaveBuilder>();
             _playerService = ServiceLocator.Resolve<PlayerDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
 

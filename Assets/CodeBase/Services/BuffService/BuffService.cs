@@ -1,11 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Databases;
+using System.Linq;
 using Gameplay.Units;
+using Services.SaveService;
+using Services.StateMachine;
+using System.Collections.Generic;
 
 namespace Services.BuffService
 {
+
+    public class BuffViewService : IService
+    {
+        public event Action OnBuffsChanged;
+        
+        private readonly BuffService _buffService;
+        private readonly GridLogicService _gridService;
+        private readonly GameStateMachine _stateMachine;
+
+        public BuffViewService(BuffService buffService, GridLogicService gridService, GameStateMachine stateMachine)
+        {
+            _buffService = buffService;
+            _gridService = gridService;
+            _stateMachine = stateMachine;
+
+            _stateMachine.OnStateChanged += StateChanged;
+            _gridService.OnPlayerFieldChanged += PlayerFieldChanged;
+        }
+
+        private void PlayerFieldChanged()
+        {
+            OnBuffsChanged?.Invoke();
+        }
+
+        private void StateChanged(IState newState)
+        {
+            if (newState.GetType() != typeof(GameLoopState)) return;
+            
+            OnBuffsChanged?.Invoke();
+        }
+    }
+    
     public class BuffService : IService
     {
         public List<string> ActiveDescriptions = new();
@@ -50,10 +84,9 @@ namespace Services.BuffService
             foreach (var race in _races)
             {
                 if (actors.All(a => a.Data.Race != race)) continue;
-                {
-                    var buff = _actions.First(a => a.Race == race);
-                    ActiveDescriptions.Add(buff.Description);
-                }
+                
+                var buff = _actions.First(a => a.Race == race);
+                ActiveDescriptions.Add(buff.Description);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using UI;
 using UI.GameplayWindow;
+using UI.MenuWindow;
 
 namespace Services.StateMachine
 {
@@ -15,6 +16,7 @@ namespace Services.StateMachine
         public void Enter()
         {
             _windowsService.Show<GameplayPresenter>();  
+            _windowsService.Show<BuffInfoPresenter>();  
         }
     }
 }

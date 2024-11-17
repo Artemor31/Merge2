@@ -27,26 +27,17 @@ namespace Services
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }
 
-        public void CreateActorAt(ActorData actorData, Platform platform)
-        {
-            platform.Actor = CreateActor(actorData);
-            platform.Actor.transform.position = platform.transform.position;
-        }
+        public void CreatePlayerActor(ActorData actorData, Platform platform) => platform.Actor = CreateActor(actorData, platform.transform.position);
+        public Actor CreateEnemyActor(ActorData data, Vector3 position) => CreateActor(data, position);
 
-        public Actor CreateActor(ActorData data, Vector3 position)
-        {
-            var actor = CreateActor(data);
-            actor.transform.position = position;
-            return actor;
-        }
-        
-        public Actor CreateActor(ActorData data)
+        private Actor CreateActor(ActorData data, Vector3 position)
         {
             ActorConfig config = _unitsDatabase.ConfigFor(data);
             GameObject view = Object.Instantiate(config.ViewData.Prefab);
             Actor instance = Object.Instantiate(config.ViewData.BaseView);
             instance.Initialize(view, _updateable, data, config.Stats);
-            instance.gameObject.name += Random.Range(0, 100000); 
+            instance.gameObject.name += Random.Range(0, 100000);
+            instance.transform.position = position;
             CreateHealthbar(instance);
             return instance;
         }

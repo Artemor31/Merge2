@@ -35,10 +35,10 @@ namespace Services
         {
             _enemyUnits.ForEach(Object.Destroy);
             _enemyUnits.Clear();
-            BuildWave();
+            SpawnUnits();
         }
 
-        private void BuildWave()
+        private void SpawnUnits()
         {
             WaveData waveData = _wavesDatabase.WavesData[_playerData.Wave];
             List<ActorData> actorsWave = CreateActorsWave(waveData);
@@ -46,7 +46,7 @@ namespace Services
 
             foreach (ActorData data in actorsWave)
             {
-                _enemyUnits.Add(_factory.CreateActor(data, positions.Random()));
+                _enemyUnits.Add(_factory.CreateEnemyActor(data, positions.Random()));
             }
         }
 
@@ -64,7 +64,7 @@ namespace Services
                 {
                     if (powerLimit == i)
                     {
-                        if (Random.Range(1, 11) >= 7)
+                        if (Roll40Percantage())
                         {
                             datas.Add(variants[i - 1].Random().Data);
                             powerLimit -= i;
@@ -87,6 +87,11 @@ namespace Services
             }
 
             return datas;
+        }
+
+        private static bool Roll40Percantage()
+        {
+            return Random.Range(1, 11) >= 7;
         }
 
         private List<List<ActorConfig>> FillVariants(WaveData waveData)
