@@ -2,47 +2,13 @@
 using Databases;
 using System.Linq;
 using Gameplay.Units;
-using Services.SaveService;
-using Services.StateMachine;
 using System.Collections.Generic;
 
 namespace Services.BuffService
 {
-
-    public class BuffViewService : IService
-    {
-        public event Action OnBuffsChanged;
-        
-        private readonly BuffService _buffService;
-        private readonly GridLogicService _gridService;
-        private readonly GameStateMachine _stateMachine;
-
-        public BuffViewService(BuffService buffService, GridLogicService gridService, GameStateMachine stateMachine)
-        {
-            _buffService = buffService;
-            _gridService = gridService;
-            _stateMachine = stateMachine;
-
-            _stateMachine.OnStateChanged += StateChanged;
-            _gridService.OnPlayerFieldChanged += PlayerFieldChanged;
-        }
-
-        private void PlayerFieldChanged()
-        {
-            OnBuffsChanged?.Invoke();
-        }
-
-        private void StateChanged(IState newState)
-        {
-            if (newState.GetType() != typeof(GameLoopState)) return;
-            
-            OnBuffsChanged?.Invoke();
-        }
-    }
-    
     public class BuffService : IService
     {
-        public List<string> ActiveDescriptions = new();
+        public List<BuffAction> ActiveBuffs = new();
 
         private readonly List<BuffAction> _actions;
         private readonly List<Race> _races;
@@ -68,16 +34,17 @@ namespace Services.BuffService
                 .Where(type => type.IsSubclassOf(typeof(BuffAction)));
         }
 
-        public void CalculateBuffs(List<Actor> actors)
+        public List<BuffAction> CalculateBuffs(ICollection<Actor> actors)
         {
-            ActiveDescriptions.Clear();
+            ActiveBuffs.Clear();
 
             foreach (var mastery in _masteries)
             {
                 if (actors.All(a => a.Data.Mastery != mastery)) continue;
                 {
-                    var buff = _actions.First(a => a.Mastery == mastery);
-                    ActiveDescriptions.Add(buff.Description);
+                    var buff = _actions.FirstOrDefault(a => a.Mastery == mastery);
+                    if (buff != null)
+                        ActiveBuffs.Add(buff);
                 }
             }
 
@@ -85,9 +52,12 @@ namespace Services.BuffService
             {
                 if (actors.All(a => a.Data.Race != race)) continue;
                 
-                var buff = _actions.First(a => a.Race == race);
-                ActiveDescriptions.Add(buff.Description);
+                var buff = _actions.FirstOrDefault(a => a.Race == race);
+                if (buff != null)
+                    ActiveBuffs.Add(buff);
             }
+
+            return ActiveBuffs;
         }
 
         public void ApplyBuffs(List<Actor> actors)

@@ -58,7 +58,7 @@ namespace Infrastructure
                 gridDataService, gridDataService, playerService, gridLogicService);
 
             BuffService buffService = new();
-            BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine);
+            BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);

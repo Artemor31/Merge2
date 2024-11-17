@@ -13,6 +13,9 @@ namespace UI.MenuWindow
         public override void Init()
         {
             _buffService = ServiceLocator.Resolve<BuffViewService>();
+            _buffService.OnBuffsChanged += RewriteDescription;
         }
+
+        private void RewriteDescription() => _description.text = _buffService.CreteDescription();
     }
 }

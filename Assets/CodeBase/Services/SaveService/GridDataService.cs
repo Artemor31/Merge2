@@ -9,7 +9,7 @@ namespace Services.SaveService
 {
     public class GridDataService : IService
     {
-        public IReadOnlyList<Actor> PlayerUnits => GetPlayerUnits();
+        public ICollection<Actor> PlayerUnits => GetPlayerUnits();
         
         private const string SavePath = "GridData";
 

@@ -25,7 +25,7 @@ namespace Gameplay.Units
         [SerializeField] private AnimatorScheduler _animator;
         
         private UnitState _state = UnitState.Idle;
-        private IReadOnlyList<Actor> _candidates;
+        private ICollection<Actor> _candidates;
         private IUpdateable _updateable;
 
         public void Initialize(GameObject view, IUpdateable updateable, ActorData data, ActorStats stats)
@@ -82,7 +82,7 @@ namespace Gameplay.Units
 
         public void ChangeHealth(float value, HealthContext context) => _health.ChangeHealth(value, context);
 
-        public void Unleash(IReadOnlyList<Actor> candidates)
+        public void Unleash(ICollection<Actor> candidates)
         {
             _state = UnitState.Fighting;
             _candidates = candidates;

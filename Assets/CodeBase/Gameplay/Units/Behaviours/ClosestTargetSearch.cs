@@ -4,7 +4,7 @@ namespace Gameplay.Units.Behaviours
 {
     public class ClosestTargetSearch : TargetSearch
     {
-        public override void SearchTarget(IReadOnlyList<Actor> candidates)
+        public override void SearchTarget(ICollection<Actor> candidates)
         {
             Target = null;
             float currentDistance = float.MaxValue;

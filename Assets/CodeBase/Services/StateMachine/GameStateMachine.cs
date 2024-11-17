@@ -2,6 +2,7 @@
 using System;
 using Services.SaveService;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Services.StateMachine
 {
@@ -50,7 +51,7 @@ namespace Services.StateMachine
                 state.Exit();
 
             _currentState = _states[typeof(T)];
-            ((IState<TParam>)_currentState).Enter(param);
+            ((IState<TParam>)_currentState).Enter(param);          
             OnStateChanged?.Invoke(_currentState);
         }
     }

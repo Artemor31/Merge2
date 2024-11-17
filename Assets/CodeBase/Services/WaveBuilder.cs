@@ -10,7 +10,7 @@ namespace Services
 {
     public class WaveBuilder : IService
     {
-        public IReadOnlyList<Actor> EnemyUnits => _enemyUnits;
+        public ICollection<Actor> EnemyUnits => _enemyUnits;
 
         private readonly PlayerDataService _playerData;
         private readonly WavesDatabase _wavesDatabase;

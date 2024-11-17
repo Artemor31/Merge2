@@ -48,6 +48,7 @@ namespace Services.SaveService
             if (_dataService.HasFreePlatform(out var platform))
             {
                 _gameFactory.CreatePlayerActor(config.Data, platform);
+                OnPlayerFieldChanged?.Invoke();
                 return true;
             }
 

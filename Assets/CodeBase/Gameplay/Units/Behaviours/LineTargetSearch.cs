@@ -5,7 +5,7 @@ namespace Gameplay.Units.Behaviours
 {
     public class LineTargetSearch : TargetSearch
     {
-        public override void SearchTarget(IReadOnlyList<Actor> candidates)
+        public override void SearchTarget(ICollection<Actor> candidates)
         {
             Target = null;
             
