@@ -1,5 +1,6 @@
 ﻿using System;
 using Databases;
+using Services.BuffService.Components;
 using UnityEngine;
 
 namespace Services.BuffService
@@ -9,6 +10,7 @@ namespace Services.BuffService
     {
         public Race Race;
         public Mastery Mastery;
-        public SerializableMonoScript<BuffBehaviour> Behaviour;
+        public string Description;
+        public SerializableMonoScript<BuffComponent> Behaviour;
     }
 }

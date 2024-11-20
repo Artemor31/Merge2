@@ -57,7 +57,7 @@ namespace Infrastructure
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, playerService, gridLogicService);
 
-            BuffService buffService = new();
+            BuffService buffService = new(databaseProvider);
             BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);

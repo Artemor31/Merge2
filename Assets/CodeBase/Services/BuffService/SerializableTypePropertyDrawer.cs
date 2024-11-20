@@ -13,7 +13,7 @@ namespace Services.BuffService
         private static readonly Dictionary<Type, MonoScript> MonoScriptCache = new();
         private Type _filterType;
 
-        private static MonoScript GetMonoScript(System.Type aType)
+        private static MonoScript GetMonoScript(Type aType)
         {
             if (aType == null) return null;
             if (MonoScriptCache.TryGetValue(aType, out MonoScript script) && script != null)

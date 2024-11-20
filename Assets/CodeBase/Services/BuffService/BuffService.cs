@@ -8,56 +8,62 @@ namespace Services.BuffService
 {
     public class BuffService : IService
     {
-        public List<BuffAction> ActiveBuffs = new();
+        private readonly List<BuffConfig> _configs;
+        private Dictionary<Race, int> _races = new();
+        private readonly Dictionary<Mastery, int> _masteries = new();
 
-        private readonly List<BuffAction> _actions;
-        private readonly List<Race> _races;
-        private readonly IEnumerable<Mastery> _masteries;
-
-        public BuffService()
+        public BuffService(DatabaseProvider databaseProvider)
         {
-            _actions = new List<BuffAction>();
-            foreach (var type in GetAllBuffActions())
+            _configs = databaseProvider.GetDatabase<BuffsDatabase>().BuffConfigs;
+            
+            foreach (var race in Enum.GetValues(typeof(Race)).Cast<Race>().Skip(1))
             {
-                _actions.Add(Activator.CreateInstance(type) as BuffAction);
+                _races.Add(race, 0);
+            }
+            foreach (var mastery in Enum.GetValues(typeof(Mastery)).Cast<Mastery>().Skip(1))
+            {
+                _masteries.Add(mastery, 0);
+            }
+        }
+
+        public List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
+        {
+            Clear();
+
+            foreach (var actor in actors)
+            {
+                _races[actor.Data.Race]++;
+                _masteries[actor.Data.Mastery]++;
             }
 
-            _races = Enum.GetValues(typeof(Race)).Cast<Race>().Skip(1).ToList();
-            _masteries = Enum.GetValues(typeof(Mastery)).Cast<Mastery>().Skip(1);
-        }
-
-        private static IEnumerable<Type> GetAllBuffActions()
-        {
-            return AppDomain.CurrentDomain
-                .GetAssemblies()
-                .SelectMany(a => a.GetTypes())
-                .Where(type => type.IsSubclassOf(typeof(BuffAction)));
-        }
-
-        public List<BuffAction> CalculateBuffs(ICollection<Actor> actors)
-        {
-            ActiveBuffs.Clear();
-
-            foreach (var mastery in _masteries)
+            var active = new List<BuffConfig>();
+            foreach (var config in _configs)
             {
-                if (actors.All(a => a.Data.Mastery != mastery)) continue;
+                if (_races[config.Race] > 1)
                 {
-                    var buff = _actions.FirstOrDefault(a => a.Mastery == mastery);
-                    if (buff != null)
-                        ActiveBuffs.Add(buff);
+                    active.Add(config);
+                }
+
+                if (_masteries[config.Mastery] > 1)
+                {
+                    active.Add(config);
                 }
             }
 
-            foreach (var race in _races)
-            {
-                if (actors.All(a => a.Data.Race != race)) continue;
-                
-                var buff = _actions.FirstOrDefault(a => a.Race == race);
-                if (buff != null)
-                    ActiveBuffs.Add(buff);
-            }
+            return active;
+        }
 
-            return ActiveBuffs;
+        private void Clear()
+        {
+            foreach (var key in _races.Keys)
+            {
+                _races[key] = 0;
+            }    
+            
+            foreach (var key in _masteries.Keys)
+            {
+                _masteries[key] = 0;
+            }
         }
 
         public void ApplyBuffs(List<Actor> actors)

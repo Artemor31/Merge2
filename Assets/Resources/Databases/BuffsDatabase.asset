@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: BuffsDatabase
   m_EditorClassIdentifier: 
   BuffConfigs:
-  - Race: 0
+  - Race: 1
     Mastery: 0
+    Description: Health regen 5% for All
     Behaviour:
-      _typeName: Services.BuffService.HealthRegenBuff, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+      _typeName: Services.BuffService.Components.HealthRegenComponent, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - Race: 0
+    Mastery: 2
+    Description: Range attack distance + 1
+    Behaviour:
+      _typeName: Services.BuffService.Components.AddRangeComponent, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
