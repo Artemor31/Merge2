@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Data;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UnityEngine;
 
@@ -34,6 +33,7 @@ namespace Databases
     public class WaveData
     {
         public int PowerLimit;
+        public int MaxLevel;
         public Mastery[] Masteries;
         public Race[] Races;
     }

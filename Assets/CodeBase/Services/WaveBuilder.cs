@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Data;
 using Databases;
 using Gameplay.Units;
 using Infrastructure;
 using Services.SaveService;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Services
 {
@@ -41,68 +44,50 @@ namespace Services
         private void SpawnUnits()
         {
             WaveData waveData = _wavesDatabase.WavesData[_playerData.Wave];
-            List<ActorData> actorsWave = CreateActorsWave(waveData);
             List<Vector3> positions = _levelDatabase.GetPositions();
 
-            foreach (ActorData data in actorsWave)
+            foreach (ActorData data in CreateActorsWave(waveData))
             {
                 _enemyUnits.Add(_factory.CreateEnemyActor(data, positions.Random()));
             }
         }
 
-        private List<ActorData> CreateActorsWave(WaveData waveData)
+        private IEnumerable<ActorData> CreateActorsWave(WaveData waveData)
         {
-            List<ActorData> datas = new();
             var variants = FillVariants(waveData);
-            int powerLimit = waveData.PowerLimit;
-            for (int i = powerLimit; i >= 1;)
+            int limit = waveData.PowerLimit;
+
+            while (limit > 0)
             {
-                // if est' voobwe s takoi siloi
-                // i est' ewe za chto kypit' vraga
-                // to roll na to, chto kypim etot lvl vraga
-                if (variants[i - 1].Count > 0 && powerLimit >= i)
+                int currentLevel = Math.Min(waveData.MaxLevel, limit);
+                while (currentLevel > 1)
                 {
-                    if (powerLimit == i)
+                    if (Roll70Percantage())
                     {
-                        if (Roll40Percantage())
-                        {
-                            datas.Add(variants[i - 1].Random().Data);
-                            powerLimit -= i;
-                        }
-                        else
-                        {
-                            i--;
-                        }
+                        limit -= currentLevel;
+                        yield return variants[currentLevel].Random().Data;
+                        break;
                     }
-                    else
-                    {
-                        datas.Add(variants[i - 1].Random().Data);
-                        powerLimit -= i;
-                    }
+
+                    currentLevel--;
                 }
-                else
-                {
-                    i--;
-                }
+
+                limit--;
+                yield return variants[1].Random().Data;
             }
-
-            return datas;
         }
 
-        private static bool Roll40Percantage()
+        private Dictionary<int, List<ActorConfig>> FillVariants(WaveData waveData)
         {
-            return Random.Range(1, 11) >= 7;
-        }
-
-        private List<List<ActorConfig>> FillVariants(WaveData waveData)
-        {
-            List<List<ActorConfig>> variants = new();
-            for (int i = 1; i <= waveData.PowerLimit; i++)
+            Dictionary<int, List<ActorConfig>> variants = new();
+            for (int level = 1; level <= waveData.MaxLevel; level++)
             {
-                variants.Add(_unitsDatabase.ConfigsFor(i, waveData.Races, waveData.Masteries));
+                variants.Add(level, _unitsDatabase.ConfigsFor(level, waveData.Races, waveData.Masteries));
             }
 
             return variants;
         }
+
+        private static bool Roll70Percantage() => Random.Range(1, 11) <= 7;
     }
 }

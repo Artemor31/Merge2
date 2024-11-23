@@ -46,8 +46,15 @@ namespace Services.BuffService
 
         private void StateChanged(IState newState)
         {
-            if (newState.GetType() != typeof(SetupLevelState)) return;
-            OnBuffsChanged?.Invoke();
+            if (newState.GetType() == typeof(SetupLevelState))
+            {
+                OnBuffsChanged?.Invoke();
+            }
+
+            if (newState.GetType() == typeof(GameLoopState))
+            {
+                _buffService.ApplyBuffs(_gridDataService.PlayerUnits);
+            }
         }
     }
 }

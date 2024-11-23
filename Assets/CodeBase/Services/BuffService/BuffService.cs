@@ -9,21 +9,15 @@ namespace Services.BuffService
     public class BuffService : IService
     {
         private readonly List<BuffConfig> _configs;
+        private List<BuffConfig> _activeConfigs;
         private Dictionary<Race, int> _races = new();
-        private readonly Dictionary<Mastery, int> _masteries = new();
+        private Dictionary<Mastery, int> _masteries = new();
 
         public BuffService(DatabaseProvider databaseProvider)
         {
             _configs = databaseProvider.GetDatabase<BuffsDatabase>().BuffConfigs;
-            
-            foreach (var race in Enum.GetValues(typeof(Race)).Cast<Race>().Skip(1))
-            {
-                _races.Add(race, 0);
-            }
-            foreach (var mastery in Enum.GetValues(typeof(Mastery)).Cast<Mastery>().Skip(1))
-            {
-                _masteries.Add(mastery, 0);
-            }
+            FillDictionary(_races);
+            FillDictionary(_masteries);
         }
 
         public List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
@@ -50,24 +44,36 @@ namespace Services.BuffService
                 }
             }
 
-            return active;
+            _activeConfigs = active;
+            return _activeConfigs;
+        }
+
+        // change this to ecs like thing
+        // create pool of active systems, that itereate through actors and do smth
+        // anyway, move away grom using monobehaviours and addComponent things
+        public void ApplyBuffs(ICollection<Actor> actors)
+        {
+            foreach (BuffConfig buffConfig in _activeConfigs)
+            {
+                foreach (var actor in actors)
+                {
+                    actor.gameObject.AddComponent(buffConfig.Behaviour.Type);
+                }
+            }
         }
 
         private void Clear()
         {
-            foreach (var key in _races.Keys)
-            {
-                _races[key] = 0;
-            }    
-            
-            foreach (var key in _masteries.Keys)
-            {
-                _masteries[key] = 0;
-            }
+            _races = _races.ToDictionary(p => p.Key, _ => 0);
+            _masteries = _masteries.ToDictionary(p => p.Key, _ => 0);
         }
 
-        public void ApplyBuffs(List<Actor> actors)
+        private void FillDictionary<T>(IDictionary<T, int> dict) where T : Enum
         {
+            foreach (T value in Enum.GetValues(typeof(T)).Cast<T>())
+            {
+                dict.Add(value, 0);
+            }
         }
     }
 }

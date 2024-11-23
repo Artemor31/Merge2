@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Gameplay.Units;
+using Gameplay.Units.Behaviours;
 using UnityEngine;
 
 namespace Services.BuffService.Components
@@ -10,7 +11,7 @@ namespace Services.BuffService.Components
         private Actor _actor;
         private WaitForSeconds _waitForSeconds;
 
-        public override void Apply()
+        private void OnEnable()
         {
             _actor = GetComponent<Actor>();
             _waitForSeconds = new WaitForSeconds(1);
@@ -22,9 +23,7 @@ namespace Services.BuffService.Components
         {
             while (!_actor.IsDead)
             {
-                var stats = _actor.Stats;
-                stats.Health += _regen;
-                _actor.Stats = stats;
+                _actor.ChangeHealth(_regen, HealthContext.Heal);
                 yield return _waitForSeconds;
             }
         }
