@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Databases;
+using Gameplay.LevelItems;
 using Infrastructure;
 using Services;
 using Services.SaveService;
@@ -16,6 +17,7 @@ namespace UI.GameplayWindow
         [SerializeField] public Button StartWaveButton;
         [SerializeField] public Button GreedButton;
         [SerializeField] public TMP_Text Money;
+        [SerializeField] public SellUnitPresenter SellPresenter;
 
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
@@ -24,6 +26,7 @@ namespace UI.GameplayWindow
         private PlayerDataService _playerService;
         private bool _refreshed;
         private GameStateMachine _stateMachine;
+        private GridViewService _gridViewService;
 
         public override void Init()
         {
@@ -32,16 +35,26 @@ namespace UI.GameplayWindow
             _gridService = ServiceLocator.Resolve<GridLogicService>();
             _playerService = ServiceLocator.Resolve<PlayerDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
+            _gridViewService = ServiceLocator.Resolve<GridViewService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);
             _playerService.OnMoneyChanged += RuntimeServiceOnOnMoneyChanged;
+            _gridViewService.OnPlatformClicked += GridViewServiceOnOnPlatformClicked;
+            _gridViewService.OnPlatformReleased += GridViewServiceOnOnPlatformReleased;
             RuntimeServiceOnOnMoneyChanged(_playerService.Money);
             CreatePlayerCards();
         }
 
-        private void AddMoney() => _playerService.AddMoney(50);
+        private void GridViewServiceOnOnPlatformClicked(Platform platform)
+        {
+            if (platform.Actor == null) return;
+            ActorConfig actorConfig = _unitsDatabase.ConfigFor(platform.Actor.Data);
+            SellPresenter.Show(actorConfig.Cost);
+        }
 
+        private void GridViewServiceOnOnPlatformReleased(Platform _) => SellPresenter.Hide();
+        private void AddMoney() => _playerService.AddMoney(50);
         private void RuntimeServiceOnOnMoneyChanged(int money) => Money.text = "Money: " + money;
 
         private void CreatePlayerCards()
@@ -67,8 +80,8 @@ namespace UI.GameplayWindow
 
         private void StartWave()
         {
-            _stateMachine.Enter<GameLoopState>();
             gameObject.SetActive(false);
+            _stateMachine.Enter<GameLoopState>();
         }
     }
 }

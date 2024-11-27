@@ -20,7 +20,7 @@ namespace Databases
             .Where(u => u.Data.Level == level)
             .Where(u => races.Contains(u.Data.Race))
             .Where(u => masteries.Contains(u.Data.Mastery))
-            .ToList();
+            .ToList();     
 
         [Button]
         public void CollectData()

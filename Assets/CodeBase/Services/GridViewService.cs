@@ -79,14 +79,14 @@ namespace Services
             ended.Actor.GetComponent<NavMeshAgent>().enabled = true;
         }
 
-        public void OnClicked(Platform gridData)
+        public void OnClicked(Platform platform)
         {
-            if (gridData.Free) return;
+            if (platform.Free) return;
 
             _dragging = true;
-            _selected = gridData.Index;
-            gridData.Actor.GetComponent<NavMeshAgent>().enabled = false;
-            OnPlatformClicked?.Invoke(gridData);
+            _selected = platform.Index;
+            platform.Actor.GetComponent<NavMeshAgent>().enabled = false;
+            OnPlatformClicked?.Invoke(platform);
         }
 
         private void OnTick()

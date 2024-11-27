@@ -15,10 +15,8 @@ namespace Services.SaveService
 
         private readonly Vector2Int _gridSize = new(3, 5);
         private readonly SaveService _saveService;
-        
         private GridData _gridData;
         private Platform[,] _platforms;
-        private Vector2Int? _selected;
 
         public GridDataService(SaveService saveService) => _saveService = saveService;
         public ActorData ActorDataAt(int i, int j) => _gridData.UnitIds[i, j];

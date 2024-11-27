@@ -1,4 +1,5 @@
-﻿using Infrastructure;
+﻿using System;
+using Infrastructure;
 using Services;
 using UnityEngine;
 
@@ -22,9 +23,16 @@ namespace Gameplay.LevelItems
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
 
-        private void PlatformOnOnClicked(Platform gridData)
+        private void OnDisable()
         {
-            SetSelected(gridData.Index);
+            _gridViewService.OnPlatformClicked -= PlatformOnOnClicked;
+            _gridViewService.OnPlatformHovered -= PlatformOnOnHovered;
+            _gridViewService.OnPlatformReleased -= PlatformOnOnReleased;
+        }
+
+        private void PlatformOnOnClicked(Platform platform)
+        {
+            SetSelected(platform.Index);
             SetHighlighted(true);
         }
 

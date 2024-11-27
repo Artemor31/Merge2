@@ -606,6 +606,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayWIndow
       objectReference: {fileID: 0}
+    - target: {fileID: 2737374870952449229, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2737374870952449230, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
