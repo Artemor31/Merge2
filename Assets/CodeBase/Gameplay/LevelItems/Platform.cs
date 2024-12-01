@@ -1,4 +1,5 @@
-﻿using Gameplay.Units;
+﻿using Data;
+using Gameplay.Units;
 using Infrastructure;
 using Services;
 using UnityEngine;
@@ -11,12 +12,20 @@ namespace Gameplay.LevelItems
         public Actor Actor { get; set; }
         public bool Busy => Actor;
         public bool Free => !Actor;
+        public ActorData Data => Actor.Data;
+        
         private GridViewService _viewService;
         
         public void Init(int i, int j)
         {
             _viewService = ServiceLocator.Resolve<GridViewService>();
             Index = new Vector2Int(i, j);
+        }
+
+        public void Clear()
+        {
+            Destroy(Actor);
+            Actor = null;
         }
 
         public void OnMouseDown() => _viewService.OnClicked(this);

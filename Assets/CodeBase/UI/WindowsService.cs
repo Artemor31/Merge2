@@ -15,7 +15,7 @@ namespace UI
                     .gameObject
                     .SetActive(true);
         }
-
+        
         public void InitWindows()
         {
             foreach (Presenter presenter in _windows)

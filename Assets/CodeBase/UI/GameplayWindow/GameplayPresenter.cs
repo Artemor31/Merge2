@@ -17,16 +17,17 @@ namespace UI.GameplayWindow
         [SerializeField] public Button StartWaveButton;
         [SerializeField] public Button GreedButton;
         [SerializeField] public TMP_Text Money;
-        [SerializeField] public SellUnitPresenter SellPresenter;
+        [SerializeField] public ActorMenuPresenter ActorMenu;
 
+        private Dictionary<UnitCard, ActorConfig> _unitCards;
+        private GridViewService _gridViewService;
+        private PlayerDataService _playerService;
+        private GameStateMachine _stateMachine;
+        private GridLogicService _gridService;
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
-        private Dictionary<UnitCard, ActorConfig> _unitCards;
-        private GridLogicService _gridService;
-        private PlayerDataService _playerService;
         private bool _refreshed;
-        private GameStateMachine _stateMachine;
-        private GridViewService _gridViewService;
+        private CameraService _cameraService;
 
         public override void Init()
         {
@@ -36,26 +37,29 @@ namespace UI.GameplayWindow
             _playerService = ServiceLocator.Resolve<PlayerDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
+            _cameraService = ServiceLocator.Resolve<CameraService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);
-            _playerService.OnMoneyChanged += RuntimeServiceOnOnMoneyChanged;
-            _gridViewService.OnPlatformClicked += GridViewServiceOnOnPlatformClicked;
-            _gridViewService.OnPlatformReleased += GridViewServiceOnOnPlatformReleased;
-            RuntimeServiceOnOnMoneyChanged(_playerService.Money);
+
+            _gridViewService.OnPlatformClicked += OnPlatformClicked;
+            _playerService.OnMoneyChanged += OnMoneyChanged;
+            OnMoneyChanged(_playerService.Money);
             CreatePlayerCards();
         }
 
-        private void GridViewServiceOnOnPlatformClicked(Platform platform)
+        private void OnPlatformClicked(Platform platform)
         {
-            if (platform.Actor == null) return;
-            ActorConfig actorConfig = _unitsDatabase.ConfigFor(platform.Actor.Data);
-            SellPresenter.Show(actorConfig.Cost);
+            if (platform.Busy)
+            {
+                var screenPoint = _cameraService.WorldToScreenPoint(platform.transform.position);
+                var actorConfig = _unitsDatabase.ConfigFor(platform.Data);
+                ActorMenu.Show(platform, screenPoint, actorConfig);
+            }
         }
 
-        private void GridViewServiceOnOnPlatformReleased(Platform _) => SellPresenter.Hide();
         private void AddMoney() => _playerService.AddMoney(50);
-        private void RuntimeServiceOnOnMoneyChanged(int money) => Money.text = "Money: " + money;
+        private void OnMoneyChanged(int money) => Money.text = "Money: " + money;
 
         private void CreatePlayerCards()
         {
@@ -72,10 +76,10 @@ namespace UI.GameplayWindow
 
         private void CardClicked(UnitCard card)
         {
-            if (_gridService.CanAddUnit() == false) return;
-            if (!_playerService.TryBuy(card.Cost)) return;
-
-            _gridService.TryCreatePlayerUnit(_unitCards[card]);
+            if (_gridService.CanAddUnit() && _playerService.TryBuy(card.Cost))
+            {
+                _gridService.TryCreatePlayerUnit(_unitCards[card]);
+            }
         }
 
         private void StartWave()

@@ -3,6 +3,7 @@ using Data;
 using Databases;
 using Gameplay.LevelItems;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Services.SaveService
 {
@@ -13,12 +14,19 @@ namespace Services.SaveService
         private readonly Vector2Int _gridSize = new(3, 5);
         private readonly GridDataService _dataService;
         private readonly GameFactory _gameFactory;
+        private readonly PlayerDataService _playerService;
+        private readonly UnitsDatabase _unitsDatabase;
 
 
-        public GridLogicService(GridDataService dataService, GameFactory gameFactory)
+        public GridLogicService(GridDataService dataService,
+                                GameFactory gameFactory,
+                                DatabaseProvider databaseProvider, 
+                                PlayerDataService playerService)
         {
             _dataService = dataService;
             _gameFactory = gameFactory;
+            _playerService = playerService;
+            _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
         }
 
         public void CreatePlayerField()
@@ -61,6 +69,13 @@ namespace Services.SaveService
             _gameFactory.CreatePlayerActor(config.Data, platform);
             OnPlayerFieldChanged?.Invoke();
             return true;
+        }
+
+        public void SellUnitAt(Platform platform)
+        {
+            ActorConfig actorConfig = _unitsDatabase.ConfigFor(platform.Actor.Data);
+            _playerService.AddMoney(actorConfig.Cost / 2);
+            platform.Clear();
         }
     }
 }

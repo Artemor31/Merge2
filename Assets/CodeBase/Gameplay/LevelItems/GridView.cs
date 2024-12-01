@@ -18,19 +18,19 @@ namespace Gameplay.LevelItems
         {
             _material.SetFloat(SelectCell, 0);
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
-            _gridViewService.OnPlatformClicked += PlatformOnOnClicked;
+            _gridViewService.OnPlatformPressed += PlatformOnOnPressed;
             _gridViewService.OnPlatformHovered += PlatformOnOnHovered;
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
 
         private void OnDisable()
         {
-            _gridViewService.OnPlatformClicked -= PlatformOnOnClicked;
+            _gridViewService.OnPlatformPressed -= PlatformOnOnPressed;
             _gridViewService.OnPlatformHovered -= PlatformOnOnHovered;
             _gridViewService.OnPlatformReleased -= PlatformOnOnReleased;
         }
 
-        private void PlatformOnOnClicked(Platform platform)
+        private void PlatformOnOnPressed(Platform platform)
         {
             SetSelected(platform.Index);
             SetHighlighted(true);

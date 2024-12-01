@@ -1,6 +1,4 @@
 ﻿using System;
-using Data;
-using Gameplay;
 using Gameplay.LevelItems;
 using Services;
 using Services.BuffService;
@@ -50,7 +48,7 @@ namespace Infrastructure
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
             
             GridDataService gridDataService = new(saveService);
-            GridLogicService gridLogicService = new(gridDataService, gameFactory);
+            GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, playerService);
             MergeService mergeService = new(databaseProvider, gridLogicService);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
             

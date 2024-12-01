@@ -8,20 +8,31 @@ namespace Services
 {
     public class GridViewService : IService
     {
+        private enum State
+        {
+            Idle = 0,
+            ClickTimer = 1,
+            Dragging = 2
+        }
+        
+        private const float TimeToDrag = 1f;
+        
         private readonly IUpdateable _updateable;
         private readonly GridDataService _dataService;
         private readonly LayerMask _platformMask;
-        private readonly RaycastHit[] _hits;
         private readonly MergeService _mergeService;
         private readonly CameraService _cameraService;
 
-        private bool _dragging;
+        private State _state = State.Idle;
         private Vector2 _size;
         private Vector2Int _selected;
+        private float _timer;
+        private Platform _platform;
 
-        public event Action<Platform> OnPlatformClicked;
+        public event Action<Platform> OnPlatformPressed;
         public event Action<Platform> OnPlatformReleased;
         public event Action<Platform> OnPlatformHovered;
+        public event Action<Platform> OnPlatformClicked;
 
         public GridViewService(IUpdateable updateable,
                                GridDataService dataService,
@@ -32,43 +43,103 @@ namespace Services
             _dataService = dataService;
             _mergeService = mergeService;
             _cameraService = cameraService;
-            _hits = new RaycastHit[3];
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
 
             _updateable.Tick += OnTick;
         }
 
+        public void OnClicked(Platform platform)
+        {
+            if (platform.Busy)
+            {
+                _timer = TimeToDrag;
+                _platform = platform;
+                _state = State.ClickTimer;
+            }
+        }
+
         public void OnHovered(Platform gridData)
         {
-            if (!_dragging) return;
-            OnPlatformHovered?.Invoke(gridData);
+            if (_state == State.Dragging)
+            {
+                OnPlatformHovered?.Invoke(gridData);
+            }
         }
 
         public void OnReleased(Platform started)
         {
-            if (!_dragging || !RaycastPlatform(out Platform platform)) return;
-
-            Platform ended = _dataService.GetDataAt(platform.Index);
-
-            if (started.Index == ended.Index)
+            if (_state == State.Idle) return;
+            
+            if (_state == State.ClickTimer)
             {
-                ResetActorPosition(started);
+                _state = State.Idle;
+                OnPlatformClicked?.Invoke(started);
+                _timer = 0;
+                return;
             }
-            else if (ended.Free)
+
+            if (_state == State.Dragging)
             {
-                MoveActor(started, ended);
-            }
-            else
-            {
-                if (!_mergeService.TryMerge(started, ended))
+                Platform ended;
+                if (RaycastPlatform(out Platform platform))
+                {
+                    ended = _dataService.GetDataAt(platform.Index);
+
+                    if (started.Index == ended.Index)
+                    {
+                        ResetActorPosition(started);
+                    }
+                    else if (ended.Free)
+                    {
+                        MoveActor(started, ended);
+                    }
+                    else
+                    {
+                        if (!_mergeService.TryMerge(started, ended))
+                        {
+                            ResetActorPosition(started);
+                        }
+                    }
+                }
+                else
                 {
                     ResetActorPosition(started);
+                    ended = started;
                 }
+
+                _state = State.Idle;
+                _selected = Vector2Int.zero;
+                OnPlatformReleased?.Invoke(ended);
+            }
+        }
+
+        private void OnTick()
+        {
+            if (_timer > 0)
+            {
+                _timer -= Time.deltaTime;
             }
 
-            _dragging = false;
-            _selected = Vector2Int.zero;
-            OnPlatformReleased?.Invoke(ended);
+            if (_timer <= 0 && _state == State.ClickTimer)
+            {
+                _state = State.Dragging;
+                _selected = _platform.Index;
+                _platform.Actor.GetComponent<NavMeshAgent>().enabled = false;
+                OnPlatformPressed?.Invoke(_platform);
+            }
+
+            if (_state == State.Idle || _state == State.ClickTimer) return;
+
+            var ray = _cameraService.TouchPointRay();
+
+            foreach (RaycastHit hit in _cameraService.RayCast(ray, _platformMask))
+            {
+                if (_cameraService.CastPlane(hit.transform, ray, out float distance))
+                {
+                    _dataService.GetDataAt(_selected).Actor.transform.position = ray.GetPoint(distance);
+                    break;
+                }
+            }
         }
 
         private void MoveActor(Platform started, Platform ended)
@@ -79,39 +150,10 @@ namespace Services
             ended.Actor.GetComponent<NavMeshAgent>().enabled = true;
         }
 
-        public void OnClicked(Platform platform)
-        {
-            if (platform.Free) return;
-
-            _dragging = true;
-            _selected = platform.Index;
-            platform.Actor.GetComponent<NavMeshAgent>().enabled = false;
-            OnPlatformClicked?.Invoke(platform);
-        }
-
-        private void OnTick()
-        {
-            if (!_dragging) return;
-
-            Ray ray = _cameraService.TouchPointRay();
-            Physics.RaycastNonAlloc(ray, _hits, 1000, _platformMask);
-
-            foreach (RaycastHit hit in _hits)
-            {
-                if (hit.transform.TryGetComponent(out Platform platform) &&
-                    CastPlane(platform, ray, out float distance))
-                {
-                    Vector3 point = ray.GetPoint(distance);
-                    _dataService.GetDataAt(_selected).Actor.transform.position = point;
-                    break;
-                }
-            }
-        }
-
         private bool RaycastPlatform(out Platform platform)
         {
-            Physics.RaycastNonAlloc(_cameraService.TouchPointRay(), _hits, 1000, _platformMask);
-            foreach (RaycastHit hit in _hits)
+            var ray = _cameraService.TouchPointRay();
+            foreach (RaycastHit hit in _cameraService.RayCast(ray, _platformMask))
             {
                 if (hit.transform.TryGetComponent(out platform))
                 {
@@ -122,9 +164,6 @@ namespace Services
             platform = null;
             return false;
         }
-
-        private bool CastPlane(Platform platform, Ray ray, out float distance) =>
-            new Plane(Vector3.up, platform.transform.position).Raycast(ray, out distance);
 
         private void ResetActorPosition(Platform data) =>
             data.Actor.transform.position = data.transform.position;
