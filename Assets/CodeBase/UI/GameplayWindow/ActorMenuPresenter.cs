@@ -1,10 +1,10 @@
-using Databases;
+using Services.SaveService;
 using Gameplay.LevelItems;
 using Infrastructure;
-using Services.SaveService;
-using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using Databases;
+using TMPro;
 
 namespace UI.GameplayWindow
 {
@@ -15,32 +15,32 @@ namespace UI.GameplayWindow
         [SerializeField] private Button _sellButton;
         [SerializeField] private Button _background;
 
-        private Platform _platform;
         private GridLogicService _gridLogicService;
+        private Platform _platform;
 
-        private void Awake() => _gridLogicService = ServiceLocator.Resolve<GridLogicService>();
+        private void Awake()
+        {
+            _gridLogicService = ServiceLocator.Resolve<GridLogicService>();
+            _sellButton.onClick.AddListener(Sell);
+            _background.onClick.AddListener(Hide);
+        }
 
         public void Show(Platform platform, Vector3 screenPoint, ActorConfig actorConfig)
         {
             _platform = platform;
             _transform.position = screenPoint;
 
-            _cost.text = (actorConfig.Cost / 2).ToString();
-            _sellButton.onClick.AddListener(Sell);
-            _background.onClick.AddListener(Hide);
+            float max = Mathf.Max(1, actorConfig.Cost * 0.7f);
+            _cost.text = Mathf.RoundToInt(max).ToString();
             gameObject.SetActive(true);
         }
+
+        public void Hide() => gameObject.SetActive(false);
 
         private void Sell()
         {
             _gridLogicService.SellUnitAt(_platform);
-        }
-
-        private void Hide()
-        {
-            _sellButton.onClick.RemoveListener(Sell);
-            _background.onClick.RemoveListener(Hide);
-            gameObject.SetActive(false);
+            Hide();
         }
     }
 }

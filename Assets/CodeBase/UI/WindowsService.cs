@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Services;
 using UnityEngine;
+using Services;
 
 namespace UI
 {

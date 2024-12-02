@@ -43,6 +43,7 @@ namespace UI.GameplayWindow
             GreedButton.onClick.AddListener(AddMoney);
 
             _gridViewService.OnPlatformClicked += OnPlatformClicked;
+            _gridViewService.OnPlatformPressed += OnPlatformPressed;
             _playerService.OnMoneyChanged += OnMoneyChanged;
             OnMoneyChanged(_playerService.Money);
             CreatePlayerCards();
@@ -58,6 +59,7 @@ namespace UI.GameplayWindow
             }
         }
 
+        private void OnPlatformPressed(Platform platform) => ActorMenu.Hide();
         private void AddMoney() => _playerService.AddMoney(50);
         private void OnMoneyChanged(int money) => Money.text = "Money: " + money;
 

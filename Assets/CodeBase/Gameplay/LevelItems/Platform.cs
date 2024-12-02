@@ -24,7 +24,8 @@ namespace Gameplay.LevelItems
 
         public void Clear()
         {
-            Destroy(Actor);
+            Actor.Dispose();
+            Destroy(Actor.gameObject);
             Actor = null;
         }
 

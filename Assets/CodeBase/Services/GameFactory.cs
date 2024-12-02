@@ -46,7 +46,7 @@ namespace Services
         {
             Healthbar asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
             Healthbar healthbar = Object.Instantiate(asset);
-            Camera camera = _cameraService.CurrentMainCamera();
+            Camera camera = _cameraService.CurrentCamera();
             healthbar.Initialize(camera, actor, _updateable);
         }
 

@@ -25,18 +25,17 @@ namespace Gameplay.Units
 
             ChangeHealth(1,1);
             actor.HealthChanged += ChangeHealth;
-            actor.Died += Dispose;
             actor.Disposed += Dispose;
             _updateable.Tick += Tick;
         }
 
         private void Tick() => transform.position = _owner.transform.position + _offset;
+
         private void ChangeHealth(float current, float max) => _value.fillAmount = current / max;
         
         private void Dispose()
         {
             _owner.HealthChanged -= ChangeHealth;
-            _owner.Died -= Dispose;
             _owner.Disposed -= Dispose;
             _updateable.Tick -= Tick;
             Destroy(gameObject);

@@ -7,6 +7,5 @@
         public const string GridView = "LevelItems/GridView";
         public const string Platform = "LevelItems/Platform";
         public const string Healthbar = "Healthbar";
-        public const string ActorMenu = "ActorMenu";
     }
 }

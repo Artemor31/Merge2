@@ -2,7 +2,6 @@
 using Databases;
 using Gameplay.LevelItems;
 using Services.SaveService;
-using UnityEngine;
 
 namespace Services
 {
@@ -20,26 +19,22 @@ namespace Services
         public bool TryMerge(Platform started, Platform ended)
         {
             ActorData startData = started.Actor.Data;
-            ActorData endedData = ended.Actor.Data;
+            if (startData == ended.Actor.Data)
+            {
+                startData.Level++;
 
-            if (startData != endedData) return false;
-            
-            startData.Level++;
-            var config = _unitsDatabase.ConfigFor(startData);
-            if (config == null) return false;
+                var config = _unitsDatabase.ConfigFor(startData);
+                if (config != null)
+                {
+                    started.Clear();
+                    ended.Clear();
 
-            started.Actor.Dispose();
-            Object.Destroy(started.Actor.gameObject);
-            started.Actor = null;
+                    _gridService.TryCreatePlayerUnitAt(config, ended);
+                    return true;
+                }
+            }
 
-            ended.Actor.Dispose();
-            Object.Destroy(ended.Actor.gameObject);
-            ended.Actor = null;
-
-            _gridService.TryCreatePlayerUnitAt(config, ended);
-
-            return true;
-
+            return false;
         }
     }
 }

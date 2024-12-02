@@ -19,16 +19,11 @@ namespace Gameplay.LevelItems
             _sceneLoader.OnSceneChanged += SceneChangedHandler;
         }
         
-        public Camera CurrentMainCamera() => _camera;
-        
+        public Camera CurrentCamera() => _camera;
         public Ray TouchPointRay() => _camera.ScreenPointToRay(Input.mousePosition);
         public Vector3 WorldToScreenPoint(Vector3 vector3) => _camera.WorldToScreenPoint(vector3);
-        
-        public bool CastPlane(Transform transform, Ray ray, out float distance)
-        {
-            Plane plane = new(Vector3.up, transform.position);
-            return plane.Raycast(ray, out distance);
-        }
+        public bool CastPlane(Transform transform, Ray ray, out float distance) => 
+            new Plane(Vector3.up, transform.position).Raycast(ray, out distance);
 
         public IEnumerable<RaycastHit> RayCast(Ray ray, int layerMask)
         {
@@ -40,6 +35,6 @@ namespace Gameplay.LevelItems
             }
         }
 
-        private void SceneChangedHandler() => _camera = Camera.main;
+        private void SceneChangedHandler() => _camera = UnityEngine.Camera.main;
     }
 }
