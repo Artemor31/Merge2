@@ -33,9 +33,8 @@ namespace Infrastructure
         public static T Random<T>(this IEnumerable<T> collection, Func<T, bool> filter) => 
             collection.Where(filter).Random();
 
-        public static Vector3 ToV3(this Vector2 vector2)
-        {
-            return new Vector3(vector2.x, 0, vector2.y);
-        }
+        public static Vector3 ToV3(this Vector2 vector2) => new(vector2.x, 0, vector2.y);
+
+        public static IEnumerable<T> AsCollection<T>()  where T : Enum => Enum.GetValues(typeof(T)).Cast<T>();
     }
 }

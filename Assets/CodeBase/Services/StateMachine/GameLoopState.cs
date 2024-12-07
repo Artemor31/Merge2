@@ -8,7 +8,7 @@ namespace Services.StateMachine
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly GridDataService _gridService;
-        private readonly PlayerDataService _playerService;
+        private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         
         private int _profit;
@@ -16,19 +16,19 @@ namespace Services.StateMachine
 
         public GameLoopState(GameStateMachine gameStateMachine,
                              GridDataService gridService, 
-                             PlayerDataService playerService,
+                             GameplayDataService gameplayService,
                              WaveBuilder waveBuilder)
         {
             _gameStateMachine = gameStateMachine;
             _gridService = gridService;
-            _playerService = playerService;
+            _gameplayService = gameplayService;
             _waveBuilder = waveBuilder;
         }
 
         public void Enter()
         {
             _gridService.Save();
-            _profit = _playerService.Money;
+            _profit = _gameplayService.Gold;
 
             foreach (Actor actor in _gridService.PlayerUnits)
             {
@@ -56,7 +56,7 @@ namespace Services.StateMachine
             foreach (Actor actor in _gridService.PlayerUnits)
                 actor.Died -= OnAllyDied;
 
-            _profit = _playerService.Money - _profit;
+            _profit = _gameplayService.Gold - _profit;
         }
 
         private void OnAllyDied()

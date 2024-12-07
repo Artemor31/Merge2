@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Databases;
+using Services.BuffService.Components;
 using UnityEngine;
 
 namespace Services.BuffService
@@ -8,5 +10,14 @@ namespace Services.BuffService
     public class BuffsDatabase : Database
     {
         public List<BuffConfig> BuffConfigs;
+    }
+    
+    [Serializable]
+    public class BuffConfig
+    {
+        public Race Race;
+        public Mastery Mastery;
+        public string Description;
+        public SerializableMonoScript<BuffComponent> Behaviour;
     }
 }

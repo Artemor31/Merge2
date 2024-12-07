@@ -7,15 +7,15 @@ namespace Services.StateMachine
     {
         private readonly WindowsService _windowsService;
         private readonly GridDataService _gridData;
-        private readonly PlayerDataService _playerService;
+        private readonly GameplayDataService _gameplayService;
 
         public ResultScreenState(WindowsService windowsService,
                                  GridDataService gridData,
-                                 PlayerDataService playerService)
+                                 GameplayDataService gameplayService)
         {
             _windowsService = windowsService;
             _gridData = gridData;
-            _playerService = playerService;
+            _gameplayService = gameplayService;
         }
 
         public void Enter(bool isWin)
@@ -25,7 +25,7 @@ namespace Services.StateMachine
             if (isWin)
             {
                 _windowsService.Show<WinResultPresenter>();
-                _playerService.CompleteLevel();
+                _gameplayService.CompleteLevel();
             }
             else
             {

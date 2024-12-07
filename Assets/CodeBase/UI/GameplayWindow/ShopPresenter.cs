@@ -16,14 +16,14 @@ namespace UI.GameplayWindow
         [SerializeField] private Button _box3Button;
         private UnitsDatabase _unitsDatabase;
         private GridLogicService _gridService;
-        private PlayerDataService _playerService;
+        private GameplayDataService _gameplayService;
 
         public override void Init()
         {
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridService = ServiceLocator.Resolve<GridLogicService>();
-            _playerService = ServiceLocator.Resolve<PlayerDataService>();
+            _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             
             _box1Button.onClick.AddListener(() => OnBoxClicked(1, 10));
             _box2Button.onClick.AddListener(() => OnBoxClicked(2, 19));
@@ -40,7 +40,7 @@ namespace UI.GameplayWindow
         private void CreateUnit(ActorConfig config, int cost)
         {
             if (_gridService.CanAddUnit() == false) return;
-            if (!_playerService.TryBuy(cost)) return;
+            if (!_gameplayService.TryBuy(cost)) return;
 
             _gridService.TryCreatePlayerUnit(config);
         }

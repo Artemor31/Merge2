@@ -17,7 +17,7 @@ namespace Services.StateMachine
                                 WaveBuilder waveBuilder,
                                 GridDataService gridDataService,
                                 GridDataService service,
-                                PlayerDataService playerData,
+                                GameplayDataService gameplayData,
                                 GridLogicService gridLogicService)
         {
             _states = new Dictionary<Type, IState>
@@ -26,8 +26,8 @@ namespace Services.StateMachine
                 {typeof(MenuState), new MenuState(this, windowsService)},
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
-                {typeof(GameLoopState), new GameLoopState(this, gridDataService, playerData, waveBuilder)},
-                {typeof(ResultScreenState), new ResultScreenState(windowsService, service, playerData)},
+                {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder)},
+                {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData)},
             };
         }
 

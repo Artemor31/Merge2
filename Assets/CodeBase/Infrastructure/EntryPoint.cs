@@ -42,18 +42,19 @@ namespace Infrastructure
             SceneLoader sceneLoader = new(this);
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
-            PlayerDataService playerService = new(saveService);
+            GameplayDataService gameplayService = new(saveService);
+            PersistantDataService presistantDataService = new(saveService);
 
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
-            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, playerService);
+            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, gameplayService);
             
             GridDataService gridDataService = new(saveService);
-            GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, playerService);
+            GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, gameplayService);
             MergeService mergeService = new(databaseProvider, gridLogicService);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gridDataService, playerService, gridLogicService);
+                gridDataService, gridDataService, gameplayService, gridLogicService);
 
             BuffService buffService = new(databaseProvider);
             BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
@@ -73,9 +74,10 @@ namespace Infrastructure
             ServiceLocator.Bind(stateMachine);
             ServiceLocator.Bind(mergeService);
             ServiceLocator.Bind(cameraService);
-            ServiceLocator.Bind(playerService);
+            ServiceLocator.Bind(gameplayService);
             ServiceLocator.Bind(buffService);
             ServiceLocator.Bind(buffViewService);
+            ServiceLocator.Bind(presistantDataService);
 
             _windowsService.InitWindows();
 

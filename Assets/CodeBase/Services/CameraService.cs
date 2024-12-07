@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Services;
 using UnityEngine;
 
-namespace Gameplay.LevelItems
+namespace Services
 {
     public class CameraService : IService
     {

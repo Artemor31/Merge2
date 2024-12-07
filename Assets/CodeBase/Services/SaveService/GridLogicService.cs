@@ -13,18 +13,18 @@ namespace Services.SaveService
         private readonly Vector2Int _gridSize = new(3, 5);
         private readonly GridDataService _dataService;
         private readonly GameFactory _gameFactory;
-        private readonly PlayerDataService _playerService;
+        private readonly GameplayDataService _gameplayService;
         private readonly UnitsDatabase _unitsDatabase;
 
 
         public GridLogicService(GridDataService dataService,
                                 GameFactory gameFactory,
                                 DatabaseProvider databaseProvider, 
-                                PlayerDataService playerService)
+                                GameplayDataService gameplayService)
         {
             _dataService = dataService;
             _gameFactory = gameFactory;
-            _playerService = playerService;
+            _gameplayService = gameplayService;
             _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
         }
 
@@ -73,7 +73,7 @@ namespace Services.SaveService
         public void SellUnitAt(Platform platform)
         {
             ActorConfig actorConfig = _unitsDatabase.ConfigFor(platform.Actor.Data);
-            _playerService.AddMoney(actorConfig.Cost / 2);
+            _gameplayService.AddMoney(actorConfig.Cost / 2);
             platform.Clear();
         }
     }

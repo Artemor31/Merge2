@@ -2,20 +2,20 @@
 
 namespace Services.SaveService
 {
-    public class PlayerDataService : IService
+    public class GameplayDataService : IService
     {
         public event Action<int> OnMoneyChanged;
         public int Wave => _progress.Wave;
-        public int Money => _progress.Money;
+        public int Gold => _progress.Money;
 
-        private const string PlayerData = "PlayerData";
-        private readonly PlayerData _progress;
+        private const string PlayerData = "GameplayData";
+        private readonly GameplayData _progress;
         private readonly SaveService _saveService;
 
-        public PlayerDataService(SaveService saveService)
+        public GameplayDataService(SaveService saveService)
         {
             _saveService = saveService;
-            _progress = _saveService.Restore<PlayerData>(PlayerData);
+            _progress = _saveService.Restore<GameplayData>(PlayerData);
         }
 
         public void CompleteLevel()
@@ -27,7 +27,7 @@ namespace Services.SaveService
         public void AddMoney(int value)
         {
             _progress.Money += value;
-            OnMoneyChanged?.Invoke(Money);
+            OnMoneyChanged?.Invoke(Gold);
             Save();
         }
 
@@ -45,10 +45,9 @@ namespace Services.SaveService
     }
     
     [Serializable]
-    public class PlayerData
+    public class GameplayData
     {
         public int Money = 100;
         public int Wave;
-        public int Coins;
     }
 }

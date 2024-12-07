@@ -21,7 +21,7 @@ namespace UI.GameplayWindow
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GridViewService _gridViewService;
-        private PlayerDataService _playerService;
+        private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
         private GridLogicService _gridService;
         private UnitsDatabase _unitsDatabase;
@@ -34,7 +34,7 @@ namespace UI.GameplayWindow
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridService = ServiceLocator.Resolve<GridLogicService>();
-            _playerService = ServiceLocator.Resolve<PlayerDataService>();
+            _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
             _cameraService = ServiceLocator.Resolve<CameraService>();
@@ -44,8 +44,8 @@ namespace UI.GameplayWindow
 
             _gridViewService.OnPlatformClicked += OnPlatformClicked;
             _gridViewService.OnPlatformPressed += OnPlatformPressed;
-            _playerService.OnMoneyChanged += OnMoneyChanged;
-            OnMoneyChanged(_playerService.Money);
+            _gameplayService.OnMoneyChanged += OnMoneyChanged;
+            OnMoneyChanged(_gameplayService.Gold);
             CreatePlayerCards();
         }
 
@@ -60,7 +60,7 @@ namespace UI.GameplayWindow
         }
 
         private void OnPlatformPressed(Platform platform) => ActorMenu.Hide();
-        private void AddMoney() => _playerService.AddMoney(50);
+        private void AddMoney() => _gameplayService.AddMoney(50);
         private void OnMoneyChanged(int money) => Money.text = "Money: " + money;
 
         private void CreatePlayerCards()
@@ -78,7 +78,7 @@ namespace UI.GameplayWindow
 
         private void CardClicked(UnitCard card)
         {
-            if (_gridService.CanAddUnit() && _playerService.TryBuy(card.Cost))
+            if (_gridService.CanAddUnit() && _gameplayService.TryBuy(card.Cost))
             {
                 _gridService.TryCreatePlayerUnit(_unitCards[card]);
             }
