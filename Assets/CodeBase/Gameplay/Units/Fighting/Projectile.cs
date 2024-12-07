@@ -1,9 +1,9 @@
 ﻿using System;
-using Gameplay.Units.Behaviours;
+using Gameplay.Units.Health;
 using Infrastructure;
 using UnityEngine;
 
-namespace Gameplay.Units.Weapon
+namespace Gameplay.Units.Fighting
 {
     public abstract class Projectile : MonoBehaviour, IPoolable
     {
@@ -34,7 +34,7 @@ namespace Gameplay.Units.Weapon
                 _hitVFX.Play();
             }
 
-            if (Target.TryGetComponent<Health>(out var health))
+            if (Target.TryGetComponent<Health.Health>(out var health))
             {
                 health.ChangeHealth(_damage, HealthContext.Damage);
             }

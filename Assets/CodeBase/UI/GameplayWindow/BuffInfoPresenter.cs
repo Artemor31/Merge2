@@ -1,9 +1,9 @@
-﻿using Services.BuffService;
-using Infrastructure;
-using UnityEngine;
+﻿using Infrastructure;
+using Services.BuffService;
 using TMPro;
+using UnityEngine;
 
-namespace UI.MenuWindow
+namespace UI.GameplayWindow
 {
     public class BuffInfoPresenter : Presenter
     {

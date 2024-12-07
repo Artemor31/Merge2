@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Gameplay.Units;
-using Gameplay.Units.Behaviours;
+using Gameplay.Units.Health;
 using UnityEngine;
 
 namespace Services.BuffService.Components

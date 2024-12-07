@@ -1,7 +1,6 @@
-﻿using Databases;
-using System;
+﻿using System;
 
-namespace Data
+namespace Databases.Data
 {
     [Serializable]
     public struct ActorData

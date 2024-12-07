@@ -1,9 +1,8 @@
-﻿using System;
-using Infrastructure;
-using Services;
+﻿using Infrastructure;
+using Services.GridService;
 using UnityEngine;
 
-namespace Gameplay.LevelItems
+namespace Gameplay.Grid
 {
     public class GridView : MonoBehaviour
     {

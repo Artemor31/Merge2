@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Data
+namespace Databases.Data
 {
     [Serializable]
     public class GridData

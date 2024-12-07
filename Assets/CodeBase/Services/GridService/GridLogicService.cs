@@ -1,10 +1,12 @@
-﻿using Gameplay.LevelItems;
-using UnityEngine;
+﻿using System;
 using Databases;
-using System;
-using Data;
+using Databases.Data;
+using Gameplay.Grid;
+using Services.Infrastructure;
+using Services.Resources;
+using UnityEngine;
 
-namespace Services.SaveService
+namespace Services.GridService
 {
     public class GridLogicService : IService
     {

@@ -1,6 +1,6 @@
-﻿using UI;
+﻿using Services.Infrastructure;
+using UI;
 using UI.GameplayWindow;
-using UI.MenuWindow;
 
 namespace Services.StateMachine
 {

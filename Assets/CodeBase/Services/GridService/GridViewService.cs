@@ -1,10 +1,10 @@
 ﻿using System;
-using Gameplay.LevelItems;
-using Services.SaveService;
+using Gameplay.Grid;
+using Services.Infrastructure;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Services
+namespace Services.GridService
 {
     public class GridViewService : IService
     {
@@ -15,7 +15,7 @@ namespace Services
             Dragging = 2
         }
         
-        private const float TimeToDrag = 1f;
+        private const float TimeToDrag = 0.5f;
         
         private readonly IUpdateable _updateable;
         private readonly GridDataService _dataService;

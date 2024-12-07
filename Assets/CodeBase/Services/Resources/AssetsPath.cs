@@ -1,4 +1,4 @@
-﻿namespace Services
+﻿namespace Services.Resources
 {
     public static class AssetsPath
     {

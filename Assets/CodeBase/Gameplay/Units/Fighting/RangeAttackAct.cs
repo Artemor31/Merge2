@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Databases;
-using Gameplay.Units.Weapon;
 using Infrastructure;
 using UnityEngine;
 
-namespace Gameplay.Units.Behaviours
+namespace Gameplay.Units.Fighting
 {
     public class RangeAttackAct : Act
     {

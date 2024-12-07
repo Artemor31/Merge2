@@ -1,9 +1,9 @@
-﻿using Services;
+﻿using Services.Infrastructure;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Gameplay.Units
+namespace Gameplay.Units.Health
 {
     public class Healthbar : MonoBehaviour
     {

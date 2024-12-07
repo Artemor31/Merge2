@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Units.Weapon
+namespace Gameplay.Units.Fighting
 {
     public class SimpleFollowProjectile : Projectile
     {

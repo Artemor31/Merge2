@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Databases;
 using Services;
-using Services.SaveService;
+using Services.Infrastructure;
+using Services.Resources;
 
-namespace UI.ShopWindow
+namespace UI.UpgradeWindow
 {
     public class UpgradeDataService : IService
     {

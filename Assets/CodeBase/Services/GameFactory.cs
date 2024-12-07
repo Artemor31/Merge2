@@ -1,7 +1,10 @@
-﻿using Data;
-using Databases;
-using Gameplay.LevelItems;
+﻿using Databases;
+using Databases.Data;
+using Gameplay.Grid;
 using Gameplay.Units;
+using Gameplay.Units.Health;
+using Services.Infrastructure;
+using Services.Resources;
 using UnityEngine;
 
 namespace Services

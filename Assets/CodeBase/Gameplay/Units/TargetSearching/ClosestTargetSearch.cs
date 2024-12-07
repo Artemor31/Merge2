@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Gameplay.Units.Behaviours
+namespace Gameplay.Units.TargetSearching
 {
     public class ClosestTargetSearch : TargetSearch
     {

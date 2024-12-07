@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Databases;
+using Infrastructure;
 using Services.BuffService.Components;
 using UnityEngine;
 
-namespace Services.BuffService
+namespace Databases
 {
     [CreateAssetMenu(menuName = "Create BuffsDatabase", fileName = "BuffsDatabase", order = 0)]
     public class BuffsDatabase : Database

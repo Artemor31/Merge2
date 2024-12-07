@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.ShopWindow
+namespace UI.UpgradeWindow
 {
     public class UpgradeItemPresenter : Presenter
     {

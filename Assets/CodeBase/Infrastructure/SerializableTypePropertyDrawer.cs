@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Services.BuffService
+namespace Infrastructure
 {
     
 #if UNITY_EDITOR

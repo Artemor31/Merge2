@@ -1,11 +1,12 @@
 ﻿using Infrastructure;
+using Services.Infrastructure;
 using Services.StateMachine;
 using TMPro;
-using UI.ShopWindow;
+using UI.UpgradeWindow;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.MenuWindow
+namespace UI
 {
     public class MenuPresenter : Presenter
     {

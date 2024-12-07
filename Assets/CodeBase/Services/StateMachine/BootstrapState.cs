@@ -1,4 +1,6 @@
-﻿namespace Services.StateMachine
+﻿using Services.Infrastructure;
+
+namespace Services.StateMachine
 {
     public class BootstrapState : IState
     {

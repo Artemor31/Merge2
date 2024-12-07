@@ -1,4 +1,6 @@
-﻿namespace Gameplay.Units.Behaviours
+﻿using Gameplay.Units.Health;
+
+namespace Gameplay.Units.Fighting
 {
     public class MeleeAttackAct : Act
     {

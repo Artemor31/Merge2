@@ -1,7 +1,7 @@
 ﻿using Databases;
 using UnityEngine;
 
-namespace Gameplay.Units.Behaviours
+namespace Gameplay.Units
 {
     public abstract class Act : MonoBehaviour
     {

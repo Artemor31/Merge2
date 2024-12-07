@@ -1,7 +1,7 @@
 ﻿using Databases;
 using UnityEngine;
 
-namespace Gameplay.Units.Behaviours
+namespace Gameplay.Units.Moving
 {
     public abstract class Mover : MonoBehaviour
     {

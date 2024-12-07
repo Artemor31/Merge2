@@ -1,9 +1,9 @@
-using Services.SaveService;
-using Gameplay.LevelItems;
 using Infrastructure;
 using UnityEngine.UI;
 using UnityEngine;
 using Databases;
+using Gameplay.Grid;
+using Services.GridService;
 using TMPro;
 
 namespace UI.GameplayWindow

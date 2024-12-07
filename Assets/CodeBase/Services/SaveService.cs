@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Services.Infrastructure;
 using UnityEngine;
 
-namespace Services.SaveService
+namespace Services
 {
     public class SaveService : IService
     {

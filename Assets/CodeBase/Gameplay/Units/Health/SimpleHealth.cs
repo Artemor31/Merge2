@@ -2,7 +2,7 @@
 using Databases;
 using UnityEngine;
 
-namespace Gameplay.Units.Behaviours
+namespace Gameplay.Units.Health
 {
     public class SimpleHealth : Health
     {

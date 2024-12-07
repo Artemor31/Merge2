@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
-using Gameplay.Units.Behaviours;
 using UnityEngine;
 using Databases;
 using Services;
 using System;
-using Data;
+using Databases.Data;
+using Gameplay.Units.Health;
+using Gameplay.Units.Moving;
+using Gameplay.Units.TargetSearching;
+using Services.Infrastructure;
 
 namespace Gameplay.Units
 {
@@ -20,7 +23,7 @@ namespace Gameplay.Units
 
         [SerializeField] private Act _act;
         [SerializeField] private Mover _mover;
-        [SerializeField] private Health _health;
+        [SerializeField] private Health.Health _health;
         [SerializeField] private TargetSearch _targetSearch;
         [SerializeField] private AnimatorScheduler _animator;
         

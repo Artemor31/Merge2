@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.Units.Behaviours
+namespace Gameplay.Units.TargetSearching
 {
     public class LineTargetSearch : TargetSearch
     {

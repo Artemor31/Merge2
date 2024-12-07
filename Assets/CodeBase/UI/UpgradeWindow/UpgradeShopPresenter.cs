@@ -1,5 +1,4 @@
 ﻿using System;
-using UI.ShopWindow;
 using UnityEngine;
 
 namespace UI.UpgradeWindow

@@ -1,10 +1,10 @@
-﻿using Data;
+﻿using Databases.Data;
 using Gameplay.Units;
 using Infrastructure;
-using Services;
+using Services.GridService;
 using UnityEngine;
 
-namespace Gameplay.LevelItems
+namespace Gameplay.Grid
 {
     public class Platform : MonoBehaviour
     {

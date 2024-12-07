@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Services.BuffService
+namespace Infrastructure
 {
     [Serializable]
     public class SerializableMonoScript

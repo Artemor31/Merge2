@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Databases;
+using Services.Infrastructure;
 
-namespace Services
+namespace Services.Resources
 {
     public class DatabaseProvider : IService
     {

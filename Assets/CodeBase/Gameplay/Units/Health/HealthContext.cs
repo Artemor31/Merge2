@@ -1,4 +1,4 @@
-﻿namespace Gameplay.Units.Behaviours
+﻿namespace Gameplay.Units.Health
 {
     public enum HealthContext
     {
