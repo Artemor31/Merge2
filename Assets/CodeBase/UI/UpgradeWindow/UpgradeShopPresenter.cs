@@ -1,7 +1,10 @@
 ﻿using System;
+using UI.ShopWindow;
+using UnityEngine;
 
-namespace UI.ShopWindow
+namespace UI.UpgradeWindow
 {
+
     [Serializable]
     public class UpgradeProgress
     {
@@ -13,5 +16,11 @@ namespace UI.ShopWindow
     {
         public string Id;
         public int Level;
+    }
+
+    public class UpgradeShopPresenter : Presenter
+    {
+        [SerializeField] private UpgradeItemPresenter _itemPresenter;
+        [SerializeField] private RectTransform _parent;
     }
 }

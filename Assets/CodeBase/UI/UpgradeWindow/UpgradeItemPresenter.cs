@@ -1,4 +1,4 @@
-﻿using Databases;
+using Databases;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
