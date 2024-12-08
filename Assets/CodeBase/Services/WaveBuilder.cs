@@ -44,13 +44,45 @@ namespace Services
 
         private void SpawnUnits()
         {
-            WaveData waveData = _wavesDatabase.WavesData[_gameplayData.Wave];
+            WaveData waveData = GetWaveData();
             List<Vector3> positions = _levelDatabase.GetPositions();
-
             foreach (ActorData data in CreateActorsWave(waveData))
             {
                 _enemyUnits.Add(_factory.CreateEnemyActor(data, positions.Random()));
             }
+        }
+
+        private WaveData GetWaveData()
+        {
+            WaveData waveData;
+            int count = _wavesDatabase.WavesData.Count;
+            int wave = _gameplayData.Wave;
+
+            if (wave < count)
+            {
+                waveData = _wavesDatabase.WavesData[wave];
+            }
+            else
+            {
+                int levelsAhead = wave - count + 1;
+                WaveData data = _wavesDatabase.WavesData[^1];
+                int tenPercents = Mathf.RoundToInt(data.PowerLimit * 0.1f + 0.5f);
+                int powerLimit = data.PowerLimit + tenPercents;
+                for (int i = 1; i < levelsAhead; i++)
+                {
+                    powerLimit += Mathf.RoundToInt(powerLimit * 0.1f + 0.5f);
+                }
+
+                waveData = new WaveData
+                {
+                    MaxLevel = data.MaxLevel,
+                    Masteries = data.Masteries,
+                    Races = data.Races,
+                    PowerLimit = powerLimit
+                };
+            }
+
+            return waveData;
         }
 
         private IEnumerable<ActorData> CreateActorsWave(WaveData waveData)

@@ -4,7 +4,7 @@ using UI.GameplayWindow;
 
 namespace Services.StateMachine
 {
-    public class SetupLevelState : IState
+    public class SetupLevelState : IState, IExitableState
     {
         private readonly WindowsService _windowsService;
 
@@ -17,6 +17,11 @@ namespace Services.StateMachine
         {
             _windowsService.Show<GameplayPresenter>();  
             _windowsService.Show<BuffInfoPresenter>();  
+        }
+
+        public void Exit()
+        {
+            _windowsService.Close<BuffInfoPresenter>();  
         }
     }
 }

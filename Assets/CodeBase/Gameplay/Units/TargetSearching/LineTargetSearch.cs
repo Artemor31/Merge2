@@ -33,7 +33,7 @@ namespace Gameplay.Units.TargetSearching
             if (tries >= 9) return;
             
             float currentDistance = float.MaxValue;
-            foreach (Actor actor in candidates)
+            foreach (Actor actor in actualTargets)
             {
                 float distance = DistanceTo(actor);
                 if (distance < currentDistance)

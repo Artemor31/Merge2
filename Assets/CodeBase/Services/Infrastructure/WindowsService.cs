@@ -9,19 +9,26 @@ namespace Services.Infrastructure
     {
         [SerializeField] private List<Presenter> _windows;
 
-        public void Show<T>() where T : Presenter
-        {
-            _windows.First(w => w.GetType() == typeof(T))
-                    .gameObject
-                    .SetActive(true);
-        }
-        
         public void InitWindows()
         {
             foreach (Presenter presenter in _windows)
             {
                 presenter.Init();
             }
+        }
+
+        public void Show<T>() where T : Presenter
+        {
+            _windows.First(w => w.GetType() == typeof(T))
+                    .gameObject
+                    .SetActive(true);
+        }
+
+        public void Close<T>()
+        {
+            _windows.First(w => w.GetType() == typeof(T))
+                    .gameObject
+                    .SetActive(false);
         }
     }
 }

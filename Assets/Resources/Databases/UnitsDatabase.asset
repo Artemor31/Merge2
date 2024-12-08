@@ -14,9 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _assetsPath: Databases/Actors/
   Units:
+  - {fileID: 11400000, guid: 5e38dac5db6778e479b65c6a3b8ed533, type: 2}
+  - {fileID: 11400000, guid: 3a3afceb847b4044ba929d8a54ea5df9, type: 2}
+  - {fileID: 11400000, guid: 75d3896baa68e3c4f80fc431c2a037ba, type: 2}
+  - {fileID: 11400000, guid: e5e9c4a621274fb479cae9b74c8e0d94, type: 2}
+  - {fileID: 11400000, guid: 6cd53ab94a35b8e40a90d89ca6048d0e, type: 2}
+  - {fileID: 11400000, guid: 2effbf26bebe23d4abdcc2c6bc447ce8, type: 2}
   - {fileID: 11400000, guid: e3a81c63c7fcf6a42a3381ccc9af3716, type: 2}
   - {fileID: 11400000, guid: f1f8e0665f36cc64a8f237fa681a0b5f, type: 2}
   - {fileID: 11400000, guid: 153ff00d98fe2f7449a8ae34aaf0ca16, type: 2}
   - {fileID: 11400000, guid: 4c6dca5a1bd9e7343bd1a40a2ca9db79, type: 2}
   - {fileID: 11400000, guid: 893e207a970eae94e95675881edf5a2e, type: 2}
   - {fileID: 11400000, guid: 7b0ff5fd204481d4d97395f01c17e418, type: 2}
+  - {fileID: 11400000, guid: fa81c9f2953f4e54ba44d07d30963843, type: 2}
+  - {fileID: 11400000, guid: 901f9424de424fb43b40806b977325d6, type: 2}
+  - {fileID: 11400000, guid: c1a76bdba5d2f1a47873d1cc056204b8, type: 2}
+  - {fileID: 11400000, guid: 1c2de35532d30964692c870c08532c4e, type: 2}
+  - {fileID: 11400000, guid: ecaadd3cb1cfe7444801111032c1270b, type: 2}
+  - {fileID: 11400000, guid: 0ddd48116e6e372469cb05fd2794b2c3, type: 2}
