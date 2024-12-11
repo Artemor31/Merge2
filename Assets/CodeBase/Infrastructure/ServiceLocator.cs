@@ -33,7 +33,7 @@ namespace Infrastructure
         {
             if (Container.Binds.TryGetValue(typeof(T), out var model))
                 return (T)model;
-            return null;
+            throw new Exception($"type {nameof(T)} not binded");
         }
 
         public static void Clear() =>

@@ -3,7 +3,7 @@ using UnityEngine;
 using Databases;
 using System;
 using Databases.Data;
-using Gameplay.Units.Health;
+using Gameplay.Units.Healths;
 using Gameplay.Units.Moving;
 using Gameplay.Units.TargetSearching;
 using Services.Infrastructure;
@@ -15,19 +15,21 @@ namespace Gameplay.Units
         public event Action Died;
         public event Action<float, float> HealthChanged;
         public event Action Disposed;
-        
+
+        public float Health => _health.CurrentRatio;
         public bool IsDead => _health.Current <= 0;
         public ActorData Data { get; private set; }
         public ActorStats Stats { get; set; }
 
         [SerializeField] private Act _act;
         [SerializeField] private Mover _mover;
-        [SerializeField] private Health.Health _health;
+        [SerializeField] private Health _health;
         [SerializeField] private TargetSearch _targetSearch;
         [SerializeField] private AnimatorScheduler _animator;
         
         private UnitState _state = UnitState.Idle;
-        private ICollection<Actor> _candidates;
+        private ICollection<Actor> _enemies;
+        private ICollection<Actor> _allies;
         private IUpdateable _updateable;
 
         public void Initialize(GameObject view, IUpdateable updateable, ActorData data, ActorStats stats)
@@ -56,14 +58,14 @@ namespace Gameplay.Units
             _act.Tick();
 
             if (_targetSearch.NeedNewTarget()) 
-                _targetSearch.SearchTarget(_candidates);
+                _targetSearch.SearchTarget(_enemies, _allies);
 
             if (!_targetSearch.Target) return;
 
             if (_act.InRange(_targetSearch.Target))
             {
                 _mover.Stop();
-                if (_act.CanAttack(_targetSearch.Target)) 
+                if (_act.CanPerformOn(_targetSearch.Target)) 
                     _act.PerformOn(_targetSearch.Target);
             }
             else
@@ -84,11 +86,12 @@ namespace Gameplay.Units
 
         public void ChangeHealth(float value, HealthContext context) => _health.ChangeHealth(value, context);
 
-        public void Unleash(ICollection<Actor> candidates)
+        public void Unleash(ICollection<Actor> enemies, ICollection<Actor> allies)
         {
             _state = UnitState.Fighting;
-            _candidates = candidates;
-            _targetSearch.SearchTarget(_candidates);
+            _enemies = enemies;
+            _allies = allies;
+            _targetSearch.SearchTarget(_enemies, _allies);
         }
 
         private void OnHealthChanged(float current, float max)

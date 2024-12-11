@@ -1,5 +1,5 @@
 ﻿using System;
-using Gameplay.Units.Health;
+using Gameplay.Units.Healths;
 using Infrastructure;
 using UnityEngine;
 
@@ -34,7 +34,7 @@ namespace Gameplay.Units.Fighting
                 _hitVFX.Play();
             }
 
-            if (Target.TryGetComponent<Health.Health>(out var health))
+            if (Target.TryGetComponent<Healths.Health>(out var health))
             {
                 health.ChangeHealth(_damage, HealthContext.Damage);
             }

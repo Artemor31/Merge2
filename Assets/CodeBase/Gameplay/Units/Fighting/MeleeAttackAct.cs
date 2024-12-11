@@ -1,4 +1,4 @@
-﻿using Gameplay.Units.Health;
+﻿using Gameplay.Units.Healths;
 
 namespace Gameplay.Units.Fighting
 {
@@ -6,7 +6,7 @@ namespace Gameplay.Units.Fighting
     {
         public override void PerformOn(Actor actor)
         {
-            if (!CanAttack(actor)) return;
+            if (!CanPerformOn(actor)) return;
 
             transform.LookAt(actor.transform);
             Animator.PerformAct();

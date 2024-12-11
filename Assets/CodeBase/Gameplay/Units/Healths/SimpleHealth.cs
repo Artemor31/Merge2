@@ -2,12 +2,13 @@
 using Databases;
 using UnityEngine;
 
-namespace Gameplay.Units.Health
+namespace Gameplay.Units.Healths
 {
     public class SimpleHealth : Health
     {
         public override event Action<float, float> HealthChanged;
         public override float Current { get; protected set; }
+        public override float CurrentRatio => Current / _maxHealth;
         private float _maxHealth;
 
         private AnimatorScheduler _animator;

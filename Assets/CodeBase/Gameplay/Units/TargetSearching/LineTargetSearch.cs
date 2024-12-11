@@ -5,7 +5,7 @@ namespace Gameplay.Units.TargetSearching
 {
     public class LineTargetSearch : TargetSearch
     {
-        public override void SearchTarget(ICollection<Actor> candidates)
+        public override void SearchTarget(ICollection<Actor> enemies, ICollection<Actor> allies)
         {
             Target = null;
             
@@ -14,7 +14,7 @@ namespace Gameplay.Units.TargetSearching
             var actualTargets = new List<Actor>();
             while (actualTargets.Count < 1 && tries < 9)
             {
-                foreach (var candidate in candidates)
+                foreach (var candidate in enemies)
                 {
                     if (!candidate.IsDead)
                     {

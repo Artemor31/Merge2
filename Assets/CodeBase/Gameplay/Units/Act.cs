@@ -25,7 +25,7 @@ namespace Gameplay.Units
         }
 
         public abstract void PerformOn(Actor actor);
-        public bool CanAttack(Actor actor) => InRange(actor) && CooldownUp;
+        public bool CanPerformOn(Actor actor) => InRange(actor) && CooldownUp;
         public bool InRange(Actor actor) => Distance(actor) <= Stats.Range;
         protected void ResetCooldown() => ActTimer = Stats.ActCooldown;
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, Stats.Range);

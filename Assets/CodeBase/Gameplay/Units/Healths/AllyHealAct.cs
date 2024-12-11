@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Units.Health
+namespace Gameplay.Units.Healths
 {
     public class AllyHealAct : Act
     {
@@ -8,7 +8,7 @@ namespace Gameplay.Units.Health
         
         public override void PerformOn(Actor actor)
         {
-            if (!CanAttack(actor)) return;
+            if (!CanPerformOn(actor)) return;
 
             transform.LookAt(actor.transform);
             Animator.PerformAct();
@@ -17,10 +17,7 @@ namespace Gameplay.Units.Health
             ActTimer = Stats.ActCooldown;
         }
 
-        private void SpawnVFX(Vector3 point)
-        {
-            var vfx = Instantiate(_healVfxPrefab, point, Quaternion.identity);
-            vfx.Play();
-        }
+        private void SpawnVFX(Vector3 point) => 
+            Instantiate(_healVfxPrefab, point, Quaternion.identity).Play();
     }
 }
