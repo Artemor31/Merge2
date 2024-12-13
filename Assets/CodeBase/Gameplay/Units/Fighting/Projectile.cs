@@ -34,9 +34,9 @@ namespace Gameplay.Units.Fighting
                 _hitVFX.Play();
             }
 
-            if (Target.TryGetComponent<Healths.Health>(out var health))
+            if (Target.TryGetComponent(out Actor actor))
             {
-                health.ChangeHealth(_damage, HealthContext.Damage);
+                actor.ChangeHealth(_damage, HealthContext.Damage);
             }
 
             OnHited?.Invoke(this);

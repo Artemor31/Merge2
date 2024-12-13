@@ -138,4 +138,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5821871920194598ac9331f3d54902e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healVfxPrefab: {fileID: 19813616, guid: e9ac2b65e98b5154597f339961c0f67a, type: 3}
+  _healVfxPrefab: {fileID: 19884996, guid: ff672eaca96d32c419d7a1f1b0346e8d, type: 3}

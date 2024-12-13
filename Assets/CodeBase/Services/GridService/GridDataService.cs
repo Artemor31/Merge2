@@ -30,17 +30,6 @@ namespace Services.GridService
             _gridData.UnitIds ??= new ActorData[_gridSize.x, _gridSize.y];
         }
         
-        public void Dispose()
-        {
-            DoForeach((i, j) =>
-            {
-                if (_platforms[i, j].Actor != null) 
-                    _platforms[i,j].Actor.Dispose();
-            });
-            
-            _platforms = null;
-        }
-
         public bool HasFreePlatform(out Platform platform)
         {
             for (var i = 0; i < _platforms.GetLength(0); i++)

@@ -33,13 +33,13 @@ namespace Services.StateMachine
             foreach (Actor actor in _gridService.PlayerUnits)
             {
                 actor.Died += OnAllyDied;
-                actor.Unleash(_waveBuilder.EnemyUnits, _gridService.PlayerUnits);
+                actor.Unleash();
             }
 
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.Died += OnEnemyDied;
-                actor.Unleash(_gridService.PlayerUnits, _waveBuilder.EnemyUnits);
+                actor.Unleash();
             }
         }
 

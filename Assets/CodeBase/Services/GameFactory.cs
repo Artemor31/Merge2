@@ -5,7 +5,9 @@ using Gameplay.Units;
 using Gameplay.Units.Healths;
 using Services.Infrastructure;
 using Services.Resources;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Services
 {
@@ -36,21 +38,30 @@ namespace Services
         private Actor CreateActor(ActorData data, Vector3 position)
         {
             ActorConfig config = _unitsDatabase.ConfigFor(data);
-            GameObject view = Object.Instantiate(config.ViewData.Prefab);
-            Actor instance = Object.Instantiate(config.ViewData.BaseView);
-            instance.Initialize(view, _updateable, data, config.Stats);
-            instance.gameObject.name += Random.Range(0, 100000);
-            instance.transform.position = position;
-            CreateHealthbar(instance);
-            return instance;
+            Actor baseView = Object.Instantiate(config.ViewData.BaseView, position, quaternion.identity);
+            
+            Healthbar healthbar = CreateHealthbar(baseView.transform, data.Level);
+            ActorSkin skin = CreateSkin(config.ViewData.Skin, baseView.transform, healthbar);
+
+            baseView.Initialize(skin, data, config.Stats);
+            baseView.gameObject.name += Random.Range(0, 100000);
+            return baseView;
+        }
+
+        private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, Healthbar healthbar)
+        {
+            ActorSkin skin = Object.Instantiate(prefab, parent, false);
+            skin.Initialize(healthbar);
+            return skin;
         }
         
-        private void CreateHealthbar(Actor actor)
+        private Healthbar CreateHealthbar(Transform target, int level)
         {
             Healthbar asset = _assetsProvider.Load<Healthbar>(AssetsPath.Healthbar);
             Healthbar healthbar = Object.Instantiate(asset);
             Camera camera = _cameraService.CurrentCamera();
-            healthbar.Initialize(camera, actor, _updateable);
+            healthbar.Initialize(camera, target, level);
+            return healthbar;
         }
 
         public void CreateGridView()

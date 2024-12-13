@@ -1,4 +1,4 @@
-﻿using Services;
+﻿using System;
 using Services.Infrastructure;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,8 +9,14 @@ namespace Infrastructure
     {
         private void Awake()
         {
-            if (ServiceLocator.Resolve<SceneLoader>() == null)
+            try
+            {
+                ServiceLocator.Resolve<SceneLoader>();
+            }
+            catch (Exception)
+            {
                 SceneManager.LoadScene(0);
+            }
         }
     }
 }

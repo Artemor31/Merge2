@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Units;
 using Services;
 using Services.BuffService;
 using Services.GridService;
@@ -59,6 +60,7 @@ namespace Infrastructure
 
             BuffService buffService = new(databaseProvider);
             BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
+            SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -79,6 +81,7 @@ namespace Infrastructure
             ServiceLocator.Bind(buffService);
             ServiceLocator.Bind(buffViewService);
             ServiceLocator.Bind(presistantDataService);
+            ServiceLocator.Bind(searchTargetService);
 
             _windowsService.InitWindows();
 

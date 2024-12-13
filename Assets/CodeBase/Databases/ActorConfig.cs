@@ -21,7 +21,7 @@ namespace Databases
     {
         public Sprite Icon;
         public Actor BaseView;
-        public GameObject Prefab;
+        public ActorSkin Skin;
     }
 
     [Serializable]

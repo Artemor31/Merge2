@@ -23,7 +23,6 @@ namespace Services.StateMachine
         public void Enter(bool isWin)
         {
             _gridData.Save();
-            _gridData.Dispose();
             if (isWin)
             {
                 _windowsService.Show<WinResultPresenter>();
@@ -33,7 +32,6 @@ namespace Services.StateMachine
             {
                 _windowsService.Show<LoseResultPresenter>();
             }
-            
         }
 
         public void Enter()
