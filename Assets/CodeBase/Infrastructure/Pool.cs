@@ -45,10 +45,4 @@ namespace Infrastructure
             return instance;
         }
     }
-
-    public interface IPoolable
-    {
-        void Collect();
-        void Release();
-    }
 }
