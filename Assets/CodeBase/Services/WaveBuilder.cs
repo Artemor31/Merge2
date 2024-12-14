@@ -14,14 +14,13 @@ namespace Services
 {
     public class WaveBuilder : IService
     {
-        public ICollection<Actor> EnemyUnits => _enemyUnits;
+        public List<Actor> EnemyUnits { get; }
 
         private readonly GameplayDataService _gameplayData;
         private readonly WavesDatabase _wavesDatabase;
         private readonly LevelDatabase _levelDatabase;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly GameFactory _factory;
-        private readonly List<Actor> _enemyUnits;
 
         public WaveBuilder(GameFactory factory,
                            DatabaseProvider provider,
@@ -32,13 +31,13 @@ namespace Services
             _unitsDatabase = provider.GetDatabase<UnitsDatabase>();
             _gameplayData = gameplayData;
             _factory = factory;
-            _enemyUnits = new List<Actor>();
+            EnemyUnits = new List<Actor>();
         }
 
         public void BuildEnemyWave()
         {
-            _enemyUnits.ForEach(Object.Destroy);
-            _enemyUnits.Clear();
+            EnemyUnits.ForEach(Object.Destroy);
+            EnemyUnits.Clear();
             SpawnUnits();
         }
 
@@ -48,7 +47,7 @@ namespace Services
             List<Vector3> positions = _levelDatabase.GetPositions();
             foreach (ActorData data in CreateActorsWave(waveData))
             {
-                _enemyUnits.Add(_factory.CreateEnemyActor(data, positions.Random()));
+                EnemyUnits.Add(_factory.CreateEnemyActor(data, positions.Random()));
             }
         }
 

@@ -46,11 +46,11 @@ namespace Infrastructure
             DatabaseProvider databaseProvider = new(assetsProvider);
             GameplayDataService gameplayService = new(saveService);
             PersistantDataService presistantDataService = new(saveService);
+            GridDataService gridDataService = new(saveService);
 
-            GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService, this);
+            GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, gameplayService);
             
-            GridDataService gridDataService = new(saveService);
             GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, gameplayService);
             MergeService mergeService = new(databaseProvider, gridLogicService);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);

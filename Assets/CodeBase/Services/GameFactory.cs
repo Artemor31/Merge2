@@ -16,18 +16,15 @@ namespace Services
     {
         private readonly AssetsProvider _assetsProvider;
         private readonly CameraService _cameraService;
-        private readonly IUpdateable _updateable;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
 
         public GameFactory(DatabaseProvider database,
                            AssetsProvider assetsProvider,
-                           CameraService cameraService,
-                           IUpdateable updateable)
+                           CameraService cameraService)
         {
             _assetsProvider = assetsProvider;
             _cameraService = cameraService;
-            _updateable = updateable;
             _unitsDatabase = database.GetDatabase<UnitsDatabase>();
             _levelDatabase = database.GetDatabase<LevelDatabase>();
         }

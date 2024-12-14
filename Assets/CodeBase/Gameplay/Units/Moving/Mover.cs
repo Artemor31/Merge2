@@ -14,6 +14,7 @@ namespace Gameplay.Units.Moving
         {
             _animator = animator;
             _agent.speed = _speed = stats.MoveSpeed;
+            Stop();
         }
 
         public void MoveTo(Actor target) => MoveTo(target.transform.position);
@@ -22,11 +23,6 @@ namespace Gameplay.Units.Moving
         public void Stop()
         {
             _animator.Move(0);
-            if (_agent.enabled == false || _agent.isOnNavMesh == false)
-            {
-                Debug.LogError(gameObject.name);
-            }
-
             _agent.isStopped = true;
         }
 

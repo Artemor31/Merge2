@@ -12,11 +12,33 @@ namespace Gameplay.Units
         [SerializeField] private Animator _animator;
         private Healthbar _healthbar;
 
+        private void OnEnable()
+        {
+            if (!_animator)
+            {
+                _animator = GetComponent<Animator>();
+            }
+        }
+
         public void Initialize(Healthbar healthbar) => _healthbar = healthbar;
-        public void SetHealth(float ratio) => _healthbar.ChangeHealth(ratio);
+        public void ChangeHealth(float currentRatio) => _healthbar.ChangeHealth(currentRatio);
+
+        public void Die()
+        {
+            _animator.SetTrigger(Died);
+            Dispose();
+        }
+
         public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);
         public void GoIdle() => _animator.SetFloat(Speed, 0);
-        public void Die() => _animator.SetTrigger(Died);
+
+        public void Dispose()
+        {
+            if (_healthbar == null) return;
+            
+            Destroy(_healthbar.gameObject);
+            _healthbar = null;
+        }
     }
 }

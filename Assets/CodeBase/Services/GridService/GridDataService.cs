@@ -10,7 +10,7 @@ namespace Services.GridService
 {
     public class GridDataService : IService
     {
-        public ICollection<Actor> PlayerUnits => GetPlayerUnits();
+        public List<Actor> PlayerUnits => GetPlayerUnits();
         
         private const string SavePath = "GridData";
 
