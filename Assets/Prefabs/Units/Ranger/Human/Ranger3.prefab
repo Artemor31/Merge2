@@ -40533,6 +40533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932564372558117408}
   - component: {fileID: 7530108372474851534}
+  - component: {fileID: 5825569109899213703}
   m_Layer: 0
   m_Name: Ranger3
   m_TagString: Untagged
@@ -40578,6 +40579,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5825569109899213703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8340937838891581338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da6cc8d8521457e89985581dafcdaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &8344677348319728602
 GameObject:
   m_ObjectHideFlags: 0

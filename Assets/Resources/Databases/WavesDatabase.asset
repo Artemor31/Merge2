@@ -15,8 +15,8 @@ MonoBehaviour:
   _wavesData:
   - PowerLimit: 2
     MaxLevel: 1
-    Masteries: 00000000010000000300000004000000
-    Races: 0000000001000000020000000300000004000000
+    Masteries: 01000000
+    Races: 01000000
   - PowerLimit: 2
     MaxLevel: 1
     Masteries: 0000000001000000020000000300000004000000

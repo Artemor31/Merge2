@@ -26,6 +26,6 @@ MonoBehaviour:
     MoveSpeed: 3
   ViewData:
     Icon: {fileID: 21300006, guid: ecd359c045351424082d2ba03ec132df, type: 3}
-    BaseView: {fileID: 6787395453057676287, guid: a6c60ed1dce80a94e9ff419b29bbd52f, type: 3}
-    Prefab: {fileID: 562128863903293700, guid: 98ade6971cd0a134a82b858fd5aae3c1, type: 3}
+    BaseView: {fileID: 4895926626738250975, guid: a6c60ed1dce80a94e9ff419b29bbd52f, type: 3}
+    Skin: {fileID: 6798303155214122378, guid: 98ade6971cd0a134a82b858fd5aae3c1, type: 3}
   Power: 2
