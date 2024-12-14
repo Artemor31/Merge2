@@ -3,7 +3,7 @@ using Gameplay.Units.Healths;
 using Infrastructure;
 using UnityEngine;
 
-namespace Gameplay.Units.Fighting
+namespace Gameplay.Units.Projectile
 {
     public abstract class Projectile : MonoBehaviour, IPoolable
     {

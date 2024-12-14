@@ -1,6 +1,6 @@
 ﻿using Services.Infrastructure;
 
-namespace Gameplay.Units
+namespace Services
 {
     public class ProjectileService : IService
     {

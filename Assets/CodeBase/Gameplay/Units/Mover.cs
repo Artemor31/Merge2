@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Gameplay.Units.Moving
+namespace Gameplay.Units
 {
-    public abstract class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour
     {
         [SerializeField] private NavMeshAgent _agent;
         private ActorSkin _animator;
