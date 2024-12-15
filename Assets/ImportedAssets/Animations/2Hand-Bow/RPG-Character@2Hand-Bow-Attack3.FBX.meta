@@ -1,92 +1,92 @@
 fileFormatVersion: 2
-guid: 0ddeadfa9fe0f9b4293bbb380f9aa884
+guid: 668a0a7efc4b25146ba9de24b466a642
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
-    second: B_L_Hand
-  - first:
-      1: 100002
-    second: B_L_Forearm
-  - first:
-      1: 100004
-    second: B_L_UpperArm
-  - first:
-      1: 100006
-    second: B_Spine1
-  - first:
-      1: 100008
-    second: B_R_Foot
-  - first:
-      1: 100010
-    second: B_Prop1
-  - first:
-      1: 100012
-    second: PositionLocator
-  - first:
-      1: 100014
-    second: Mesh_Soldier_A
-  - first:
-      1: 100016
     second: //RootNode
   - first:
-      1: 100018
-    second: B_R_Hand
+      1: 100002
+    second: B_Prop1
   - first:
-      1: 100020
-    second: B_R_Forearm
+      1: 100004
+    second: B_L_Hand
   - first:
-      1: 100022
-    second: B_R_UpperArm
+      1: 100006
+    second: B_L_Forearm
   - first:
-      1: 100024
+      1: 100008
+    second: B_L_UpperArm
+  - first:
+      1: 100010
     second: B_Head
   - first:
-      1: 100026
-    second: B_L_Thigh
-  - first:
-      1: 100028
-    second: B_L_Calf
-  - first:
-      1: 100030
-    second: B_L_Finger1
-  - first:
-      1: 100032
-    second: B_L_Foot
-  - first:
-      1: 100034
-    second: B_R_Calf
-  - first:
-      1: 100036
-    second: B_Spine
-  - first:
-      1: 100038
-    second: B_Pelvis
-  - first:
-      1: 100040
+      1: 100012
     second: B_L_Finger11
   - first:
-      1: 100042
+      1: 100014
+    second: B_L_Finger1
+  - first:
+      1: 100016
     second: B_L_Finger01
   - first:
-      1: 100044
+      1: 100018
     second: B_L_Finger0
   - first:
-      1: 100046
-    second: B_R_Finger0
+      1: 100020
+    second: B_R_Foot
   - first:
-      1: 100048
-    second: B_R_Finger1
+      1: 100022
+    second: B_R_Hand
   - first:
-      1: 100050
-    second: B_R_Finger01
+      1: 100024
+    second: B_R_Forearm
   - first:
-      1: 100052
+      1: 100026
+    second: B_R_UpperArm
+  - first:
+      1: 100028
+    second: B_R_Calf
+  - first:
+      1: 100030
     second: B_R_Finger11
   - first:
-      1: 100054
+      1: 100032
+    second: B_R_Finger1
+  - first:
+      1: 100034
+    second: B_R_Finger01
+  - first:
+      1: 100036
+    second: B_R_Finger0
+  - first:
+      1: 100038
     second: B_R_Thigh
+  - first:
+      1: 100040
+    second: B_L_Foot
+  - first:
+      1: 100042
+    second: B_Spine1
+  - first:
+      1: 100044
+    second: B_Spine
+  - first:
+      1: 100046
+    second: B_Pelvis
+  - first:
+      1: 100048
+    second: PositionLocator
+  - first:
+      1: 100050
+    second: Mesh_Soldier_A
+  - first:
+      1: 100052
+    second: B_L_Calf
+  - first:
+      1: 100054
+    second: B_L_Thigh
   - first:
       1: 100056
     second: AK47
@@ -320,88 +320,88 @@ ModelImporter:
     second: Exporter
   - first:
       4: 400000
-    second: B_L_Hand
-  - first:
-      4: 400002
-    second: B_L_Forearm
-  - first:
-      4: 400004
-    second: B_L_UpperArm
-  - first:
-      4: 400006
-    second: B_Spine1
-  - first:
-      4: 400008
-    second: B_R_Foot
-  - first:
-      4: 400010
-    second: B_Prop1
-  - first:
-      4: 400012
-    second: PositionLocator
-  - first:
-      4: 400014
-    second: Mesh_Soldier_A
-  - first:
-      4: 400016
     second: //RootNode
   - first:
-      4: 400018
-    second: B_R_Hand
+      4: 400002
+    second: B_Prop1
   - first:
-      4: 400020
-    second: B_R_Forearm
+      4: 400004
+    second: B_L_Hand
   - first:
-      4: 400022
-    second: B_R_UpperArm
+      4: 400006
+    second: B_L_Forearm
   - first:
-      4: 400024
+      4: 400008
+    second: B_L_UpperArm
+  - first:
+      4: 400010
     second: B_Head
   - first:
-      4: 400026
-    second: B_L_Thigh
-  - first:
-      4: 400028
-    second: B_L_Calf
-  - first:
-      4: 400030
-    second: B_L_Finger1
-  - first:
-      4: 400032
-    second: B_L_Foot
-  - first:
-      4: 400034
-    second: B_R_Calf
-  - first:
-      4: 400036
-    second: B_Spine
-  - first:
-      4: 400038
-    second: B_Pelvis
-  - first:
-      4: 400040
+      4: 400012
     second: B_L_Finger11
   - first:
-      4: 400042
+      4: 400014
+    second: B_L_Finger1
+  - first:
+      4: 400016
     second: B_L_Finger01
   - first:
-      4: 400044
+      4: 400018
     second: B_L_Finger0
   - first:
-      4: 400046
-    second: B_R_Finger0
+      4: 400020
+    second: B_R_Foot
   - first:
-      4: 400048
-    second: B_R_Finger1
+      4: 400022
+    second: B_R_Hand
   - first:
-      4: 400050
-    second: B_R_Finger01
+      4: 400024
+    second: B_R_Forearm
   - first:
-      4: 400052
+      4: 400026
+    second: B_R_UpperArm
+  - first:
+      4: 400028
+    second: B_R_Calf
+  - first:
+      4: 400030
     second: B_R_Finger11
   - first:
-      4: 400054
+      4: 400032
+    second: B_R_Finger1
+  - first:
+      4: 400034
+    second: B_R_Finger01
+  - first:
+      4: 400036
+    second: B_R_Finger0
+  - first:
+      4: 400038
     second: B_R_Thigh
+  - first:
+      4: 400040
+    second: B_L_Foot
+  - first:
+      4: 400042
+    second: B_Spine1
+  - first:
+      4: 400044
+    second: B_Spine
+  - first:
+      4: 400046
+    second: B_Pelvis
+  - first:
+      4: 400048
+    second: PositionLocator
+  - first:
+      4: 400050
+    second: Mesh_Soldier_A
+  - first:
+      4: 400052
+    second: B_L_Calf
+  - first:
+      4: 400054
+    second: B_L_Thigh
   - first:
       4: 400056
     second: AK47
@@ -686,7 +686,7 @@ ModelImporter:
     second: RPG-Character-Mesh
   - first:
       74: 7400000
-    second: 2Hand-Bow-Walk
+    second: 2Hand-Bow-Attack3
   - first:
       95: 9500000
     second: //RootNode
@@ -722,22 +722,11 @@ ModelImporter:
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'B_Spine' has translation animation that
       will be discarded.\n"
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftLowerLeg
-      average position error 0.4 mm and maximum position error 1.6 mm at time 0:
-      4 (16.7%) Frame 4\n\tLeftUpperArm average position error 3.1 mm and maximum
-      position error 5.5 mm at time 0:24 (100.0%) Frame 24\n\tLeftLowerArm average
-      position error 3.2 mm and maximum position error 5.7 mm at time 0:24 (100.0%)
-      Frame 24\n\tLeftHand average position error 3.1 mm and maximum position error
-      5.5 mm at time 0:24 (100.0%) Frame 24\n\tRightUpperArm average position error
-      3.1 mm and maximum position error 5.5 mm at time 0:24 (100.0%) Frame 24\n\tRightLowerArm
-      average position error 3.1 mm and maximum position error 5.5 mm at time 0:24
-      (100.0%) Frame 24\n\tRightHand average position error 3.1 mm and maximum position
-      error 5.5 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 3.1
-      mm and maximum position error 5.5 mm at time 0: 0 (0.0%) Frame 0\n"
-    animationDoRetargetingWarnings: 1
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -746,7 +735,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 2Hand-Bow-Walk
+      name: 2Hand-Bow-Attack3
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
@@ -757,8 +746,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0

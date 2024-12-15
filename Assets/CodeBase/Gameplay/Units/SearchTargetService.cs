@@ -54,6 +54,8 @@ namespace Gameplay.Units
 
             public List<Actor> FilterBy(Strategy strategy)
             {
+                if (_actors.Count <= 0) return _actors;
+                
                 _actors = strategy switch
                 {
                     Strategy.OnSameLine => OnSameLine(_owner.transform, _actors),
@@ -61,7 +63,7 @@ namespace Gameplay.Units
                     Strategy.MostDamaged => MostDamaged(_actors),
                     _ => _actors
                 };
-                
+
                 return _actors;
             }
             
@@ -89,21 +91,21 @@ namespace Gameplay.Units
 
             private List<Actor> Closest(Transform owner, List<Actor> actors)
             {
-                Actor target = actors[0];
-                float currentDistance = DistanceTo(owner, actors[0]);
-                for (int index = 1; index < actors.Count; index++)
+                Actor target = null;
+                float currentDistance = float.MaxValue;
+                foreach (Actor actor in actors)
                 {
-                    if (actors[index].IsDead) continue;
+                    if (actor.IsDead) continue;
                     
-                    float distance = DistanceTo(owner, actors[index]);
+                    float distance = DistanceTo(owner, actor);
                     if (distance < currentDistance)
                     {
-                        target = actors[index];
+                        target = actor;
                         currentDistance = distance;
                     }
                 }
-
-                return new List<Actor> {target};
+                
+                return target == null ? new List<Actor>() : new List<Actor>(){target};
             }
 
             private List<Actor> MostDamaged(List<Actor> actors)

@@ -30,6 +30,18 @@ namespace Infrastructure
 
             return CreateInstance();
         }
+        
+        public T Get(Vector3 at)
+        {
+            if (_data.TryPop(out var pop))
+            {
+                pop.transform.position = at;
+                pop.Release();
+                return pop;
+            }
+
+            return CreateInstance();
+        }
 
         public void Collect(T instance)
         {
@@ -41,6 +53,7 @@ namespace Infrastructure
         {
             var instance = Object.Instantiate(_prefab, new Vector3(0, 1000, 0), Quaternion.identity);
             instance.Collect();
+            Object.DontDestroyOnLoad(instance);
             return instance;
         }
     }

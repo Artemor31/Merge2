@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Databases
 {
-    [CreateAssetMenu(menuName = "Create ActorConfig", fileName = "ActorConfig", order = 0)]
+    [CreateAssetMenu(menuName = "Database/ActorConfig", fileName = "ActorConfig", order = 0)]
     public class ActorConfig : ScriptableObject
     {
         public int Cost;
@@ -13,7 +13,6 @@ namespace Databases
         public ActorData Data;
         public ActorStats Stats;
         public ActorViewData ViewData;
-        public int Power;
     }
 
     [Serializable]

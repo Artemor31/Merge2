@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Databases
 {
-    [CreateAssetMenu(menuName = "Create BuffsDatabase", fileName = "BuffsDatabase", order = 0)]
+    [CreateAssetMenu(menuName = "Database/BuffsDatabase", fileName = "BuffsDatabase", order = 0)]
     public class BuffsDatabase : Database
     {
         public List<BuffConfig> BuffConfigs;

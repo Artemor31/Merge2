@@ -61,6 +61,7 @@ namespace Infrastructure
             BuffService buffService = new(databaseProvider);
             BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
+            ProjectileService projectileService = new(this, databaseProvider);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -82,6 +83,7 @@ namespace Infrastructure
             ServiceLocator.Bind(buffViewService);
             ServiceLocator.Bind(presistantDataService);
             ServiceLocator.Bind(searchTargetService);
+            ServiceLocator.Bind(projectileService);
 
             _windowsService.InitWindows();
 

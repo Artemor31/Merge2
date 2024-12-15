@@ -1,4 +1,5 @@
-﻿using Gameplay.Units.Healths;
+﻿using Databases;
+using Gameplay.Units.Healths;
 using Infrastructure;
 using UnityEngine;
 
@@ -6,36 +7,30 @@ namespace Gameplay.Units.Projectiles
 {
     public abstract class Projectile : MonoBehaviour, IPoolable
     {
-        public bool Hited;
-
-        [SerializeField] protected float _speed;
-        [SerializeField] protected float _damageArea;
-        [SerializeField] protected ParticleSystem _hitVFX;
-
+        public bool Hited { get; private set; }
+        public ProjectileData Data { get; private set; }
         protected Actor Target;
-        private float _damage;
+        protected float Damage;
 
-        public virtual void Init(Actor caster, Actor target, float damage)
+        public virtual void Init(Actor target, float damage, ProjectileData data)
         {
-            transform.position = caster.transform.position;
-            Hited = false;
             Target = target;
-            _damage = damage;
+            Damage = damage;
+            Data = data;
+            Hited = false;
         }
-
-        public abstract void Tick();
 
         protected virtual void Hit()
         {
-            if (_hitVFX)
-            {
-                _hitVFX.Play();
-            }
-
             Hited = true;
-            Target.ChangeHealth(_damage, HealthContext.Damage);
+            if (!Target.IsDead)
+            {
+                Target.ChangeHealth(Damage, Data.DamageContext);
+                Instantiate(Data.HitVFX, transform.position, Quaternion.identity);
+            }
         }
 
+        public abstract void Tick();
         public void Collect() => gameObject.SetActive(false);
         public void Release() => gameObject.SetActive(true);
     }

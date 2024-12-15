@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Databases;
 using Gameplay.Units;
 using Gameplay.Units.Projectiles;
@@ -12,7 +11,7 @@ namespace Services
 {
     public class ProjectileService : IService
     {
-        private readonly Dictionary<Type, Pool<Projectile>> _pools = new();
+        private readonly Dictionary<ProjectileType, Pool<Projectile>> _pools = new();
         private readonly List<Projectile> _active = new();
         private readonly ProjectilesDatabase _database;
 
@@ -22,15 +21,16 @@ namespace Services
             _database = provider.GetDatabase<ProjectilesDatabase>();
         }
         
-        public void Create<T>(Actor caster, Actor target, float damage) where T : Projectile
+        public void Create(ProjectileType type,  Actor caster, Actor target, float damage)
         {
-            if (!_pools.ContainsKey(typeof(T)))
+            ProjectileData data = _database.Get(type);
+            if (!_pools.ContainsKey(type))
             {
-                _pools.Add(typeof(T), new Pool<Projectile>(10, 3, _database.Get<T>().Prefab));
+                _pools.Add(type, new Pool<Projectile>(10, 3, data.Prefab));
             }
 
-            var projectile = _pools[typeof(T)].Get();
-            projectile.Init(caster, target, damage);
+            var projectile = _pools[type].Get(caster.transform.position + Vector3.up);
+            projectile.Init(target, damage, data);
             _active.Add(projectile);
         }
 
@@ -44,6 +44,7 @@ namespace Services
                 if (projectile.Hited)
                 {
                     _active.Remove(projectile);
+                    _pools[projectile.Data.Id].Collect(projectile);
                 }
             }
         }

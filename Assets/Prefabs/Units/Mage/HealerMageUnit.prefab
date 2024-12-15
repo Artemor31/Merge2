@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39924a488f5b40f3b39e4446a01a1e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mover: {fileID: 0}
+  _mover: {fileID: 8389256863302081202}
   _healVfxPrefab: {fileID: 19884996, guid: ff672eaca96d32c419d7a1f1b0346e8d, type: 3}
 --- !u!114 &8389256863302081202
 MonoBehaviour:

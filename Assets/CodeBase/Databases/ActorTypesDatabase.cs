@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Databases
 {
     
-    [CreateAssetMenu(menuName = "Create ActorTypesDatabase", fileName = "ActorTypesDatabase", order = 0)]
+    [CreateAssetMenu(menuName = "Database/ActorTypesDatabase", fileName = "ActorTypesDatabase", order = 0)]
     public class ActorTypesDatabase : ScriptableObject
     {
         [SerializeField] private List<ActorTypeConfig> _configs;

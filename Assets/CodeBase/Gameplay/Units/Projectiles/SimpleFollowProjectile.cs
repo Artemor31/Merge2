@@ -8,9 +8,9 @@ namespace Gameplay.Units.Projectiles
         {
             Vector3 center = Target.transform.position + Vector3.up;
             transform.LookAt(center);
-            transform.Translate(Vector3.forward * Time.deltaTime * _speed);
+            transform.Translate(Vector3.forward * Time.deltaTime * Data.MoveSpeed);
 
-            if (Vector3.Distance(transform.position, center) < _damageArea)
+            if (Vector3.Distance(transform.position, center) < Data.DamageArea)
             {
                 Hit();
             }

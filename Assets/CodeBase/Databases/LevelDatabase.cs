@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Databases
 {
-    [CreateAssetMenu(menuName = "Create LevelDatabase", fileName = "LevelDatabase", order = 0)]
+    [CreateAssetMenu(menuName = "Database/LevelDatabase", fileName = "LevelDatabase", order = 0)]
     public class LevelDatabase : Database
     {
         public Vector3 GridPosition;

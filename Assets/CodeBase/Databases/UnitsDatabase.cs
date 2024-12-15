@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Databases
 {
-    [CreateAssetMenu(menuName = "Create UnitsDatabase", fileName = "UnitsDatabase", order = 0)]
+    [CreateAssetMenu(menuName = "Database/UnitsDatabase", fileName = "UnitsDatabase", order = 0)]
     public class UnitsDatabase : Database
     {
         [SerializeField] private string _assetsPath;

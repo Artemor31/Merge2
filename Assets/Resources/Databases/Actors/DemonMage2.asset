@@ -23,9 +23,8 @@ MonoBehaviour:
     Damage: 60
     Range: 5
     ActCooldown: 3
-    MoveSpeed: 3
+    MoveSpeed: 2
   ViewData:
     Icon: {fileID: 21300000, guid: 8192c590fb896e8478742bc3423292c3, type: 3}
     BaseView: {fileID: 4895926626738250975, guid: db6d1b2631d3ae74d936abf7404aae70, type: 3}
     Skin: {fileID: -9065590273486056766, guid: 92e7c142d15ff0942a6475102de0d71e, type: 3}
-  Power: 2

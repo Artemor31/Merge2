@@ -5,11 +5,13 @@ using Gameplay.Units.Healths;
 using Gameplay.Units.Projectiles;
 using Infrastructure;
 using Services;
+using UnityEngine;
 
 namespace Gameplay.Units
 {
     public class RangerActor : Actor
     {
+        [SerializeField] private ProjectileType _projectileType; 
         private ProjectileService _service;
 
         public override void Initialize(ActorSkin view, ActorData data, ActorStats stats)
@@ -49,7 +51,7 @@ namespace Gameplay.Units
         private void PerformAct()
         {
             View.PerformAct();
-            _service.Create<SimpleFollowProjectile>(this, Target, Stats.Damage);
+            _service.Create(_projectileType, this, Target, Stats.Damage);
             ResetCooldown();
         }
 
