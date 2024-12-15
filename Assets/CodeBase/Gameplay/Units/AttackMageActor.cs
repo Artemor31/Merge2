@@ -6,5 +6,10 @@
         {
             return false;
         }
+
+        protected override void SearchNewTarget()
+        {
+            
+        }
     }
 }

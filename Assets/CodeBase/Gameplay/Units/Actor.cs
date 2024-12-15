@@ -69,7 +69,7 @@ namespace Gameplay.Units
         }
 
         protected abstract bool NeedNewTarget();
-        protected virtual void SearchNewTarget(){}
+        protected abstract void SearchNewTarget();
         protected void TickActTimer() => ActTimer -= Time.deltaTime;
         protected float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
         protected bool InRange() => DistanceTo(Target) <= Stats.Range;

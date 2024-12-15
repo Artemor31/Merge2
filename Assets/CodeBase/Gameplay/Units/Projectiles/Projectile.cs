@@ -1,28 +1,26 @@
-﻿using System;
-using Gameplay.Units.Healths;
+﻿using Gameplay.Units.Healths;
 using Infrastructure;
 using UnityEngine;
 
-namespace Gameplay.Units.Projectile
+namespace Gameplay.Units.Projectiles
 {
     public abstract class Projectile : MonoBehaviour, IPoolable
     {
-        public event Action<Projectile> OnHited; 
-        
+        public bool Hited;
+
         [SerializeField] protected float _speed;
         [SerializeField] protected float _damageArea;
         [SerializeField] protected ParticleSystem _hitVFX;
 
-        protected Transform Target;
+        protected Actor Target;
         private float _damage;
-        private Action<Projectile> _hitedAction;
 
-        public virtual void Init(Transform target, float damage, Action<Projectile> hitedAction)
+        public virtual void Init(Actor caster, Actor target, float damage)
         {
+            transform.position = caster.transform.position;
+            Hited = false;
             Target = target;
             _damage = damage;
-            _hitedAction = hitedAction;
-            OnHited += _hitedAction;
         }
 
         public abstract void Tick();
@@ -34,17 +32,11 @@ namespace Gameplay.Units.Projectile
                 _hitVFX.Play();
             }
 
-            if (Target.TryGetComponent(out Actor actor))
-            {
-                actor.ChangeHealth(_damage, HealthContext.Damage);
-            }
-
-            OnHited?.Invoke(this);
-            OnHited -= _hitedAction;
+            Hited = true;
+            Target.ChangeHealth(_damage, HealthContext.Damage);
         }
 
         public void Collect() => gameObject.SetActive(false);
-
         public void Release() => gameObject.SetActive(true);
     }
 }

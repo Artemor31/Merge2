@@ -1,32 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
+using Databases;
+using Databases.Data;
+using Gameplay.Units.Healths;
+using Gameplay.Units.Projectiles;
 using Infrastructure;
-using UnityEngine;
+using Services;
 
 namespace Gameplay.Units
 {
     public class RangerActor : Actor
     {
-        [SerializeField] private Projectile.Projectile _projectilePrefab;
-        private Vector3 Center => transform.position + Vector3.up;
-        private Pool<Projectile.Projectile> _pool;
-        private List<Projectile.Projectile> _projectiles;
-        private Actor _target;
+        private ProjectileService _service;
 
-        private void OnEnable()
+        public override void Initialize(ActorSkin view, ActorData data, ActorStats stats)
         {
-            
-            _projectiles = new List<Projectile.Projectile>();
-            _pool = new Pool<Projectile.Projectile>(5, 3, _projectilePrefab);
+            base.Initialize(view, data, stats);
+            _service = ServiceLocator.Resolve<ProjectileService>();
         }
 
         protected override void Tick()
         {
-            for (int i = _projectiles.Count - 1; i >= 0; i--)
-            {
-                _projectiles[i].Tick();
-            }
-            
             if (IsDead) return;
 
             TickActTimer();
@@ -55,24 +48,16 @@ namespace Gameplay.Units
 
         private void PerformAct()
         {
-            
+            View.PerformAct();
+            _service.Create<SimpleFollowProjectile>(this, Target, Stats.Damage);
+            ResetCooldown();
         }
 
         protected override bool NeedNewTarget() => Target == null || Target.IsDead;
-
-        private IEnumerator DoDamage(Transform target)
-        {
-            yield return new WaitForSeconds(2.5f);
-            Projectile.Projectile projectile = _pool.Get();
-            projectile.transform.position = Center;
-            projectile.Init(target, Stats.Damage, ProjectileOnHited);
-            _projectiles.Add(projectile);
-        }
-
-        private void ProjectileOnHited(Projectile.Projectile hited)
-        {
-            _projectiles.Remove(hited);
-            _pool.Collect(hited);
-        }
+        
+        protected override void SearchNewTarget() => Target = SearchTarget.For(this)
+                                                                          .SelectTargets(Side.Enemy)
+                                                                          .FilterBy(Strategy.Closest)
+                                                                          .FirstOrDefault();
     }
 }

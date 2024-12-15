@@ -39,8 +39,7 @@ namespace Infrastructure
 
         private T CreateInstance()
         {
-            var position = new Vector3(0, 1000, 0);
-            var instance = Object.Instantiate(_prefab, position, Quaternion.identity);
+            var instance = Object.Instantiate(_prefab, new Vector3(0, 1000, 0), Quaternion.identity);
             instance.Collect();
             return instance;
         }
