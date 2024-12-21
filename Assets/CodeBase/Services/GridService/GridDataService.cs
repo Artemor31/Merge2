@@ -4,6 +4,7 @@ using Databases.Data;
 using Gameplay.Grid;
 using Gameplay.Units;
 using Services.Infrastructure;
+using Services.SaveProgress;
 using UnityEngine;
 
 namespace Services.GridService
@@ -16,18 +17,18 @@ namespace Services.GridService
 
         private readonly Vector2Int _gridSize = new(3, 5);
         private readonly SaveService _saveService;
-        private GridData _gridData;
+        private GridProgress _gridProgress;
         private Platform[,] _platforms;
 
         public GridDataService(SaveService saveService) => _saveService = saveService;
-        public ActorData ActorDataAt(int i, int j) => _gridData.UnitIds[i, j];
+        public ActorData ActorDataAt(int i, int j) => _gridProgress.UnitIds[i, j];
         public Platform GetDataAt(Vector2Int selected) => _platforms[selected.x, selected.y];
 
         public void InitPlatforms(Platform[,] platforms)
         {
             _platforms = platforms;
-            _gridData = _saveService.Restore<GridData>(SavePath);
-            _gridData.UnitIds ??= new ActorData[_gridSize.x, _gridSize.y];
+            _gridProgress = _saveService.Restore<GridProgress>(SavePath);
+            _gridProgress.UnitIds ??= new ActorData[_gridSize.x, _gridSize.y];
         }
         
         public bool HasFreePlatform(out Platform platform)
@@ -52,10 +53,10 @@ namespace Services.GridService
         {
             DoForeach((i, j) =>
             {
-                _gridData.UnitIds[i, j] = _platforms[i, j].Busy ? _platforms[i, j].Actor.Data : ActorData.None;
+                _gridProgress.UnitIds[i, j] = _platforms[i, j].Busy ? _platforms[i, j].Actor.Data : ActorData.None;
             });
             
-            _saveService.Save(SavePath, _gridData);
+            _saveService.Save(SavePath, _gridProgress);
         }
 
         private List<Actor> GetPlayerUnits()

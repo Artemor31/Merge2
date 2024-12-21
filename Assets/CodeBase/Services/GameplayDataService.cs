@@ -1,5 +1,6 @@
 ﻿using System;
 using Services.Infrastructure;
+using Services.SaveProgress;
 
 namespace Services
 {
@@ -10,13 +11,13 @@ namespace Services
         public int Gold => _progress.Money;
 
         private const string PlayerData = "GameplayData";
-        private readonly GameplayData _progress;
+        private readonly GameplayProgress _progress;
         private readonly SaveService _saveService;
 
         public GameplayDataService(SaveService saveService)
         {
             _saveService = saveService;
-            _progress = _saveService.Restore<GameplayData>(PlayerData);
+            _progress = _saveService.Restore<GameplayProgress>(PlayerData);
         }
 
         public void CompleteLevel()
@@ -43,12 +44,5 @@ namespace Services
         }
 
         private void Save() => _saveService.Save(PlayerData, _progress);
-    }
-    
-    [Serializable]
-    public class GameplayData
-    {
-        public int Money = 100;
-        public int Wave;
     }
 }

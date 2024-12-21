@@ -8,11 +8,11 @@ namespace UI.UpgradeWindow
     public class UpgradeItemPresenter : Presenter
     {
         [SerializeField] private Image _icon;
-        [SerializeField] private TextMeshProUGUI _header;
-        [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private Button _buy;
         [SerializeField] private TextMeshProUGUI _cost;
-        
+        [SerializeField] private TextMeshProUGUI _header;
+        [SerializeField] private TextMeshProUGUI _description;
+
         private ActorConfig _config;
         private UpgradeDataService _dataService;
 
@@ -36,7 +36,7 @@ namespace UI.UpgradeWindow
         }
 
         private void OnEnable() => _buy.onClick.AddListener(Buy);
-        private void SetDescription() => _description.text = "current buff is +" + _dataService.LevelOf(_config.Name);
+        private void SetDescription() => _description.text = "current level is " + _dataService.LevelOf(_config.Name);
         private void SetCost() => _cost.text = _dataService.GetUpgradeCost(_config.Name).ToString();
         private void OnDisable() => _buy.onClick.RemoveListener(Buy);
     }

@@ -1,25 +1,18 @@
-﻿using System;
+﻿using Infrastructure;
+using Services.Resources;
 using UnityEngine;
 
 namespace UI.UpgradeWindow
 {
-
-    [Serializable]
-    public class UpgradeProgress
-    {
-        public UpgradeProgressPair[] UpgradesProgress;
-    }
-    
-    [Serializable]
-    public class UpgradeProgressPair
-    {
-        public string Id;
-        public int Level;
-    }
-
     public class UpgradeShopPresenter : Presenter
     {
-        [SerializeField] private UpgradeItemPresenter _itemPresenter;
+        [SerializeField] private UpgradeItemPresenter _prefab;
         [SerializeField] private RectTransform _parent;
+        private AssetsProvider _assetsProvider;
+
+        public override void Init()
+        {
+            _assetsProvider = ServiceLocator.Resolve<AssetsProvider>();
+        }
     }
 }

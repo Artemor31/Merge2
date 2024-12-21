@@ -1,5 +1,6 @@
 ﻿using System;
 using Services.Infrastructure;
+using Services.SaveProgress;
 
 namespace Services
 {
@@ -11,12 +12,12 @@ namespace Services
         public int Coins => _progress.Coins;
         
         private readonly SaveService _saveService;
-        private readonly PersistantData _progress;
+        private readonly PersistantProgress _progress;
 
         public PersistantDataService(SaveService saveService)
         {
             _saveService = saveService;
-            _progress = _saveService.Restore<PersistantData>(SavePath);
+            _progress = _saveService.Restore<PersistantProgress>(SavePath);
         }
 
         public void AddCoins(int value)
@@ -37,11 +38,5 @@ namespace Services
         }
 
         private void Save() => _saveService.Save(SavePath, _progress);
-    }
-
-    [Serializable]
-    public class PersistantData
-    {
-        public int Coins = 10;
     }
 }
