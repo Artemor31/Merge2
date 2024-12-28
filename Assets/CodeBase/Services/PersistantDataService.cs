@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Databases;
 using Services.Infrastructure;
 using Services.SaveProgress;
 
@@ -38,5 +40,7 @@ namespace Services
         }
 
         private void Save() => _saveService.Save(SavePath, _progress);
+        public bool IsOpened(Mastery mastery) => _progress.Masteries.Select(progressMastery => progressMastery == mastery).FirstOrDefault();
+        public bool IsOpened(Race race) => _progress.Races.Select(progressRace => progressRace == race).FirstOrDefault();
     }
 }

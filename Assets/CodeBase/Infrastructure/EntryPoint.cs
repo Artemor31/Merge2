@@ -7,6 +7,7 @@ using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;
 using UI;
+using UI.UpgradeWindow;
 using UnityEngine;
 
 namespace Infrastructure
@@ -45,7 +46,7 @@ namespace Infrastructure
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
             GameplayDataService gameplayService = new(saveService);
-            PersistantDataService presistantDataService = new(saveService);
+            PersistantDataService persistantDataService = new(saveService);
             GridDataService gridDataService = new(saveService);
 
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService);
@@ -62,6 +63,7 @@ namespace Infrastructure
             BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
+            UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -81,9 +83,10 @@ namespace Infrastructure
             ServiceLocator.Bind(gameplayService);
             ServiceLocator.Bind(buffService);
             ServiceLocator.Bind(buffViewService);
-            ServiceLocator.Bind(presistantDataService);
+            ServiceLocator.Bind(persistantDataService);
             ServiceLocator.Bind(searchTargetService);
             ServiceLocator.Bind(projectileService);
+            ServiceLocator.Bind(upgradeDataService);
 
             _windowsService.InitWindows();
 

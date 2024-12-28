@@ -6,6 +6,8 @@ namespace Gameplay.Units.Projectiles
     {
         public override void Tick()
         {
+            if (Target == null) return;
+            
             Vector3 center = Target.transform.position + Vector3.up;
             transform.LookAt(center);
             transform.Translate(Vector3.forward * Time.deltaTime * Data.MoveSpeed);

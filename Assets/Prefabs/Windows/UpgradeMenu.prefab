@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98929956bf1b4ef694093ee91a77f107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemPresenter: {fileID: 927668936195422818, guid: 66166e3ea922a3d4d8adc2f54c7fd743, type: 3}
+  _prefab: {fileID: 927668936195422818, guid: 66166e3ea922a3d4d8adc2f54c7fd743, type: 3}
   _parent: {fileID: 4781824606772055163}
-  _coins: {fileID: 858356412293157590}
+  _closeButton: {fileID: 8560209268156926379}
 --- !u!1 &1563856298018418156
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 612.93, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4142171159411754985
@@ -637,7 +637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 163.535, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 160}
   m_Pivot: {x: 0.5, y: 0.50000006}
 --- !u!222 &9041839517459848488

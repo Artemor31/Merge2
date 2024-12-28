@@ -13,14 +13,14 @@ namespace Databases
         [SerializeField] private string _assetsPath;
         [SerializeField] public List<ActorConfig> Units;
 
-        public ActorConfig ConfigFor(ActorData actorData) => Units.FirstOrDefault(data => data.Data == actorData);
         public ActorConfig ConfigFor(int level) => Units.Random(u => u.Data.Level == level);
+        public ActorConfig ConfigFor(ActorData actorData) => Units.FirstOrDefault(data => data.Data == actorData);
 
         public List<ActorConfig> ConfigsFor(int level, Race[] races, Mastery[] masteries) => Units
-            .Where(u => u.Data.Level == level)
-            .Where(u => races.Contains(u.Data.Race))
-            .Where(u => masteries.Contains(u.Data.Mastery))
-            .ToList();     
+                                                                                             .Where(u => u.Data.Level == level)
+                                                                                             .Where(u => races.Contains(u.Data.Race))
+                                                                                             .Where(u => masteries.Contains(u.Data.Mastery))
+                                                                                             .ToList();     
 
         [Button]
         public void CollectData()

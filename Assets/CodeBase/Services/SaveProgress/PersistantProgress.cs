@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Databases;
+using System;
 
 namespace Services.SaveProgress
 {
@@ -7,16 +9,20 @@ namespace Services.SaveProgress
     public class PersistantProgress
     {
         public int Coins;
-        public string[] OpenIds;
+        public List<Mastery> Masteries;
+        public List<Race> Races;
 
         public PersistantProgress()
         {
             Coins = 10;
-            OpenIds = new[]
-            {
-                $"{Race.Human.ToString()}{Mastery.Warrior}", 
-                $"{Race.Human.ToString()}{Mastery.Ranger}"
-            };
+            Masteries = new List<Mastery> {Mastery.Ranger, Mastery.Warrior};
+            Races = new List<Race> {Race.Human};
+        }
+
+        public void Serialize()
+        {
+            List<string> ids = Masteries.Select(mastery => mastery.ToString()).ToList();
+            ids.AddRange(Races.Select(race => race.ToString()));
         }
     }
 }

@@ -13,13 +13,13 @@ namespace UI.UpgradeWindow
         [SerializeField] private TextMeshProUGUI _header;
         [SerializeField] private TextMeshProUGUI _description;
 
-        private ActorConfig _config;
+        private UpgradeData _config;
         private UpgradeDataService _dataService;
 
-        public void SetData(ActorConfig config, UpgradeDataService dataService)
+        public void SetData(UpgradeData config, UpgradeDataService dataService)
         {
             _config = config;
-            _icon.sprite = config.ViewData.Icon;
+            _icon.sprite = config.Icon;
             _header.text = config.Name;
             _dataService = dataService;
             SetCost();
@@ -37,7 +37,7 @@ namespace UI.UpgradeWindow
 
         private void OnEnable() => _buy.onClick.AddListener(Buy);
         private void SetDescription() => _description.text = "current level is " + _dataService.LevelOf(_config.Name);
-        private void SetCost() => _cost.text = _dataService.GetUpgradeCost(_config.Name).ToString();
+        private void SetCost() => _cost.text = _dataService.GetUpgradeLevel(_config.Name).ToString();
         private void OnDisable() => _buy.onClick.RemoveListener(Buy);
     }
 }

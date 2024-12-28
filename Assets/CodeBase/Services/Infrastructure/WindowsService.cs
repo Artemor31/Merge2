@@ -19,16 +19,16 @@ namespace Services.Infrastructure
 
         public void Show<T>() where T : Presenter
         {
-            _windows.First(w => w.GetType() == typeof(T))
-                    .gameObject
-                    .SetActive(true);
+            Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
+            presenter.OnShow();
+            presenter.gameObject.SetActive(true);
         }
 
         public void Close<T>()
         {
-            _windows.First(w => w.GetType() == typeof(T))
-                    .gameObject
-                    .SetActive(false);
+            Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
+            presenter.OnHide();
+            presenter.gameObject.SetActive(false);
         }
     }
 }
