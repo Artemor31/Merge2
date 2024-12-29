@@ -32,8 +32,8 @@ namespace Services.GridService
 
         public void CreatePlayerField()
         {
-            _gameFactory.CreateGridView();
             var platforms = _gameFactory.CreatePlatforms(_gridSize);
+            _gameFactory.CreateGridView();
             _dataService.InitPlatforms(platforms);
 
             for (int i = 0; i < platforms.GetLength(0); i++)
@@ -48,6 +48,8 @@ namespace Services.GridService
                     }
                 }
             }
+            
+            OnPlayerFieldChanged?.Invoke();
         }
 
         public bool CanAddUnit() => _dataService.HasFreePlatform(out Platform _);

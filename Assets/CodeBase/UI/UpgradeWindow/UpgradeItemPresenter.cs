@@ -37,7 +37,7 @@ namespace UI.UpgradeWindow
 
         private void OnEnable() => _buy.onClick.AddListener(Buy);
         private void SetDescription() => _description.text = "current level is " + _dataService.LevelOf(_config.Name);
-        private void SetCost() => _cost.text = _dataService.GetUpgradeLevel(_config.Name).ToString();
+        private void SetCost() => _cost.text = _dataService.CalculateCostForLevel(_dataService.LevelOf(_config.Name)).ToString();
         private void OnDisable() => _buy.onClick.RemoveListener(Buy);
     }
 }

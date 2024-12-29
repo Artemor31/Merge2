@@ -1,15 +1,14 @@
-﻿using UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Services.Buffs;
 using Services.GridService;
 using Services.Infrastructure;
-using UnityEngine;
+using UI.UpgradeWindow;
 
 namespace Services.StateMachine
 {
     public class GameStateMachine : IService
     {
-        public event Action<IState> OnStateChanged;
         private readonly Dictionary<Type, IState> _states;
         private IState _currentState;
 
@@ -19,7 +18,9 @@ namespace Services.StateMachine
                                 GridDataService gridDataService,
                                 GridDataService service,
                                 GameplayDataService gameplayData,
-                                GridLogicService gridLogicService)
+                                GridLogicService gridLogicService,
+                                BuffService buffService,
+                                UpgradeDataService upgradeDataService)
         {
             _states = new Dictionary<Type, IState>
             {
@@ -27,7 +28,7 @@ namespace Services.StateMachine
                 {typeof(MenuState), new MenuState(this, windowsService)},
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
-                {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder)},
+                {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService)},
                 {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData)},
             };
         }
@@ -41,7 +42,6 @@ namespace Services.StateMachine
             
             _currentState = _states[typeof(T)];
             _currentState.Enter();
-            OnStateChanged?.Invoke(_currentState);
         }
         
         public void Enter<T, TParam>(TParam param) where T : IState
@@ -53,7 +53,6 @@ namespace Services.StateMachine
 
             _currentState = _states[typeof(T)];
             ((IState<TParam>)_currentState).Enter(param);          
-            OnStateChanged?.Invoke(_currentState);
         }
     }
 }

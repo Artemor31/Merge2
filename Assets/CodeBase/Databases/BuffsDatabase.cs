@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Infrastructure;
-using Services.BuffService.Components;
+using Services.Buffs.Components;
 using UnityEngine;
 
 namespace Databases

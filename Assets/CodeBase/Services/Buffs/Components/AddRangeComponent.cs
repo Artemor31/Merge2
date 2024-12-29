@@ -1,6 +1,6 @@
 ﻿using Gameplay.Units;
 
-namespace Services.BuffService.Components
+namespace Services.Buffs.Components
 {
     public class AddRangeComponent : BuffComponent
     {

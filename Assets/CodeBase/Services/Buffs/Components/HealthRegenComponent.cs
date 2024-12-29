@@ -3,7 +3,7 @@ using Gameplay.Units;
 using Gameplay.Units.Healths;
 using UnityEngine;
 
-namespace Services.BuffService.Components
+namespace Services.Buffs.Components
 {
     public class HealthRegenComponent : BuffComponent
     {

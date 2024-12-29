@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Databases;
-using Infrastructure;
+using Gameplay.Units;
 using Services;
 using Services.Infrastructure;
 using Services.SaveProgress;
@@ -27,7 +27,7 @@ namespace UI.UpgradeWindow
         public bool TryProgress(string id)
         {
             UpgradeProgressPair upgrade = _progress.Pairs.First(p => p.Id == id);
-            int cost = GetUpgradeCost(upgrade.Level + 1);
+            int cost = CalculateCostForLevel(upgrade.Level + 1);
             
             if (_persistantDataService.TryBuy(cost))
             {
@@ -39,10 +39,23 @@ namespace UI.UpgradeWindow
             return false;
         }
         
-        public IEnumerable<Race> GetAllRaces() => Extensions.AsCollection<Race>().Where(race => race != Race.None);
-        public IEnumerable<Mastery> GetAllMasteries() => Extensions.AsCollection<Mastery>().Where(race => race != Mastery.None);
-        public int LevelOf(string id) => _progress.Pairs.First(p => p.Id == id).Level;
-        public int GetUpgradeLevel(string id) => GetUpgradeCost(_progress.Progress(id).Level);
-        private int GetUpgradeCost(float x) => (int)(Math.Log10(x + 1) * 2 + x / 6);
+        public int LevelOf(string id) => _progress.Progress(id).Level;
+
+        public int CalculateCostForLevel(float x) => (int)(Math.Log10(x + 1) * 2 + x / 6);
+
+        public void IncrementStats(List<Actor> units)
+        {
+            foreach (Actor unit in units)
+            {
+                ActorStats stats = unit.Stats;
+                float coeff = 1.0f
+                              + 0.01f * LevelOf(unit.Data.Mastery.ToString())
+                              + 0.01f * LevelOf(unit.Data.Race.ToString());
+                
+                stats.Damage *= coeff;
+                stats.Health *= coeff;
+                unit.Stats = stats;
+            }
+        }
     }
 }

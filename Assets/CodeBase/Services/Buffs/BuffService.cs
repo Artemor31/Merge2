@@ -1,12 +1,14 @@
 ﻿using System;
-using Databases;
-using System.Linq;
-using Gameplay.Units;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Databases;
+using Gameplay.Units;
+using Services.GridService;
 using Services.Infrastructure;
 using Services.Resources;
 
-namespace Services.BuffService
+namespace Services.Buffs
 {
     public class BuffService : IService
     {
@@ -14,15 +16,49 @@ namespace Services.BuffService
         private List<BuffConfig> _activeConfigs;
         private Dictionary<Race, int> _races = new();
         private Dictionary<Mastery, int> _masteries = new();
+        private readonly GridDataService _gridService;
+        private readonly GameplayDataService _gameplayService;
+        private readonly WaveBuilder _waveBuilder;
+        private readonly GridDataService _gridDataService;
 
-        public BuffService(DatabaseProvider databaseProvider)
+        public BuffService(DatabaseProvider databaseProvider, GridDataService gridDataService)
         {
             _configs = databaseProvider.GetDatabase<BuffsDatabase>().BuffConfigs;
+            _gridDataService = gridDataService;
+
             FillDictionary(_races);
             FillDictionary(_masteries);
         }
+        
+        // change this to ecs like thing
+        // create pool of active systems, that itereate through actors and do smth
+        // anyway, move away grom using monobehaviours and addComponent things
 
-        public List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
+        public void ApplyBuffs(ICollection<Actor> actors)
+        {
+            foreach (BuffConfig buffConfig in _activeConfigs)
+            {
+                foreach (var actor in actors)
+                {
+                    actor.gameObject.AddComponent(buffConfig.Behaviour.Type);
+                }
+            }
+        }
+
+        public string CreteDescription()
+        {
+            StringBuilder stringBuilder = new();
+            List<BuffConfig> buffs = CalculateBuffs(_gridDataService.PlayerUnits);
+            foreach (BuffConfig buff in buffs)
+            {
+                stringBuilder.Append(buff.Description);
+                stringBuilder.Append("\r\n");
+            }
+            
+            return stringBuilder.ToString();
+        }
+
+        private List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
         {
             Clear();
 
@@ -48,20 +84,6 @@ namespace Services.BuffService
 
             _activeConfigs = active;
             return _activeConfigs;
-        }
-
-        // change this to ecs like thing
-        // create pool of active systems, that itereate through actors and do smth
-        // anyway, move away grom using monobehaviours and addComponent things
-        public void ApplyBuffs(ICollection<Actor> actors)
-        {
-            foreach (BuffConfig buffConfig in _activeConfigs)
-            {
-                foreach (var actor in actors)
-                {
-                    actor.gameObject.AddComponent(buffConfig.Behaviour.Type);
-                }
-            }
         }
 
         private void Clear()

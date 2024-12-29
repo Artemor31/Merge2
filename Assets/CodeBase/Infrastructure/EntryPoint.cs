@@ -1,7 +1,7 @@
 ﻿using System;
 using Gameplay.Units;
 using Services;
-using Services.BuffService;
+using Services.Buffs;
 using Services.GridService;
 using Services.Infrastructure;
 using Services.Resources;
@@ -55,15 +55,16 @@ namespace Infrastructure
             GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, gameplayService);
             MergeService mergeService = new(databaseProvider, gridLogicService);
             GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
+            BuffService buffService = new(databaseProvider, gridDataService);
+            UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
             
-            GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gridDataService, gameplayService, gridLogicService);
-
-            BuffService buffService = new(databaseProvider);
-            BuffViewService buffViewService = new(buffService, gridLogicService, stateMachine, gridDataService);
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
-            UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
+            
+            GameStateMachine stateMachine = 
+                new(sceneLoader, _windowsService, waveBuilder, 
+                gridDataService, gridDataService, gameplayService, 
+                gridLogicService, buffService, upgradeDataService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -82,7 +83,6 @@ namespace Infrastructure
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(gameplayService);
             ServiceLocator.Bind(buffService);
-            ServiceLocator.Bind(buffViewService);
             ServiceLocator.Bind(persistantDataService);
             ServiceLocator.Bind(searchTargetService);
             ServiceLocator.Bind(projectileService);

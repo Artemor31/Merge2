@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Services.BuffService.Components
+namespace Services.Buffs.Components
 {
     public abstract class BuffComponent : MonoBehaviour
     {
