@@ -10,6 +10,7 @@ namespace UI.ResultWindow
     {
         [SerializeField] private TextMeshProUGUI _moneyText;
         [SerializeField] private Button _nextLevel;
+        [SerializeField] private Button _showAds;
 
         private GameStateMachine _gameStateMachine;
 

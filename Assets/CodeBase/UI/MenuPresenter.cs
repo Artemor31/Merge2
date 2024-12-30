@@ -1,7 +1,6 @@
 ﻿using Infrastructure;
 using Services.Infrastructure;
 using Services.StateMachine;
-using TMPro;
 using UI.UpgradeWindow;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +9,6 @@ namespace UI
 {
     public class MenuPresenter : Presenter
     {
-        [SerializeField] private TMP_Text _playerName;
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _upgradeButton;
         
