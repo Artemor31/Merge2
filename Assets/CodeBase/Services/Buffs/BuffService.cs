@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Databases;
 using Gameplay.Units;
 using Services.GridService;
@@ -19,13 +18,10 @@ namespace Services.Buffs
         private readonly GridDataService _gridService;
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
-        private readonly GridDataService _gridDataService;
 
-        public BuffService(DatabaseProvider databaseProvider, GridDataService gridDataService)
+        public BuffService(DatabaseProvider databaseProvider)
         {
             _configs = databaseProvider.GetDatabase<BuffsDatabase>().BuffConfigs;
-            _gridDataService = gridDataService;
-
             FillDictionary(_races);
             FillDictionary(_masteries);
         }
@@ -44,21 +40,8 @@ namespace Services.Buffs
                 }
             }
         }
-
-        public string CreteDescription()
-        {
-            StringBuilder stringBuilder = new();
-            List<BuffConfig> buffs = CalculateBuffs(_gridDataService.PlayerUnits);
-            foreach (BuffConfig buff in buffs)
-            {
-                stringBuilder.Append(buff.Description);
-                stringBuilder.Append("\r\n");
-            }
-            
-            return stringBuilder.ToString();
-        }
-
-        private List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
+        
+        public List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
         {
             Clear();
 

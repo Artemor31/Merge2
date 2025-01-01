@@ -4,6 +4,7 @@ using Gameplay.Grid;
 using Infrastructure;
 using Services;
 using Services.GridService;
+using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;
 using TMPro;
@@ -17,8 +18,10 @@ namespace UI.GameplayWindow
         [SerializeField] public Transform UnitsParent;
         [SerializeField] public Button StartWaveButton;
         [SerializeField] public Button GreedButton;
+        [SerializeField] public Button ShowBuffsButton;
         [SerializeField] public TMP_Text Money;
         [SerializeField] public ActorMenuPresenter ActorMenu;
+        [SerializeField] public BuffInfoPresenter BuffPresenter;
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GridViewService _gridViewService;
@@ -26,9 +29,9 @@ namespace UI.GameplayWindow
         private GameStateMachine _stateMachine;
         private GridLogicService _gridService;
         private UnitsDatabase _unitsDatabase;
+        private CameraService _cameraService;
         private UnitCard _cardPrefab;
         private bool _refreshed;
-        private CameraService _cameraService;
 
         public override void Init()
         {
@@ -42,12 +45,19 @@ namespace UI.GameplayWindow
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);
+            ShowBuffsButton.onClick.AddListener(BuffsClicked);
 
             _gridViewService.OnPlatformClicked += OnPlatformClicked;
             _gridViewService.OnPlatformPressed += OnPlatformPressed;
             _gameplayService.OnMoneyChanged += OnMoneyChanged;
             OnMoneyChanged(_gameplayService.Gold);
             CreatePlayerCards();
+        }
+
+        private void BuffsClicked()
+        {
+            BuffPresenter.gameObject.SetActive(!BuffPresenter.gameObject.activeInHierarchy);
+            BuffPresenter.OnShow();
         }
 
         private void OnPlatformClicked(Platform platform)
@@ -62,7 +72,7 @@ namespace UI.GameplayWindow
 
         private void OnPlatformPressed(Platform platform) => ActorMenu.Hide();
         private void AddMoney() => _gameplayService.AddMoney(50);
-        private void OnMoneyChanged(int money) => Money.text = "Money: " + money;
+        private void OnMoneyChanged(int money) => Money.text = money.ToString();
 
         private void CreatePlayerCards()
         {
