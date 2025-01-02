@@ -20,7 +20,7 @@ Shader "SyntyStudios/CustomCharacter"
 		_Texture("Texture", 2D) = "white" {}
 		_Metallic("Metallic", Range( 0 , 1)) = 0
 		_Smoothness("Smoothness", Range( 0 , 1)) = 0
-		_Emission("Emission", Range( 0 , 1)) = 0
+		_Emission("Emission", Range( 0 , 1)) = 0.5
 		_BodyArt_Amount("BodyArt_Amount", Range( 0 , 1)) = 0
 		[HideInInspector]_Mask_02("Mask_02", 2D) = "white" {}
 		[HideInInspector]_Mask_05("Mask_05", 2D) = "white" {}

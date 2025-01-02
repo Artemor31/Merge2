@@ -88,8 +88,6 @@ namespace Infrastructure
             ServiceLocator.Bind(projectileService);
             ServiceLocator.Bind(upgradeDataService);
 
-            _windowsService.InitWindows();
-
             // game pipeline
             
             // menu

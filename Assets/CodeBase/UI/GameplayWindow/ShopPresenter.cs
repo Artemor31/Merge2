@@ -72,6 +72,9 @@ namespace UI.GameplayWindow
 
         private void OpenActorShop()
         {
+            _selectedStars = 1;
+            TryBuyUnit();
+            return;
             _unitShop.SetActive(true);
             _stars.ForEach(s => s.color = Color.black);
             _stars[0].color = Color.white;

@@ -24,7 +24,7 @@ namespace Services.StateMachine
         {
             _states = new Dictionary<Type, IState>
             {
-                {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
+                {typeof(BootstrapState), new BootstrapState(this, sceneLoader, windowsService)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},

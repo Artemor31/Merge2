@@ -3,6 +3,7 @@ using Gameplay.Units;
 using Services.Buffs;
 using Services.GridService;
 using UI.UpgradeWindow;
+using UnityEngine;
 
 namespace Services.StateMachine
 {
@@ -16,7 +17,6 @@ namespace Services.StateMachine
         private readonly UpgradeDataService _upgradeDataService;
 
         private int _profit;
-        private bool _isWin;
 
         public GameLoopState(GameStateMachine gameStateMachine,
                              GridDataService gridService, 
@@ -40,7 +40,6 @@ namespace Services.StateMachine
             _buffService.ApplyBuffs(_gridService.PlayerUnits);
             _upgradeDataService.IncrementStats(_gridService.PlayerUnits);
             
-
             foreach (Actor actor in _gridService.PlayerUnits)
             {
                 actor.Died += OnAllyDied;
@@ -67,16 +66,18 @@ namespace Services.StateMachine
 
         private void OnAllyDied()
         {
-            if (_gridService.PlayerUnits.Any(a => !a.IsDead)) return;
-            _isWin = false;
-            _gameStateMachine.Enter<ResultScreenState, bool>(_isWin);
+            if (_gridService.PlayerUnits.All(a => a.IsDead))
+            {
+                _gameStateMachine.Enter<ResultScreenState, bool>(false);
+            }
         }
 
         private void OnEnemyDied()
         {
-            if (_waveBuilder.EnemyUnits.Any(a => !a.IsDead)) return;
-            _isWin = true;
-            _gameStateMachine.Enter<ResultScreenState, bool>(_isWin);
+            if (_waveBuilder.EnemyUnits.All(a => a.IsDead))
+            {
+                _gameStateMachine.Enter<ResultScreenState, bool>(true);
+            }
         }
     }
 }

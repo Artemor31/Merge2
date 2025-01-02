@@ -5,7 +5,6 @@
         _LineColor ("Line Color", Color) = (1,1,1,1)
         _CellColor ("Cell Color", Color) = (0,0,0,0)
         _SelectedColor ("Selected Color", Color) = (1,0,0,1)
-        _AttackColor ("Selected Color", Color) = (0.7,0.5,0,0.3)
         [IntRange] _GridSizeX("Grid Size", Range(1,50)) = 10
         [IntRange] _GridSizeY("Grid Size", Range(1,50)) = 10
         _LineSize("Line Size", Range(0,1)) = 0.15
@@ -38,7 +37,6 @@
         float4 _LineColor;
         float4 _CellColor;
         float4 _SelectedColor;
-        float4 _AttackColor;
 
         float _GridSizeX;
         float _GridSizeY;
@@ -76,15 +74,9 @@
 
             float4 color = _CellColor;
             float brightness = _CellColor.w;
-
-            if (round(_SelectCell) == 1.0 && _SelectedCellX == id.x)
-            {
-                brightness = _AttackColor.w;
-                color = _AttackColor;
-            }
-
+            
             //This checks that the cell is currently selected if the Select Cell slider is set to 1 ( True )
-            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && (id.y == floor(gsize_y - _SelectedCellY - 1)))
+            if (round(_SelectCell) == 1.0 && id.x == _SelectedCellX && id.y == floor(gsize_y - _SelectedCellY - 1))
             {
                 brightness = _SelectedColor.w;
                 color = _SelectedColor;

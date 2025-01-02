@@ -1,7 +1,7 @@
 ﻿using Infrastructure;
 using Services.Infrastructure;
 using Services.StateMachine;
-using UI.UpgradeWindow;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +9,12 @@ namespace UI
 {
     public class MenuPresenter : Presenter
     {
-        [SerializeField] private Button _playButton;
-        [SerializeField] private Button _upgradeButton;
+        [SerializeField] private Button _fightButton;
+        [SerializeField] private Button _addHardButton;
+        [SerializeField] private Button _addSoftButton;
+        
+        [SerializeField] private TextMeshProUGUI _softText;
+        [SerializeField] private TextMeshProUGUI _hardText;
         
         private GameStateMachine _gameStateMachine;
         private WindowsService _windowService;
@@ -20,16 +24,13 @@ namespace UI
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _windowService = ServiceLocator.Resolve<WindowsService>();
 
-            _playButton.onClick.AddListener(PlayClicked);
-            _upgradeButton.onClick.AddListener(OpenUpgrades);
+            _fightButton.onClick.AddListener(PlayClicked);
         }
-
-        private void OpenUpgrades() => _windowService.Show<UpgradeShopPresenter>();
 
         private void PlayClicked()
         {
             gameObject.SetActive(false);
-            _playButton.onClick.RemoveListener(PlayClicked);
+            _fightButton.onClick.RemoveListener(PlayClicked);
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }

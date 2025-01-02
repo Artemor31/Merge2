@@ -48,7 +48,7 @@ namespace Gameplay.Units
             public ActorCollection(Actor owner, List<Actor> actors)
             {
                 _owner = owner;
-                _actors = actors ?? new List<Actor>();
+                _actors = actors == null ? new List<Actor>() : actors.ToList();
                 _actors.Remove(_owner);
             }
 

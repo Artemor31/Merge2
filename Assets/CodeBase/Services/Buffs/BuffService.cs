@@ -32,6 +32,11 @@ namespace Services.Buffs
 
         public void ApplyBuffs(ICollection<Actor> actors)
         {
+            if (_activeConfigs == null)
+            {
+                CalculateBuffs(actors);
+            }
+            
             foreach (BuffConfig buffConfig in _activeConfigs)
             {
                 foreach (var actor in actors)

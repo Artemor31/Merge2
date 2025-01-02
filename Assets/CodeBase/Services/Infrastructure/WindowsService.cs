@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UI;
 using UnityEngine;
 
@@ -15,6 +16,13 @@ namespace Services.Infrastructure
             {
                 presenter.Init();
             }
+        }
+
+        [Button]
+        public void FindPresenters()
+        {
+            _windows.Clear();
+            _windows = transform.GetComponentsInChildren<Presenter>().ToList();
         }
 
         public void Show<T>() where T : Presenter
