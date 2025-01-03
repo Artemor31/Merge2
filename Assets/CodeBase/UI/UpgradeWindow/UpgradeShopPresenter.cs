@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Databases;
 using Infrastructure;
-using NaughtyAttributes.Editor.PropertyValidators;
 using Services;
 using Services.Resources;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace UI.UpgradeWindow
         [SerializeField] private UpgradeItemPresenter _prefab;
         [SerializeField] private RectTransform _parent;
         private UpgradeDataService _upgradeService;
-        private ActorTypesDatabase _actorTypesDatabase;
+        private BuffsDatabase _actorTypesDatabase;
         private PersistantDataService _persistantService;
         private List<UpgradeItemPresenter> _presenters = new();
 
@@ -21,12 +20,12 @@ namespace UI.UpgradeWindow
         {
             _upgradeService = ServiceLocator.Resolve<UpgradeDataService>();
             _persistantService = ServiceLocator.Resolve<PersistantDataService>();
-            _actorTypesDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<ActorTypesDatabase>();
+            _actorTypesDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<BuffsDatabase>();
         }
 
         public override void OnShow()
         {
-            foreach (ActorTypeData data in _actorTypesDatabase.Datas)
+            foreach (BuffConfig data in _actorTypesDatabase.BuffConfigs)
             {
                 if (_persistantService.IsOpened(data.Mastery) || _persistantService.IsOpened(data.Race))
                 {
@@ -44,7 +43,7 @@ namespace UI.UpgradeWindow
             _presenters.Clear();
         }
 
-        private void CreateItem(ActorTypeData data)
+        private void CreateItem(BuffConfig data)
         {
             UpgradeItemPresenter presenter = Instantiate(_prefab, _parent);
             presenter.SetData(data, _upgradeService);

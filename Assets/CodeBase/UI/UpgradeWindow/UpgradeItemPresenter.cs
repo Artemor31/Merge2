@@ -14,10 +14,10 @@ namespace UI.UpgradeWindow
         [SerializeField] private TextMeshProUGUI _header;
         [SerializeField] private TextMeshProUGUI _description;
 
-        private ActorTypeData _config;
+        private BuffConfig _config;
         private UpgradeDataService _dataService;
 
-        public void SetData(ActorTypeData config, UpgradeDataService dataService)
+        public void SetData(BuffConfig config, UpgradeDataService dataService)
         {
             _config = config;
 

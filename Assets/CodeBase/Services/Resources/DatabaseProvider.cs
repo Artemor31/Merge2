@@ -14,8 +14,11 @@ namespace Services.Resources
             _databases = new();
 
             var databases = assetsProvider.LoadAll<Database>(AssetsPath.DatabasesFolder);
-            foreach (var database in databases) 
+            foreach (var database in databases)
+            {
+                database.Cache();
                 _databases.Add(database.GetType(), database);
+            }
         }
 
         public T GetDatabase<T>() where T : Database
