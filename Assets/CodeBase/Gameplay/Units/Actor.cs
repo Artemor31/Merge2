@@ -22,7 +22,7 @@ namespace Gameplay.Units
         protected ActorSkin View;
         protected float ActTimer;
         protected bool CooldownUp => ActTimer <= 0;
-        private Health _health;
+        protected Health _health;
 
         public virtual void Initialize(ActorSkin view, ActorData data, ActorStats stats)
         {
@@ -32,7 +32,7 @@ namespace Gameplay.Units
             View = view;
             SearchTarget = ServiceLocator.Resolve<SearchTargetService>();
 
-            _health = new Health(stats.Health);
+            _health = new Health(stats.Health, stats.Defence);
             _mover.Init(view, stats);
             enabled = false;
         }

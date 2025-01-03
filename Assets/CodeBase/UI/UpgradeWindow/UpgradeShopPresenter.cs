@@ -13,7 +13,7 @@ namespace UI.UpgradeWindow
         [SerializeField] private UpgradeItemPresenter _prefab;
         [SerializeField] private RectTransform _parent;
         private UpgradeDataService _upgradeService;
-        private UpgradesDatabase _upgradesDatabase;
+        private ActorTypesDatabase _actorTypesDatabase;
         private PersistantDataService _persistantService;
         private List<UpgradeItemPresenter> _presenters = new();
 
@@ -21,12 +21,12 @@ namespace UI.UpgradeWindow
         {
             _upgradeService = ServiceLocator.Resolve<UpgradeDataService>();
             _persistantService = ServiceLocator.Resolve<PersistantDataService>();
-            _upgradesDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UpgradesDatabase>();
+            _actorTypesDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<ActorTypesDatabase>();
         }
 
         public override void OnShow()
         {
-            foreach (UpgradeData data in _upgradesDatabase.Datas)
+            foreach (ActorTypeData data in _actorTypesDatabase.Datas)
             {
                 if (_persistantService.IsOpened(data.Mastery) || _persistantService.IsOpened(data.Race))
                 {
@@ -44,7 +44,7 @@ namespace UI.UpgradeWindow
             _presenters.Clear();
         }
 
-        private void CreateItem(UpgradeData data)
+        private void CreateItem(ActorTypeData data)
         {
             UpgradeItemPresenter presenter = Instantiate(_prefab, _parent);
             presenter.SetData(data, _upgradeService);

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Gameplay.Units.Healths;
+using UnityEngine;
 
 namespace Gameplay.Units
 {
@@ -32,11 +33,20 @@ namespace Gameplay.Units
                 }
             }
         }
-        
+
         private void PerformAct()
         {
             View.PerformAct();
-            Target.ChangeHealth(Stats.Damage, HealthContext.Damage);
+            float damage = Random.Range(0, 1f) <= Stats.CritChance
+                ? Stats.Damage * (1 + Stats.CritValue)
+                : Stats.Damage;
+            
+            Target.ChangeHealth(damage, HealthContext.Damage);
+            if (Stats.Vampirism > 0)
+            {
+                ChangeHealth(damage * Stats.Vampirism, HealthContext.Heal);
+            }
+
             ResetCooldown();
         }
 

@@ -28,6 +28,10 @@ namespace Databases
     {
         public float Health;
         public float Damage;
+        public float CritChance;
+        public float CritValue;
+        public float Vampirism;
+        public float Defence;
         public float Range;
         public float ActCooldown;
         public float MoveSpeed;

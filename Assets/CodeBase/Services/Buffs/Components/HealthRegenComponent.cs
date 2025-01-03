@@ -7,15 +7,18 @@ namespace Services.Buffs.Components
 {
     public class HealthRegenComponent : BuffComponent
     {
-        private int _regen;
-        private Actor _actor;
+        private const float RegenValue = 0.05f / 3;
+        private const float Seconds = 1f / 3;
+
         private WaitForSeconds _waitForSeconds;
+        private Actor _actor;
+        private int _regen;
 
         private void OnEnable()
         {
             _actor = GetComponent<Actor>();
-            _waitForSeconds = new WaitForSeconds(1);
-            _regen = (int)(_actor.Stats.Health * 0.05f);
+            _waitForSeconds = new WaitForSeconds(Seconds);
+            _regen = (int)(_actor.Stats.Health * RegenValue);
             StartCoroutine(HealthRegen());
         }
 

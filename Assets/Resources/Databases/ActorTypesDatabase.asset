@@ -9,7 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0484fe684da424a8a4ebc2cedab6ca7, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dcacfeaa2bb4ccfbf23e781d2b25e23, type: 3}
   m_Name: ActorTypesDatabase
   m_EditorClassIdentifier: 
-  _configs: []
+  Datas:
+  - Icon: {fileID: 21300006, guid: a50747b7090647445a1aa71f3aefd771, type: 3}
+    Mastery: 1
+    Race: 0
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 2
+    Race: 0
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 3
+    Race: 0
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 4
+    Race: 0
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 0
+    Race: 1
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 0
+    Race: 2
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 0
+    Race: 3
+  - Icon: {fileID: 21300000, guid: ecd359c045351424082d2ba03ec132df, type: 3}
+    Mastery: 0
+    Race: 4

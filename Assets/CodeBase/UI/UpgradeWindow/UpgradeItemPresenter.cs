@@ -9,21 +9,39 @@ namespace UI.UpgradeWindow
     {
         [SerializeField] private Image _icon;
         [SerializeField] private Button _buy;
+        [SerializeField] private TextMeshProUGUI _iconName;
         [SerializeField] private TextMeshProUGUI _cost;
         [SerializeField] private TextMeshProUGUI _header;
         [SerializeField] private TextMeshProUGUI _description;
 
-        private UpgradeData _config;
+        private ActorTypeData _config;
         private UpgradeDataService _dataService;
 
-        public void SetData(UpgradeData config, UpgradeDataService dataService)
+        public void SetData(ActorTypeData config, UpgradeDataService dataService)
         {
             _config = config;
-            _icon.sprite = config.Icon;
+
             _header.text = config.Name;
             _dataService = dataService;
+            SetIcon();
             SetCost();
             SetDescription();
+        }
+
+        private void SetIcon()
+        {
+            if (_config.Icon != null)
+            {
+                _icon.sprite = _config.Icon;
+                _icon.enabled = true;
+                _iconName.enabled = false;
+            }
+            else
+            {
+                _iconName.text = _config.Name;
+                _icon.enabled = false;
+                _iconName.enabled = true;
+            }
         }
 
         private void Buy()

@@ -51,7 +51,11 @@ namespace Gameplay.Units
         private void PerformAct()
         {
             View.PerformAct();
-            _service.Create(_projectileType, this, Target, Stats.Damage);
+            float damage = Random.Range(0, 1f) <= Stats.CritChance
+                ? Stats.Damage * (1 + Stats.CritValue)
+                : Stats.Damage;
+            _service.Create(_projectileType, this, Target, damage);
+            
             ResetCooldown();
         }
 
