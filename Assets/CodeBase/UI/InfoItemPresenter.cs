@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.UpgradeWindow
+namespace UI
 {
     public class InfoItemPresenter : Presenter
     {

@@ -11,9 +11,7 @@ namespace Services.StateMachine
         private readonly GridDataService _gridData;
         private readonly GameplayDataService _gameplayService;
 
-        public ResultScreenState(WindowsService windowsService,
-                                 GridDataService gridData,
-                                 GameplayDataService gameplayService)
+        public ResultScreenState(WindowsService windowsService, GridDataService gridData, GameplayDataService gameplayService)
         {
             _windowsService = windowsService;
             _gridData = gridData;
@@ -23,6 +21,7 @@ namespace Services.StateMachine
         public void Enter(bool isWin)
         {
             _gridData.Save();
+            
             if (isWin)
             {
                 _windowsService.Show<WinResultPresenter>();

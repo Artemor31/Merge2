@@ -1,9 +1,10 @@
 ﻿using Infrastructure;
 using Services.Infrastructure;
+using UI.UpgradeWindow;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.UpgradeWindow
+namespace UI
 {
     public class BottomMenuPresenter : Presenter
     {

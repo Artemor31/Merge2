@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.UpgradeWindow
+namespace UI
 {
     public class InfoActorPresenter : Presenter
     {

@@ -4,7 +4,7 @@ using Infrastructure;
 using Services.Resources;
 using UnityEngine;
 
-namespace UI.UpgradeWindow
+namespace UI
 {
     public class InfoWindowPresenter : Presenter
     {

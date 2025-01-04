@@ -98,6 +98,7 @@
             output.Metallic = 0.0;
             output.Smoothness = 0.0;
             output.Alpha = 0.0;
+            output.Emission = half3(color.x * brightness, color.y * brightness, color.z * brightness);
         }
         ENDCG
     }
