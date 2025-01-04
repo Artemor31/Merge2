@@ -30,7 +30,6 @@ namespace UI
         private void PlayClicked()
         {
             gameObject.SetActive(false);
-            _fightButton.onClick.RemoveListener(PlayClicked);
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }

@@ -1,6 +1,5 @@
 ﻿using Services.GridService;
 using Services.Infrastructure;
-using UI;
 using UI.ResultWindow;
 
 namespace Services.StateMachine
@@ -29,6 +28,8 @@ namespace Services.StateMachine
             }
             else
             {
+                _gridData.Reset();
+                
                 _windowsService.Show<LoseResultPresenter>();
             }
         }

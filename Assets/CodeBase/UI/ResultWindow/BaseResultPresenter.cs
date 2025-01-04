@@ -17,7 +17,7 @@ namespace UI.ResultWindow
         [SerializeField] private Button _nextLevel;
         [SerializeField] private Button _showAds;
 
-        private GameStateMachine _gameStateMachine;
+        protected GameStateMachine _gameStateMachine;
         private List<CurrencyElement> _rewards;
 
         public override void Init()
@@ -46,11 +46,7 @@ namespace UI.ResultWindow
 
         private Sprite SpriteFor(Currency currency) => _pairs.First(p => p.Currency == currency).Sprite;
 
-        private void OnNextLevelClicked()
-        {
-            gameObject.SetActive(false);
-            _gameStateMachine.Enter<LoadLevelState>();
-        }
+        protected abstract void OnNextLevelClicked();
 
         [Serializable]
         public class CurrencyPair

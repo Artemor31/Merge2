@@ -59,6 +59,12 @@ namespace Services.GridService
             _saveService.Save(SavePath, _gridProgress);
         }
 
+        public void Reset()
+        {
+            _gridProgress = new GridProgress();
+            _saveService.Save(SavePath, _gridProgress);
+        }
+
         private List<Actor> GetPlayerUnits()
         {
             List<Actor> units = new();

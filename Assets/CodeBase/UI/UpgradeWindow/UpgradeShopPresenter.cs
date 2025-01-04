@@ -28,12 +28,16 @@ namespace UI.UpgradeWindow
         {
             foreach (BuffConfig data in _actorTypesDatabase.BuffConfigs)
             {
-                if (_persistantService.IsOpened(data.Mastery) || _persistantService.IsOpened(data.Race))
+                if (Opened(data))
                 {
                     CreateItem(data);
                 }
             }
         }
+
+        private bool Opened(BuffConfig data) => data.Mastery == Mastery.None 
+            ? _persistantService.IsOpened(data.Race) 
+            : _persistantService.IsOpened(data.Mastery);
 
         public override void OnHide()
         {

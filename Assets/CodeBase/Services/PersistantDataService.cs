@@ -41,7 +41,6 @@ namespace Services
         }
 
         private void Save() => _saveService.Save(SavePath, _progress);
-
         public bool IsOpened(Mastery mastery, Race race) => IsOpened(mastery) && IsOpened(race);
         public bool IsOpened(Mastery mastery) => _progress.Masteries[mastery];
         public bool IsOpened(Race race) => _progress.Races[race];
