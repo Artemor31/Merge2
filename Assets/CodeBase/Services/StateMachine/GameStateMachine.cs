@@ -20,7 +20,8 @@ namespace Services.StateMachine
                                 GameplayDataService gameplayData,
                                 GridLogicService gridLogicService,
                                 BuffService buffService,
-                                UpgradeDataService upgradeDataService)
+                                UpgradeDataService upgradeDataService, 
+                                PersistantDataService persistantDataService)
         {
             _states = new Dictionary<Type, IState>
             {
@@ -29,7 +30,7 @@ namespace Services.StateMachine
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
                 {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService)},
-                {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData)},
+                {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData, waveBuilder, persistantDataService)},
             };
         }
 

@@ -9,6 +9,7 @@ namespace Services.SaveProgress
     public class PersistantProgress
     {
         public int Coins = 10;
+        public int Gems = 5;
         public Dictionary<Mastery, bool> Masteries = new()
         {
             {Mastery.Warrior, true}, 

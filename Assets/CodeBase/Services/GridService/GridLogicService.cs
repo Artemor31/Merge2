@@ -92,7 +92,7 @@ namespace Services.GridService
         public void SellUnitAt(Platform platform)
         {
             ActorConfig actorConfig = _unitsDatabase.ConfigFor(platform.Actor.Data);
-            _gameplayService.AddMoney(actorConfig.Cost / 2);
+            _gameplayService.AddCrowns(actorConfig.Cost / 2);
             platform.Clear();
         }
     }

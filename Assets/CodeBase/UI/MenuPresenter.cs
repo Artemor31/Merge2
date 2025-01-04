@@ -23,7 +23,6 @@ namespace UI
         {
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _windowService = ServiceLocator.Resolve<WindowsService>();
-
             _fightButton.onClick.AddListener(PlayClicked);
         }
 

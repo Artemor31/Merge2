@@ -6,9 +6,9 @@ namespace Services
 {
     public class GameplayDataService : IService
     {
-        public event Action<int> OnMoneyChanged;
+        public event Action<int> OnCrownsChanged;
         public int Wave => _progress.Wave;
-        public int Gold => _progress.Money;
+        public int Crowns => _progress.Crowns;
 
         private const string PlayerData = "GameplayData";
         private readonly GameplayProgress _progress;
@@ -26,19 +26,19 @@ namespace Services
             Save();
         }
 
-        public void AddMoney(int value)
+        public void AddCrowns(int value)
         {
-            _progress.Money += value;
-            OnMoneyChanged?.Invoke(Gold);
+            _progress.Crowns += value;
+            OnCrownsChanged?.Invoke(Crowns);
             Save();
         }
 
         public bool TryBuy(int cost)
         {
-            if (!(_progress.Money >= cost)) return false;
+            if (!(_progress.Crowns >= cost)) return false;
             
-            _progress.Money -= cost;
-            OnMoneyChanged?.Invoke(_progress.Money);
+            _progress.Crowns -= cost;
+            OnCrownsChanged?.Invoke(_progress.Crowns);
             Save();
             return true;
         }

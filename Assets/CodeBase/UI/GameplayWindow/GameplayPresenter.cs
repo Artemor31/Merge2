@@ -48,8 +48,8 @@ namespace UI.GameplayWindow
 
             _gridViewService.OnPlatformClicked += OnPlatformClicked;
             _gridViewService.OnPlatformPressed += OnPlatformPressed;
-            _gameplayService.OnMoneyChanged += OnMoneyChanged;
-            OnMoneyChanged(_gameplayService.Gold);
+            _gameplayService.OnCrownsChanged += OnCrownsChanged;
+            OnCrownsChanged(_gameplayService.Crowns);
             CreatePlayerCards();
         }
 
@@ -70,8 +70,8 @@ namespace UI.GameplayWindow
         }
 
         private void OnPlatformPressed(Platform platform) => ActorMenu.Hide();
-        private void AddMoney() => _gameplayService.AddMoney(50);
-        private void OnMoneyChanged(int money) => Money.text = money.ToString();
+        private void AddMoney() => _gameplayService.AddCrowns(50);
+        private void OnCrownsChanged(int money) => Money.text = money.ToString();
 
         private void CreatePlayerCards()
         {

@@ -4,7 +4,7 @@
     {
         None = 0,
         Crown = 1,
-        Gold = 2,
-        Diamond = 3
+        Coin = 2,
+        Gem = 3
     }
 }

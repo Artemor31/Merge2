@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using Databases;
 using Services.Infrastructure;
 using Services.SaveProgress;
-using Unity.VisualScripting.Dependencies.NCalc;
 
 namespace Services
 {
@@ -12,10 +10,13 @@ namespace Services
         private const string SavePath = "PersistantData";
         
         public event Action<int> OnCoinsChanged;
-        public int Coins => _progress.Coins;
+        public event Action<int> OnGemsChanged;
         
-        private readonly SaveService _saveService;
+        public int Coins => _progress.Coins;
+        public int Gems => _progress.Gems;
+
         private readonly PersistantProgress _progress;
+        private readonly SaveService _saveService;
 
         public PersistantDataService(SaveService saveService)
         {
@@ -27,6 +28,13 @@ namespace Services
         {
             _progress.Coins += value;
             OnCoinsChanged?.Invoke(_progress.Coins);
+            Save();
+        }
+        
+        public void AddGems(int gems)
+        {
+            _progress.Gems += gems;
+            OnGemsChanged?.Invoke(_progress.Gems);
             Save();
         }
 

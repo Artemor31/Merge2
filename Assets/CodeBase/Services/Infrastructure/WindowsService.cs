@@ -2,6 +2,7 @@
 using System.Linq;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UI;
+using UI.ResultWindow;
 using UnityEngine;
 
 namespace Services.Infrastructure
@@ -29,6 +30,14 @@ namespace Services.Infrastructure
         {
             Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
             presenter.OnShow();
+            presenter.gameObject.SetActive(true);
+        }
+
+        public void Show<TWindow, TData>(TData data) where TWindow : Presenter where TData : WindowData
+        {
+            Presenter presenter = _windows.First(w => w.GetType() == typeof(TWindow));
+            presenter.OnShow();
+            presenter.SetData<ResultData>(data);
             presenter.gameObject.SetActive(true);
         }
 

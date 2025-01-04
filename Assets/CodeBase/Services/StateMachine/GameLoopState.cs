@@ -34,7 +34,7 @@ namespace Services.StateMachine
 
         public void Enter()
         {
-            _profit = _gameplayService.Gold;
+            _profit = _gameplayService.Crowns;
             _gridService.Save();
             _buffService.ApplyBuffs(_gridService.PlayerUnits);
             _upgradeDataService.IncrementStats(_gridService.PlayerUnits);
@@ -60,7 +60,7 @@ namespace Services.StateMachine
             foreach (Actor actor in _gridService.PlayerUnits)
                 actor.Died -= OnAllyDied;
 
-            _profit = _gameplayService.Gold - _profit;
+            _profit = _gameplayService.Crowns - _profit;
         }
 
         private void OnAllyDied()

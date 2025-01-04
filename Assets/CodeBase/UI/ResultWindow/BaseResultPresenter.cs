@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Infrastructure;
 using Services.StateMachine;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.ResultWindow
 {
+    public class ResultData : WindowData
+    {
+        public int CrownsValue;
+        public int CoinsValue;
+        public int GemsValue;
+    }
+    
     public abstract class BaseResultPresenter : Presenter
     {
         [SerializeField] private Transform _rewardParent;
