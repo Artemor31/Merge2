@@ -1485,6 +1485,14 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 1257134017615115345, guid: 6503800c907f340498c18d5863eb0525, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257134017615115345, guid: 6503800c907f340498c18d5863eb0525, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2594628014119858318, guid: 6503800c907f340498c18d5863eb0525, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1664,6 +1672,10 @@ PrefabInstance:
     - target: {fileID: 8523351913991751118, guid: 6503800c907f340498c18d5863eb0525, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106542774074037891, guid: 6503800c907f340498c18d5863eb0525, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
