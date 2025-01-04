@@ -9,8 +9,21 @@ namespace Services.SaveProgress
     public class PersistantProgress
     {
         public int Coins = 10;
-        public List<Mastery> Masteries = new() {Mastery.Ranger, Mastery.Warrior};
-        public List<Race> Races = new() {Race.Human};
+        public Dictionary<Mastery, bool> Masteries = new()
+        {
+            {Mastery.Warrior, true}, 
+            {Mastery.Ranger, true}, 
+            {Mastery.Mage, false}, 
+            {Mastery.Assassin, false}
+        };
+        
+        public Dictionary<Race, bool> Races = new()
+        {
+            {Race.Human, true},
+            {Race.Orc, false},
+            {Race.Demon, false},
+            {Race.Undead, false},
+        };
 
         public void Serialize()
         {

@@ -3,6 +3,7 @@ using System.Linq;
 using Databases;
 using Services.Infrastructure;
 using Services.SaveProgress;
+using Unity.VisualScripting.Dependencies.NCalc;
 
 namespace Services
 {
@@ -40,7 +41,9 @@ namespace Services
         }
 
         private void Save() => _saveService.Save(SavePath, _progress);
-        public bool IsOpened(Mastery mastery) => _progress.Masteries.Select(progressMastery => progressMastery == mastery).FirstOrDefault();
-        public bool IsOpened(Race race) => _progress.Races.Select(progressRace => progressRace == race).FirstOrDefault();
+
+        public bool IsOpened(Mastery mastery, Race race) => IsOpened(mastery) && IsOpened(race);
+        public bool IsOpened(Mastery mastery) => _progress.Masteries[mastery];
+        public bool IsOpened(Race race) => _progress.Races[race];
     }
 }

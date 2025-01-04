@@ -16,20 +16,18 @@ namespace UI.UpgradeWindow
         [SerializeField] private Transform _actorsParent;
         [SerializeField] private InfoActorPresenter _prefab;
         private List<InfoActorPresenter> _presenters = new();
-
-        public void SetData(Sprite sprite, string name, string description, Dictionary<Mastery, BuffConfig> actors)
+        
+        public void SetData(BuffConfig raceConfig, Race race, Dictionary<Mastery,BuffConfig> actors)
         {
-            _icon.sprite = sprite;
-            _name.text = name;
-            _description.text = description;
-
+            _icon.sprite = raceConfig.Icon;
+            _name.text = raceConfig.Name;
+            _description.text = raceConfig.Description;
+            
             foreach (var actor in actors)
             {
                 InfoActorPresenter presenter = Instantiate(_prefab, _actorsParent);
-                
-                var persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
 
-                if (persistantDataService.IsOpened(actor.Key))
+                if (ServiceLocator.Resolve<PersistantDataService>().IsOpened(actor.Key, race))
                 {
                     presenter.SetData(actor.Value.Icon, actor.Value.Name);
                 }

@@ -42,8 +42,8 @@ namespace UI.UpgradeWindow
             foreach (var data in dictionary)
             {
                 var presenter = Instantiate(_prefab, _actorsParent);
-                var info = _buffsDatabase.RaceData[data.Key];
-                presenter.SetData(info.Icon, info.Name, info.Description, data.Value);
+                
+                presenter.SetData(_buffsDatabase.RaceData[data.Key], data.Key, data.Value);
                 _items.Add(presenter);
             }
         }
