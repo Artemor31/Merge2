@@ -45,21 +45,22 @@ namespace Infrastructure
             SceneLoader sceneLoader = new(this);
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
+            
             GameplayDataService gameplayService = new(saveService);
             PersistantDataService persistantDataService = new(saveService);
             GridDataService gridDataService = new(saveService);
+            UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
             GameFactory gameFactory = new(databaseProvider, assetsProvider, cameraService);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, gameplayService);
             
-            GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, gameplayService);
+            GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, gameplayService, persistantDataService);
             MergeService mergeService = new(databaseProvider, gridLogicService);
-            GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
             BuffService buffService = new(databaseProvider);
-            UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
             
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
+            GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
             
             GameStateMachine stateMachine = 
                 new(sceneLoader, _windowsService, waveBuilder, 

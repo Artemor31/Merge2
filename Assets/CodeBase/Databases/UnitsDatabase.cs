@@ -20,7 +20,9 @@ namespace Databases
                                                                                              .Where(u => u.Data.Level == level)
                                                                                              .Where(u => races.Contains(u.Data.Race))
                                                                                              .Where(u => masteries.Contains(u.Data.Mastery))
-                                                                                             .ToList();     
+                                                                                             .ToList();
+        
+        public List<ActorConfig> ConfigsFor(int level) => Units.Where(u => u.Data.Level == level).ToList();     
 
         [Button]
         public void CollectData()

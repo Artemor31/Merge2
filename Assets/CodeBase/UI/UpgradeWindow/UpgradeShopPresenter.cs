@@ -11,10 +11,11 @@ namespace UI.UpgradeWindow
     {
         [SerializeField] private UpgradeItemPresenter _prefab;
         [SerializeField] private RectTransform _parent;
+        
+        private readonly List<UpgradeItemPresenter> _presenters = new();
         private UpgradeDataService _upgradeService;
         private BuffsDatabase _actorTypesDatabase;
         private PersistantDataService _persistantService;
-        private List<UpgradeItemPresenter> _presenters = new();
 
         public override void Init()
         {
@@ -40,6 +41,7 @@ namespace UI.UpgradeWindow
             {
                 Destroy(presenter.gameObject);
             }
+            
             _presenters.Clear();
         }
 

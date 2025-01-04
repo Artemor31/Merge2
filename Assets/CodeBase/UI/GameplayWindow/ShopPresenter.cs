@@ -64,7 +64,7 @@ namespace UI.GameplayWindow
             if (_gridService.CanAddUnit() == false) return;
             if (_gameplayService.TryBuy(GetCostForLevel()))
             {
-                _gridService.TryCreatePlayerUnit(_unitsDatabase.ConfigFor(_selectedStars));
+                _gridService.TryCreatePlayerUnit(_selectedStars);
             }
         }
 

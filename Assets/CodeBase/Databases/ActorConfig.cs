@@ -9,7 +9,6 @@ namespace Databases
     public class ActorConfig : ScriptableObject
     {
         public int Cost;
-        public string Name;
         public ActorData Data;
         public ActorStats Stats;
         public ActorViewData ViewData;
@@ -18,7 +17,6 @@ namespace Databases
     [Serializable]
     public class ActorViewData
     {
-        public Sprite Icon;
         public Actor BaseView;
         public ActorSkin Skin;
     }

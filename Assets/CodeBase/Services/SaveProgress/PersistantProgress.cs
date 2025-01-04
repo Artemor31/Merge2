@@ -8,16 +8,9 @@ namespace Services.SaveProgress
     [Serializable]
     public class PersistantProgress
     {
-        public int Coins;
-        public List<Mastery> Masteries;
-        public List<Race> Races;
-
-        public PersistantProgress()
-        {
-            Coins = 10;
-            Masteries = new List<Mastery> {Mastery.Ranger, Mastery.Warrior};
-            Races = new List<Race> {Race.Human};
-        }
+        public int Coins = 10;
+        public List<Mastery> Masteries = new() {Mastery.Ranger, Mastery.Warrior};
+        public List<Race> Races = new() {Race.Human};
 
         public void Serialize()
         {

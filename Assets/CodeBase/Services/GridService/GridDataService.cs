@@ -11,11 +11,11 @@ namespace Services.GridService
 {
     public class GridDataService : IService
     {
-        public List<Actor> PlayerUnits => GetPlayerUnits();
-        
         private const string SavePath = "GridData";
-
-        private readonly Vector2Int _gridSize = new(3, 5);
+        
+        public List<Actor> PlayerUnits => GetPlayerUnits();
+        public Vector2Int GridSize { get; } = new(3, 5);
+        
         private readonly SaveService _saveService;
         private GridProgress _gridProgress;
         private Platform[,] _platforms;
@@ -28,7 +28,7 @@ namespace Services.GridService
         {
             _platforms = platforms;
             _gridProgress = _saveService.Restore<GridProgress>(SavePath);
-            _gridProgress.UnitIds ??= new ActorData[_gridSize.x, _gridSize.y];
+            _gridProgress.UnitIds ??= new ActorData[GridSize.x, GridSize.y];
         }
         
         public bool HasFreePlatform(out Platform platform)

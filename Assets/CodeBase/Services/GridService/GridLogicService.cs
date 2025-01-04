@@ -1,38 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Databases;
 using Databases.Data;
 using Gameplay.Grid;
+using Infrastructure;
 using Services.Infrastructure;
 using Services.Resources;
-using UnityEngine;
 
 namespace Services.GridService
 {
     public class GridLogicService : IService
     {
         public event Action OnPlayerFieldChanged;
-        
-        private readonly Vector2Int _gridSize = new(3, 5);
+
         private readonly GridDataService _dataService;
         private readonly GameFactory _gameFactory;
         private readonly GameplayDataService _gameplayService;
+        private readonly PersistantDataService _persistantDataService;
         private readonly UnitsDatabase _unitsDatabase;
-
 
         public GridLogicService(GridDataService dataService,
                                 GameFactory gameFactory,
-                                DatabaseProvider databaseProvider, 
-                                GameplayDataService gameplayService)
+                                DatabaseProvider databaseProvider,
+                                GameplayDataService gameplayService,
+                                PersistantDataService persistantDataService)
         {
             _dataService = dataService;
             _gameFactory = gameFactory;
             _gameplayService = gameplayService;
+            _persistantDataService = persistantDataService;
             _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
         }
 
         public void CreatePlayerField()
         {
-            var platforms = _gameFactory.CreatePlatforms(_gridSize);
+            var platforms = _gameFactory.CreatePlatforms(_dataService.GridSize);
             _gameFactory.CreateGridView();
             _dataService.InitPlatforms(platforms);
 
@@ -48,22 +51,34 @@ namespace Services.GridService
                     }
                 }
             }
-            
+
             OnPlayerFieldChanged?.Invoke();
         }
 
         public bool CanAddUnit() => _dataService.HasFreePlatform(out Platform _);
 
-        public bool TryCreatePlayerUnit(ActorConfig config)
+        public void TryCreatePlayerUnit(int tier)
         {
-            if (_dataService.HasFreePlatform(out var platform))
+            if (_dataService.HasFreePlatform(out Platform platform))
             {
-                _gameFactory.CreatePlayerActor(config.Data, platform);
-                OnPlayerFieldChanged?.Invoke();
-                return true;
-            }
+                var configs = _unitsDatabase.ConfigsFor(tier)
+                                            .Where(c => _persistantDataService.IsOpened(c.Data.Race) &&
+                                                        _persistantDataService.IsOpened(c.Data.Mastery));
 
-            return false;
+                _gameFactory.CreatePlayerActor(configs.Random().Data, platform);
+                OnPlayerFieldChanged?.Invoke();
+            }
+            else
+            {
+                throw new Exception("No platforms");
+            }
+        }
+
+        public void TryCreatePlayerUnit(ActorConfig unitCard)
+        {
+            _dataService.HasFreePlatform(out Platform platform);
+            _gameFactory.CreatePlayerActor(unitCard.Data, platform);
+            OnPlayerFieldChanged?.Invoke();
         }
 
         public bool TryCreatePlayerUnitAt(ActorConfig config, Platform platform)

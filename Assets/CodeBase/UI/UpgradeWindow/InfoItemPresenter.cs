@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Databases;
+using Infrastructure;
+using Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +15,6 @@ namespace UI.UpgradeWindow
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private Transform _actorsParent;
         [SerializeField] private InfoActorPresenter _prefab;
-
         private List<InfoActorPresenter> _presenters = new();
 
         public void SetData(Sprite sprite, string name, string description, Dictionary<Mastery, BuffConfig> actors)
@@ -25,7 +26,18 @@ namespace UI.UpgradeWindow
             foreach (var actor in actors)
             {
                 InfoActorPresenter presenter = Instantiate(_prefab, _actorsParent);
-                presenter.SetData(actor.Value.Icon, actor.Value.Name);
+                
+                var persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
+
+                if (persistantDataService.IsOpened(actor.Key))
+                {
+                    presenter.SetData(actor.Value.Icon, actor.Value.Name);
+                }
+                else
+                {
+                    presenter.SetClosed();
+                }
+                
                 _presenters.Add(presenter);
             }
         }
