@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4f584c4f7c41fdb746132b294ea554, type: 3}
   m_Name: LevelDatabase
   m_EditorClassIdentifier: 
-  GridPosition: {x: 0, y: 0, z: -10}
+  GridPosition: {x: 0, y: -0.25, z: -10}
   SpawnerPosition: {x: -3, y: 0, z: -0.5}
   SpawnerSize: {x: 5, y: 3}
   SpawnerDelta: 1.52
