@@ -1,4 +1,5 @@
-﻿using Infrastructure;
+﻿using System.Collections.Generic;
+using Infrastructure;
 using Services.GridService;
 using UnityEngine;
 
@@ -6,17 +7,34 @@ namespace Gameplay.Grid
 {
     public class GridView : MonoBehaviour
     {
-        private static readonly int SelectCell = Shader.PropertyToID("_SelectCell");
-        private static readonly int SelectedCellX = Shader.PropertyToID("_SelectedCellX");
-        private static readonly int SelectedCellY = Shader.PropertyToID("_SelectedCellY");
+        [SerializeField] private List<Platform> _platforms;
+        [SerializeField] private Platform _selectPlatform;
 
-        [SerializeField] private Material _material;
         private GridViewService _gridViewService;
+        private GridDataService _gridDataService;
+        public Platform[,] Platforms => GetPlatforms();
+
+        private Platform[,] GetPlatforms()
+        {
+            int gridSizeX = _gridDataService.GridSize.x;
+            int gridSizeY = _gridDataService.GridSize.y;
+            Platform[,] array = new Platform[gridSizeX, gridSizeY];
+
+            for (int i = 0; i < gridSizeX; i++)
+            {
+                for (int j = 0; j < gridSizeY; j++)
+                {
+                    array[i, j] = _platforms[i * gridSizeY + j];
+                }
+            }
+
+            return array;
+        }
 
         public void Init()
         {
-            _material.SetFloat(SelectCell, 0);
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
+            _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _gridViewService.OnPlatformPressed += PlatformOnOnPressed;
             _gridViewService.OnPlatformHovered += PlatformOnOnHovered;
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
@@ -32,16 +50,17 @@ namespace Gameplay.Grid
         private void PlatformOnOnPressed(Platform platform)
         {
             SetSelected(platform.Index);
-            SetHighlighted(true);
+            IsHighlighted(true);
         }
 
-        private void PlatformOnOnReleased(Platform gridData) => SetHighlighted(false);
+        private void PlatformOnOnReleased(Platform gridData) => IsHighlighted(false);
         private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
-        private void SetHighlighted(bool highlight) => _material.SetFloat(SelectCell, highlight ? 1 : 0);
+        private void IsHighlighted(bool active) => _selectPlatform.gameObject.SetActive(active);
+
         private void SetSelected(Vector2Int position)
         {
-            _material.SetFloat(SelectedCellX, position.y);
-            _material.SetFloat(SelectedCellY, position.x);
+            int index = position.y + position.x * _gridDataService.GridSize.y;
+            _selectPlatform.transform.position = _platforms[index].transform.position;
         }
     }
 }

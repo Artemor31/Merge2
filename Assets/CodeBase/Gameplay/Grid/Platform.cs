@@ -15,7 +15,7 @@ namespace Gameplay.Grid
         public ActorData Data => Actor.Data;
         
         private GridViewService _viewService;
-        
+
         public void Init(int i, int j)
         {
             _viewService = ServiceLocator.Resolve<GridViewService>();

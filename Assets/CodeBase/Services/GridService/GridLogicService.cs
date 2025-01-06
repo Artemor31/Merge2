@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Databases;
 using Databases.Data;
@@ -35,8 +34,8 @@ namespace Services.GridService
 
         public void CreatePlayerField()
         {
-            var platforms = _gameFactory.CreatePlatforms(_dataService.GridSize);
-            _gameFactory.CreateGridView();
+            var gridView = _gameFactory.CreateGridView();
+            var platforms = gridView.Platforms; 
             _dataService.InitPlatforms(platforms);
 
             for (int i = 0; i < platforms.GetLength(0); i++)

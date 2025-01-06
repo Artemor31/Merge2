@@ -18,8 +18,7 @@ namespace Services
         private readonly CameraService _cameraService;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
-
-        private Dictionary<string, Object> _cache;
+        private readonly Dictionary<string, Object> _cache;
 
         public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider, CameraService cameraService)
         {
@@ -80,35 +79,13 @@ namespace Services
             return healthbar;
         }
 
-        public void CreateGridView()
+        public GridView CreateGridView()
         {
             GridView prefab = Load<GridView>(AssetsPath.GridView);
             GridView gridView = Object.Instantiate(prefab);
             gridView.Init();
             gridView.transform.position = _levelDatabase.GridPosition;
-        }
-
-        public Platform[,] CreatePlatforms(Vector2Int size)
-        {
-            var platforms = new Platform[size.x, size.y];
-            Vector2 delta = _levelDatabase.DeltaPlatformDistance;
-            Vector3 startPoint = _levelDatabase.StartPlatformPoint;
-            Platform platform = Load<Platform>(AssetsPath.Platform);
-
-            for (int i = 0; i < size.x; i++)
-            {
-                for (int j = 0; j < size.y; j++)
-                {
-                    var clone = Object.Instantiate(platform, startPoint, Quaternion.identity);
-                    platforms[i, j] = clone;
-                    startPoint += new Vector3(delta.x, 0, 0);
-                }
-
-                startPoint = new Vector3(_levelDatabase.StartPlatformPoint.x, startPoint.y, startPoint.z);
-                startPoint += new Vector3(0, 0, delta.y);
-            }
-
-            return platforms;
+            return gridView;
         }
     }
 }
