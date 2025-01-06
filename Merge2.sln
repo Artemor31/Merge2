@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Core", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Editor", "NaughtyAttributes.Editor.csproj", "{fc32db46-1572-ee89-1069-38abcad252b1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{fc183755-d4b8-64f2-6b4f-feddd4bdec88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,8 @@ Global
 		{e0e6b62f-e8b0-bae6-2e42-ce33b390c5da}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{fc32db46-1572-ee89-1069-38abcad252b1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{fc32db46-1572-ee89-1069-38abcad252b1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{fc183755-d4b8-64f2-6b4f-feddd4bdec88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{fc183755-d4b8-64f2-6b4f-feddd4bdec88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
