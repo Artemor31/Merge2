@@ -21,7 +21,7 @@ namespace UI.GameplayWindow
         private void Awake()
         {
             _gridLogicService = ServiceLocator.Resolve<GridLogicService>();
-            _sellButton.onClick.AddListener(Sell);
+            //_sellButton.onClick.AddListener(Sell);
             _background.onClick.AddListener(Hide);
         }
 
@@ -30,17 +30,17 @@ namespace UI.GameplayWindow
             _platform = platform;
             _transform.position = screenPoint;
 
-            float max = Mathf.Max(1, actorConfig.Cost * 0.7f);
+            float max = Mathf.Max(1, 10 * 0.7f);
             _cost.text = Mathf.RoundToInt(max).ToString();
             gameObject.SetActive(true);
         }
 
         public void Hide() => gameObject.SetActive(false);
 
-        private void Sell()
-        {
-            _gridLogicService.SellUnitAt(_platform);
-            Hide();
-        }
+        // private void Sell()
+        // {
+        //     _gridLogicService.SellUnitAt(_platform);
+        //     Hide();
+        // }
     }
 }

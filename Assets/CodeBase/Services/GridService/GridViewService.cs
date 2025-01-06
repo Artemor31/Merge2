@@ -8,41 +8,30 @@ namespace Services.GridService
 {
     public class GridViewService : IService
     {
-        private enum State
-        {
-            Idle = 0,
-            ClickTimer = 1,
-            Dragging = 2
-        }
-        
-        private const float TimeToDrag = 0.5f;
+        public event Action<Platform> OnPlatformPressed;
+        public event Action<Platform> OnPlatformReleased;
+        public event Action<Platform> OnPlatformHovered;
         
         private readonly IUpdateable _updateable;
         private readonly GridDataService _dataService;
         private readonly LayerMask _platformMask;
         private readonly MergeService _mergeService;
         private readonly CameraService _cameraService;
-
-        private State _state = State.Idle;
-        private Vector2 _size;
+        private readonly GridLogicService _gridLogicService;
         private Vector2Int _selected;
-        private float _timer;
-        private Platform _platform;
-
-        public event Action<Platform> OnPlatformPressed;
-        public event Action<Platform> OnPlatformReleased;
-        public event Action<Platform> OnPlatformHovered;
-        public event Action<Platform> OnPlatformClicked;
+        private bool _dragging;
 
         public GridViewService(IUpdateable updateable,
                                GridDataService dataService,
                                MergeService mergeService,
-                               CameraService cameraService)
+                               CameraService cameraService,
+                               GridLogicService gridLogicService)
         {
             _updateable = updateable;
             _dataService = dataService;
             _mergeService = mergeService;
             _cameraService = cameraService;
+            _gridLogicService = gridLogicService;
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
 
             _updateable.Tick += OnTick;
@@ -52,15 +41,16 @@ namespace Services.GridService
         {
             if (platform.Busy)
             {
-                _timer = TimeToDrag;
-                _platform = platform;
-                _state = State.ClickTimer;
+                _dragging = true;
+                _selected = platform.Index;
+                platform.Actor.GetComponent<NavMeshAgent>().enabled = false;
+                OnPlatformPressed?.Invoke(platform);
             }
         }
 
         public void OnHovered(Platform gridData)
         {
-            if (_state == State.Dragging)
+            if (_dragging)
             {
                 OnPlatformHovered?.Invoke(gridData);
             }
@@ -68,67 +58,53 @@ namespace Services.GridService
 
         public void OnReleased(Platform started)
         {
-            if (_state == State.Idle) return;
-            
-            if (_state == State.ClickTimer)
-            {
-                _state = State.Idle;
-                OnPlatformClicked?.Invoke(started);
-                _timer = 0;
-                return;
-            }
+            if (!_dragging) return;
 
-            if (_state == State.Dragging)
+            Platform ended;
+            if (RaycastPlatform(out Platform platform))
             {
-                Platform ended;
-                if (RaycastPlatform(out Platform platform))
+
+                if (platform is SellPlatform)
                 {
-                    ended = _dataService.GetDataAt(platform.Index);
+                    _gridLogicService.SellUnitAt(_selected);
+                    _dragging = false;
+                    _selected = Vector2Int.zero;
+                    OnPlatformReleased?.Invoke(started);
+                    return;
+                }
+                
+                ended = _dataService.GetDataAt(platform.Index);
 
-                    if (started.Index == ended.Index)
-                    {
-                        ResetActorPosition(started);
-                    }
-                    else if (ended.Free)
-                    {
-                        MoveActor(started, ended);
-                    }
-                    else
-                    {
-                        if (!_mergeService.TryMerge(started, ended))
-                        {
-                            ResetActorPosition(started);
-                        }
-                    }
+                if (started.Index == ended.Index)
+                {
+                    ResetActorPosition(started);
+                }
+                else if (ended.Free)
+                {
+                    MoveActor(started, ended);
                 }
                 else
                 {
-                    ResetActorPosition(started);
-                    ended = started;
+                    if (!_mergeService.TryMerge(started, ended))
+                    {
+                        ResetActorPosition(started);
+                    }
                 }
-
-                _state = State.Idle;
-                _selected = Vector2Int.zero;
-                OnPlatformReleased?.Invoke(ended);
             }
+            else
+            {
+                ResetActorPosition(started);
+                ended = started;
+            }
+
+            _dragging = false;
+            _selected = Vector2Int.zero;
+            OnPlatformReleased?.Invoke(ended);
         }
 
         private void OnTick()
         {
-            if (_timer > 0)
-            {
-                _timer -= Time.deltaTime;
-            }
-
-            if (_timer <= 0 && _state == State.ClickTimer)
-            {
-                _state = State.Dragging;
-                _selected = _platform.Index;
-                _platform.Actor.GetComponent<NavMeshAgent>().enabled = false;
-                OnPlatformPressed?.Invoke(_platform);
-            }
-
-            if (_state == State.Idle || _state == State.ClickTimer) return;
+            if (!_dragging) return;
 
             var ray = _cameraService.TouchPointRay();
 

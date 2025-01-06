@@ -9,6 +9,7 @@ namespace Gameplay.Grid
     {
         [SerializeField] private List<Platform> _platforms;
         [SerializeField] private Platform _selectPlatform;
+        [SerializeField] private SellPlatform _sellPlatform;
 
         private GridViewService _gridViewService;
         private GridDataService _gridDataService;
@@ -39,7 +40,7 @@ namespace Gameplay.Grid
             _gridViewService.OnPlatformHovered += PlatformOnOnHovered;
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
-
+        
         private void OnDisable()
         {
             _gridViewService.OnPlatformPressed -= PlatformOnOnPressed;
@@ -51,9 +52,15 @@ namespace Gameplay.Grid
         {
             SetSelected(platform.Index);
             IsHighlighted(true);
+            _sellPlatform.gameObject.SetActive(true);
         }
 
-        private void PlatformOnOnReleased(Platform gridData) => IsHighlighted(false);
+        private void PlatformOnOnReleased(Platform ended)
+        {
+            IsHighlighted(false);
+            _sellPlatform.gameObject.SetActive(false);
+        }
+
         private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
         private void IsHighlighted(bool active) => _selectPlatform.gameObject.SetActive(active);
 

@@ -8,7 +8,6 @@ namespace Databases
     [CreateAssetMenu(menuName = "Database/ActorConfig", fileName = "ActorConfig", order = 0)]
     public class ActorConfig : ScriptableObject
     {
-        public int Cost;
         public ActorData Data;
         public ActorStats Stats;
         public ActorViewData ViewData;

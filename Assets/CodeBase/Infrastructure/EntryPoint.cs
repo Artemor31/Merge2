@@ -59,7 +59,7 @@ namespace Infrastructure
             
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
-            GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService);
+            GridViewService gridViewService = new(this, gridDataService, mergeService, cameraService, gridLogicService);
             
             GameStateMachine stateMachine = 
                 new(sceneLoader, _windowsService, waveBuilder, 

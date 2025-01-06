@@ -6,6 +6,7 @@ using Gameplay.Grid;
 using Infrastructure;
 using Services.Infrastructure;
 using Services.Resources;
+using UnityEngine;
 
 namespace Services.GridService
 {
@@ -84,14 +85,25 @@ namespace Services.GridService
         {
             if (platform.Busy) return false;
             _gameFactory.CreatePlayerActor(config.Data, platform);
+            _dataService.Save();
             OnPlayerFieldChanged?.Invoke();
             return true;
         }
 
-        public void SellUnitAt(Platform platform)
+        public void SellUnitAt(Vector2Int selected)
         {
-            ActorConfig actorConfig = _unitsDatabase.ConfigFor(platform.Actor.Data);
-            _gameplayService.AddCrowns(actorConfig.Cost / 2);
+            var platform = _dataService.GetDataAt(selected);
+            int level = platform.Actor.Data.Level;
+
+            if (level == 1)
+            {
+                _gameplayService.AddCrowns(7);
+            }
+            else
+            {
+                double value = Math.Pow(2, level-1) * 7f;
+                _gameplayService.AddCrowns((int)value);
+            }
             platform.Clear();
         }
     }

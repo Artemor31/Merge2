@@ -12,8 +12,7 @@ namespace Gameplay.Grid
         public Actor Actor { get; set; }
         public bool Busy => Actor;
         public bool Free => !Actor;
-        public ActorData Data => Actor.Data;
-        
+
         private GridViewService _viewService;
 
         public void Init(int i, int j)
