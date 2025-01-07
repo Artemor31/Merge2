@@ -8,19 +8,19 @@ namespace Services.StateMachine
     public class ResultScreenState : IState<bool>
     {
         private readonly WindowsService _windowsService;
-        private readonly GridDataService _gridData;
+        private readonly GridDataService _gridDataService;
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         private readonly PersistantDataService _persistantDataService;
 
         public ResultScreenState(WindowsService windowsService, 
-                                 GridDataService gridData,
+                                 GridDataService gridDataService,
                                  GameplayDataService gameplayService,
                                  WaveBuilder waveBuilder,
                                  PersistantDataService persistantDataService)
         {
             _windowsService = windowsService;
-            _gridData = gridData;
+            _gridDataService = gridDataService;
             _gameplayService = gameplayService;
             _waveBuilder = waveBuilder;
             _persistantDataService = persistantDataService;
@@ -28,7 +28,7 @@ namespace Services.StateMachine
 
         public void Enter(bool isWin)
         {
-            _gridData.Save();
+            _gridDataService.Save();
             
             if (isWin)
             {
@@ -37,7 +37,8 @@ namespace Services.StateMachine
             }
             else
             {
-                _gridData.Reset();
+                _gridDataService.Reset();
+                _gameplayService.Reset();
                 _windowsService.Show<LoseResultPresenter>();
             }
         }

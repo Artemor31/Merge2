@@ -23,7 +23,9 @@ namespace Gameplay.Units.Healths
             _level.text = level.ToString();
             ChangeHealth(1);
         }
-        
+
+        public void UnInit() => _target = null;
+
         public void ChangeHealth(float ratio) => _value.fillAmount = ratio;
 
         private void Update()

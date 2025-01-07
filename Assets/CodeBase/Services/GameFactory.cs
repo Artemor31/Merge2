@@ -78,24 +78,11 @@ namespace Services
 
         private CanvasHealthbar CreateHealthbar(Transform target, int level)
         {
-            const string key = "gameCanvas";
             CanvasHealthbar asset = Load<CanvasHealthbar>(AssetsPath.HealthbarCanvas);
-            
-            if (_cache.TryGetValue(key, out Object value))
-            {
-                RectTransform rectTransform = value as RectTransform;
-                CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
-                healthbar.Init(_cameraService, rectTransform, target, level);
-                return healthbar;
-            }
-            else
-            {
-                RectTransform rectTransform = _windowsService.Get<GameCanvas>().GetComponent<RectTransform>();
-                _cache.Add(key, rectTransform);
-                CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
-                healthbar.Init(_cameraService, rectTransform, target, level);
-                return healthbar;
-            }
+            RectTransform rectTransform = _windowsService.Get<GameCanvas>().RectTransform;
+            CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
+            healthbar.Init(_cameraService, rectTransform, target, level);
+            return healthbar;
         }
 
         public GridView CreateGridView()

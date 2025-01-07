@@ -1,10 +1,10 @@
-﻿namespace UI
+﻿using UnityEngine;
+
+namespace UI
 {
     public class GameCanvas : Presenter
     {
-        public override void OnHide()
-        {
-            
-        }
+        public RectTransform RectTransform { get; private set; }
+        public override void Init() => RectTransform = GetComponent<RectTransform>();
     }
 }

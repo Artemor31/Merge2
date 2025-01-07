@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Databases.Data;
 using Gameplay.Grid;
 using Gameplay.Units;
+using Infrastructure;
 using Services.Infrastructure;
 using Services.SaveProgress;
 using UnityEngine;
@@ -47,6 +48,24 @@ namespace Services.GridService
 
             platform = null;
             return false;
+        }
+        
+        public Platform RandomPlatform()
+        {
+
+            List<Platform> platforms = new();
+            for (var i = 0; i < _platforms.GetLength(0); i++)
+            {
+                for (var j = 0; j < _platforms.GetLength(1); j++)
+                {
+                    if (_platforms[i, j].Free)
+                    {
+                        platforms.Add(_platforms[i, j]);
+                    }
+                }
+            }
+
+            return platforms.Random();
         }
 
         public void Save()

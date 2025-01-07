@@ -52,8 +52,14 @@ namespace Services.Infrastructure
         
         public T Get<T>() where T : Presenter
         {
+            Type type = typeof(T);
+            if (_cache.TryGetValue(type, out Presenter value))
+            {
+                return (T)value;
+            }
+            
             T presenter = (T)_windows.First(w => w is T);
-            _cache.Add(typeof(T), presenter);
+            _cache.Add(type, presenter);
             return presenter;
         }
     }

@@ -59,19 +59,13 @@ namespace Services.GridService
 
         public void TryCreatePlayerUnit(int tier)
         {
-            if (_dataService.HasFreePlatform(out Platform platform))
-            {
-                var configs = _unitsDatabase.ConfigsFor(tier)
-                                            .Where(c => _persistantDataService.IsOpened(c.Data.Race) &&
-                                                        _persistantDataService.IsOpened(c.Data.Mastery));
+            var platform = _dataService.RandomPlatform();
+            var configs = _unitsDatabase.ConfigsFor(tier)
+                                        .Where(c => _persistantDataService.IsOpened(c.Data.Race) &&
+                                                    _persistantDataService.IsOpened(c.Data.Mastery));
 
-                _gameFactory.CreatePlayerActor(configs.Random().Data, platform);
-                OnPlayerFieldChanged?.Invoke();
-            }
-            else
-            {
-                throw new Exception("No platforms");
-            }
+            _gameFactory.CreatePlayerActor(configs.Random().Data, platform);
+            OnPlayerFieldChanged?.Invoke();
         }
 
         public void TryCreatePlayerUnit(ActorConfig unitCard)

@@ -39,6 +39,12 @@ namespace Services.StateMachine
 
         public void Enter()
         {
+            if (_gridService.PlayerUnits.Count == 0)
+            {
+                _gameStateMachine.Enter<ResultScreenState, bool>(false);
+                return;
+            }
+            
             _profit = _gameplayService.Crowns;
             _gridService.Save();
             _buffService.ApplyBuffs(_gridService.PlayerUnits);
@@ -62,13 +68,18 @@ namespace Services.StateMachine
         public void Exit()
         {
             foreach (Actor actor in _waveBuilder.EnemyUnits)
+            {
                 actor.Died -= OnEnemyDied;
+                actor.Dispose();
+            }
 
             foreach (Actor actor in _gridService.PlayerUnits)
+            {
                 actor.Died -= OnAllyDied;
+                actor.Dispose();
+            }
 
             _profit = _gameplayService.Crowns - _profit;
-            
             _windowsService.Close<GameCanvas>();
         }
 

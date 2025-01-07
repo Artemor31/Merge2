@@ -6,13 +6,13 @@ namespace Services
 {
     public class GameplayDataService : IService
     {
+        private const string PlayerData = "GameplayData";
+        
         public event Action<int> OnCrownsChanged;
         public int Wave => _progress.Wave;
         public int Crowns => _progress.Crowns;
-
-        private const string PlayerData = "GameplayData";
-        private readonly GameplayProgress _progress;
         private readonly SaveService _saveService;
+        private GameplayProgress _progress;
 
         public GameplayDataService(SaveService saveService)
         {
@@ -41,6 +41,12 @@ namespace Services
             OnCrownsChanged?.Invoke(_progress.Crowns);
             Save();
             return true;
+        }
+
+        public void Reset()
+        {
+            _progress = new GameplayProgress();
+            Save();
         }
 
         private void Save() => _saveService.Save(PlayerData, _progress);
