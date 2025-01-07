@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using Databases;
 using Databases.Data;
-using Gameplay.Units.Healths;
-using Gameplay.Units.Projectiles;
 using Infrastructure;
 using Services;
 using UnityEngine;
@@ -54,7 +52,9 @@ namespace Gameplay.Units
             float damage = Random.Range(0, 1f) <= Stats.CritChance
                 ? Stats.Damage * (1 + Stats.CritValue)
                 : Stats.Damage;
-            _service.Create(_projectileType, this, Target, damage);
+
+            Vector3 position = transform.position + Vector3.up;
+            _service.Create(_projectileType, position, Target, damage);
             
             ResetCooldown();
         }

@@ -8,5 +8,7 @@
         public const string Platform = "LevelItems/Platform";
         public const string Healthbar = "Healthbar";
         public const string ActorShadow = "ActorShadow";
+        public const string HealthbarCanvas = "HealthbarCanvas";
+        public const string GameCanvas = "GameCanvas";
     }
 }

@@ -30,6 +30,6 @@ namespace Databases
     {
         None = 0,
         Arrow = 1,
-        
+        Fireball = 2,
     }
 }

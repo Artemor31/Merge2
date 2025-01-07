@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Databases;
 using Databases.Data;
 using Gameplay.Units;
@@ -42,10 +43,14 @@ namespace Services
         private void SpawnUnits()
         {
             WaveData waveData = GetWaveData();
-            List<Vector3> positions = _levelDatabase.GetPositions();
+
+            var positions = _levelDatabase.GetPositions().ToList();
+
             foreach (ActorData data in CreateActorsWave(waveData))
             {
-                Actor enemyActor = _factory.CreateEnemyActor(data, positions.Random());
+                var position = positions.Random();
+                Actor enemyActor = _factory.CreateEnemyActor(data, position);
+                positions.Remove(position);
                 enemyActor.transform.Rotate(new Vector3(0,180,0));
                 EnemyUnits.Add(enemyActor);
             }

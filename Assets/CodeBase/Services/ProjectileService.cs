@@ -21,7 +21,7 @@ namespace Services
             _database = provider.GetDatabase<ProjectilesDatabase>();
         }
         
-        public void Create(ProjectileType type,  Actor caster, Actor target, float damage)
+        public void Create(ProjectileType type,  Vector3 position, Actor target, float damage)
         {
             ProjectileData data = _database.Get(type);
             if (!_pools.ContainsKey(type))
@@ -29,7 +29,7 @@ namespace Services
                 _pools.Add(type, new Pool<Projectile>(10, 3, data.Prefab));
             }
 
-            var projectile = _pools[type].Get(caster.transform.position + Vector3.up);
+            var projectile = _pools[type].Get(position);
             projectile.Init(target, damage, data);
             _active.Add(projectile);
         }

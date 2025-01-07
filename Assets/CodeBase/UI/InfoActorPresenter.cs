@@ -16,7 +16,6 @@ namespace UI
         {
             _icon.sprite = sprite;
             _name.text = text;
-            _view.color = Color.white;
         }
 
         public void SetClosed()

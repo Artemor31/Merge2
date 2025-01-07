@@ -2,6 +2,8 @@
 using Gameplay.Units;
 using Services.Buffs;
 using Services.GridService;
+using Services.Infrastructure;
+using UI;
 using UI.UpgradeWindow;
 
 namespace Services.StateMachine
@@ -14,6 +16,7 @@ namespace Services.StateMachine
         private readonly WaveBuilder _waveBuilder;
         private readonly BuffService _buffService;
         private readonly UpgradeDataService _upgradeDataService;
+        private readonly WindowsService _windowsService;
 
         private int _profit;
 
@@ -22,7 +25,8 @@ namespace Services.StateMachine
                              GameplayDataService gameplayService,
                              WaveBuilder waveBuilder,
                              BuffService buffService,
-                             UpgradeDataService upgradeDataService)
+                             UpgradeDataService upgradeDataService,
+                             WindowsService windowsService)
         {
             _gameStateMachine = gameStateMachine;
             _gridService = gridService;
@@ -30,6 +34,7 @@ namespace Services.StateMachine
             _waveBuilder = waveBuilder;
             _buffService = buffService;
             _upgradeDataService = upgradeDataService;
+            _windowsService = windowsService;
         }
 
         public void Enter()
@@ -50,6 +55,8 @@ namespace Services.StateMachine
                 actor.Died += OnEnemyDied;
                 actor.Unleash();
             }
+            
+            _windowsService.Show<GameCanvas>();
         }
 
         public void Exit()
@@ -61,6 +68,8 @@ namespace Services.StateMachine
                 actor.Died -= OnAllyDied;
 
             _profit = _gameplayService.Crowns - _profit;
+            
+            _windowsService.Close<GameCanvas>();
         }
 
         private void OnAllyDied()

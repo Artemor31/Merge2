@@ -10,7 +10,7 @@ namespace Gameplay.Units
         private static readonly int Atk = Animator.StringToHash("Attack");
         
         [SerializeField] private Animator _animator;
-        private Healthbar _healthbar;
+        private CanvasHealthbar _healthbar;
 
         private void OnEnable()
         {
@@ -20,7 +20,7 @@ namespace Gameplay.Units
             }
         }
 
-        public void Initialize(Healthbar healthbar) => _healthbar = healthbar;
+        public void Initialize(CanvasHealthbar healthbar) => _healthbar = healthbar;
         public void ChangeHealth(float currentRatio) => _healthbar.ChangeHealth(currentRatio);
 
         public void Die()

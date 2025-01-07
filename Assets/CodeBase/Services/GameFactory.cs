@@ -6,6 +6,7 @@ using Gameplay.Units;
 using Gameplay.Units.Healths;
 using Services.Infrastructure;
 using Services.Resources;
+using UI;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,14 +17,19 @@ namespace Services
     {
         private readonly AssetsProvider _assetsProvider;
         private readonly CameraService _cameraService;
+        private readonly WindowsService _windowsService;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
         private readonly Dictionary<string, Object> _cache;
 
-        public GameFactory(DatabaseProvider database, AssetsProvider assetsProvider, CameraService cameraService)
+        public GameFactory(DatabaseProvider database,
+                           AssetsProvider assetsProvider,
+                           CameraService cameraService,
+                           WindowsService windowsService)
         {
             _assetsProvider = assetsProvider;
             _cameraService = cameraService;
+            _windowsService = windowsService;
             _unitsDatabase = database.GetDatabase<UnitsDatabase>();
             _levelDatabase = database.GetDatabase<LevelDatabase>();
             _cache = new Dictionary<string, Object>();
@@ -39,7 +45,7 @@ namespace Services
             ActorConfig config = _unitsDatabase.ConfigFor(data);
             Actor baseView = Object.Instantiate(config.ViewData.BaseView, position, quaternion.identity);
 
-            Healthbar healthbar = CreateHealthbar(baseView.transform, data.Level);
+            CanvasHealthbar healthbar = CreateHealthbar(baseView.transform, data.Level);
             ActorSkin skin = CreateSkin(config.ViewData.Skin, baseView.transform, healthbar);
 
             baseView.Initialize(skin, data, config.Stats);
@@ -63,20 +69,33 @@ namespace Services
             return prefab;
         }
 
-        private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, Healthbar healthbar)
+        private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, CanvasHealthbar healthbar)
         {
             ActorSkin skin = Object.Instantiate(prefab, parent, false);
             skin.Initialize(healthbar);
             return skin;
         }
 
-        private Healthbar CreateHealthbar(Transform target, int level)
+        private CanvasHealthbar CreateHealthbar(Transform target, int level)
         {
-            Healthbar asset = Load<Healthbar>(AssetsPath.Healthbar);
-            Healthbar healthbar = Object.Instantiate(asset);
-            Camera camera = _cameraService.CurrentCamera();
-            healthbar.Initialize(camera, target, level);
-            return healthbar;
+            const string key = "gameCanvas";
+            CanvasHealthbar asset = Load<CanvasHealthbar>(AssetsPath.HealthbarCanvas);
+            
+            if (_cache.TryGetValue(key, out Object value))
+            {
+                RectTransform rectTransform = value as RectTransform;
+                CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
+                healthbar.Init(_cameraService, rectTransform, target, level);
+                return healthbar;
+            }
+            else
+            {
+                RectTransform rectTransform = _windowsService.Get<GameCanvas>().GetComponent<RectTransform>();
+                _cache.Add(key, rectTransform);
+                CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
+                healthbar.Init(_cameraService, rectTransform, target, level);
+                return healthbar;
+            }
         }
 
         public GridView CreateGridView()

@@ -101,9 +101,10 @@ namespace Services.GridService
             }
             else
             {
-                double value = Math.Pow(2, level-1) * 7f;
+                double value = Math.Pow(2, level - 1) * 7f;
                 _gameplayService.AddCrowns((int)value);
             }
+
             platform.Clear();
         }
     }

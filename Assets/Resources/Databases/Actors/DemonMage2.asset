@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
   m_Name: DemonMage2
   m_EditorClassIdentifier: 
-  Cost: 2
-  Name: DemonMage
   Data:
     Level: 2
     Race: 4
@@ -29,6 +27,5 @@ MonoBehaviour:
     ActCooldown: 3
     MoveSpeed: 2
   ViewData:
-    Icon: {fileID: 21300000, guid: 8192c590fb896e8478742bc3423292c3, type: 3}
-    BaseView: {fileID: 4895926626738250975, guid: db6d1b2631d3ae74d936abf7404aae70, type: 3}
+    BaseView: {fileID: 7625637279324466940, guid: db6d1b2631d3ae74d936abf7404aae70, type: 3}
     Skin: {fileID: 3616249764708920803, guid: daffb44ccb4f63843a671679bfd854d1, type: 3}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UI;
@@ -10,6 +11,7 @@ namespace Services.Infrastructure
     public class WindowsService : MonoBehaviour, IService
     {
         [SerializeField] private List<Presenter> _windows;
+        private readonly Dictionary<Type, Presenter> _cache = new();
 
         public void InitWindows()
         {
@@ -46,6 +48,13 @@ namespace Services.Infrastructure
             Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
             presenter.OnHide();
             presenter.gameObject.SetActive(false);
+        }
+        
+        public T Get<T>() where T : Presenter
+        {
+            T presenter = (T)_windows.First(w => w is T);
+            _cache.Add(typeof(T), presenter);
+            return presenter;
         }
     }
 }

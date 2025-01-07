@@ -15,9 +15,8 @@ namespace Databases
         public Vector3 StartPlatformPoint;
         public Vector2 DeltaPlatformDistance;
 
-        public List<Vector3> GetPositions()
+        public IEnumerable<Vector3> GetPositions()
         {
-            var positions = new List<Vector3>();
             Vector2 size = SpawnerSize;
             for (int i = 0; i < size.x; i++)
             {
@@ -27,12 +26,9 @@ namespace Databases
 
                 for (int j = 0; j < size.y; j++)
                 {
-                    float currentZ = position.z + delta * j;
-                    positions.Add(new Vector3(currentX, 0, currentZ));
+                    yield return new Vector3(currentX, 0, position.z + delta * j);
                 }
             }
-
-            return positions;
         }
         
         private List<GameObject> _spheres;
@@ -40,16 +36,16 @@ namespace Databases
         [Button]
         public void DrawSpheres()
         {
-            _spheres = new();
-            List<Vector3> positions = GetPositions();
+            _spheres = new List<GameObject>();
 
-            foreach (Vector3 position in positions)
+            foreach (Vector3 position in GetPositions())
             {
                 var sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 sphere.transform.position = position;
                 _spheres.Add(sphere);
             }
         }
+        
         [Button]
         public void ClearSpheres()
         {
@@ -57,7 +53,7 @@ namespace Databases
             {
                 DestroyImmediate(_spheres[i]);
             }
-            _spheres = new();
+            _spheres = new List<GameObject>();
         }
 
         private GameObject _spawner;
