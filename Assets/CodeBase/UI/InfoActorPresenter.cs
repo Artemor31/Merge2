@@ -10,8 +10,7 @@ namespace UI
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private Sprite _closedSprite;
-
-
+        
         public void SetData(Sprite sprite, string text)
         {
             _icon.sprite = sprite;
