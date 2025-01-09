@@ -17,8 +17,10 @@ namespace UI.GameplayWindow
         [SerializeField] public Button StartWaveButton;
         [SerializeField] public Button GreedButton;
         [SerializeField] public Button ShowBuffsButton;
+        [SerializeField] public Button Close;
         [SerializeField] public TMP_Text Money;
-        [SerializeField] public ActorMenuPresenter ActorMenu;
+        [SerializeField] public TMP_Text Wave;
+        [SerializeField] public string WaveText;
         [SerializeField] public BuffInfoPresenter BuffPresenter;
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
@@ -40,10 +42,22 @@ namespace UI.GameplayWindow
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);
             ShowBuffsButton.onClick.AddListener(BuffsClicked);
+            Close.onClick.AddListener(CloseClicked);
 
             _gameplayService.OnCrownsChanged += OnCrownsChanged;
             OnCrownsChanged(_gameplayService.Crowns);
             CreatePlayerCards();
+        }
+
+        private void CloseClicked()
+        {
+            
+            _stateMachine.Enter<ResultScreenState, bool>(false);
+        }
+
+        public override void OnShow()
+        {
+            Wave.text = $"{WaveText} {_gameplayService.Wave}";
         }
 
         private void BuffsClicked()
@@ -54,6 +68,12 @@ namespace UI.GameplayWindow
 
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
+
+        private void StartWave()
+        {
+            gameObject.SetActive(false);
+            _stateMachine.Enter<GameLoopState>();
+        }
 
         private void CreatePlayerCards()
         {
@@ -74,12 +94,6 @@ namespace UI.GameplayWindow
             {
                 _gridService.TryCreatePlayerUnit(_unitCards[card]);
             }
-        }
-
-        private void StartWave()
-        {
-            gameObject.SetActive(false);
-            _stateMachine.Enter<GameLoopState>();
         }
     }
 }

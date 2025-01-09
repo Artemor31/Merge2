@@ -70,12 +70,14 @@ namespace Services.StateMachine
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.Died -= OnEnemyDied;
+                actor.gameObject.SetActive(false);
                 actor.Dispose();
             }
 
             foreach (Actor actor in _gridService.PlayerUnits)
             {
                 actor.Died -= OnAllyDied;
+                actor.gameObject.SetActive(false);
                 actor.Dispose();
             }
 

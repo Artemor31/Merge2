@@ -5,7 +5,6 @@ namespace UI.ResultWindow
 {
     public class WinResultPresenter : BaseResultPresenter
     {
-
         public override void SetData<TData>(WindowData data)
         {
             Clear();
@@ -18,7 +17,7 @@ namespace UI.ResultWindow
 
         protected override void OnNextLevelClicked()
         {
-            gameObject.SetActive(false);
+            base.OnNextLevelClicked();
             GameStateMachine.Enter<LoadLevelState>();
         }
     }

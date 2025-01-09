@@ -22,6 +22,8 @@ namespace Services.Buffs.Components
             StartCoroutine(HealthRegen());
         }
 
+        private void OnDisable() => StopCoroutine(HealthRegen());
+
         private IEnumerator HealthRegen()
         {
             while (!_actor.IsDead)

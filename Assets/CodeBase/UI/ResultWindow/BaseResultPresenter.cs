@@ -29,19 +29,27 @@ namespace UI.ResultWindow
         protected GameStateMachine GameStateMachine;
         protected ResultData ResultData;
         
-        private PersistantDataService _dataService;
+        private PersistantDataService _persistantDataService;
         private List<CurrencyElement> _rewards;
+        private GameplayDataService _gameplayDataService;
 
         public override void Init()
         {
-            _dataService = ServiceLocator.Resolve<PersistantDataService>();
+            _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
+            _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             GameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _nextLevel.onClick.AddListener(OnNextLevelClicked);
             _showAds.onClick.AddListener(OnShowAdsClicked);
             _rewards = new List<CurrencyElement>();
         }
 
-        protected abstract void OnNextLevelClicked();
+        protected virtual void OnNextLevelClicked()
+        {
+            _persistantDataService.AddCoins(ResultData.CoinsValue);
+            _persistantDataService.AddGems(ResultData.GemsValue);
+            _gameplayDataService.AddCrowns(ResultData.CrownsValue);
+            gameObject.SetActive(false);
+        }
 
         protected void AddReward(Currency currency, string value)
         {
@@ -66,8 +74,10 @@ namespace UI.ResultWindow
 
         private void AdWatched()
         {
-            _dataService.AddCoins(ResultData.CoinsValue);
-            _dataService.AddGems(ResultData.GemsValue);
+            _persistantDataService.AddCoins(ResultData.CoinsValue);
+            _persistantDataService.AddGems(ResultData.GemsValue);
+            _gameplayDataService.AddCrowns(ResultData.CrownsValue);
+            OnNextLevelClicked();
         }
 
         [Serializable]
