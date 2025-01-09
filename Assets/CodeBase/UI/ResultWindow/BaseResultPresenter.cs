@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Infrastructure;
 using Services;
+using Services.SaveProgress;
 using Services.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,8 +20,6 @@ namespace UI.ResultWindow
 
     public abstract class BaseResultPresenter : Presenter
     {
-        private const string RewardId = "Doubling";
-        
         [SerializeField] private Transform _rewardParent;
         [SerializeField] private CurrencyElement _prefab;
         [SerializeField] private CurrencyPair[] _pairs;
@@ -63,7 +62,7 @@ namespace UI.ResultWindow
         }
 
         private Sprite SpriteFor(Currency currency) => _pairs.First(p => p.Currency == currency).Sprite;
-        private void OnShowAdsClicked() => YG2.RewardedAdvShow(RewardId, AdWatched);
+        private void OnShowAdsClicked() => YG2.RewardedAdvShow(AdsId.DoubleReward, AdWatched);
 
         private void AdWatched()
         {

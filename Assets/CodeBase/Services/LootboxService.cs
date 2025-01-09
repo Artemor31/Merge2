@@ -1,4 +1,5 @@
 ﻿using Databases;
+using Services.Resources;
 using UI;
 
 namespace Services
@@ -11,11 +12,13 @@ namespace Services
     public class LootboxService
     {
         private PersistantDataService _dataService;
+
+        private DatabaseProvider _databaseProvider;
+        private BuffsDatabase _buffsDatabase;
         
         public LootboxData OpenLootbox()
         {
-
-            
+            //_buffsDatabase.MasteryData
 
            // _dataService.IsOpened();
 

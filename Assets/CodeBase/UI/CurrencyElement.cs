@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,6 @@ namespace UI
             _value.text = value;
         }
 
-        public void SetData(string value) => _value.text = value;
+        public void SetData(float value) => _value.text = value.ToString(CultureInfo.InvariantCulture);
     }
 }
