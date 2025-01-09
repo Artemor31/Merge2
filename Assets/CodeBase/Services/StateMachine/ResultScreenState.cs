@@ -1,4 +1,5 @@
-﻿using Services.GridService;
+﻿using System.Linq;
+using Services.GridService;
 using Services.Infrastructure;
 using UI.ResultWindow;
 using UnityEngine;
@@ -46,21 +47,21 @@ namespace Services.StateMachine
         private ResultData CollectRewards()
         {
             int sumCoins = 0;
-            int sumGems = 0;
-            for (int i = 0; i < _waveBuilder.EnemyUnits.Count; i++)
+            int value = Random.Range(8, 14);
+            int count = _waveBuilder.EnemyUnits.Count(u => u.IsDead);
+            for (int i = 0; i < count; i++)
             {
                 sumCoins += Random.Range(1, 4);
-                sumGems += 1;
             }
 
             _persistantDataService.AddCoins(sumCoins);
-            _persistantDataService.AddGems(sumGems);
-            _gameplayService.AddCrowns(8);
+            _persistantDataService.AddGems(count);
+            _gameplayService.AddCrowns(value);
 
             return new ResultData
             {
-                CrownsValue = 8,
-                GemsValue = sumGems,
+                CrownsValue = value,
+                GemsValue = count,
                 CoinsValue = sumCoins
             };
         }

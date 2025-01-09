@@ -5,20 +5,21 @@ namespace UI.ResultWindow
 {
     public class WinResultPresenter : BaseResultPresenter
     {
+
         public override void SetData<TData>(WindowData data)
         {
             Clear();
-            ResultData resultData = (ResultData)data;
+            ResultData = (ResultData)data;
 
-            AddReward(Currency.Crown, resultData.CrownsValue.ToString());
-            AddReward(Currency.Coin, resultData.CoinsValue.ToString());
-            AddReward(Currency.Gem, resultData.GemsValue.ToString());
+            AddReward(Currency.Crown, ResultData.CrownsValue.ToString());
+            AddReward(Currency.Coin, ResultData.CoinsValue.ToString());
+            AddReward(Currency.Gem, ResultData.GemsValue.ToString());
         }
 
         protected override void OnNextLevelClicked()
         {
             gameObject.SetActive(false);
-            _gameStateMachine.Enter<LoadLevelState>();
+            GameStateMachine.Enter<LoadLevelState>();
         }
     }
 }

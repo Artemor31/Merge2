@@ -7,7 +7,7 @@ namespace UI.ResultWindow
         protected override void OnNextLevelClicked()
         {
             gameObject.SetActive(false);
-            _gameStateMachine.Enter<MenuState>();
+            GameStateMachine.Enter<MenuState>();
         }
     }
 }
