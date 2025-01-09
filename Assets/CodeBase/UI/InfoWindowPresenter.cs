@@ -39,13 +39,17 @@ namespace UI
                 }
             }
 
-            foreach (var data in dictionary)
-            {
-                var presenter = Instantiate(_prefab, _actorsParent);
-                
-                presenter.SetData(_buffsDatabase.RaceData[data.Key], data.Key, data.Value);
-                _items.Add(presenter);
-            }
+            CreateItem(Race.Human, dictionary[Race.Human]);
+            CreateItem(Race.Orc, dictionary[Race.Orc]);
+            CreateItem(Race.Demon, dictionary[Race.Demon]);
+            CreateItem(Race.Undead, dictionary[Race.Undead]);
+        }
+
+        private void CreateItem(Race race, Dictionary<Mastery, BuffConfig> data)
+        {
+            InfoItemPresenter presenter = Instantiate(_prefab, _actorsParent);
+            presenter.SetData(_buffsDatabase.RaceData[race], race, data);
+            _items.Add(presenter);
         }
     }
 }

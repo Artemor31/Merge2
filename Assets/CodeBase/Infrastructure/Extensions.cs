@@ -35,6 +35,6 @@ namespace Infrastructure
 
         public static Vector3 ToV3(this Vector2 vector2) => new(vector2.x, 0, vector2.y);
 
-        public static IEnumerable<T> AsCollection<T>()  where T : Enum => Enum.GetValues(typeof(T)).Cast<T>();
+        public static IEnumerable<T> AsCollection<T>(this Enum e)  where T : Enum => Enum.GetValues(e.GetType()).Cast<T>();
     }
 }
