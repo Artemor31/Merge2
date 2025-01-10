@@ -14,8 +14,8 @@ namespace Gameplay.Units
 
         public override void Initialize(ActorSkin view, ActorData data, ActorStats stats)
         {
-            base.Initialize(view, data, stats);
             _service = ServiceLocator.Resolve<ProjectileService>();
+            base.Initialize(view, data, stats);
         }
 
         protected override void Tick()
@@ -60,10 +60,10 @@ namespace Gameplay.Units
         }
 
         protected override bool NeedNewTarget() => Target == null || Target.IsDead;
-        
+
         protected override void SearchNewTarget() => Target = SearchTarget.For(this)
                                                                           .SelectTargets(Side.Enemy)
-                                                                          .FilterBy(Strategy.Closest)
+                                                                          .FilterBy(Strategy.OnSameLine)
                                                                           .FirstOrDefault();
     }
 }

@@ -49,7 +49,7 @@ namespace Gameplay.Units
         {
             Target = SearchTarget.For(this)
                                  .SelectTargets(Side.Ally)
-                                 .FilterBy(Strategy.Closest)
+                                 .FilterBy(Strategy.MostDamaged)
                                  .FirstOrDefault();
         }
     }

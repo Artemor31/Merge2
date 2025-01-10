@@ -17,16 +17,15 @@ namespace Gameplay.Units
 
         [SerializeField] protected Mover _mover;
 
+        protected bool CooldownUp => _actTimer <= 0;
         protected Actor Target;
         protected SearchTargetService SearchTarget;
         protected ActorSkin View;
-        protected float ActTimer;
-        protected bool CooldownUp => ActTimer <= 0;
-        protected Health _health;
+        private float _actTimer;
+        private Health _health;
 
         public virtual void Initialize(ActorSkin view, ActorData data, ActorStats stats)
         {
-            ActTimer = 0;
             Data = data;
             Stats = stats;
             View = view;
@@ -34,6 +33,7 @@ namespace Gameplay.Units
 
             _health = new Health(stats.Health, stats.Defence);
             _mover.Init(view, stats);
+            _actTimer = 0;
             enabled = false;
         }
 
@@ -55,7 +55,7 @@ namespace Gameplay.Units
         protected virtual void Tick()
         {
             if (CooldownUp == false)
-                ActTimer -= Time.deltaTime;
+                _actTimer -= Time.deltaTime;
         }
         
         protected bool CanFindTarget()
@@ -68,13 +68,13 @@ namespace Gameplay.Units
             return Target != null;
         }
 
+        public void Dispose() => View.Dispose();
         protected abstract bool NeedNewTarget();
         protected abstract void SearchNewTarget();
-        protected void TickActTimer() => ActTimer -= Time.deltaTime;
-        protected float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
+        protected void TickActTimer() => _actTimer -= Time.deltaTime;
         protected bool InRange() => DistanceTo(Target) <= Stats.Range;
-        protected void ResetCooldown() => ActTimer = Stats.ActCooldown;
+        protected void ResetCooldown() => _actTimer = Stats.ActCooldown;
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, Stats.Range);
-        public void Dispose() => View.Dispose();
+        private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
     }
 }
