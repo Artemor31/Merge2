@@ -40,7 +40,7 @@ namespace Services.StateMachine
             {
                 _gridDataService.Reset();
                 _gameplayService.Reset();
-                _windowsService.Show<LoseResultPresenter>();
+                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards());
             }
         }
 

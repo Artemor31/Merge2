@@ -3,6 +3,7 @@ using Databases;
 using Infrastructure;
 using Services.Resources;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -10,6 +11,7 @@ namespace UI
     {
         [SerializeField] private Transform _actorsParent;
         [SerializeField] private InfoItemPresenter _prefab;
+        [SerializeField] private Button _openChest;
 
         private List<InfoItemPresenter> _items = new();
         private BuffsDatabase _buffsDatabase;
@@ -19,9 +21,23 @@ namespace UI
         {
             _buffsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<BuffsDatabase>();
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
+            _openChest.onClick.AddListener(OpenChestClicked);
             
             Dictionary<Race, Dictionary<Mastery, BuffConfig>> dictionary = new();
+            FillDictionary(dictionary);
+            CreateItem(Race.Human, dictionary[Race.Human]);
+            CreateItem(Race.Orc, dictionary[Race.Orc]);
+            CreateItem(Race.Demon, dictionary[Race.Demon]);
+            CreateItem(Race.Undead, dictionary[Race.Undead]);
+        }
+
+        private void OpenChestClicked()
+        {
             
+        }
+
+        private void FillDictionary(Dictionary<Race, Dictionary<Mastery, BuffConfig>> dictionary)
+        {
             foreach (var config in _unitsDatabase.Units)
             {
                 if (dictionary.TryGetValue(config.Data.Race, out var typeDatas))
@@ -38,11 +54,6 @@ namespace UI
                     dictionary.Add(config.Data.Race, datas);
                 }
             }
-
-            CreateItem(Race.Human, dictionary[Race.Human]);
-            CreateItem(Race.Orc, dictionary[Race.Orc]);
-            CreateItem(Race.Demon, dictionary[Race.Demon]);
-            CreateItem(Race.Undead, dictionary[Race.Undead]);
         }
 
         private void CreateItem(Race race, Dictionary<Mastery, BuffConfig> data)
