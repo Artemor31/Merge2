@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Databases;
 using Databases.Data;
@@ -60,9 +61,8 @@ namespace Services.GridService
         public void TryCreatePlayerUnit(int tier)
         {
             var platform = _dataService.RandomPlatform();
-            var configs = _unitsDatabase.ConfigsFor(tier)
-                                        .Where(c => _persistantDataService.IsOpened(c.Data.Race) &&
-                                                    _persistantDataService.IsOpened(c.Data.Mastery));
+            var actorConfigs = _unitsDatabase.ConfigsFor(tier);
+            var configs = actorConfigs.Where(c => _persistantDataService.IsOpened(c.Data.Mastery, c.Data.Race));
 
             _gameFactory.CreatePlayerActor(configs.Random().Data, platform);
             OnPlayerFieldChanged?.Invoke();

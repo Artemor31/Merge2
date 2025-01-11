@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Databases;
@@ -6,6 +5,7 @@ using Gameplay.Units;
 using Services;
 using Services.Infrastructure;
 using Services.SaveProgress;
+using UnityEngine;
 
 namespace UI.UpgradeWindow
 {
@@ -40,17 +40,16 @@ namespace UI.UpgradeWindow
         }
         
         public int LevelOf(string id) => _progress.Progress(id).Level;
-
-        public int CalculateCostForLevel(float x) => (int)(Math.Log10(x + 1) * 2 + x / 6);
+        
+        public int CalculateCostForLevel(int n) => Mathf.RoundToInt(0.5f * Mathf.Pow(n, 2) + 5);
 
         public void IncrementStats(List<Actor> units)
         {
             foreach (Actor unit in units)
             {
                 ActorStats stats = unit.Stats;
-                float coeff = 1.0f
-                              + 0.01f * LevelOf(unit.Data.Mastery.ToString())
-                              + 0.01f * LevelOf(unit.Data.Race.ToString());
+                float coeff = 1.0f + 0.01f * LevelOf(unit.Data.Mastery.ToString())
+                                   + 0.01f * LevelOf(unit.Data.Race.ToString());
                 
                 stats.Damage *= coeff;
                 stats.Health *= coeff;

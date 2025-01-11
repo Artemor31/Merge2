@@ -5,7 +5,7 @@ using System.Linq;
 namespace Services.SaveProgress
 {
     [Serializable]
-    public class UpgradeProgress
+    public class UpgradeProgress : SaveData
     {
         public List<UpgradeProgressPair> Pairs = new();
 

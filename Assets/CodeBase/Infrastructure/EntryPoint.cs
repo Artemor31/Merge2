@@ -19,10 +19,7 @@ namespace Infrastructure
 
         private static EntryPoint _instance;
 
-        private void Start() =>
-            CreateGame();
-
-        private void CreateGame()
+        private void Start()
         {
             BindServices();
 

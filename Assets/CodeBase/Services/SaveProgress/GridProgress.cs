@@ -4,7 +4,7 @@ using Databases.Data;
 namespace Services.SaveProgress
 {
     [Serializable]
-    public class GridProgress
+    public class GridProgress : SaveData
     {
         public ActorData[,] UnitIds;
         public GridProgress(ActorData[,] unitId) => UnitIds = unitId;

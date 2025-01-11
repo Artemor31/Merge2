@@ -1,35 +1,41 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Databases;
 using System;
 
 namespace Services.SaveProgress
 {
     [Serializable]
-    public class PersistantProgress
+    public class PersistantProgress : SaveData
     {
-        public int Coins = 10;
+        public int Coins = 1000;
         public int Gems = 5;
-        public Dictionary<Mastery, bool> Masteries = new()
+        public int[] Races;
+        public int[] Masteries;
+
+        public List<(Race, Mastery)> Opened = new()
         {
-            {Mastery.Warrior, true}, 
-            {Mastery.Ranger, true}, 
-            {Mastery.Mage, false}, 
-            {Mastery.Assassin, false}
-        };
-        
-        public Dictionary<Race, bool> Races = new()
-        {
-            {Race.Human, true},
-            {Race.Orc, false},
-            {Race.Demon, false},
-            {Race.Undead, false},
+            (Race.Human, Mastery.Warrior), 
+            (Race.Human, Mastery.Ranger)
         };
 
-        public void Serialize()
+        public override void Serialize()
         {
-            List<string> ids = Masteries.Select(mastery => mastery.ToString()).ToList();
-            ids.AddRange(Races.Select(race => race.ToString()));
+            Races = new int[Opened.Count];
+            Masteries = new int[Opened.Count];
+
+            for (int i = 0; i < Opened.Count; i++)
+            {
+                Races[i] = (int)Opened[i].Item1;
+                Masteries[i] = (int)Opened[i].Item2;
+            }
+        }
+
+        public override void Deserialize()
+        {
+            for (int i = 0; i < Races.Length; i++)
+            {
+                Opened[i] = ((Race)Races[i], (Mastery)Masteries[i]);
+            }
         }
     }
 }

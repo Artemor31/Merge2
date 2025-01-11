@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Databases;
 using Services.Infrastructure;
 using Services.SaveProgress;
@@ -48,9 +49,15 @@ namespace Services
             return true;
         }
 
-        private void Save() => _saveService.Save(SavePath, _progress);
-        public bool IsOpened(Mastery mastery, Race race) => IsOpened(mastery) && IsOpened(race);
-        public bool IsOpened(Mastery mastery) => _progress.Masteries[mastery];
-        public bool IsOpened(Race race) => _progress.Races[race];
+        private void Save()
+        {
+            _progress.Serialize();
+            _saveService.Save(SavePath, _progress);
+        }
+
+        public void SetOpened(Race race, Mastery mastery) => _progress.Opened.Add((race, mastery));
+        public bool IsOpened(Mastery mastery) => _progress.Opened.Any(p => p.Item2 == mastery);
+        public bool IsOpened(Race race) => _progress.Opened.Any(p => p.Item1 == race);
+        public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
     }
 }

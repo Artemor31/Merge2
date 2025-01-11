@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Databases;
-using Infrastructure;
-using Services;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,9 +13,9 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private Transform _actorsParent;
         [SerializeField] private InfoActorPresenter _prefab;
-        private List<InfoActorPresenter> _presenters = new();
+        private readonly List<InfoActorPresenter> _presenters = new();
         
-        public void SetData(BuffConfig raceConfig, Race race, Dictionary<Mastery,BuffConfig> actors)
+        public void SetData(BuffConfig raceConfig, Race race, Dictionary<Mastery,(BuffConfig, bool)> actors)
         {
             _icon.sprite = raceConfig.Icon;
             _name.text = raceConfig.Name;
@@ -27,9 +25,9 @@ namespace UI
             {
                 InfoActorPresenter presenter = Instantiate(_prefab, _actorsParent);
 
-                if (ServiceLocator.Resolve<PersistantDataService>().IsOpened(actor.Key, race))
+                if (actor.Value.Item2)
                 {
-                    presenter.SetData(actor.Value.Icon, actor.Value.Name);
+                    presenter.SetData(actor.Value.Item1.Icon, actor.Value.Item1.Name);
                 }
                 else
                 {
