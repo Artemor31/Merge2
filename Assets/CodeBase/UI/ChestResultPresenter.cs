@@ -11,6 +11,6 @@ namespace UI
 
         public override void Init() => _ok.onClick.AddListener(Ok);
         private void Ok() => gameObject.SetActive(false);
-        public void OpenChest(string openContent) => _text.text = openContent;
+        public void SetData(string openContent) => _text.text = openContent;
     }
 }

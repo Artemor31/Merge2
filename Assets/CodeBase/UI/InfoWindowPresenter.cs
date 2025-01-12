@@ -2,6 +2,7 @@
 using System.Linq;
 using Databases;
 using Infrastructure;
+using NUnit.Framework;
 using Services;
 using Services.Resources;
 using TMPro;
@@ -17,8 +18,8 @@ namespace UI
         [SerializeField] private Button _openChest;
         [SerializeField] private TextMeshProUGUI _chestCost;
         [SerializeField] private ChestResultPresenter _chestResult;
+        [SerializeField] private Race[] _raceQueue = {Race.Human, Race.Orc, Race.Undead, Race.Demon};
 
-        private readonly Dictionary<Race, Dictionary<Mastery, (BuffConfig, bool)>> _datas = new();
         private readonly List<InfoItemPresenter> _items = new();
         private BuffsDatabase _buffsDatabase;
         private UnitsDatabase _unitsDatabase;
@@ -26,68 +27,68 @@ namespace UI
 
         public override void Init()
         {
-            _chestCost.text = 100.ToString();
             _buffsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<BuffsDatabase>();
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _dataService = ServiceLocator.Resolve<PersistantDataService>();
             _openChest.onClick.AddListener(OpenChestClicked);
-            FillDictionary();
+            _chestCost.text = 100.ToString();
             CreateItems();
         }
 
         private void OpenChestClicked()
         {
-            var closed = from data in _datas 
-                         from mastery in data.Value 
-                         where !mastery.Value.Item2 
-                         select (data.Key, mastery.Key);
+            string text;
+            List<(Race, Mastery)> closed = AllClosed();
             
+            if (closed.Count > 0)
+            {
+                ClearItems();
+                (Race, Mastery) random = closed.Random();
+                _dataService.SetOpened(random);
+                text = random.Item1.ToString() + random.Item2;
+                CreateItems();
+            }
+            else
+            {
+                text = "Все типы уже открыты. Ждите обновлений!";
+            }
+
+            _chestResult.gameObject.SetActive(true);
+            _chestResult.SetData(text);
+        }
+
+        private List<(Race, Mastery)> AllClosed() => 
+            _unitsDatabase.AllActorTypes()
+                          .SelectMany(keyValuePair => keyValuePair.Value, (keyValuePair, mastery) => new {keyValuePair, mastery})
+                          .Where(t => !_dataService.IsOpened(t.mastery, t.keyValuePair.Key))
+                          .Select(t => (t.keyValuePair.Key, t.mastery))
+                          .ToList();
+
+        private void ClearItems()
+        {
             _items.ForEach(i => Destroy(i.gameObject));
             _items.Clear();
-            
-            var random = closed.Random();
-            _dataService.SetOpened(random);
-            _chestResult.gameObject.SetActive(true);
-            _chestResult.OpenChest(random.Item1.ToString() + random.Item2);
-            
-            CreateItems();
         }
 
         private void CreateItems()
         {
-            CreateItem(Race.Human, _datas[Race.Human]);
-            CreateItem(Race.Orc, _datas[Race.Orc]);
-            CreateItem(Race.Demon, _datas[Race.Demon]);
-            CreateItem(Race.Undead, _datas[Race.Undead]);
-        }
-
-        private void FillDictionary()
-        {
-            foreach (var config in _unitsDatabase.Units)
+            foreach (Race race in _raceQueue)
             {
-                BuffConfig buffConfig = _buffsDatabase.MasteryData[config.Data.Mastery];
-                bool isOpened = _dataService.IsOpened(config.Data.Mastery, config.Data.Race);
-                if (_datas.TryGetValue(config.Data.Race, out var typeDatas))
-                {
-                    if (!typeDatas.ContainsKey(config.Data.Mastery))
-                    {
-                        typeDatas.Add(config.Data.Mastery, (buffConfig, isOpened));
-                    }
-                }
-                else
-                {
-                    var masteries = new Dictionary<Mastery, (BuffConfig, bool)>();
-                    masteries.Add(config.Data.Mastery, (buffConfig, isOpened));
-                    _datas.Add(config.Data.Race, masteries);
-                }
+                CreateItem(race);
             }
         }
 
-        private void CreateItem(Race race, Dictionary<Mastery, (BuffConfig, bool)> data)
+        private void CreateItem(Race race)
         {
+            IEnumerable<(BuffConfig, bool)> data = _unitsDatabase.AllActorTypes()[race]
+                                                                 .Select(mastery => CheckOpened(race, mastery));
+
             InfoItemPresenter presenter = Instantiate(_prefab, _actorsParent);
-            presenter.SetData(_buffsDatabase.RaceData[race], race, data);
+            presenter.SetData(_buffsDatabase.RaceData[race], data);
             _items.Add(presenter);
         }
+
+        private (BuffConfig, bool) CheckOpened(Race race, Mastery mastery) => 
+            (_buffsDatabase.MasteryData[mastery], _dataService.IsOpened(mastery, race));
     }
 }

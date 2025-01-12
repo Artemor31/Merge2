@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Databases.Data;
-using Infrastructure;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UnityEngine;
 
@@ -12,7 +11,7 @@ namespace Databases
     {
         [SerializeField] private string _assetsPath;
         [SerializeField] public List<ActorConfig> Units;
-        Dictionary<Race, Dictionary<Mastery, ActorConfig[]>> _cache;
+        private Dictionary<Race, Dictionary<Mastery, ActorConfig[]>> _cache;
 
         public override void Cache()
         {
@@ -38,20 +37,19 @@ namespace Databases
                     _cache.Add(unit.Data.Race, masteries);
                 }
             }
-
-            Debug.LogError("VAR");
         }
 
-        public ActorConfig ConfigFor(int level) => Units.Random(u => u.Data.Level == level);
-        public ActorConfig ConfigFor(ActorData actorData) => Units.FirstOrDefault(data => data.Data == actorData);
+        public ActorConfig ConfigFor(ActorData data) => _cache[data.Race][data.Mastery][data.Level - 1];
 
-        public List<ActorConfig> ConfigsFor(int level, Race[] races, Mastery[] masteries) => Units
-                                                                                             .Where(u => u.Data.Level == level)
-                                                                                             .Where(u => races.Contains(u.Data.Race))
-                                                                                             .Where(u => masteries.Contains(u.Data.Mastery))
-                                                                                             .ToList();
-        
-        public List<ActorConfig> ConfigsFor(int level) => Units.Where(u => u.Data.Level == level).ToList();     
+        public Dictionary<Race, IEnumerable<Mastery>> AllActorTypes() =>
+            _cache.ToDictionary<KeyValuePair<Race, Dictionary<Mastery, ActorConfig[]>>, Race, IEnumerable<Mastery>>(
+                races => races.Key, races => races.Value.Keys);
+
+        public IEnumerable<ActorConfig> ConfigsFor(int level, Race[] races, Mastery[] masteries) =>
+            races.SelectMany(_ => masteries, (race, mastery) => _cache[race][mastery][level - 1]);
+
+        public IEnumerable<ActorConfig> ConfigsFor(int level) =>
+            _cache.SelectMany(races => races.Value, (_, masteries) => masteries.Value[level - 1]);
 
         [Button]
         public void CollectData()

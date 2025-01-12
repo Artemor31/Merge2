@@ -15,7 +15,7 @@ namespace UI
         [SerializeField] private InfoActorPresenter _prefab;
         private readonly List<InfoActorPresenter> _presenters = new();
         
-        public void SetData(BuffConfig raceConfig, Race race, Dictionary<Mastery,(BuffConfig, bool)> actors)
+        public void SetData(BuffConfig raceConfig, IEnumerable<(BuffConfig config, bool opened)> actors)
         {
             _icon.sprite = raceConfig.Icon;
             _name.text = raceConfig.Name;
@@ -25,9 +25,9 @@ namespace UI
             {
                 InfoActorPresenter presenter = Instantiate(_prefab, _actorsParent);
 
-                if (actor.Value.Item2)
+                if (actor.opened)
                 {
-                    presenter.SetData(actor.Value.Item1.Icon, actor.Value.Item1.Name);
+                    presenter.SetData(actor.config.Icon, actor.config.Name);
                 }
                 else
                 {

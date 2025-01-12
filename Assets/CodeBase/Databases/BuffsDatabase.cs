@@ -18,7 +18,7 @@ namespace Databases
             RaceData = new Dictionary<Race, BuffConfig>();
             MasteryData = new Dictionary<Mastery, BuffConfig>();
             
-            foreach (var data in BuffConfigs)
+            foreach (BuffConfig data in BuffConfigs)
             {
                 if (data.Race != Race.None)
                 {

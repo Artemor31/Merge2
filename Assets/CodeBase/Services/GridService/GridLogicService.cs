@@ -61,7 +61,7 @@ namespace Services.GridService
         public void TryCreatePlayerUnit(int tier)
         {
             var platform = _dataService.RandomPlatform();
-            var actorConfigs = _unitsDatabase.ConfigsFor(tier);
+            IEnumerable<ActorConfig> actorConfigs = _unitsDatabase.ConfigsFor(tier);
             var configs = actorConfigs.Where(c => _persistantDataService.IsOpened(c.Data.Mastery, c.Data.Race));
 
             _gameFactory.CreatePlayerActor(configs.Random().Data, platform);
