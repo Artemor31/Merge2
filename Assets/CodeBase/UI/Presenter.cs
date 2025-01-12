@@ -7,8 +7,12 @@ namespace UI
         public virtual void Init(){}
         public virtual void OnShow(){}
         public virtual void OnHide(){}
-        public virtual void SetData<TData>(WindowData data) where TData : WindowData { } 
     }
 
     public class WindowData { }
+    
+    public interface IWindowDataReceiver<in TData> where TData : WindowData
+    {
+        public void SetData(TData data);
+    }    
 }

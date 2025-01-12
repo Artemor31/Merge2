@@ -59,7 +59,9 @@ namespace UI
 
         private List<(Race, Mastery)> AllClosed() => 
             _unitsDatabase.AllActorTypes()
-                          .SelectMany(keyValuePair => keyValuePair.Value, (keyValuePair, mastery) => new {keyValuePair, mastery})
+                          .SelectMany(keyValuePair => 
+                                  keyValuePair.Value, (keyValuePair, mastery) =>
+                              new {keyValuePair, mastery})
                           .Where(t => !_dataService.IsOpened(t.mastery, t.keyValuePair.Key))
                           .Select(t => (t.keyValuePair.Key, t.mastery))
                           .ToList();

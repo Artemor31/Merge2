@@ -3,7 +3,7 @@ using Gameplay.Units;
 using Services.Buffs;
 using Services.GridService;
 using Services.Infrastructure;
-using UI;
+using UI.GameplayWindow;
 using UI.UpgradeWindow;
 
 namespace Services.StateMachine
@@ -62,7 +62,7 @@ namespace Services.StateMachine
                 actor.Unleash();
             }
             
-            _windowsService.Show<GameCanvas>();
+            _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(false));
         }
 
         public void Exit()

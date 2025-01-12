@@ -1,4 +1,5 @@
 ﻿using Gameplay.Units.Healths;
+using UI.GameplayWindow;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -27,7 +28,7 @@ namespace Gameplay.Units
         public void Dispose()
         {
             if (_healthbar == null) return;
-            
+            _healthbar.UnInit();
             Destroy(_healthbar.gameObject);
             _healthbar = null;
         }

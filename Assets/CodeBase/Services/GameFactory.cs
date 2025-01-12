@@ -3,10 +3,9 @@ using Databases;
 using Databases.Data;
 using Gameplay.Grid;
 using Gameplay.Units;
-using Gameplay.Units.Healths;
 using Services.Infrastructure;
 using Services.Resources;
-using UI;
+using UI.GameplayWindow;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -81,7 +80,7 @@ namespace Services
             CanvasHealthbar asset = Load<CanvasHealthbar>(AssetsPath.HealthbarCanvas);
             RectTransform rectTransform = _windowsService.Get<GameCanvas>().RectTransform;
             CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
-            healthbar.Init(_cameraService, rectTransform, target, level);
+            healthbar.Init(_cameraService, rectTransform, target);
             return healthbar;
         }
 

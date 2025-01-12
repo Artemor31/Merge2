@@ -9,6 +9,10 @@ namespace Services.StateMachine
 
         public SetupLevelState(WindowsService windowsService) => _windowsService = windowsService;
 
-        public void Enter() => _windowsService.Show<GameplayPresenter>();
+        public void Enter()
+        {
+            _windowsService.Show<GameplayPresenter>();
+            _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
+        }
     }
 }

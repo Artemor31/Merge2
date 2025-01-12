@@ -46,7 +46,12 @@ namespace Services.Infrastructure
         {
             Presenter presenter = _windows.First(w => w.GetType() == typeof(TWindow));
             presenter.OnShow();
-            presenter.SetData<ResultData>(data);
+
+            if (presenter is IWindowDataReceiver<TData> receiver)
+            {
+                receiver.SetData(data);
+            }
+            
             presenter.gameObject.SetActive(true);
         }
 

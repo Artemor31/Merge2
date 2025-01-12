@@ -3,12 +3,12 @@ using Services.StateMachine;
 
 namespace UI.ResultWindow
 {
-    public class WinResultPresenter : BaseResultPresenter
+    public class WinResultPresenter : BaseResultPresenter, IWindowDataReceiver<ResultData>
     {
-        public override void SetData<TData>(WindowData data)
+        public void SetData(ResultData data)
         {
             Clear();
-            ResultData = (ResultData)data;
+            ResultData = data;
 
             AddReward(Currency.Crown, ResultData.CrownsValue.ToString());
             AddReward(Currency.Coin, ResultData.CoinsValue.ToString());
