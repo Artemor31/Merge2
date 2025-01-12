@@ -25,7 +25,14 @@ namespace Services.Infrastructure
         public void FindPresenters()
         {
             _windows.Clear();
-            _windows = transform.GetComponentsInChildren<Presenter>().ToList();
+
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                Transform child = transform.GetChild(i);
+                List<Presenter> presenters = child.GetComponentsInChildren<Presenter>(true).ToList();
+                _windows.AddRange(presenters);
+            }
         }
 
         public void Show<T>() where T : Presenter

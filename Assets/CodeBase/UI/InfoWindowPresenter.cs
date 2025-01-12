@@ -10,13 +10,6 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class ChestResultPresenter : Presenter
-    {
-        public void OpenChest()
-        {
-        }
-    }
-
     public class InfoWindowPresenter : Presenter
     {
         [SerializeField] private Transform _actorsParent;
@@ -44,19 +37,19 @@ namespace UI
 
         private void OpenChestClicked()
         {
-            _chestResult.gameObject.SetActive(true);
+            var closed = from data in _datas 
+                         from mastery in data.Value 
+                         where !mastery.Value.Item2 
+                         select (data.Key, mastery.Key);
+            
             _items.ForEach(i => Destroy(i.gameObject));
             _items.Clear();
-
-            var closed = (from data in _datas 
-                          from mastery in data.Value 
-                          where !mastery.Value.Item2 
-                          select (data.Key, mastery.Key));
-
-            (Race, Mastery) opend = closed.Random();
-
-            _dataService.SetOpened(opend.Item1, opend.Item2);
-
+            
+            var random = closed.Random();
+            _dataService.SetOpened(random);
+            _chestResult.gameObject.SetActive(true);
+            _chestResult.OpenChest(random.Item1.ToString() + random.Item2);
+            
             CreateItems();
         }
 

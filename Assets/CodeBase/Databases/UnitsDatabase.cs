@@ -12,6 +12,35 @@ namespace Databases
     {
         [SerializeField] private string _assetsPath;
         [SerializeField] public List<ActorConfig> Units;
+        Dictionary<Race, Dictionary<Mastery, ActorConfig[]>> _cache;
+
+        public override void Cache()
+        {
+            const int arraySize = 3;
+            _cache = new Dictionary<Race, Dictionary<Mastery, ActorConfig[]>>();
+
+            foreach (ActorConfig unit in Units)
+            {
+                if (_cache.TryGetValue(unit.Data.Race, out Dictionary<Mastery, ActorConfig[]> masteries))
+                {
+                    if (!masteries.ContainsKey(unit.Data.Mastery))
+                    {
+                        masteries.Add(unit.Data.Mastery, new ActorConfig[arraySize]);
+                    }
+
+                    masteries[unit.Data.Mastery][unit.Data.Level - 1] = unit;
+                }
+                else
+                {
+                    masteries = new Dictionary<Mastery, ActorConfig[]>();
+                    masteries.Add(unit.Data.Mastery, new ActorConfig[arraySize]);
+                    masteries[unit.Data.Mastery][unit.Data.Level - 1] = unit;
+                    _cache.Add(unit.Data.Race, masteries);
+                }
+            }
+
+            Debug.LogError("VAR");
+        }
 
         public ActorConfig ConfigFor(int level) => Units.Random(u => u.Data.Level == level);
         public ActorConfig ConfigFor(ActorData actorData) => Units.FirstOrDefault(data => data.Data == actorData);

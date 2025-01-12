@@ -55,7 +55,12 @@ namespace Services
             _saveService.Save(SavePath, _progress);
         }
 
-        public void SetOpened(Race race, Mastery mastery) => _progress.Opened.Add((race, mastery));
+        public void SetOpened((Race, Mastery) data)
+        {
+            _progress.Opened.Add(data);
+            Save();
+        }
+
         public bool IsOpened(Mastery mastery) => _progress.Opened.Any(p => p.Item2 == mastery);
         public bool IsOpened(Race race) => _progress.Opened.Any(p => p.Item1 == race);
         public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
