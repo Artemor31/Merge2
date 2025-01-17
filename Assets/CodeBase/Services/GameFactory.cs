@@ -20,15 +20,18 @@ namespace Services
         private readonly UnitsDatabase _unitsDatabase;
         private readonly LevelDatabase _levelDatabase;
         private readonly Dictionary<string, Object> _cache;
+        private readonly IUpdateable _updateable;
 
         public GameFactory(DatabaseProvider database,
                            AssetsProvider assetsProvider,
                            CameraService cameraService,
-                           WindowsService windowsService)
+                           WindowsService windowsService,
+                           IUpdateable updateable)
         {
             _assetsProvider = assetsProvider;
             _cameraService = cameraService;
             _windowsService = windowsService;
+            _updateable = updateable;
             _unitsDatabase = database.GetDatabase<UnitsDatabase>();
             _levelDatabase = database.GetDatabase<LevelDatabase>();
             _cache = new Dictionary<string, Object>();
@@ -44,8 +47,9 @@ namespace Services
             ActorConfig config = _unitsDatabase.ConfigFor(data);
             Actor baseView = Object.Instantiate(config.ViewData.BaseView, position, quaternion.identity);
 
-            CanvasHealthbar healthbar = CreateHealthbar(baseView.transform, data.Level);
-            ActorSkin skin = CreateSkin(config.ViewData.Skin, baseView.transform, healthbar);
+            CanvasHealthbar healthbar = CreateHealthbar(baseView.transform);
+            ActorRank actorRank = CreateActorRank(baseView.transform, data);
+            ActorSkin skin = CreateSkin(config.ViewData.Skin, baseView.transform, healthbar, actorRank);
 
             baseView.Initialize(skin, data, config.Stats);
             baseView.gameObject.name += Random.Range(0, 100000);
@@ -68,20 +72,29 @@ namespace Services
             return prefab;
         }
 
-        private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, CanvasHealthbar healthbar)
+        private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, CanvasHealthbar healthbar, ActorRank actorRank)
         {
             ActorSkin skin = Object.Instantiate(prefab, parent, false);
-            skin.Initialize(healthbar);
+            skin.Initialize(healthbar, actorRank);
             return skin;
         }
 
-        private CanvasHealthbar CreateHealthbar(Transform target, int level)
+        private CanvasHealthbar CreateHealthbar(Transform target)
         {
+            RectTransform rectTransform = _windowsService.Get<GameCanvas>().HealthParent;
             CanvasHealthbar asset = Load<CanvasHealthbar>(AssetsPath.HealthbarCanvas);
-            RectTransform rectTransform = _windowsService.Get<GameCanvas>().RectTransform;
             CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
-            healthbar.Init(_cameraService, rectTransform, target);
+            healthbar.Init(rectTransform, target);
             return healthbar;
+        }
+
+        private ActorRank CreateActorRank(Transform target, ActorData data)
+        {
+            RectTransform rectTransform = _windowsService.Get<GameCanvas>().RankParent;
+            ActorRank asset = Load<ActorRank>(AssetsPath.ActorRankCanvas);
+            ActorRank rank = Object.Instantiate(asset, rectTransform);
+            rank.Init(rectTransform, target, data);
+            return rank;
         }
 
         public GridView CreateGridView()

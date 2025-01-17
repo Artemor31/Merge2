@@ -45,8 +45,22 @@ namespace Databases
             _cache.ToDictionary<KeyValuePair<Race, Dictionary<Mastery, ActorConfig[]>>, Race, IEnumerable<Mastery>>(
                 races => races.Key, races => races.Value.Keys);
 
-        public IEnumerable<ActorConfig> ConfigsFor(int level, Race[] races, Mastery[] masteries) =>
-            races.SelectMany(_ => masteries, (race, mastery) => _cache[race][mastery][level - 1]);
+        public IEnumerable<ActorConfig> ConfigsFor(int level, List<Race> races, List<Mastery> masteries)
+        {
+            foreach (Race race in races)
+            {
+                if (_cache.TryGetValue(race, out var masteryDict))
+                {
+                    foreach (Mastery mastery in masteries)
+                    {
+                        if (masteryDict.TryGetValue(mastery, out ActorConfig[] data))
+                        {
+                            yield return data[level - 1];
+                        }
+                    }
+                }
+            }
+        }
 
         public IEnumerable<ActorConfig> ConfigsFor(int level) =>
             _cache.SelectMany(races => races.Value, (_, masteries) => masteries.Value[level - 1]);

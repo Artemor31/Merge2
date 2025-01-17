@@ -10,11 +10,15 @@ namespace UI.GameplayWindow
     
     public class GameCanvas : Presenter, IWindowDataReceiver<GameCanvasData>
     {
-        public RectTransform RectTransform { get; private set; }
+        public RectTransform RankParent => _rankParent;
+        public RectTransform HealthParent => _healthParent;
         [SerializeField] private RectTransform _rankParent;
         [SerializeField] private RectTransform _healthParent;
 
-        public override void Init() => RectTransform = GetComponent<RectTransform>();
-        public void SetData(GameCanvasData data) => RectTransform = data.IsIdle ? _rankParent : _healthParent;
+        public void SetData(GameCanvasData data)
+        {
+            _rankParent.gameObject.SetActive(data.IsIdle);
+            _healthParent.gameObject.SetActive(!data.IsIdle);
+        }
     }
 }

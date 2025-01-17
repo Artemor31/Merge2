@@ -30,6 +30,10 @@ namespace Databases
                 }
             }
         }
+
+        public Sprite IconFor(Race race) => RaceData[race].Icon;
+
+        public Sprite IconFor(Mastery mastery) => MasteryData[mastery].Icon;
     }
     
     [Serializable]

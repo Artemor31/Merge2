@@ -91,7 +91,7 @@ namespace Services
 
         private IEnumerable<ActorData> CreateActorsWave(WaveData waveData)
         {
-            Dictionary<int, IEnumerable<ActorConfig>> variants = FillVariants(waveData);
+            Dictionary<int, List<ActorConfig>> variants = FillVariants(waveData);
             int limit = waveData.PowerLimit;
 
             while (limit > 0)
@@ -114,12 +114,13 @@ namespace Services
             }
         }
 
-        private Dictionary<int, IEnumerable<ActorConfig>> FillVariants(WaveData waveData)
+        private Dictionary<int, List<ActorConfig>> FillVariants(WaveData waveData)
         {
-            Dictionary<int, IEnumerable<ActorConfig>> variants = new();
+            Dictionary<int, List<ActorConfig>> variants = new();
             for (int level = 1; level <= waveData.MaxLevel; level++)
             {
-                variants.Add(level, _unitsDatabase.ConfigsFor(level, waveData.Races, waveData.Masteries));
+                List<ActorConfig> actorConfigs = _unitsDatabase.ConfigsFor(level, waveData.Races, waveData.Masteries).ToList();
+                variants.Add(level, actorConfigs);
             }
 
             return variants;
