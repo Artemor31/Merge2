@@ -29,7 +29,7 @@ namespace UI.UpgradeWindow
             UpgradeProgressPair upgrade = _progress.Pairs.First(p => p.Id == id);
             int cost = CalculateCostForLevel(upgrade.Level + 1);
             
-            if (_persistantDataService.TryBuy(cost))
+            if (_persistantDataService.TryBuyCoins(cost))
             {
                 upgrade.Level++;
                 _saveService.Save(SavePath, _progress);

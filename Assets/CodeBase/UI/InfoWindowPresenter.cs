@@ -2,7 +2,6 @@
 using System.Linq;
 using Databases;
 using Infrastructure;
-using NUnit.Framework;
 using Services;
 using Services.Resources;
 using TMPro;
@@ -13,6 +12,7 @@ namespace UI
 {
     public class InfoWindowPresenter : Presenter
     {
+        private const int ChestCost = 100;
         [SerializeField] private Transform _actorsParent;
         [SerializeField] private InfoItemPresenter _prefab;
         [SerializeField] private Button _openChest;
@@ -31,12 +31,14 @@ namespace UI
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _dataService = ServiceLocator.Resolve<PersistantDataService>();
             _openChest.onClick.AddListener(OpenChestClicked);
-            _chestCost.text = 100.ToString();
+            _chestCost.text = ChestCost.ToString();
             CreateItems();
         }
 
         private void OpenChestClicked()
         {
+            if (!_dataService.TryBuyGems(ChestCost)) return;
+            
             string text;
             List<(Race, Mastery)> closed = AllClosed();
             

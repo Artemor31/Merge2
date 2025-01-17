@@ -39,12 +39,22 @@ namespace Services
             Save();
         }
 
-        public bool TryBuy(int cost)
+        public bool TryBuyCoins(int cost)
         {
             if (_progress.Coins < cost) return false;
 
             _progress.Coins -= cost;
             OnCoinsChanged?.Invoke(_progress.Coins);
+            Save();
+            return true;
+        }
+
+        public bool TryBuyGems(int cost)
+        {
+            if (_progress.Gems < cost) return false;
+
+            _progress.Gems -= cost;
+            OnGemsChanged?.Invoke(_progress.Gems);
             Save();
             return true;
         }
