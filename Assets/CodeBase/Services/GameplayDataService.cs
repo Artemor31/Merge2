@@ -47,6 +47,7 @@ namespace Services
         {
             _progress = new GameplayProgress();
             Save();
+            OnCrownsChanged?.Invoke(_progress.Crowns);
         }
 
         private void Save() => _saveService.Save(PlayerData, _progress);
