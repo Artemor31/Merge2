@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
+  m_Name: HumanAssassin3
+  m_EditorClassIdentifier: 
+  Data:
+    Level: 3
+    Race: 1
+    Mastery: 4
+  Stats:
+    Health: 400
+    Damage: 100
+    CritChance: 0
+    CritValue: 0
+    Vampirism: 0
+    Defence: 0
+    Range: 2
+    ActCooldown: 1.5
+    MoveSpeed: 3
+  ViewData:
+    BaseView: {fileID: 8652129761144634173, guid: 5e219ace06927e44c88164de3e106970, type: 3}
+    Skin: {fileID: -3373411244398633822, guid: d8eb6f93aa1407a4095a8a3a59252b26, type: 3}

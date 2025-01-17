@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1746607798322756636}
   - component: {fileID: 7138468259729007270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5100846274282757059}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Toes_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7302370971345478555}
   - component: {fileID: 2657993115431587490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8129921825779904629}
   - component: {fileID: 2176577149626245891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8070644218579665457}
   - component: {fileID: 3213995231123250741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2933741980810144089}
   - component: {fileID: 1289148640546914092}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8209890824437310054}
   - component: {fileID: 317029933155056499}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651630001569441641}
   - component: {fileID: 3904346888627383013}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372512984459030513}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_04_Back_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2664062062522764881}
   - component: {fileID: 5908456698323368234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -810,7 +810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5000724973784941634}
   - component: {fileID: 8446906798700468781}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9111292920515504499}
   - component: {fileID: 1756216408627868633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8002940961672776167}
   - component: {fileID: 4021758801346904869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6284508586233409741}
   - component: {fileID: 6897134849031124572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,7 +1178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543594431813325823}
   - component: {fileID: 1873505551620177745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,7 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5311295181939815776}
   - component: {fileID: 7629772363078384373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074372348382735187}
   - component: {fileID: 4484965346222669496}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1462,7 +1462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150429446315040633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shoulder_Attachment_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1494,7 +1494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1057633254953475970}
   - component: {fileID: 4719923121646299545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1587,7 +1587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4030719390713180671}
   - component: {fileID: 2099395036389556996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,7 +1677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6144578112146566943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_07_Elbow_Attachment_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1714,7 +1714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289525837530528518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_12_Leg_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1766,7 +1766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2258931289812233138}
   - component: {fileID: 3006799414156392851}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1865,7 +1865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1461124676124200754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1898,7 +1898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8916083100702367269}
   - component: {fileID: 3117245909895281430}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1987,7 +1987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4403943396018746346}
   - component: {fileID: 4042504894521842518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2078,7 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3787430049170487793}
   - component: {fileID: 7797266080299388625}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_37
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2173,7 +2173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7547430806051146599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_Head_All_Elements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2227,7 +2227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074601986951628575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadCoverings_Base_Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2269,7 +2269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8111790339664826631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2304,7 +2304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5787730373700196554}
   - component: {fileID: 6462802052818256152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2393,7 +2393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630641658411534705}
   - component: {fileID: 8428070738805759367}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2484,7 +2484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1397947160064103580}
   - component: {fileID: 1771926546416918420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2575,7 +2575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5878581503388676627}
   - component: {fileID: 4647977642239243640}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,7 +2672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4696147119835652547}
   - component: {fileID: 8681098022421497402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2763,7 +2763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6521373467338267420}
   - component: {fileID: 7310881898184352671}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2856,7 +2856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 62934164956235965}
   - component: {fileID: 4934780805973027203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2949,7 +2949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651476880983978753}
   - component: {fileID: 6114013252679062707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachLeft_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3037,7 +3037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5305986123043852442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3070,7 +3070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8095650875503458845}
   - component: {fileID: 5019255526933715297}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3170,7 +3170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6229623110080959483}
   - component: {fileID: 5859540572985743816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3261,7 +3261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6696705721845817536}
   - component: {fileID: 6237119409086731927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3350,7 +3350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4809281091603492336}
   - component: {fileID: 4548684225727793222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3441,7 +3441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8195083632298769859}
   - component: {fileID: 4330071915351668918}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3530,7 +3530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5570460551320076808}
   - component: {fileID: 4561528781304469508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3620,7 +3620,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6107264279080817246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shoulder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3653,7 +3653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5191152060347419753}
   - component: {fileID: 425012093250795486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3744,7 +3744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553661194186453047}
   - component: {fileID: 3134046394486777711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3835,7 +3835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 327816195845473598}
   - component: {fileID: 7409051862149592927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3924,7 +3924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7665383939714775904}
   - component: {fileID: 4129072539212270317}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4019,7 +4019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3642070858225563727}
   - component: {fileID: 5697914576544390096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4108,7 +4108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8301572046117238279}
   - component: {fileID: 4612700211720349122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4199,7 +4199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4468101512011044850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4231,7 +4231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5613907517122297284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4264,7 +4264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8354474119961472800}
   - component: {fileID: 1648026918829263259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4353,7 +4353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6059781113692919790}
   - component: {fileID: 8457274121468781194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4444,7 +4444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7160776341119913154}
   - component: {fileID: 3898557761509612274}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4533,7 +4533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3369167192063531479}
   - component: {fileID: 2831124763998176697}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4630,7 +4630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2329847581985228376}
   - component: {fileID: 4691743126609127164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4721,7 +4721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2780789105574337119}
   - component: {fileID: 5707208705413061652}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4821,7 +4821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5633730322690456337}
   - component: {fileID: 8539767237504557119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4910,7 +4910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4352263609504827046}
   - component: {fileID: 4214428818255775995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5009,7 +5009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8538123559226900883}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5042,7 +5042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2290173274374334432}
   - component: {fileID: 7550091894642598055}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5133,7 +5133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7395613700906099741}
   - component: {fileID: 2410859088518318628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachRight_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5222,7 +5222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8443746806095637944}
   - component: {fileID: 600414656497708111}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5313,7 +5313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838458148601900372}
   - component: {fileID: 7956362365402838041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5404,7 +5404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6738514465453338273}
   - component: {fileID: 5362302685167633411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5501,7 +5501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4107288160154296326}
   - component: {fileID: 3725601861985620375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5592,7 +5592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8762081792032320701}
   - component: {fileID: 5111720287339633285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5692,7 +5692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088541220863710350}
   - component: {fileID: 3637570608100941281}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_FacialHair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5788,7 +5788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6331077753602647380}
   - component: {fileID: 3635771247409029211}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5879,7 +5879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3367907801312345423}
   - component: {fileID: 4483674147761674844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5970,7 +5970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4953897062633476479}
   - component: {fileID: 8293744529548554131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6067,7 +6067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4473224769518957879}
   - component: {fileID: 4099099357954443921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6163,7 +6163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2901692761840822993}
   - component: {fileID: 3586299705209726631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6263,7 +6263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384415114023338798}
   - component: {fileID: 5163839058625779500}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6358,7 +6358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4153737842853106696}
   - component: {fileID: 6837887676680406059}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6449,7 +6449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7754774003182777704}
   - component: {fileID: 171655007375901524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachRight_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6538,7 +6538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 327097926869251635}
   - component: {fileID: 5510642032947598604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6635,7 +6635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3030626201570756476}
   - component: {fileID: 2967818239747721904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6726,7 +6726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3676934121594148630}
   - component: {fileID: 5486678120369849298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6815,7 +6815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7076024937623198966}
   - component: {fileID: 5221696984630006875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6915,7 +6915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6779459995823533757}
   - component: {fileID: 5734092008199612040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7009,7 +7009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5993538181725783953}
   - component: {fileID: 7875454850424994607}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7106,7 +7106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6314653769557204485}
   - component: {fileID: 6334638607828220093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7199,7 +7199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4046802638187152280}
   - component: {fileID: 8072919929135036864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7299,7 +7299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7325763026035288331}
   - component: {fileID: 269577823550909554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7391,7 +7391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6580974563004530527}
   - component: {fileID: 1848316359743500561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7482,7 +7482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2917041319997470263}
   - component: {fileID: 8985676314644748624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7582,7 +7582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3196979698636637166}
   - component: {fileID: 8355228677000809093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Ear_Ear_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7671,7 +7671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726136610249096839}
   - component: {fileID: 5093739170278682783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7764,7 +7764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2375745348944579631}
   - component: {fileID: 7471142979861380135}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7860,7 +7860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4859944903001221988}
   - component: {fileID: 3357400038604049306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7957,7 +7957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8347087038957747031}
   - component: {fileID: 5188379382855570167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8046,7 +8046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1283284901446118791}
   - component: {fileID: 3577634812599693711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8136,7 +8136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4888658593003231678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_11_Leg_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8187,7 +8187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7312327850747819600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_11_Knee_Attachement_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8229,7 +8229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2656497247117310122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8262,7 +8262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8013592256300120938}
   - component: {fileID: 1548753042627158004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8352,7 +8352,7 @@ GameObject:
   - component: {fileID: 8279482891242579842}
   - component: {fileID: 8073326436786396645}
   - component: {fileID: -6941507388623408899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Warrior2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8421,7 +8421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5258154274538155348}
   - component: {fileID: 1253823091269514182}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachLeft_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8510,7 +8510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4439556650405884057}
   - component: {fileID: 441475702642083845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8610,7 +8610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 735571527842735958}
   - component: {fileID: 4462376903615403392}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8701,7 +8701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6868130759427053485}
   - component: {fileID: 2913323054268325819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8793,7 +8793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 293041225684541688}
   - component: {fileID: 8886713432037170780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8885,7 +8885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8882159488620117080}
   - component: {fileID: 4547438839022855985}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8974,7 +8974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5333034428370643472}
   - component: {fileID: 4320645353471639332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9064,7 +9064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045113503800004035}
   - component: {fileID: 7697702423633476276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9152,7 +9152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019296779752166927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9185,7 +9185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6608551826542987167}
   - component: {fileID: 9003692462026884660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9285,7 +9285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429562637532700060}
   - component: {fileID: 1319543625202674291}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9376,7 +9376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8029675448287373735}
   - component: {fileID: 2269392739563825467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9471,7 +9471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6418902806779182625}
   - component: {fileID: 4980537928912027246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9566,7 +9566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703639978642187789}
   - component: {fileID: 8776255324680581817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9656,7 +9656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6924599800768887110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9689,7 +9689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1059264681160602960}
   - component: {fileID: 146665717829610821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9778,7 +9778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3573818266686159107}
   - component: {fileID: 8352214187839940070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9877,7 +9877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7124460374992961978}
   - component: {fileID: 1791718386475279705}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9977,7 +9977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1535415216498150678}
   - component: {fileID: 8001499453120074212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10074,7 +10074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4626709151500088572}
   - component: {fileID: 3179209970562438239}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10166,7 +10166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576150053754223614}
   - component: {fileID: 2979542496719055942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10255,7 +10255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3980649107414850140}
   - component: {fileID: 8423033524165852794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10346,7 +10346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043801918464794011}
   - component: {fileID: 2589581052415091416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10438,7 +10438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2495739677037366730}
   - component: {fileID: 660799661854525109}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10538,7 +10538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8885511809821214017}
   - component: {fileID: 7693516838270163724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10629,7 +10629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338276880313538086}
   - component: {fileID: 8414258693952576012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10726,7 +10726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758230626921921738}
   - component: {fileID: 3878587702933505618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10817,7 +10817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3291719303824359163}
   - component: {fileID: 7337511981771699821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10910,7 +10910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3175864371186935473}
   - component: {fileID: 9075982282634143346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11001,7 +11001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4971086543909389365}
   - component: {fileID: 2211234424625190887}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11089,7 +11089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8354590472130120783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clavicle_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11123,7 +11123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6073706644027130231}
   - component: {fileID: 4087544085118208603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11212,7 +11212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839787312313099138}
   - component: {fileID: 5688347902560944765}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11305,7 +11305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5135312176404565736}
   - component: {fileID: 430490569172309293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11396,7 +11396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7184559185627375217}
   - component: {fileID: 397266140830903161}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11489,7 +11489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6167692374924441476}
   - component: {fileID: 7970238112684034449}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11580,7 +11580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8756848777741464271}
   - component: {fileID: 5459691894611127306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11676,7 +11676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7334003455914416148}
   - component: {fileID: 3756809054348513932}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11769,7 +11769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080020876255950673}
   - component: {fileID: 3260513474711808460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachRight_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11858,7 +11858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3357696502505530701}
   - component: {fileID: 6789900750693624626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11949,7 +11949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7919312521756039294}
   - component: {fileID: 7047516341996501492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_FacialHair_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12047,7 +12047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3565384760472965037}
   - component: {fileID: 2568451110757906927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachRight_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12136,7 +12136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534853407749141283}
   - component: {fileID: 329956013413965996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12229,7 +12229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5590122824206802396}
   - component: {fileID: 1810246721025655071}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12318,7 +12318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3013824247562036057}
   - component: {fileID: 7571877322785142075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12409,7 +12409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2081958367281118841}
   - component: {fileID: 8502396486597299022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12500,7 +12500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210878456912166201}
   - component: {fileID: 8289313648455628978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12593,7 +12593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3685550061750317827}
   - component: {fileID: 6469019502811251531}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12684,7 +12684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069987822853321706}
   - component: {fileID: 3835197598096945915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12776,7 +12776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8215974795249164996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12807,7 +12807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786012723488017776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_07_Arm_Lower_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12858,7 +12858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8501626766473824955}
   - component: {fileID: 1097954695827897848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_FacialHair_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12958,7 +12958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6947906072603671662}
   - component: {fileID: 3646965800404311574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13057,7 +13057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8448581362274803186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_01_Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13127,7 +13127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8188179396865242596}
   - component: {fileID: 3819574525716730523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13219,7 +13219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7377839448189891281}
   - component: {fileID: 8438123318650433903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13308,7 +13308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3472620929867701950}
   - component: {fileID: 6033094401019266162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13399,7 +13399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6081597278370228821}
   - component: {fileID: 2701112257941822809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13490,7 +13490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7505812845977098796}
   - component: {fileID: 116835830197066617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13583,7 +13583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003865996714760589}
   - component: {fileID: 3363785892424041814}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13674,7 +13674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6502222674069835249}
   - component: {fileID: 147170656426997614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13771,7 +13771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2847703170130088228}
   - component: {fileID: 4883098880250808945}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13862,7 +13862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8812014452383413218}
   - component: {fileID: 3088717723928232101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13957,7 +13957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6883651942930847752}
   - component: {fileID: 8052333256500804285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14045,7 +14045,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806854536863854808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14078,7 +14078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418837970104440848}
   - component: {fileID: 7663874615672610229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14170,7 +14170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3501625219031947405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_Head_No_Elements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14215,7 +14215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6598257948172900398}
   - component: {fileID: 4596578282919782300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14305,7 +14305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2586556263168933733}
   - component: {fileID: 642183762062112419}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachRight_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14393,7 +14393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4030641607055712680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_02 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14426,7 +14426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7367676459775018464}
   - component: {fileID: 3487179825643477003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14515,7 +14515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6985791051753064633}
   - component: {fileID: 2882866199112396703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14615,7 +14615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5315633761557922949}
   - component: {fileID: 2248454752640318747}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14704,7 +14704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5382095423818018782}
   - component: {fileID: 34020424619274419}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14793,7 +14793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185335502791166636}
   - component: {fileID: 1485940876189637598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Ear_Ear_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14882,7 +14882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3175052188373420291}
   - component: {fileID: 2512017344819255100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14982,7 +14982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3228745709933898532}
   - component: {fileID: 8573321489313596592}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15075,7 +15075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943246849070098367}
   - component: {fileID: 3061426332151958838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15168,7 +15168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3757329710356275799}
   - component: {fileID: 9053923428714046623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15259,7 +15259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711696036020052212}
   - component: {fileID: 5546069403891252213}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15350,7 +15350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3729913365475565123}
   - component: {fileID: 3987904358017967454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15441,7 +15441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2903891071251385106}
   - component: {fileID: 769584435904984473}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15532,7 +15532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5444094627348071747}
   - component: {fileID: 3910362832424730708}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15623,7 +15623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9091590668639355389}
   - component: {fileID: 3875788339665714560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15715,7 +15715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4865978472492678064}
   - component: {fileID: 7721749298660662792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15808,7 +15808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2798078695469432735}
   - component: {fileID: 5748020953867395871}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15897,7 +15897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7630705777578328204}
   - component: {fileID: 2031311050921049244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15987,7 +15987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5393508010978202830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elbow_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16020,7 +16020,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834998634430197368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_04_Arm_Upper_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16073,7 +16073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7014370638413581964}
   - component: {fileID: 20692296857618370}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16163,7 +16163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7250553495740044787}
   - component: {fileID: 8301158704557673107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16256,7 +16256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7573474691011865020}
   - component: {fileID: 7170913630440245380}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16345,7 +16345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6660660108657120456}
   - component: {fileID: 4710203356553331763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16437,7 +16437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6978014250358407829}
   - component: {fileID: 720674860991357434}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16528,7 +16528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83818484055320747}
   - component: {fileID: 5870711768194048321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16625,7 +16625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2039466333749072429}
   - component: {fileID: 3067512831843605582}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16724,7 +16724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451767164391828087}
   - component: {fileID: 8749233284303958869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16813,7 +16813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3602174443373386939}
   - component: {fileID: 6713363427824279706}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16906,7 +16906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6212700329341839957}
   - component: {fileID: 5220075999910690301}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17006,7 +17006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5384550063931523618}
   - component: {fileID: 2448343392450083972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17097,7 +17097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2452565569332096568}
   - component: {fileID: 4552617742469140887}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17188,7 +17188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2208711780025386666}
   - component: {fileID: 7286741432775718322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17279,7 +17279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4240516231131790574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17312,7 +17312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5141023925284442257}
   - component: {fileID: 1663974610557711340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachLeft_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17401,7 +17401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7344426904500571966}
   - component: {fileID: 6805453801640135716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17490,7 +17490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7064572495969896884}
   - component: {fileID: 7035285760017497666}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17590,7 +17590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2204614243857049835}
   - component: {fileID: 3580631194398076705}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17687,7 +17687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7562644914717990031}
   - component: {fileID: 7063399266040927098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17778,7 +17778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7022862489942763344}
   - component: {fileID: 6969372285701865925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17871,7 +17871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2380813508654853201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17916,7 +17916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4429914133548493836}
   - component: {fileID: 5982728668604185470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18015,7 +18015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7261654204712880341}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_05_Shoulder_Attachment_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18067,7 +18067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5849374873749858277}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_06_Shoulder_Attachment_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18120,7 +18120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7187830786786567638}
   - component: {fileID: 837822321040109808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18220,7 +18220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8516350526298837309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_03 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18253,7 +18253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7250591559143134780}
   - component: {fileID: 4184789234605820754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18350,7 +18350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2893656282706750589}
   - component: {fileID: 6737321931125011726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18445,7 +18445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4257473054787971117}
   - component: {fileID: 9018268467240865583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18533,7 +18533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7450104944025090373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_04 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18565,7 +18565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3709843610322441312}
   - component: {fileID: 7696242402686721790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18655,7 +18655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3728133123089096561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18687,7 +18687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491963033913227571}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18719,7 +18719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7833905314576594639}
   - component: {fileID: 4527215530119829587}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18818,7 +18818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5634874199050838313}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Back_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18851,7 +18851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373793728859658053}
   - component: {fileID: 560880107589873770}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18941,7 +18941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1408529218536676679}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elbow_Attachment_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18973,7 +18973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 838864077907308059}
   - component: {fileID: 6796335794601928409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19064,7 +19064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700975451571772759}
   - component: {fileID: 3705151268471297160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19153,7 +19153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7021419185835959489}
   - component: {fileID: 2364112669914247702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19249,7 +19249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4474429289976075066}
   - component: {fileID: 2180672741083272453}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19340,7 +19340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7837569323983950471}
   - component: {fileID: 1396802985396190088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19429,7 +19429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5242160135755825256}
   - component: {fileID: 5078829300268979021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19522,7 +19522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2091528085213078411}
   - component: {fileID: 6793372863586639399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19621,7 +19621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2508271637809656627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_01_Eyebrows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19663,7 +19663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6410910695442581826}
   - component: {fileID: 1872833234501511869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19752,7 +19752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627693032784920027}
   - component: {fileID: 7210367370225224337}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19841,7 +19841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2545428185134178094}
   - component: {fileID: 1848635990914048833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19930,7 +19930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127121944475850983}
   - component: {fileID: 3914737763796948065}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20020,7 +20020,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2584339947902559455}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20054,7 +20054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6555686221954848243}
   - component: {fileID: 6777626791251705900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20143,7 +20143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1356198819889536878}
   - component: {fileID: 5036641948750507696}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20234,7 +20234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3358201501354733526}
   - component: {fileID: 4795712498641405652}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20325,7 +20325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1656773124226735009}
   - component: {fileID: 8776272986542459522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20414,7 +20414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3546032118644098167}
   - component: {fileID: 978228284734807101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20504,7 +20504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7732636096789512907}
   - component: {fileID: 2510180516739025506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20593,7 +20593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 665650722615909960}
   - component: {fileID: 4082897820527126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachLeft_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20681,7 +20681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8417985134505460024}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ankle_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20714,7 +20714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064233095384711459}
   - component: {fileID: 1942733778027345823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20803,7 +20803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6956604620905743431}
   - component: {fileID: 4726833065229351269}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20892,7 +20892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1706674934373757508}
   - component: {fileID: 1167658734020199763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20981,7 +20981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4837692418268786185}
   - component: {fileID: 8195407010908175328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21081,7 +21081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3987439671977243577}
   - component: {fileID: 1242564618983232395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21175,7 +21175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 95511836683290769}
   - component: {fileID: 889025690590239840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21263,7 +21263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6220809721007898852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hips_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21295,7 +21295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6753732277546839759}
   - component: {fileID: 815920244313532488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21393,7 +21393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4593044925439266320}
   - component: {fileID: 380069318038709157}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21488,7 +21488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5585460898678890204}
   - component: {fileID: 5069524922495414818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21577,7 +21577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8104842571651028292}
   - component: {fileID: 4040505100120524507}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21680,7 +21680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647550109626575042}
   - component: {fileID: 6210884979346810701}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21780,7 +21780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9029124866227309848}
   - component: {fileID: 2110735356922846319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21868,7 +21868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2250305127852902540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elbow_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21902,7 +21902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7667367372048587235}
   - component: {fileID: 4974044169640311058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22002,7 +22002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1545921822491979227}
   - component: {fileID: 5452602336087045386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22102,7 +22102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6347184701642827370}
   - component: {fileID: 7258557104432706526}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22198,7 +22198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4609114034812330821}
   - component: {fileID: 3603403901492328866}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22291,7 +22291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4205928535171891753}
   - component: {fileID: 7037021872881698585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22380,7 +22380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854767159455085338}
   - component: {fileID: 5356246137807352482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22469,7 +22469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044826251641650158}
   - component: {fileID: 3049738133512156651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22569,7 +22569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2777092124649390970}
   - component: {fileID: 3655752709222714588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22662,7 +22662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2833285457442499082}
   - component: {fileID: 35677847562028673}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22754,7 +22754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7778698717662792831}
   - component: {fileID: 3945349711548616312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22843,7 +22843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8777757355850104492}
   - component: {fileID: 8254676581512571694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22932,7 +22932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1074372416739131326}
   - component: {fileID: 1546504353535183532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23023,7 +23023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2789949801293173733}
   - component: {fileID: 2472911645542222431}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23112,7 +23112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118111253417180224}
   - component: {fileID: 7844554332238489890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23203,7 +23203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4804723760474492006}
   - component: {fileID: 460177498620736041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23294,7 +23294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8849161837926341634}
   - component: {fileID: 8939083669486479702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23391,7 +23391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9029046779967260608}
   - component: {fileID: 5358817660491114619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23481,7 +23481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 186548021265530351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23514,7 +23514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5745656564842005991}
   - component: {fileID: 3595281334785188449}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23613,7 +23613,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5225951801091038007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ankle_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23646,7 +23646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7052544846163804907}
   - component: {fileID: 2702907127416470012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23745,7 +23745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7260348386221296368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23778,7 +23778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2598516305834046489}
   - component: {fileID: 2247268323345635000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23878,7 +23878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6687327588809359663}
   - component: {fileID: 7065818233306420007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23969,7 +23969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6954528469351381742}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_00_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24003,7 +24003,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8255118813630949539}
   - component: {fileID: 4542391694063843204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24092,7 +24092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7161660936263451584}
   - component: {fileID: 6756407635680456032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24191,7 +24191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1785256116115485322}
   - component: {fileID: 1373579481101476400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24279,7 +24279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9028667280317244166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24315,7 +24315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1183168323066394526}
   - component: {fileID: 8933897121198428765}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24404,7 +24404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7155761177892943657}
   - component: {fileID: 920909802950439595}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24504,7 +24504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5323898353378681113}
   - component: {fileID: 3115116040663148987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24594,7 +24594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3724763987261735786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cape_Attachment_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24626,7 +24626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7356294373072319796}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_08_Elbow_Attachment_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24664,7 +24664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3434590059376205363}
   - component: {fileID: 6480451174552078065}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24764,7 +24764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8194691917563032242}
   - component: {fileID: 6185083094908175015}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24855,7 +24855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2540292796795286581}
   - component: {fileID: 6083262508787211430}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24946,7 +24946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2529530284725498477}
   - component: {fileID: 341219409508293360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25034,7 +25034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4327124825667350409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clavicle_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25068,7 +25068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9028112095268602049}
   - component: {fileID: 424544297033296191}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25164,7 +25164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7343461176076930008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadCoverings_No_Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25209,7 +25209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4863900257015217384}
   - component: {fileID: 4242073138389115571}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25300,7 +25300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512619026727391276}
   - component: {fileID: 4896191804861068812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25391,7 +25391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8174717948884426724}
   - component: {fileID: 5804329869822206970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25488,7 +25488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6153760975801487658}
   - component: {fileID: 4000221911924754099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25579,7 +25579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7780205785788404848}
   - component: {fileID: 8544774739123202745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25672,7 +25672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4455165112194371458}
   - component: {fileID: 4953908054001987901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25772,7 +25772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6355425406821830298}
   - component: {fileID: 7959340964949529101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25868,7 +25868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8721360312205043588}
   - component: {fileID: 7749183550841275520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25967,7 +25967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4760606298031779120}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25998,7 +25998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8572442637388582568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_05_Arm_Upper_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26051,7 +26051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2743799990656583892}
   - component: {fileID: 3368848617142028279}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26142,7 +26142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3360170393442222952}
   - component: {fileID: 1578065522015185824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26233,7 +26233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3306086635741852400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_02_FacialHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26283,7 +26283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4920026409985233361}
   - component: {fileID: 5356998021052359844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26372,7 +26372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 66162608776503451}
   - component: {fileID: 1739814384448871746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26469,7 +26469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301194730306419833}
   - component: {fileID: 3781037493125591759}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26565,7 +26565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5926168844376085412}
   - component: {fileID: 8686055674450669667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26656,7 +26656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2547161096871782695}
   - component: {fileID: 6680466067165770451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26745,7 +26745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318400253109780366}
   - component: {fileID: 8734828950719969402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26834,7 +26834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3386003723270925447}
   - component: {fileID: 3653345292333553785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26934,7 +26934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401663086900751466}
   - component: {fileID: 1540542526126304384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27023,7 +27023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6833615004280805993}
   - component: {fileID: 2051060052558274280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27120,7 +27120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3985384990738909585}
   - component: {fileID: 6418190097500391481}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27212,7 +27212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2783016891582990987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27247,7 +27247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550924568933827320}
   - component: {fileID: 3660604412835014732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27342,7 +27342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6796101345654984726}
   - component: {fileID: 2102788012031135306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27435,7 +27435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6896125211086878607}
   - component: {fileID: 1984577243259646429}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27524,7 +27524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6995107110268527447}
   - component: {fileID: 4593196272484355613}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27624,7 +27624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3952772034145282281}
   - component: {fileID: 96025445843176863}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27715,7 +27715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8585883948132886247}
   - component: {fileID: 4146916025450695819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27812,7 +27812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4427463653504237643}
   - component: {fileID: 5136659146699812928}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27903,7 +27903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 382442981753267370}
   - component: {fileID: 7154300483041093271}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27993,7 +27993,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6957863331553916509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28026,7 +28026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8326362668192100890}
   - component: {fileID: 7647684635972069800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28117,7 +28117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9168541161983693571}
   - component: {fileID: 212356630173222258}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28206,7 +28206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7163216406322295416}
   - component: {fileID: 8093580988327006251}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28299,7 +28299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1563122961324279020}
   - component: {fileID: 2724897089926428872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28392,7 +28392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1888653388622351308}
   - component: {fileID: 7478300261436999320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28483,7 +28483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2689945701864511827}
   - component: {fileID: 2089235762193580959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28583,7 +28583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738497244243711183}
   - component: {fileID: 1953308785884968695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28673,7 +28673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3362494993344636196}
   - component: {fileID: 8898442999880074332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28762,7 +28762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139068435998605493}
   - component: {fileID: 6287759058519283878}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28853,7 +28853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4225470662791672250}
   - component: {fileID: 6665929870608869255}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28944,7 +28944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616271686899398751}
   - component: {fileID: 7755094447519588800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29036,7 +29036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7221048751109560479}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_02_Head_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29069,7 +29069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7489056268497217710}
   - component: {fileID: 597561242952008743}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29159,7 +29159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7562090609437115184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29192,7 +29192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4577123777355025111}
   - component: {fileID: 536533521703655106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_FacialHair_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29288,7 +29288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83433917870016788}
   - component: {fileID: 6896073348096789346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29385,7 +29385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1519336916703512710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29418,7 +29418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6108707020978666299}
   - component: {fileID: 4965604358450814103}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachRight_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29507,7 +29507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8021932448943416851}
   - component: {fileID: 1473818454560943328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29604,7 +29604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3340295379238128455}
   - component: {fileID: 7394492058263264563}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29699,7 +29699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2470012684415754736}
   - component: {fileID: 2090123463850366004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29793,7 +29793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8737353754825279688}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cape_Attachment_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29825,7 +29825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1532919251576912698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29860,7 +29860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4190301758691497043}
   - component: {fileID: 2791980767956278617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29957,7 +29957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5849918906132450774}
   - component: {fileID: 7117461587423241958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30050,7 +30050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624868025210890715}
   - component: {fileID: 1467965579529189058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30150,7 +30150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767123018564093518}
   - component: {fileID: 5920812534723598635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30249,7 +30249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4478181892964840885}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_09_Hips_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30292,7 +30292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8439378572072236914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_03 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30324,7 +30324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204488973228268289}
   - component: {fileID: 7513890691700522512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30415,7 +30415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2109369510012068651}
   - component: {fileID: 1292944820940652269}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30506,7 +30506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3246803230302581066}
   - component: {fileID: 561866306962875559}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30597,7 +30597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6847362559117267075}
   - component: {fileID: 6907207664936046710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30688,7 +30688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5173113052580628018}
   - component: {fileID: 8838111512001190327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30779,7 +30779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3676155133146731705}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_10_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30840,7 +30840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1563968817092665952}
   - component: {fileID: 1282656537959631274}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachLeft_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30929,7 +30929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6433249973427620808}
   - component: {fileID: 664597980994942805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31020,7 +31020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6376408386602864790}
   - component: {fileID: 984892243467351393}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31109,7 +31109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3577816573288208421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_02 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31142,7 +31142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2779685762742755951}
   - component: {fileID: 3146620238930822723}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31235,7 +31235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5250675046606635139}
   - component: {fileID: 3818510900394348094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31330,7 +31330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2270570720994850978}
   - component: {fileID: 5781870168246125161}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31419,7 +31419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5018877299659773890}
   - component: {fileID: 2856003368881850962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31507,7 +31507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938701596984487113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_03_Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31568,7 +31568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7776125981093603857}
   - component: {fileID: 2461718874956118070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31665,7 +31665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 711038852272257696}
   - component: {fileID: 343194303462603459}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31760,7 +31760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6659199410662530468}
   - component: {fileID: 7179877791618106348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31848,7 +31848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 571332405427933290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_12_Extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31881,7 +31881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640012702459377447}
   - component: {fileID: 3164121895126765548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31976,7 +31976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3496594437676450651}
   - component: {fileID: 3136220017803326791}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32065,7 +32065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5906485550380614087}
   - component: {fileID: 260421693793519997}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32154,7 +32154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8973136620276965243}
   - component: {fileID: 804612875189221988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32245,7 +32245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1945600483216028313}
   - component: {fileID: 53902652586375810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32342,7 +32342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2318043321391985610}
   - component: {fileID: 2827318673640540565}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32438,7 +32438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8638520900463835623}
   - component: {fileID: 6700310209303595740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32534,7 +32534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4612160878980002371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_Gender_Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32577,7 +32577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9172070304566285405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_09_Hand_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32626,7 +32626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5224339011639343480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_08_Hand_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32676,7 +32676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3253807741524983164}
   - component: {fileID: 4264477960863547373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32768,7 +32768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7863357502534957575}
   - component: {fileID: 1292381545957065290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32861,7 +32861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4183519093997860915}
   - component: {fileID: 3518908841119293982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperLeft_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32952,7 +32952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2749322762372368607}
   - component: {fileID: 4360134694689100412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33040,7 +33040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4940749559949131003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Knee_Attachment_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33072,7 +33072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3155568034375131940}
   - component: {fileID: 3143815864048933711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33172,7 +33172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5448152633618948986}
   - component: {fileID: 286278875041030013}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33263,7 +33263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7806057676830729324}
   - component: {fileID: 7252799880481643418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33363,7 +33363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916718337374242110}
   - component: {fileID: 7920625504304739798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33456,7 +33456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3773895770317407065}
   - component: {fileID: 6487244532312058224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33545,7 +33545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8738499566912700348}
   - component: {fileID: 1532546989412019383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33638,7 +33638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8685434154972294245}
   - component: {fileID: 2921801321281137625}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33735,7 +33735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5851401938868472753}
   - component: {fileID: 4205302898005193849}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33828,7 +33828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8912487589136144877}
   - component: {fileID: 7260207811160442007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33928,7 +33928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415332379134372447}
   - component: {fileID: 5071603546094865534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34019,7 +34019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7392970751266608673}
   - component: {fileID: 7559031178759804009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34110,7 +34110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6630770521472505167}
   - component: {fileID: 893710311823006539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34212,7 +34212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277825447349705434}
   - component: {fileID: 1269552436788623283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34303,7 +34303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7732136910005516311}
   - component: {fileID: 604514252421224377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34395,7 +34395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 244250163533451061}
   - component: {fileID: 1899482651029043854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34488,7 +34488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8623363548567126973}
   - component: {fileID: 3466097026467079941}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34579,7 +34579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4813835921328892083}
   - component: {fileID: 4723552599062518970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34676,7 +34676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8855584736165317775}
   - component: {fileID: 625418632352358579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34765,7 +34765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1873449541324574761}
   - component: {fileID: 652406184726392586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34854,7 +34854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5317345180265783957}
   - component: {fileID: 7708427433521384933}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34943,7 +34943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7076516343671464381}
   - component: {fileID: 8080077145880218211}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35035,7 +35035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6554752804479226781}
   - component: {fileID: 1982392298469967760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35127,7 +35127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8003084768856352968}
   - component: {fileID: 3406118432335539627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35217,7 +35217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2937570377781449314}
   - component: {fileID: 4351913597844438349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35317,7 +35317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 80873716445255582}
   - component: {fileID: 3145416155273257942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35406,7 +35406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8711373657970749534}
   - component: {fileID: 3916935502453417629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35495,7 +35495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6033789172728901714}
   - component: {fileID: 5643373630250913366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35586,7 +35586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4111747091491440121}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chest_Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35617,7 +35617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2586722459684881302}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Toes_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35648,7 +35648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7473898111692411471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_02 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35681,7 +35681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4157441809896277884}
   - component: {fileID: 3701196841377762949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35770,7 +35770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8927107508345570698}
   - component: {fileID: 9048882932265189193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35865,7 +35865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6903793290065112976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35897,7 +35897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7002539524084828617}
   - component: {fileID: 1282336981914714592}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35990,7 +35990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5642752168400900746}
   - component: {fileID: 4160107587654520362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36081,7 +36081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7236570653199090925}
   - component: {fileID: 2611662425555278586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36176,7 +36176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7618544639871090916}
   - component: {fileID: 2102625760819277889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36265,7 +36265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3621985309723875288}
   - component: {fileID: 2218539200837021247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36355,7 +36355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3211699510323997007}
   - component: {fileID: 8027365681230847459}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36451,7 +36451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5455701205747970555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36483,7 +36483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 228510176712964829}
   - component: {fileID: 8716280696482263165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ElbowAttachLeft_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36572,7 +36572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316292583001771313}
   - component: {fileID: 6254508036659525776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36661,7 +36661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3774160886767545684}
   - component: {fileID: 7475610857859918795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36750,7 +36750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7279853350444546187}
   - component: {fileID: 3722927230837035892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36841,7 +36841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1348541253522678164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36878,7 +36878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3020295239231057083}
   - component: {fileID: 5141537777383602335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36968,7 +36968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5300829700044597729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37000,7 +37000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1171254781723529077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cape_Attachment_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37033,7 +37033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7388374059500983381}
   - component: {fileID: 513168237713108492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37124,7 +37124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4853661684469162774}
   - component: {fileID: 651284620715239678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37215,7 +37215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3086442887361350888}
   - component: {fileID: 6250223247475919871}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37315,7 +37315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7526870726455405317}
   - component: {fileID: 7908369491413978842}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37404,7 +37404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6811777886152642983}
   - component: {fileID: 6831510999625525290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37493,7 +37493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5079875675529005725}
   - component: {fileID: 7647966952118812489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37584,7 +37584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6478611029344383861}
   - component: {fileID: 5451898855452394598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37678,7 +37678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717259407957823060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_10_Knee_Attachement_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37721,7 +37721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7021006961099661026}
   - component: {fileID: 2558695428511681580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37820,7 +37820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3073376588640091011}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shoulder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37852,7 +37852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3010488010851018872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_03 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37885,7 +37885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8227410185303099334}
   - component: {fileID: 8749600929436853889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37977,7 +37977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2714267309209282524}
   - component: {fileID: 8552714180115346108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38067,7 +38067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3342617471573358736}
   - component: {fileID: 3983362955153767214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38159,7 +38159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634105373787894543}
   - component: {fileID: 2820535743137999123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38249,7 +38249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4632487652987273472}
   - component: {fileID: 6478688807135742206}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38339,7 +38339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8006021248795496815}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elbow_Attachment_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38371,7 +38371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2089119269914512682}
   - component: {fileID: 6636694837955479235}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38471,7 +38471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2880020482124380795}
   - component: {fileID: 5247700835054438093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38561,7 +38561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7202714164867111427}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Male_06_Arm_Lower_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38612,7 +38612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7156978305565341900}
   - component: {fileID: 2871020558536984937}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38701,7 +38701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6140612803036953544}
   - component: {fileID: 1293259257418326025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_Base_Hair_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38795,7 +38795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6949439429996459120}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: All_00_HeadCoverings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38830,7 +38830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6766291343774655842}
   - component: {fileID: 2566292935914643832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38923,7 +38923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807087210753372123}
   - component: {fileID: 4280562577297893775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegLeft_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39014,7 +39014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3963992632773513239}
   - component: {fileID: 2741577480213260784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39105,7 +39105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5731918040303148819}
   - component: {fileID: 8711870742549768445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39194,7 +39194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8128928391576245799}
   - component: {fileID: 2585342045472033408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39282,7 +39282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1509784696772212506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elf_Ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39317,7 +39317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8902726980719959856}
   - component: {fileID: 3887721610772833111}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39406,7 +39406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3914138643528786318}
   - component: {fileID: 9110735086983879868}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39497,7 +39497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1725130080455901054}
   - component: {fileID: 8268623205389342236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HeadCoverings_No_Hair_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39597,7 +39597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4644122749605872879}
   - component: {fileID: 4246545425319612619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39690,7 +39690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8950322154309061287}
   - component: {fileID: 476885071094371763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39781,7 +39781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4206859212245578998}
   - component: {fileID: 1206119091234216590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39873,7 +39873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8256185552829337584}
   - component: {fileID: 3563427262000764829}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39963,7 +39963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2982714036215490288}
   - component: {fileID: 7298375482981756144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40052,7 +40052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1548989484464153027}
   - component: {fileID: 198441041798127972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40158,7 +40158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237868691724912042}
   - component: {fileID: 1665737869757711342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40258,7 +40258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5056842668215691439}
   - component: {fileID: 5997087201639510594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40349,7 +40349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275748823136451547}
   - component: {fileID: 5183157714099634579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40440,7 +40440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700546893321930726}
   - component: {fileID: 5115867093786940547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40536,7 +40536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2054834315968917626}
   - component: {fileID: 1804250732036699852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40627,7 +40627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4600381312629363567}
   - component: {fileID: 515120077648001597}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandRight_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40727,7 +40727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8097796864650225306}
   - component: {fileID: 9077896354951915773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachRight_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40816,7 +40816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5382503239101447132}
   - component: {fileID: 5337428037377189838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40905,7 +40905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572792899162150178}
   - component: {fileID: 4503655277723818769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40994,7 +40994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408302028455155168}
   - component: {fileID: 7379362882690029000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41092,7 +41092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5609813370652073908}
   - component: {fileID: 1030372205584513192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41189,7 +41189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732315958632944586}
   - component: {fileID: 8366576472993826571}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41289,7 +41289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6432730666320246810}
   - component: {fileID: 7224312803092024120}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41380,7 +41380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2613997201542808923}
   - component: {fileID: 9053756836934931201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41480,7 +41480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3233679204789569819}
   - component: {fileID: 4566258354020093269}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41575,7 +41575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4518371762154835199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IndexFinger_04 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41607,7 +41607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2875371241202017664}
   - component: {fileID: 7729286809849963208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41706,7 +41706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5770455563282093637}
   - component: {fileID: 6773285129623253401}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41799,7 +41799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5907306060322758822}
   - component: {fileID: 1894246899598150837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41895,7 +41895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4103116269597679000}
   - component: {fileID: 4036921936307995102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41986,7 +41986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8388999669387667253}
   - component: {fileID: 5993673113179507738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42074,7 +42074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7181445115947017389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Modular_Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42108,7 +42108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4361182927371790082}
   - component: {fileID: 7916543521563628118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42199,7 +42199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447996453760019875}
   - component: {fileID: 4166773406107263528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_BackAttachment_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42291,7 +42291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2850025908446922283}
   - component: {fileID: 5555761161165705678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HelmetAttachment_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42383,7 +42383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6219155924218477042}
   - component: {fileID: 8873650066812731476}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42472,7 +42472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4413711480414048569}
   - component: {fileID: 1082773082409671289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42563,7 +42563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4941883142439525364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyebrows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42595,7 +42595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7966467081653604968}
   - component: {fileID: 5017872612396200998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42684,7 +42684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5975682767188989077}
   - component: {fileID: 1058457298014294327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42775,7 +42775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1072374693796407046}
   - component: {fileID: 1748320630306728141}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_KneeAttachLeft_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42864,7 +42864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6037053117472972357}
   - component: {fileID: 8361650360804359093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42954,7 +42954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4594220396608517436}
   - component: {fileID: 2372937920935796849}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43045,7 +43045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4703306334753429914}
   - component: {fileID: 8548038793009218454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43137,7 +43137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8856419651125777256}
   - component: {fileID: 1851888935739904030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43229,7 +43229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3174324452835478743}
   - component: {fileID: 7603723033859590793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43324,7 +43324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3426482543415405397}
   - component: {fileID: 2378366835999835882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43412,7 +43412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7770190786883196552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43446,7 +43446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5191911294608569362}
   - component: {fileID: 440343548672385686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43539,7 +43539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5105620915682288622}
   - component: {fileID: 7026632655559879844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43630,7 +43630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6748794476627797389}
   - component: {fileID: 6838732777313669756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43726,7 +43726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4093367015010446861}
   - component: {fileID: 6537289527671395584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachRight_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43815,7 +43815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7500076411942888744}
   - component: {fileID: 6963536991727201061}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43906,7 +43906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5257171862798440593}
   - component: {fileID: 6786584843613256960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Head_No_Elements_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43996,7 +43996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6334323463985179632}
   - component: {fileID: 7845324954258060603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HandLeft_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44096,7 +44096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7091992923787542121}
   - component: {fileID: 8420856754719278085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44189,7 +44189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2384681764468918483}
   - component: {fileID: 920045483976831575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44280,7 +44280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2415145310895125637}
   - component: {fileID: 3063791463138584996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44368,7 +44368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058869299272399959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Knee_Attachment_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44399,7 +44399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5527827207598856210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thumb_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44432,7 +44432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8909264066082267724}
   - component: {fileID: 1166575071845417682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_HipsAttachment_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44521,7 +44521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7210701379718990092}
   - component: {fileID: 7348739838193860134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44610,7 +44610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 595961493863262126}
   - component: {fileID: 4409053169877382979}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44700,7 +44700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2343867200715298076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cape_Attachment_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44732,7 +44732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7910883551111957165}
   - component: {fileID: 1648296418166741916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44821,7 +44821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3575007096365784978}
   - component: {fileID: 6023247544545594975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44920,7 +44920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1492241711136501684}
   - component: {fileID: 5215809736996638258}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45010,7 +45010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3732056724217724072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadCoverings_No_FacialHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45046,7 +45046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3005626032062471263}
   - component: {fileID: 7320949790163970284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmUpperRight_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45137,7 +45137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7250600489274049576}
   - component: {fileID: 5909372109833442292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45227,7 +45227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4549923843658483402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Finger_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45260,7 +45260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6419982835396530374}
   - component: {fileID: 4908938729618328272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45357,7 +45357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1067677114044917152}
   - component: {fileID: 1379369060881923568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45458,7 +45458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653538848247670483}
   - component: {fileID: 1883685236852976684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerRight_Male_18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45549,7 +45549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3077847804176967995}
   - component: {fileID: 5590570092287755166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45646,7 +45646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9182070799142064603}
   - component: {fileID: 5384521300011916905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ShoulderAttachLeft_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45734,7 +45734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7070312272537492081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45779,7 +45779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1281830309410113281}
   - component: {fileID: 2609370697169099063}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Ear_Ear_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45868,7 +45868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7346493348108491813}
   - component: {fileID: 6985965754961331633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45957,7 +45957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957919827722389758}
   - component: {fileID: 6276430769176577066}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hair_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46052,7 +46052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2305988291664740205}
   - component: {fileID: 6722703646746508169}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Torso_Male_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46149,7 +46149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2829789206477626097}
   - component: {fileID: 5965569511756407562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_FacialHair_Male_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46238,7 +46238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5025031652857913753}
   - component: {fileID: 7960965095923297268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Hips_Male_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46331,7 +46331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946588154339940224}
   - component: {fileID: 526669234782607157}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_LegRight_Male_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46422,7 +46422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193331621323403869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shoulder_Attachment_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46454,7 +46454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7170314244164457926}
   - component: {fileID: 1749596776661947564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_Eyebrow_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46543,7 +46543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2612018320827306908}
   - component: {fileID: 1827669868433459372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chr_ArmLowerLeft_Male_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
