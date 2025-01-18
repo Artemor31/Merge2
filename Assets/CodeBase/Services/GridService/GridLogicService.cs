@@ -4,10 +4,12 @@ using System.Linq;
 using Databases;
 using Databases.Data;
 using Gameplay.Grid;
+using Gameplay.Units;
 using Infrastructure;
 using Services.Infrastructure;
 using Services.Resources;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Services.GridService
 {
@@ -20,6 +22,7 @@ namespace Services.GridService
         private readonly GameplayDataService _gameplayService;
         private readonly PersistantDataService _persistantDataService;
         private readonly UnitsDatabase _unitsDatabase;
+        private GridView _gridView;
 
         public GridLogicService(GridDataService dataService,
                                 GameFactory gameFactory,
@@ -36,9 +39,9 @@ namespace Services.GridService
 
         public void CreatePlayerField()
         {
-            var gridView = _gameFactory.CreateGridView();
-            var platforms = gridView.Platforms; 
-            _dataService.InitPlatforms(platforms);
+            _gridView = _gameFactory.CreateGridView();
+            var platforms = _gridView.GetPlatforms(); 
+            _dataService.RestoreDataAt(platforms);
 
             for (int i = 0; i < platforms.GetLength(0); i++)
             {
@@ -57,6 +60,7 @@ namespace Services.GridService
         }
 
         public bool CanAddUnit() => _dataService.HasFreePlatform(out Platform _);
+        public Platform GetPlatformFor(Actor actor) => _gridView.PlatformWith(actor);
 
         public void TryCreatePlayerUnit(int tier)
         {
@@ -100,6 +104,13 @@ namespace Services.GridService
             }
 
             platform.Clear();
+        }
+
+        public void Dispose()
+        {
+            if (!_gridView) return;
+            Object.Destroy(_gridView.gameObject);
+            _gridView = null;
         }
     }
 }

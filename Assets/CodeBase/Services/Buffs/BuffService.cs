@@ -12,12 +12,12 @@ namespace Services.Buffs
     public class BuffService : IService
     {
         private readonly List<BuffConfig> _configs;
-        private List<BuffConfig> _activeConfigs;
-        private Dictionary<Race, int> _races = new();
-        private Dictionary<Mastery, int> _masteries = new();
+        private readonly List<BuffConfig> _activeConfigs = new();
         private readonly GridDataService _gridService;
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
+        private Dictionary<Mastery, int> _masteries = new();
+        private Dictionary<Race, int> _races = new();
 
         public BuffService(DatabaseProvider databaseProvider)
         {
@@ -28,11 +28,7 @@ namespace Services.Buffs
         
         public void ApplyBuffs(ICollection<Actor> actors)
         {
-            if (_activeConfigs == null)
-            {
-                _activeConfigs = new List<BuffConfig>();
-                CalculateBuffs(actors);
-            }
+            CalculateBuffs(actors);
             
             foreach (BuffConfig buffConfig in _activeConfigs)
             {

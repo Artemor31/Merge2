@@ -25,6 +25,14 @@ namespace UI.GameplayWindow
             _updateable.Tick += UpdateableOnTick;
             ChangeHealth(1);
         }
+        
+        public void ChangeHealth(float ratio) => _value.fillAmount = ratio;
+        
+        public void UnInit()
+        {
+            _updateable.Tick -= UpdateableOnTick;
+            _target = null;
+        }
 
         private void UpdateableOnTick()
         {
@@ -32,13 +40,6 @@ namespace UI.GameplayWindow
             Vector2 screenPoint = _cameraService.WorldToScreenPoint(offsetPos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_parentCanvas, screenPoint, null, out var canvasPos);
             transform.localPosition = canvasPos;  
-        }
-
-        public void ChangeHealth(float ratio) => _value.fillAmount = ratio;
-        public void UnInit()
-        {
-            _updateable.Tick -= UpdateableOnTick;
-            _target = null;
         }
     }
 }

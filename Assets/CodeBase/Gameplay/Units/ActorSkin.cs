@@ -1,5 +1,4 @@
-﻿using Gameplay.Units.Healths;
-using UI.GameplayWindow;
+﻿using UI.GameplayWindow;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -19,13 +18,7 @@ namespace Gameplay.Units
             _rank = rank;
             _healthbar = healthbar;
         }
-
-        public void Die()
-        {
-            _animator.SetTrigger(Died);
-            Dispose();
-        }
-
+        
         public void Dispose()
         {
             if (_healthbar != null)
@@ -43,6 +36,7 @@ namespace Gameplay.Units
             }
         }
 
+        public void Die() => _animator.SetTrigger(Died);
         public void ChangeHealth(float currentRatio) => _healthbar.ChangeHealth(currentRatio);
         public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);

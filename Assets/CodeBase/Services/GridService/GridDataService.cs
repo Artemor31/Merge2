@@ -25,7 +25,7 @@ namespace Services.GridService
         public ActorData ActorDataAt(int i, int j) => _gridProgress.UnitIds[i, j];
         public Platform GetDataAt(Vector2Int selected) => _platforms[selected.x, selected.y];
 
-        public void InitPlatforms(Platform[,] platforms)
+        public void RestoreDataAt(Platform[,] platforms)
         {
             _platforms = platforms;
             _gridProgress = _saveService.Restore<GridProgress>(SavePath);

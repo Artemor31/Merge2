@@ -3,6 +3,7 @@ using Databases;
 using Infrastructure;
 using Services;
 using Services.GridService;
+using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;
 using TMPro;
@@ -26,6 +27,7 @@ namespace UI.GameplayWindow
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
+        private WindowsService _windowsService;
         private GridLogicService _gridService;
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
@@ -38,6 +40,7 @@ namespace UI.GameplayWindow
             _gridService = ServiceLocator.Resolve<GridLogicService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
+            _windowsService = ServiceLocator.Resolve<WindowsService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);
@@ -49,25 +52,21 @@ namespace UI.GameplayWindow
             CreatePlayerCards();
         }
 
+        public override void OnShow() => Wave.text = $"{WaveText} {_gameplayService.Wave}";
+        private void AddMoney() => _gameplayService.AddCrowns(50);
+        private void OnCrownsChanged(int money) => Money.text = money.ToString();
+        
         private void CloseClicked()
         {
-            
+            _windowsService.Close<GameCanvas>();
             _stateMachine.Enter<ResultScreenState, bool>(false);
         }
-
-        public override void OnShow()
-        {
-            Wave.text = $"{WaveText} {_gameplayService.Wave}";
-        }
-
+        
         private void BuffsClicked()
         {
             BuffPresenter.gameObject.SetActive(!BuffPresenter.gameObject.activeInHierarchy);
             BuffPresenter.OnShow();
         }
-
-        private void AddMoney() => _gameplayService.AddCrowns(50);
-        private void OnCrownsChanged(int money) => Money.text = money.ToString();
 
         private void StartWave()
         {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2300282671115125669}
   - component: {fileID: 8408939481474730509}
   - component: {fileID: 3268382232931640557}
+  - component: {fileID: 445173967130678768}
   m_Layer: 8
   m_Name: SimpleRangeUnit
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 8408939481474730509}
+--- !u!65 &445173967130678768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105839209840734736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}

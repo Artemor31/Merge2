@@ -17,7 +17,6 @@ namespace Services.StateMachine
         private readonly BuffService _buffService;
         private readonly UpgradeDataService _upgradeDataService;
         private readonly WindowsService _windowsService;
-
         private int _profit;
 
         public GameLoopState(GameStateMachine gameStateMachine,
@@ -67,22 +66,16 @@ namespace Services.StateMachine
 
         public void Exit()
         {
+            _profit = _gameplayService.Crowns - _profit;
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.Died -= OnEnemyDied;
-                actor.gameObject.SetActive(false);
-                actor.Dispose();
             }
 
             foreach (Actor actor in _gridService.PlayerUnits)
             {
                 actor.Died -= OnAllyDied;
-                actor.gameObject.SetActive(false);
-                actor.Dispose();
             }
-
-            _profit = _gameplayService.Crowns - _profit;
-            _windowsService.Close<GameCanvas>();
         }
 
         private void OnAllyDied()

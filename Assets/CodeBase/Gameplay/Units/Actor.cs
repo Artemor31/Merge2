@@ -4,6 +4,7 @@ using Infrastructure;
 using UnityEngine;
 using Databases;
 using System;
+using Services.GridService;
 
 namespace Gameplay.Units
 {
@@ -67,6 +68,9 @@ namespace Gameplay.Units
 
             return Target != null;
         }
+            
+        public void OnMouseDown() => ServiceLocator.Resolve<GridViewService>().OnClicked(this);
+        public void OnMouseUp() => ServiceLocator.Resolve<GridViewService>().OnReleased(this);
 
         public void Dispose() => View.Dispose();
         protected abstract bool NeedNewTarget();

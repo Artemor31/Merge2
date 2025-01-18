@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using Gameplay.Units;
 using Services.GridService;
 using Services.Infrastructure;
+using UI.GameplayWindow;
 using UI.ResultWindow;
 using UnityEngine;
 
@@ -13,23 +15,40 @@ namespace Services.StateMachine
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         private readonly PersistantDataService _persistantDataService;
+        private readonly GridLogicService _gridLogicService;
 
         public ResultScreenState(WindowsService windowsService, 
                                  GridDataService gridDataService,
                                  GameplayDataService gameplayService,
                                  WaveBuilder waveBuilder,
-                                 PersistantDataService persistantDataService)
+                                 PersistantDataService persistantDataService,
+                                 GridLogicService gridLogicService)
         {
             _windowsService = windowsService;
             _gridDataService = gridDataService;
             _gameplayService = gameplayService;
             _waveBuilder = waveBuilder;
             _persistantDataService = persistantDataService;
+            _gridLogicService = gridLogicService;
         }
 
         public void Enter(bool isWin)
         {
+            _windowsService.Close<GameCanvas>();
+            _gridLogicService.Dispose();
             _gridDataService.Save();
+            
+            foreach (Actor actor in _waveBuilder.EnemyUnits)
+            {
+                actor.gameObject.SetActive(false);
+                actor.Dispose();
+            }
+
+            foreach (Actor actor in _gridDataService.PlayerUnits)
+            {
+                actor.gameObject.SetActive(false);
+                actor.Dispose();
+            }
             
             if (isWin)
             {

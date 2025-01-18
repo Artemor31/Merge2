@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Gameplay.Units;
 using Infrastructure;
 using Services.GridService;
 using UnityEngine;
@@ -9,13 +11,11 @@ namespace Gameplay.Grid
     {
         [SerializeField] private List<Platform> _platforms;
         [SerializeField] private Platform _selectPlatform;
-        [SerializeField] private SellPlatform _sellPlatform;
 
         private GridViewService _gridViewService;
         private GridDataService _gridDataService;
-        public Platform[,] Platforms => GetPlatforms();
 
-        private Platform[,] GetPlatforms()
+        public Platform[,] GetPlatforms()
         {
             int gridSizeX = _gridDataService.GridSize.x;
             int gridSizeY = _gridDataService.GridSize.y;
@@ -41,6 +41,8 @@ namespace Gameplay.Grid
             _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
         }
         
+        public Platform PlatformWith(Actor actor) => _platforms.First(p => p.Actor == actor);
+        
         private void OnDisable()
         {
             _gridViewService.OnPlatformPressed -= PlatformOnOnPressed;
@@ -52,15 +54,9 @@ namespace Gameplay.Grid
         {
             SetSelected(platform.Index);
             IsHighlighted(true);
-            _sellPlatform.gameObject.SetActive(true);
         }
 
-        private void PlatformOnOnReleased(Platform ended)
-        {
-            IsHighlighted(false);
-            _sellPlatform.gameObject.SetActive(false);
-        }
-
+        private void PlatformOnOnReleased(Platform ended) => IsHighlighted(false);
         private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
         private void IsHighlighted(bool active) => _selectPlatform.gameObject.SetActive(active);
 
