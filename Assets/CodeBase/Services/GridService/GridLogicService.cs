@@ -17,6 +17,8 @@ namespace Services.GridService
     {
         public event Action OnPlayerFieldChanged;
 
+        public List<Actor> PlayerUnits => _dataService.PlayerUnits;
+        
         private readonly GridDataService _dataService;
         private readonly GameFactory _gameFactory;
         private readonly GameplayDataService _gameplayService;
@@ -48,6 +50,7 @@ namespace Services.GridService
                 for (int j = 0; j < platforms.GetLength(1); j++)
                 {
                     platforms[i, j].Init(i, j);
+                    platforms[i, j].gameObject.SetActive(true);
                     var data = _dataService.ActorDataAt(i, j);
                     if (!data.Equals(ActorData.None))
                     {

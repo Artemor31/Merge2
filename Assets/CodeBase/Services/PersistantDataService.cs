@@ -15,6 +15,8 @@ namespace Services
         
         public int Coins => _progress.Coins;
         public int Gems => _progress.Gems;
+        public int Rows => _progress.OpenedRows;
+        public int Crowns => _progress.BonusCrowns;
 
         private readonly PersistantProgress _progress;
         private readonly SaveService _saveService;

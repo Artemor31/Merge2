@@ -70,6 +70,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 8389256863302081202}
+  _agent: {fileID: 8408939481474730509}
+  _collider: {fileID: 8389276318523332291}
   _healVfxPrefab: {fileID: 19884996, guid: ff672eaca96d32c419d7a1f1b0346e8d, type: 3}
 --- !u!114 &8389256863302081202
 MonoBehaviour:

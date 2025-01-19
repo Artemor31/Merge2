@@ -41,14 +41,13 @@ namespace Infrastructure
             SceneLoader sceneLoader = new(this);
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
-            
-            GameplayDataService gameplayService = new(saveService);
+
             PersistantDataService persistantDataService = new(saveService);
-            GridDataService gridDataService = new(saveService);
+            GameplayDataService gameplayService = new(saveService, persistantDataService);
+            GridDataService gridDataService = new(saveService, persistantDataService);
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
-            GameFactory gameFactory = new(databaseProvider, assetsProvider, 
-                cameraService, _windowsService, this);
+            GameFactory gameFactory = new(databaseProvider, assetsProvider, _windowsService, this);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider, gameplayService);
             
             GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, 
@@ -59,7 +58,7 @@ namespace Infrastructure
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
             GridViewService gridViewService = new(this, gridDataService, mergeService, 
-                cameraService, gridLogicService, gridDataService);
+                cameraService, gridLogicService);
             
             GameStateMachine stateMachine = 
                 new(sceneLoader, _windowsService, waveBuilder, 
@@ -87,17 +86,6 @@ namespace Infrastructure
             ServiceLocator.Bind(searchTargetService);
             ServiceLocator.Bind(projectileService);
             ServiceLocator.Bind(upgradeDataService);
-
-            // game pipeline
-            
-            // menu
-            // load level from data
-            // start level in wait, show ui
-            // buy stage
-            // fight stage
-            // wave result stage
-            // load level stage (step 2) and repeat
-            // or load menu stage
         }
 
         private void Update() => Tick?.Invoke();

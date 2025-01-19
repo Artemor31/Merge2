@@ -36,6 +36,8 @@ namespace UI.GameplayWindow
 
         private void UpdateableOnTick()
         {
+            if (_target == null) return;
+            
             Vector3 offsetPos = _target.position + Vector3.up * Offset;
             Vector2 screenPoint = _cameraService.WorldToScreenPoint(offsetPos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_parentCanvas, screenPoint, null, out var canvasPos);

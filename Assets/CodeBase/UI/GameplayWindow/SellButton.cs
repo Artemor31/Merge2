@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using Infrastructure;
+﻿using Infrastructure;
 using Services.GridService;
 using TMPro;
 using UnityEngine;

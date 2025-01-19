@@ -5,6 +5,7 @@ using UnityEngine;
 using Databases;
 using System;
 using Services.GridService;
+using UnityEngine.AI;
 
 namespace Gameplay.Units
 {
@@ -17,6 +18,8 @@ namespace Gameplay.Units
         public ActorStats Stats { get; set; }
 
         [SerializeField] protected Mover _mover;
+        [SerializeField] protected NavMeshAgent _agent;
+        [SerializeField] protected BoxCollider _collider;
 
         protected bool CooldownUp => _actTimer <= 0;
         protected Actor Target;
@@ -37,10 +40,6 @@ namespace Gameplay.Units
             _actTimer = 0;
             enabled = false;
         }
-
-        private void Update() => Tick();
-
-        public void Unleash() => enabled = true;
 
         public void ChangeHealth(float value, HealthContext context)
         {
@@ -69,9 +68,23 @@ namespace Gameplay.Units
             return Target != null;
         }
             
+
+        public void Disable()
+        {
+            _agent.enabled = false;
+            _collider.enabled = false;
+        }
+
+        public void Enable()
+        {
+            _agent.enabled = true;
+            _collider.enabled = true;
+        }
+        
+        private void Update() => Tick();
+        public void Unleash() => enabled = true;
         public void OnMouseDown() => ServiceLocator.Resolve<GridViewService>().OnClicked(this);
         public void OnMouseUp() => ServiceLocator.Resolve<GridViewService>().OnReleased(this);
-
         public void Dispose() => View.Dispose();
         protected abstract bool NeedNewTarget();
         protected abstract void SearchNewTarget();

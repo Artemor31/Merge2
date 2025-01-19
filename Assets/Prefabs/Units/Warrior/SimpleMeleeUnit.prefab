@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 5387187518449200982}
+  _agent: {fileID: 8408939481474730509}
+  _collider: {fileID: 6498481234905238410}
 --- !u!195 &8408939481474730509
 NavMeshAgent:
   m_ObjectHideFlags: 0

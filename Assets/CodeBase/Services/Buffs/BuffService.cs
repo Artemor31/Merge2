@@ -13,7 +13,6 @@ namespace Services.Buffs
     {
         private readonly List<BuffConfig> _configs;
         private readonly List<BuffConfig> _activeConfigs = new();
-        private readonly GridDataService _gridService;
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         private Dictionary<Mastery, int> _masteries = new();

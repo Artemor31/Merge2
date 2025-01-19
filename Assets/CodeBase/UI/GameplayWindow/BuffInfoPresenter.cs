@@ -14,13 +14,11 @@ namespace UI.GameplayWindow
         [SerializeField] private TextMeshProUGUI _description;
         private BuffService _buffService;
         private GridLogicService _gridLogicService;
-        private GridDataService _gridDataService;
 
         public override void Init()
         {
             _buffService = ServiceLocator.Resolve<BuffService>();
             _gridLogicService = ServiceLocator.Resolve<GridLogicService>();
-            _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _gridLogicService.OnPlayerFieldChanged += PlayerFieldChanged;
         }
 
@@ -37,7 +35,7 @@ namespace UI.GameplayWindow
         private string CreteDescription()
         {
             StringBuilder stringBuilder = new();
-            List<BuffConfig> buffs = _buffService.CalculateBuffs(_gridDataService.PlayerUnits);
+            List<BuffConfig> buffs = _buffService.CalculateBuffs(_gridLogicService.PlayerUnits);
             foreach (BuffConfig buff in buffs)
             {
                 stringBuilder.Append(buff.Description);

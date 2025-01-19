@@ -15,13 +15,19 @@ namespace Services.GridService
         private const string SavePath = "GridData";
         
         public List<Actor> PlayerUnits => GetPlayerUnits();
-        public Vector2Int GridSize { get; } = new(3, 5);
+        public Vector2Int GridSize => new(_persistantDataService.Rows, 5);
         
         private readonly SaveService _saveService;
+        private readonly PersistantDataService _persistantDataService;
         private GridProgress _gridProgress;
         private Platform[,] _platforms;
 
-        public GridDataService(SaveService saveService) => _saveService = saveService;
+        public GridDataService(SaveService saveService, PersistantDataService persistantDataService)
+        {
+            _saveService = saveService;
+            _persistantDataService = persistantDataService;
+        }
+
         public ActorData ActorDataAt(int i, int j) => _gridProgress.UnitIds[i, j];
         public Platform GetDataAt(Vector2Int selected) => _platforms[selected.x, selected.y];
 

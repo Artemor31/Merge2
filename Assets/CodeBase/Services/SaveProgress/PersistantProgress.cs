@@ -7,16 +7,27 @@ namespace Services.SaveProgress
     [Serializable]
     public class PersistantProgress : SaveData
     {
-        public int Coins = 1000;
-        public int Gems = 5;
+        public int Coins;
+        public int Gems;
+        public int OpenedRows;
+        public int BonusCrowns;
         public int[] Races;
         public int[] Masteries;
 
-        public List<(Race, Mastery)> Opened = new()
+        public List<(Race, Mastery)> Opened;
+
+        public PersistantProgress()
         {
-            (Race.Human, Mastery.Warrior), 
-            (Race.Human, Mastery.Ranger)
-        };
+            Coins = 1000;
+            Gems = 5;
+            OpenedRows = 1;
+            Opened = new List<(Race, Mastery)>
+            {
+                (Race.Human, Mastery.Warrior), 
+                (Race.Human, Mastery.Ranger)
+            };
+            BonusCrowns = 5;
+        }
 
         public override void Serialize()
         {

@@ -83,6 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 2000911949262941642}
+  _agent: {fileID: 8408939481474730509}
+  _collider: {fileID: 6965781950372482492}
   _projectileType: 2
 --- !u!65 &6965781950372482492
 BoxCollider:
