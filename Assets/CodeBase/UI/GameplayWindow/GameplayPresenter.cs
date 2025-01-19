@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Databases;
+using Gameplay.Grid;
 using Infrastructure;
 using Services;
 using Services.GridService;
@@ -23,6 +24,7 @@ namespace UI.GameplayWindow
         [SerializeField] public TMP_Text Wave;
         [SerializeField] public string WaveText;
         [SerializeField] public BuffInfoPresenter BuffPresenter;
+        [SerializeField] public SellButton SellButton;
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
@@ -32,6 +34,7 @@ namespace UI.GameplayWindow
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
         private bool _refreshed;
+        private GridViewService _gridViewService;
 
         public override void Init()
         {
@@ -41,6 +44,7 @@ namespace UI.GameplayWindow
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _windowsService = ServiceLocator.Resolve<WindowsService>();
+            _gridViewService = ServiceLocator.Resolve<GridViewService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);
@@ -49,7 +53,20 @@ namespace UI.GameplayWindow
 
             _gameplayService.OnCrownsChanged += OnCrownsChanged;
             OnCrownsChanged(_gameplayService.Crowns);
+            _gridViewService.OnPlatformPressed += PlatformPressedHandler;
+            _gridViewService.OnPlatformReleased += PlatformReleasedHandler;
+            
             CreatePlayerCards();
+        }
+
+        private void PlatformReleasedHandler(Platform platform) => SellButton.Hide();
+
+        private void PlatformPressedHandler(Platform platform)
+        {
+            if (platform.Busy)
+            {
+                SellButton.Show(_gridService.GetCostFor(platform.Actor.Data.Level));
+            }
         }
 
         public override void OnShow() => Wave.text = $"{WaveText} {_gameplayService.Wave}";

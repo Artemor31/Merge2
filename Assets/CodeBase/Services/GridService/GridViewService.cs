@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gameplay.Grid;
 using Gameplay.Units;
 using Services.Infrastructure;
@@ -9,6 +10,8 @@ namespace Services.GridService
 {
     public class GridViewService : IService
     {
+        public bool Selling { get; set; }
+        
         public event Action<Platform> OnPlatformPressed;
         public event Action<Platform> OnPlatformReleased;
         public event Action<Platform> OnPlatformHovered;
@@ -16,6 +19,8 @@ namespace Services.GridService
         private readonly IUpdateable _updateable;
         private readonly GridDataService _dataService;
         private readonly LayerMask _platformMask;
+        private readonly LayerMask _groundMask;
+        private readonly LayerMask _uiMask;
         private readonly MergeService _mergeService;
         private readonly CameraService _cameraService;
         private readonly GridLogicService _gridLogicService;
@@ -37,6 +42,8 @@ namespace Services.GridService
             _gridLogicService = gridLogicService;
             _gridDataService = gridDataService;
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
+            _groundMask = 1 << LayerMask.NameToLayer("Ground");
+            _uiMask = 1 << LayerMask.NameToLayer("UI");
 
             _updateable.Tick += OnTick;
         }
@@ -75,24 +82,23 @@ namespace Services.GridService
         }
         
         public void OnReleased(Actor actor) => OnReleased(_gridLogicService.GetPlatformFor(actor));
-
+        
         public void OnReleased(Platform started)
         {
             if (!_dragging) return;
 
+            if (Selling)
+            {
+                _gridLogicService.SellUnitAt(_selected);
+                _dragging = false;
+                _selected = Vector2Int.zero;
+                OnPlatformReleased?.Invoke(started);
+                return;
+            }
+            
             Platform ended;
             if (RaycastPlatform(out Platform platform))
             {
-
-                // if (platform is SellPlatform)
-                // {
-                //     _gridLogicService.SellUnitAt(_selected);
-                //     _dragging = false;
-                //     _selected = Vector2Int.zero;
-                //     OnPlatformReleased?.Invoke(started);
-                //     return;
-                // }
-                
                 ended = _dataService.GetDataAt(platform.Index);
 
                 if (started.Index == ended.Index)
@@ -127,14 +133,23 @@ namespace Services.GridService
             if (!_dragging) return;
 
             var ray = _cameraService.TouchPointRay();
-
-            foreach (RaycastHit hit in _cameraService.RayCast(ray, _platformMask))
+            IEnumerable<RaycastHit> hits = _cameraService.RayCast(ray, _platformMask);
+            foreach (RaycastHit hit in hits)
             {
-                Debug.LogError(hit.transform.name);
                 if (_cameraService.CastPlane(hit.transform, ray, out float distance))
                 {
                     _dataService.GetDataAt(_selected).Actor.transform.position = ray.GetPoint(distance);
-                    break;
+                    return;
+                }
+            }
+            
+            hits = _cameraService.RayCast(ray, _groundMask);
+            foreach (RaycastHit hit in hits)
+            {
+                if (_cameraService.CastPlane(hit.transform, ray, out float distance))
+                {
+                    _dataService.GetDataAt(_selected).Actor.transform.position = ray.GetPoint(distance);
+                    return;
                 }
             }
         }

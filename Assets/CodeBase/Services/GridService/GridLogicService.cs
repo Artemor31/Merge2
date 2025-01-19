@@ -88,21 +88,18 @@ namespace Services.GridService
             return true;
         }
 
+        public int GetCostFor(int level)
+        {
+            if (level == 1) return 7;
+
+            double value = Math.Pow(2, level - 1) * 7f;
+            return (int)value;
+        }
+
         public void SellUnitAt(Vector2Int selected)
         {
             var platform = _dataService.GetDataAt(selected);
-            int level = platform.Actor.Data.Level;
-
-            if (level == 1)
-            {
-                _gameplayService.AddCrowns(7);
-            }
-            else
-            {
-                double value = Math.Pow(2, level - 1) * 7f;
-                _gameplayService.AddCrowns((int)value);
-            }
-
+            _gameplayService.AddCrowns(GetCostFor(platform.Actor.Data.Level));
             platform.Clear();
         }
 
