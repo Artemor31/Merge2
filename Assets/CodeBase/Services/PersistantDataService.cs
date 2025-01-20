@@ -76,5 +76,23 @@ namespace Services
         public bool IsOpened(Mastery mastery) => _progress.Opened.Any(p => p.Item2 == mastery);
         public bool IsOpened(Race race) => _progress.Opened.Any(p => p.Item1 == race);
         public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
+
+        public void UpRows()
+        {
+            if (Rows < 4)
+            {
+                _progress.OpenedRows++;
+                Save();
+            }
+        }
+
+        public void UpCrowns()
+        {
+            if (_progress.BonusCrowns < 30)
+            {
+                _progress.BonusCrowns += 5;
+                Save();
+            }
+        }
     }
 }

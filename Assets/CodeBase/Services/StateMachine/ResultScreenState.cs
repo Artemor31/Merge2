@@ -53,21 +53,22 @@ namespace Services.StateMachine
             if (isWin)
             {
                 _gameplayService.CompleteLevel();
-                _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards());
+                _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(isWin));
             }
             else
             {
                 _gridDataService.Reset();
                 _gameplayService.Reset();
-                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards());
+                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(isWin));
             }
         }
 
-        private ResultData CollectRewards()
+        private ResultData CollectRewards(bool isWin)
         {
             int sumCoins = 0;
-            int value = Random.Range(8, 14);
+            int crownsValue = isWin ? Random.Range(8, 14) : 0; 
             int count = _waveBuilder.EnemyUnits.Count(u => u.IsDead);
+            
             for (int i = 0; i < count; i++)
             {
                 sumCoins += Random.Range(1, 4);
@@ -75,11 +76,11 @@ namespace Services.StateMachine
 
             _persistantDataService.AddCoins(sumCoins);
             _persistantDataService.AddGems(count);
-            _gameplayService.AddCrowns(value);
+            _gameplayService.AddCrowns(crownsValue);
 
             return new ResultData
             {
-                CrownsValue = value,
+                CrownsValue = crownsValue,
                 GemsValue = count,
                 CoinsValue = sumCoins
             };
