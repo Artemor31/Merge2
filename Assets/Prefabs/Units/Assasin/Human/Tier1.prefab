@@ -720,7 +720,7 @@ Animator:
   m_GameObject: {fileID: 1868840380637201940}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0dcad412e4df7364880958fbda1ede6b, type: 3}
-  m_Controller: {fileID: 9100000, guid: dec9347ed96b9c44a9fd5c1de88d34d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ebc05623b5499d41bf939f54b66c2df, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1745,6 +1745,7 @@ Transform:
   - {fileID: 1416464695730032793}
   - {fileID: 6330444348031553410}
   - {fileID: 3244706771722151194}
+  - {fileID: 1948053263346779953}
   m_Father: {fileID: 2948624429106801610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4684272480333499157
@@ -4795,3 +4796,65 @@ Transform:
   - {fileID: 1760068649678536689}
   m_Father: {fileID: 6690619275888538382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1217419976767507689
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4222093864789030371}
+    m_Modifications:
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.131
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 859559827492689912, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+      propertyPath: m_Name
+      value: SM_Wep_ThowingKnife_01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+--- !u!4 &1948053263346779953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 859559827492457432, guid: 340a2e91004273d48954cd297361ca64, type: 3}
+  m_PrefabInstance: {fileID: 1217419976767507689}
+  m_PrefabAsset: {fileID: 0}
