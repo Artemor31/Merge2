@@ -53,13 +53,13 @@ namespace Services.StateMachine
             if (isWin)
             {
                 _gameplayService.CompleteLevel();
-                _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(isWin));
+                _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(true));
             }
             else
             {
                 _gridDataService.Reset();
                 _gameplayService.Reset();
-                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(isWin));
+                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(false));
             }
         }
 
@@ -82,7 +82,7 @@ namespace Services.StateMachine
             {
                 CrownsValue = crownsValue,
                 GemsValue = count,
-                CoinsValue = sumCoins
+                CoinsValue = sumCoins   
             };
         }
 

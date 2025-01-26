@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UI;
-using UI.ResultWindow;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Services.Infrastructure
 {
     public class WindowsService : MonoBehaviour, IService
     {
         [SerializeField] private List<Presenter> _windows;
+        public List<Button> Buttons;
         private readonly Dictionary<Type, Presenter> _cache = new();
 
         public void InitWindows()
@@ -32,6 +33,20 @@ namespace Services.Infrastructure
                 Transform child = transform.GetChild(i);
                 List<Presenter> presenters = child.GetComponentsInChildren<Presenter>(true).ToList();
                 _windows.AddRange(presenters);
+            }
+        }
+        
+        [Button]
+        public void FindButtons()
+        {
+            Buttons.Clear();
+
+            int count = transform.childCount;
+            for (int i = 0; i < count; i++)
+            {
+                Transform child = transform.GetChild(i);
+                List<Button> presenters = child.GetComponentsInChildren<Button>(true).ToList();
+                Buttons.AddRange(presenters);
             }
         }
 

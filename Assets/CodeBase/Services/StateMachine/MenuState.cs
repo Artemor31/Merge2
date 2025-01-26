@@ -17,6 +17,11 @@ namespace Services.StateMachine
         public void Enter()
         {
             _windowsService.Show<MenuPresenter>();
+
+            if (TutorialService.Instance.NeedTutor)
+            {
+                _windowsService.Show<TutorPresenter>();
+            }
         }
     }
 }
