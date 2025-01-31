@@ -113,7 +113,7 @@ namespace Gameplay.Units
                 Actor target = actors.First();
                 foreach (Actor actor in actors)
                 {
-                    if (actor.Health < target.Health)
+                    if (!actor.IsDead && actor.Health < target.Health)
                     {
                         target = actor;
                     }

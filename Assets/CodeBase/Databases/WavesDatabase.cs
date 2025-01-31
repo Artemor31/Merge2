@@ -9,6 +9,7 @@ namespace Databases
     [CreateAssetMenu(menuName = "Database/WavesDatabase", fileName = "WavesDatabase", order = 0)]
     public class WavesDatabase : Database
     {
+        public List<WaveData> TutorData;
         public List<WaveData> WavesData => _wavesData;
         [SerializeField] private List<WaveData> _wavesData;
 

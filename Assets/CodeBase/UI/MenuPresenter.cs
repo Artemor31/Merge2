@@ -1,5 +1,6 @@
 ﻿using Infrastructure;
 using Services;
+using Services.GridService;
 using Services.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +15,16 @@ namespace UI
         [SerializeField] private CurrencyAddPopup _currencyPopup;
         [SerializeField] private Button _gridUp;
         [SerializeField] private Button _coinsUp;
-        
+
         private GameStateMachine _gameStateMachine;
+        private GameplayDataService _gameplayDataService;
+        private GridDataService _gridDataService;
 
         public override void Init()
         {
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
+            _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
+            _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _fightButton.onClick.AddListener(PlayClicked);
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
@@ -33,6 +38,9 @@ namespace UI
         private void PlayClicked()
         {
             gameObject.SetActive(false);
+
+            _gameplayDataService.Reset();
+            _gridDataService.Reset();
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }

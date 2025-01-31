@@ -40,7 +40,7 @@ namespace Services.StateMachine
         {
             if (_gridService.PlayerUnits.Count == 0)
             {
-                _gameStateMachine.Enter<ResultScreenState, bool>(false);
+                Lose();
                 return;
             }
             
@@ -82,9 +82,11 @@ namespace Services.StateMachine
         {
             if (_gridService.PlayerUnits.All(a => a.IsDead))
             {
-                _gameStateMachine.Enter<ResultScreenState, bool>(false);
+                Lose();
             }
         }
+
+        private void Lose() => _gameStateMachine.Enter<ResultScreenState, bool>(false);
 
         private void OnEnemyDied()
         {

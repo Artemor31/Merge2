@@ -13,27 +13,23 @@ namespace Services.StateMachine
         private readonly WaveBuilder _waveBuilder;
         private readonly GridLogicService _gridLogicService;
         private readonly WindowsService _windowsService;
-        private readonly GameplayDataService _gameplayDataService;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
                               GridLogicService gridLogicService,
-                              WindowsService windowsService,
-                              GameplayDataService gameplayDataService)
+                              WindowsService windowsService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _waveBuilder = waveBuilder;
             _gridLogicService = gridLogicService;
             _windowsService = windowsService;
-            _gameplayDataService = gameplayDataService;
         }
 
         public void Enter()
         {
             _windowsService.Show<LoadingScreen>();
-            _gameplayDataService.Reset();
             _sceneLoader.Load(GameplaySceneName, then: () => _gameStateMachine.Enter<SetupLevelState>());
         }
 

@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d468ca9e584777b5f69127fd2c7a25, type: 3}
   m_Name: WavesDatabase
   m_EditorClassIdentifier: 
+  TutorData:
+  - PowerLimit: 2
+    MaxLevel: 1
+    Masteries: 01000000
+    Races: 01000000
+  - PowerLimit: 8
+    MaxLevel: 2
+    Masteries: 0100000002000000
+    Races: 01000000
   _wavesData:
   - PowerLimit: 2
     MaxLevel: 1

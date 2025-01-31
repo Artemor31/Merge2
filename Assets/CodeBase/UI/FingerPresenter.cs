@@ -39,7 +39,8 @@ namespace UI
             {
                 throw new Exception("Not found item with id = " + currentView.Id);
             }
-
+            
+            Active();
             Vector2 screenCoordinate = currentView.Is2D
                 ? currentView.RectTransform.TransformPoint(currentView.RectTransform.rect.center)
                 : _cameraService.WorldToScreenPoint(currentView.Transform.position + Vector3.up);

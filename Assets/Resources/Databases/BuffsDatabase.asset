@@ -21,14 +21,14 @@ MonoBehaviour:
     Behaviour:
       _typeName: Services.Buffs.Components.HealthRegenComponent, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: eca87834fb7f948818f465338bd28cf6, type: 3}
+  - Icon: {fileID: 21300000, guid: ab25721b7d7f7a245909dce1af507cc3, type: 3}
     Race: 2
     Mastery: 0
     Description: "+\u041C\u0430\u043A\u0441 \u0445\u043F"
     Behaviour:
       _typeName: Services.Buffs.Components.AddHealthComponent, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: eca87834fb7f948818f465338bd28cf6, type: 3}
+  - Icon: {fileID: 21300000, guid: 287cadedf88128446ab0140994f2a753, type: 3}
     Race: 3
     Mastery: 0
     Description: "-\u0417\u0430\u0449\u0438\u0442\u0430 \u0432\u0440\u0430\u0433\u043E\u0432"
@@ -66,7 +66,7 @@ MonoBehaviour:
     Behaviour:
       _typeName: Services.Buffs.Components.AddVampirismComponent, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: eca87834fb7f948818f465338bd28cf6, type: 3}
+  - Icon: {fileID: 21300000, guid: b8410edff72a852468632606e3b69888, type: 3}
     Race: 0
     Mastery: 4
     Description: "+\u0428\u0430\u043D\u0441 \u043A\u0440\u0438\u0442\u0430"

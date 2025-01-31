@@ -9,6 +9,7 @@ namespace Services.StateMachine
 {
     public class GameStateMachine : IService
     {
+        public IState Current => _currentState;
         private readonly Dictionary<Type, IState> _states;
         private IState _currentState;
 
@@ -27,7 +28,7 @@ namespace Services.StateMachine
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader, windowsService)},
                 {typeof(MenuState), new MenuState(this, windowsService)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService, gameplayData)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
                 {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService, windowsService)},
                 {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData, waveBuilder, persistantDataService, gridLogicService)},

@@ -8,6 +8,7 @@ namespace UI
     public class TutorView : Presenter
     {
         [field: SerializeField] public int Id { get; private set; }
+        [field: SerializeField] public string Id2 { get; private set; }
         [field: SerializeField] public bool Is2D { get; private set; }
 
         public Transform Transform => transform;

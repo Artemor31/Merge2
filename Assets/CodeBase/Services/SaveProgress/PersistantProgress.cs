@@ -19,12 +19,11 @@ namespace Services.SaveProgress
         public PersistantProgress()
         {
             Coins = 1000;
-            Gems = 5;
+            Gems = 100;
             OpenedRows = 1;
             Opened = new List<(Race, Mastery)>
             {
                 (Race.Human, Mastery.Warrior), 
-                (Race.Human, Mastery.Ranger)
             };
             BonusCrowns = 5;
         }
