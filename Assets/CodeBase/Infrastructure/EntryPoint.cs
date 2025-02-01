@@ -41,6 +41,7 @@ namespace Infrastructure
             SceneLoader sceneLoader = new(this);
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
+            TutorialService tutorialService = new();
 
             PersistantDataService persistantDataService = new(saveService);
             GameplayDataService gameplayService = new(saveService, persistantDataService);
@@ -48,7 +49,7 @@ namespace Infrastructure
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
             GameFactory gameFactory = new(databaseProvider, assetsProvider, _windowsService, this);
-            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, gameplayService);
+            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, gameplayService, tutorialService);
             
             GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, 
                 gameplayService, persistantDataService);
@@ -63,7 +64,7 @@ namespace Infrastructure
             GameStateMachine stateMachine = 
                 new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, gameplayService, 
-                gridLogicService, buffService, upgradeDataService, persistantDataService);
+                gridLogicService, buffService, upgradeDataService, persistantDataService, tutorialService);
 
             ServiceLocator.Bind(this as ICoroutineRunner);
             ServiceLocator.Bind(this as IUpdateable);
@@ -86,6 +87,7 @@ namespace Infrastructure
             ServiceLocator.Bind(searchTargetService);
             ServiceLocator.Bind(projectileService);
             ServiceLocator.Bind(upgradeDataService);
+            ServiceLocator.Bind(tutorialService);
         }
 
         private void Update() => Tick?.Invoke();

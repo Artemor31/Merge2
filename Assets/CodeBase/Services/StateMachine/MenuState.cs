@@ -5,12 +5,12 @@ namespace Services.StateMachine
 {
     public class MenuState : IState
     {
-        private readonly GameStateMachine _gameStateMachine;
+        private readonly TutorialService _tutorialService;
         private readonly WindowsService _windowsService;
 
-        public MenuState(GameStateMachine gameStateMachine, WindowsService windowsService)
+        public MenuState(TutorialService tutorialService, WindowsService windowsService)
         {
-            _gameStateMachine = gameStateMachine;
+            _tutorialService = tutorialService;
             _windowsService = windowsService;
         }
 
@@ -18,7 +18,7 @@ namespace Services.StateMachine
         {
             _windowsService.Show<MenuPresenter>();
 
-            if (TutorialService.Instance.NeedTutor)
+            if (_tutorialService.NeedTutor)
             {
                 _windowsService.Show<TutorPresenter>();
             }

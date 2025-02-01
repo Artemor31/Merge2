@@ -22,12 +22,13 @@ namespace Services.StateMachine
                                 GridLogicService gridLogicService,
                                 BuffService buffService,
                                 UpgradeDataService upgradeDataService, 
-                                PersistantDataService persistantDataService)
+                                PersistantDataService persistantDataService,
+                                TutorialService tutorialService)
         {
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader, windowsService)},
-                {typeof(MenuState), new MenuState(this, windowsService)},
+                {typeof(MenuState), new MenuState(tutorialService, windowsService)},
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
                 {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService, windowsService)},

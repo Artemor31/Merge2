@@ -38,31 +38,34 @@ namespace UI
         private void OpenChestClicked()
         {
             if (!_dataService.TryBuyGems(ChestCost)) return;
-            
+
             string text;
             List<(Race, Mastery)> closed = AllClosed();
-            
-            if (closed.Count > 0)
+
+            if (closed.Count == 0)
             {
-                ClearItems();
-                (Race, Mastery) random = closed.Random();
-                _dataService.SetOpened(random);
-                text = random.Item1.ToString() + random.Item2;
-                CreateItems();
+                text = "Все типы уже открыты. Ждите обновлений!";
             }
             else
             {
-                text = "Все типы уже открыты. Ждите обновлений!";
+                ClearItems();
+
+                bool inTutor = !_dataService.IsOpened(Race.Human, Mastery.Ranger);
+                (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : closed.Random();
+
+                _dataService.SetOpened(selection);
+                text = selection.Item1.ToString() + selection.Item2;
+                CreateItems();
             }
 
             _chestResult.gameObject.SetActive(true);
             _chestResult.SetData(text);
         }
 
-        private List<(Race, Mastery)> AllClosed() => 
+        private List<(Race, Mastery)> AllClosed() =>
             _unitsDatabase.AllActorTypes()
-                          .SelectMany(keyValuePair => 
-                                  keyValuePair.Value, (keyValuePair, mastery) =>
+                          .SelectMany(keyValuePair =>
+                              keyValuePair.Value, (keyValuePair, mastery) =>
                               new {keyValuePair, mastery})
                           .Where(t => !_dataService.IsOpened(t.mastery, t.keyValuePair.Key))
                           .Select(t => (t.keyValuePair.Key, t.mastery))
@@ -92,7 +95,7 @@ namespace UI
             _items.Add(presenter);
         }
 
-        private (BuffConfig, bool) CheckOpened(Race race, Mastery mastery) => 
+        private (BuffConfig, bool) CheckOpened(Race race, Mastery mastery) =>
             (_buffsDatabase.MasteryData[mastery], _dataService.IsOpened(mastery, race));
     }
 }
