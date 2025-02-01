@@ -8,7 +8,6 @@ using Services;
 using Services.GridService;
 using Services.Infrastructure;
 using Services.StateMachine;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +19,7 @@ namespace UI
         [SerializeField] private FingerPresenter _finger;
         [SerializeField] private Button _startTutor;
         [SerializeField] private Button _endTutor;
-        [SerializeField] private TextMeshProUGUI _text;
+        [SerializeField] private TutorText _text;
 
         private readonly WaitForSeconds _waitHalfSecond = new(0.5f);
         private WindowsService _windowService;
@@ -62,7 +61,7 @@ namespace UI
             BlockAllButtonsBut(currentView);
         }
 
-        private void DoAfterState(Type state, Action action) => _current = StartCoroutine(AwaitState(state, action));
+        private void DoThenStateIs(Type state, Action action) => _current = StartCoroutine(AwaitState(state, action));
 
         private IEnumerator AwaitState(Type state, Action action)
         {
@@ -95,6 +94,7 @@ namespace UI
             _tutorialService.NeedTutor = false;
             _startPanel.SetActive(false);
             AwaitClickedAndHighlight("MenuFight", Step2_StartLevelClicked);
+            _text.ShowText(0);
         }
 
         private void Step2_StartLevelClicked() =>
@@ -103,10 +103,12 @@ namespace UI
         private IEnumerator Step3_LevelLoaded()
         {
             _finger.Disable();
+            _text.Hide();
             TutorView shopButton = _tutorialService.GetItem("GameplayShop");
             BlockAllButtonsBut(shopButton);
             yield return _waitHalfSecond;
             _finger.PointTo(shopButton);
+            _text.ShowText(1);
             _logicService.OnPlayerFieldChanged += Step4_2WarriorsBought;
         }
 
@@ -116,6 +118,7 @@ namespace UI
             List<Actor> units = _logicService.PlayerUnits;
             if (units.Count == 2)
             {
+                _text.ShowText(2);
                 _logicService.OnPlayerFieldChanged -= Step4_2WarriorsBought;
                 TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
                 TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
@@ -130,39 +133,82 @@ namespace UI
             {
                 _logicService.OnPlayerFieldChanged -= Step5_WarriorsMerged;
                 HighlightObject("GameplayFight");
+                _text.ShowText(3);
 
-                DoAfterState(typeof(GameLoopState), () =>
+                DoThenStateIs(typeof(GameLoopState), () =>
                 {
+                    _text.Hide();
                     _finger.Disable();
                     Step7_FightEnded();
                 });
             }
         }
 
-        private void Step7_FightEnded() => DoAfterState(typeof(ResultScreenState), () => AwaitClickedAndHighlight("WinNext", Step8_Level2StartLoad));
+        private void Step7_FightEnded()
+        {
+            DoThenStateIs(typeof(ResultScreenState), () =>
+            {
+                _text.ShowText(4);
+                AwaitClickedAndHighlight("WinNext", Step8_Level2StartLoad);
+            });
+        }
 
         private void Step8_Level2StartLoad()
         {
+            _text.Hide();
             _finger.Disable();
-            DoAfterState(typeof(SetupLevelState), () => AwaitClickedAndHighlight("GameplayFight", Step10_Level2Started));
+            DoThenStateIs(typeof(SetupLevelState), () =>
+            {
+                _text.ShowText(5);
+                AwaitClickedAndHighlight("GameplayFight", Step10_Level2Started);
+            });
         }
 
         private void Step10_Level2Started()
         {
             _finger.Disable();
-            DoAfterState(typeof(GameLoopState), Step12_WaitLose);
+            _text.Hide();
+            DoThenStateIs(typeof(GameLoopState), Step12_WaitLose);
         }
 
-        private void Step12_WaitLose() => DoAfterState(typeof(ResultScreenState), () => AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded));
-        private void Step13_MenuLoaded() => AwaitClickedAndHighlight("BottmInfo", Step14);
-        private void Step14() => AwaitClickedAndHighlight("BuyChest", Step15_ShopTabOpened);
-        private void Step15_ShopTabOpened() => AwaitClickedAndHighlight("ConfirmChest", Step15_2_ShopChestTabOpened);
-        private void Step15_2_ShopChestTabOpened() => AwaitClickedAndHighlight("BottomUpgrade", Step16_UnitUnlocked);
+        private void Step12_WaitLose()
+        {
+            DoThenStateIs(typeof(ResultScreenState), () =>
+            {
+                _text.ShowText(6);
+                AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded);
+            });
+        }
+
+        private void Step13_MenuLoaded()
+        {
+            _text.ShowText(7);
+            AwaitClickedAndHighlight("BottmInfo", Step14);
+        }
+
+        private void Step14()
+        {
+            _text.ShowText(8);
+            AwaitClickedAndHighlight("BuyChest", Step15_ShopTabOpened);
+        }
+
+        private void Step15_ShopTabOpened()
+        {
+            _text.ShowText(9);
+            AwaitClickedAndHighlight("ConfirmChest", Step15_2_ShopChestTabOpened);
+        }
+
+        private void Step15_2_ShopChestTabOpened()
+        {
+            _text.ShowText(10);
+            AwaitClickedAndHighlight("BottomUpgrade", Step16_UnitUnlocked);
+        }
 
         private void Step16_UnitUnlocked()
         {
             // beg for 5 start review
             
+            _text.ShowText(11);
             _finger.Disable();
 
             foreach (Button button in _windowService.Buttons)
