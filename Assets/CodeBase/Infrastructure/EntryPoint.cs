@@ -41,7 +41,7 @@ namespace Infrastructure
             SceneLoader sceneLoader = new(this);
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
-            TutorialService tutorialService = new();
+            TutorialService tutorialService = new(saveService);
 
             PersistantDataService persistantDataService = new(saveService);
             GameplayDataService gameplayService = new(saveService, persistantDataService);

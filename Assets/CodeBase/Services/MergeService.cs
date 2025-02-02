@@ -11,6 +11,7 @@ namespace Services
     {
         private readonly GridLogicService _gridService;
         private readonly UnitsDatabase _unitsDatabase;
+        public bool CanMerge { get; set; }
 
         public MergeService(DatabaseProvider databaseProvider, GridLogicService gridService)
         {
@@ -20,6 +21,8 @@ namespace Services
 
         public void Merge(Platform started, Platform ended)
         {
+            if (CanMerge == false) return;
+            
             ActorData startData = started.Actor.Data;
             started.Clear();
             ended.Clear();

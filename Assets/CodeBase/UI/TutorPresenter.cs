@@ -44,8 +44,7 @@ namespace UI
         private void Cancel()
         {
             _startPanel.SetActive(false);
-            _tutorialService.EndedTutor = true;
-            _tutorialService.NeedTutor = false;
+            _tutorialService.EndTutor();
         }
 
         private void BlockAllButtonsBut(TutorView view)
@@ -91,7 +90,6 @@ namespace UI
 
         private void Step1_OnAcceptClicked()
         {
-            _tutorialService.NeedTutor = false;
             _startPanel.SetActive(false);
             AwaitClickedAndHighlight("MenuFight", Step2_StartLevelClicked);
             _text.ShowText(0);
@@ -109,22 +107,36 @@ namespace UI
             yield return _waitHalfSecond;
             _finger.PointTo(shopButton);
             _text.ShowText(1);
-            _logicService.OnPlayerFieldChanged += Step4_2WarriorsBought;
+            _logicService.OnPlayerFieldChanged += ShowBuffButton;
+            ServiceLocator.Resolve<MergeService>().CanMerge = false;
         }
+
+        private void ShowBuffButton()
+        {
+            if (_logicService.PlayerUnits.Count < 2) return;
+            
+            _logicService.OnPlayerFieldChanged -= ShowBuffButton;
+            AwaitClickedAndHighlight("BuffButton", HideBuffButton);
+            _text.ShowText(12);
+        }
+
+        private void HideBuffButton()
+        {
+            AwaitClickedAndHighlight("BuffButton", Step4_2WarriorsBought);
+            _text.ShowText(13);
+        }
+        
 
         private void Step4_2WarriorsBought()
         {
+            ServiceLocator.Resolve<MergeService>().CanMerge = true;
             StopCoroutine(_current);
             List<Actor> units = _logicService.PlayerUnits;
-            if (units.Count == 2)
-            {
-                _text.ShowText(2);
-                _logicService.OnPlayerFieldChanged -= Step4_2WarriorsBought;
-                TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
-                TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
-                _finger.MoveBetween(currentView, currentView2);
-                _logicService.OnPlayerFieldChanged += Step5_WarriorsMerged;
-            }
+            _text.ShowText(2);
+            TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
+            TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
+            _finger.MoveBetween(currentView, currentView2);
+            _logicService.OnPlayerFieldChanged += Step5_WarriorsMerged;
         }
 
         private void Step5_WarriorsMerged()
@@ -206,11 +218,15 @@ namespace UI
 
         private void Step16_UnitUnlocked()
         {
-            // beg for 5 start review
-            
             _text.ShowText(11);
-            _finger.Disable();
+            AwaitClickedAndHighlight("BottomUpgrade", CloseAll);
+        }
 
+        private void CloseAll()
+        {
+            _text.Hide();
+            _finger.Disable();
+            _tutorialService.EndTutor();
             foreach (Button button in _windowService.Buttons)
                 button.interactable = true;
         }
