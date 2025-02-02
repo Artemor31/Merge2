@@ -808,6 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 2
+  <Id2>k__BackingField: 
   <Is2D>k__BackingField: 1
 --- !u!1 &2475279675291753382
 GameObject:
@@ -2835,6 +2836,7 @@ GameObject:
   - component: {fileID: 6311268034275285070}
   - component: {fileID: 7771141412426367750}
   - component: {fileID: 2159014364429427768}
+  - component: {fileID: 4596349622575918620}
   m_Layer: 5
   m_Name: ShowBuffs
   m_TagString: Untagged
@@ -2945,6 +2947,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4596349622575918620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246733027536722809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: 0
+  <Id2>k__BackingField: BuffButton
+  <Is2D>k__BackingField: 1
 --- !u!1 &7356488689436171498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3216,6 +3233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 3
+  <Id2>k__BackingField: 
   <Is2D>k__BackingField: 1
 --- !u!1 &7915406427891346548
 GameObject:

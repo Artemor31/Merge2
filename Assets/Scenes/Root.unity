@@ -579,6 +579,7 @@ MonoBehaviour:
   _windows:
   - {fileID: 2131029806}
   - {fileID: 1944324005}
+  - {fileID: 1113714065}
   - {fileID: 2131029805}
   - {fileID: 1969100974}
   - {fileID: 928557013}
@@ -609,6 +610,7 @@ MonoBehaviour:
   - {fileID: 8850576639691935753}
   - {fileID: 536881511}
   - {fileID: 2059604641}
+  - {fileID: 966808069}
   - {fileID: 1142546165}
   Buttons:
   - {fileID: 1879545137}
@@ -2157,7 +2159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7176471}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.84313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2449,6 +2451,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1113714065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4596349622575918620, guid: d529d407e12312649bdc8c854264fbcb, type: 3}
+  m_PrefabInstance: {fileID: 2131029803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1123831030 stripped
