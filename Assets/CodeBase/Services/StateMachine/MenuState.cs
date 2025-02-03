@@ -18,8 +18,9 @@ namespace Services.StateMachine
         {
             _windowsService.Show<MenuPresenter>();
 
-            if (_tutorialService.NeedTutor)
+            if (!_tutorialService.SeenTutor)
             {
+                _tutorialService.StartTutor();
                 _windowsService.Show<TutorPresenter>();
             }
         }

@@ -108,7 +108,6 @@ namespace UI
             _finger.PointTo(shopButton);
             _text.ShowText(1);
             _logicService.OnPlayerFieldChanged += ShowBuffButton;
-            ServiceLocator.Resolve<MergeService>().CanMerge = false;
         }
 
         private void ShowBuffButton()
@@ -129,14 +128,21 @@ namespace UI
 
         private void Step4_2WarriorsBought()
         {
-            ServiceLocator.Resolve<MergeService>().CanMerge = true;
             StopCoroutine(_current);
             List<Actor> units = _logicService.PlayerUnits;
-            _text.ShowText(2);
-            TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
-            TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
-            _finger.MoveBetween(currentView, currentView2);
-            _logicService.OnPlayerFieldChanged += Step5_WarriorsMerged;
+            
+            if (units.Count == 1)
+            {
+                Step5_WarriorsMerged();
+            }
+            else
+            {
+                _text.ShowText(2);
+                TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
+                TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
+                _finger.MoveBetween(currentView, currentView2);
+                _logicService.OnPlayerFieldChanged += Step5_WarriorsMerged;   
+            }
         }
 
         private void Step5_WarriorsMerged()

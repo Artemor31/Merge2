@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Databases;
 using Gameplay.Units;
+using Services.Buffs.Components;
 using Services.GridService;
 using Services.Infrastructure;
 using Services.Resources;
+using UnityEngine;
 
 namespace Services.Buffs
 {
@@ -33,7 +35,7 @@ namespace Services.Buffs
             {
                 foreach (Actor actor in actors)
                 {
-                    actor.gameObject.AddComponent(buffConfig.Behaviour.Type);
+                    Component component = actor.gameObject.AddComponent(buffConfig.Behaviour.Type);
                 }
             }
         }

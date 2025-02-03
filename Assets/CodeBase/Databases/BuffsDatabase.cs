@@ -45,5 +45,6 @@ namespace Databases
         public Mastery Mastery;
         public string Description;
         public SerializableMonoScript<BuffComponent> Behaviour;
+        public bool IsStatBuff;
     }
 }
