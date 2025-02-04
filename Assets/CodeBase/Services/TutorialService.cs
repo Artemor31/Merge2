@@ -8,8 +8,8 @@ namespace Services
     {
         private const string SavePath = "TutorData";
 
+        public bool NeedTutorWave { get; set; }
         public bool SeenTutor => _tutorData.Seen;
-        public bool InTutor => _tutorData.InTutor;
         
         private readonly Dictionary<string, TutorView> _views = new();
         private readonly SaveService _saveService;
@@ -24,18 +24,9 @@ namespace Services
         public void StartTutor()
         {
             _tutorData.Seen = true;
-            _tutorData.InTutor = true;
-            _saveService.Save(SavePath, _tutorData);
-        }
-
-        public void EndTutor()
-        {
-            _tutorData.Seen = true;
-            _tutorData.InTutor = false;
             _saveService.Save(SavePath, _tutorData);
         }
         
-
         public void AddItem(TutorView view) => _views.Add(view.Id2, view);
         public TutorView GetItem(string id) => _views[id];
     }
@@ -43,6 +34,5 @@ namespace Services
     public class TutorData : SaveData
     {
         public bool Seen;
-        public bool InTutor;
     }
 }

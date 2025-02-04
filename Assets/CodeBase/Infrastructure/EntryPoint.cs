@@ -64,10 +64,10 @@ namespace Infrastructure
             GameStateMachine stateMachine = 
                 new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, gameplayService, 
-                gridLogicService, buffService, upgradeDataService, persistantDataService, tutorialService);
+                gridLogicService, buffService, upgradeDataService, persistantDataService, tutorialService, this);
 
-            ServiceLocator.Bind(this as ICoroutineRunner);
-            ServiceLocator.Bind(this as IUpdateable);
+            ServiceLocator.Bind<ICoroutineRunner>(this);
+            ServiceLocator.Bind<IUpdateable>(this);
             ServiceLocator.Bind(saveService);
             ServiceLocator.Bind(sceneLoader);
             ServiceLocator.Bind(_windowsService);

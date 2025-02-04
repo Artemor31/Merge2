@@ -40,12 +40,7 @@ namespace UI
         }
 
         public override void OnShow() => _startPanel.SetActive(true);
-
-        private void Cancel()
-        {
-            _startPanel.SetActive(false);
-            _tutorialService.EndTutor();
-        }
+        private void Cancel() => _startPanel.SetActive(false);
 
         private void BlockAllButtonsBut(TutorView view)
         {
@@ -175,6 +170,7 @@ namespace UI
         {
             _text.Hide();
             _finger.Disable();
+            _tutorialService.NeedTutorWave = true;
             DoThenStateIs(typeof(SetupLevelState), () =>
             {
                 _text.ShowText(5);
@@ -232,7 +228,6 @@ namespace UI
         {
             _text.Hide();
             _finger.Disable();
-            _tutorialService.EndTutor();
             foreach (Button button in _windowService.Buttons)
                 button.interactable = true;
         }

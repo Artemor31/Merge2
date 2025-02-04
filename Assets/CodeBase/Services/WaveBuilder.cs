@@ -24,7 +24,10 @@ namespace Services
         private readonly UnitsDatabase _unitsDatabase;
         private readonly GameFactory _factory;
 
-        public WaveBuilder(GameFactory factory, DatabaseProvider provider, GameplayDataService gameplayData, TutorialService tutorialService)
+        public WaveBuilder(GameFactory factory, 
+                           DatabaseProvider provider,
+                           GameplayDataService gameplayData,
+                           TutorialService tutorialService)
         {
             _wavesDatabase = provider.GetDatabase<WavesDatabase>();
             _levelDatabase = provider.GetDatabase<LevelDatabase>();
@@ -53,7 +56,7 @@ namespace Services
                 var position = positions.Random();
                 Actor enemyActor = _factory.CreateEnemyActor(data, position);
                 positions.Remove(position);
-                enemyActor.transform.Rotate(new Vector3(0,180,0));
+                enemyActor.transform.Rotate(new Vector3(0, 180, 0));
                 EnemyUnits.Add(enemyActor);
             }
         }
@@ -64,7 +67,7 @@ namespace Services
             int count = _wavesDatabase.WavesData.Count;
             int wave = _gameplayData.Wave;
 
-            if (_tutorialService.InTutor)
+            if (_tutorialService.NeedTutorWave)
             {
                 return _wavesDatabase.TutorData[wave];
             }

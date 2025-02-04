@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Gameplay.Units;
 using Services.GridService;
 using Services.Infrastructure;
@@ -16,13 +17,15 @@ namespace Services.StateMachine
         private readonly WaveBuilder _waveBuilder;
         private readonly PersistantDataService _persistantDataService;
         private readonly GridLogicService _gridLogicService;
+        private readonly ICoroutineRunner _coroutineRunner;
 
         public ResultScreenState(WindowsService windowsService, 
                                  GridDataService gridDataService,
                                  GameplayDataService gameplayService,
                                  WaveBuilder waveBuilder,
                                  PersistantDataService persistantDataService,
-                                 GridLogicService gridLogicService)
+                                 GridLogicService gridLogicService,
+                                 ICoroutineRunner coroutineRunner)
         {
             _windowsService = windowsService;
             _gridDataService = gridDataService;
@@ -30,6 +33,7 @@ namespace Services.StateMachine
             _waveBuilder = waveBuilder;
             _persistantDataService = persistantDataService;
             _gridLogicService = gridLogicService;
+            _coroutineRunner = coroutineRunner;
         }
 
         public void Enter(bool isWin)
@@ -37,6 +41,12 @@ namespace Services.StateMachine
             _windowsService.Close<GameCanvas>();
             _gridLogicService.Dispose();
             _gridDataService.Save();
+            _coroutineRunner.StartCoroutine(ShowEndWindow(isWin));
+        }
+
+        private IEnumerator ShowEndWindow(bool isWin)
+        {
+            yield return new WaitForSeconds(1.5f);
             
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
