@@ -71,7 +71,37 @@ namespace Services.Buffs
                 }
             }
 
-            return _activeConfigs.Keys.Select(k => k.Description);
+            return _activeConfigs.Keys.Select(k => $"{k.Description}" + GetBuffArrow(_activeConfigs[k]/2, k.ForAllies));
+        }
+
+        private string GetBuffArrow(int level, bool forAllies)
+        {
+            if (forAllies)
+            {
+                switch (level)
+                {
+                    case 1:
+                        return "\u2191";
+                    case 2: 
+                        return "\u2191\u2191"; 
+                    case 3:
+                        return "\u2191\u2191\u2191";
+                }
+            }
+            else
+            {
+                switch (level)
+                {
+                    case 1:
+                        return "\u2193";
+                    case 2: 
+                        return "\u2193\u2193"; 
+                    case 3:
+                        return "\u2193\u2193\u2193";
+                }
+            }
+            
+            throw new NotImplementedException();
         }
 
         private void FillDictionary<T>(IDictionary<T, int> dict) where T : Enum
