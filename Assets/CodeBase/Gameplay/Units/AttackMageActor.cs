@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Units.Healths;
 using UnityEngine;
 
@@ -7,7 +9,8 @@ namespace Gameplay.Units
     public class AttackMageActor : Actor
     {
         [SerializeField] private ParticleSystem _Vfx;
-        protected override void Tick()
+        
+        private void Update()
         {
             if (IsDead) return;
 
@@ -23,7 +26,7 @@ namespace Gameplay.Units
 
                 if (CooldownUp)
                 {
-                    PerformAct();
+                    StartCoroutine(PerformAct());
                 }
             }
             else
@@ -34,12 +37,19 @@ namespace Gameplay.Units
 
         private void SpawnVFX(Vector3 point) => Instantiate(_Vfx, point, Quaternion.identity).Play();
 
-        private void PerformAct()
+        private IEnumerator PerformAct()
         {
+            ResetCooldown();
+            View.PerformAct();
+
+            yield return new WaitForSeconds(0.5f);
+            
             SpawnVFX(Target.transform.position + Vector3.up);
             Target.ChangeHealth(Stats.Damage, HealthContext.Heal);
-            View.PerformAct();
-            ResetCooldown();
+            if (Stats.Vampirism > 0)
+            {
+                ChangeHealth(Stats.Damage * Stats.Vampirism, HealthContext.Heal);
+            }
         }
 
         protected override bool NeedNewTarget() => true;

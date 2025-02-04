@@ -8,7 +8,7 @@ namespace Gameplay.Units
     {
         [SerializeField] private ParticleSystem _healVfxPrefab;
         
-        protected override void Tick()
+        private void Update()
         {
             if (IsDead) return;
 
@@ -37,10 +37,10 @@ namespace Gameplay.Units
 
         private void PerformAct()
         {
+            ResetCooldown();
+            View.PerformAct();
             SpawnVFX(Target.transform.position + Vector3.up);
             Target.ChangeHealth(Stats.Damage, HealthContext.Heal);
-            View.PerformAct();
-            ResetCooldown();
         }
 
         protected override bool NeedNewTarget() => true;

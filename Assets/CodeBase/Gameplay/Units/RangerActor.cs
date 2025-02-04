@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Databases;
 using Databases.Data;
+using Gameplay.Units.Healths;
 using Infrastructure;
 using Services;
 using UnityEngine;
@@ -18,7 +20,7 @@ namespace Gameplay.Units
             base.Initialize(view, data, stats);
         }
 
-        protected override void Tick()
+        private void Update()
         {
             if (IsDead) return;
 
@@ -34,7 +36,7 @@ namespace Gameplay.Units
 
                 if (CooldownUp)
                 {
-                    PerformAct();
+                    StartCoroutine(PerformAct());
                 }
             }
             else
@@ -46,17 +48,22 @@ namespace Gameplay.Units
             }
         }
 
-        private void PerformAct()
+        private IEnumerator PerformAct()
         {
+            ResetCooldown();
             View.PerformAct();
+            yield return new WaitForSeconds(0.5f);
+            
             float damage = Random.Range(0, 1f) <= Stats.CritChance
                 ? Stats.Damage * (1 + Stats.CritValue)
                 : Stats.Damage;
 
             Vector3 position = transform.position + Vector3.up;
             _service.Create(_projectileType, position, Target, damage);
-            
-            ResetCooldown();
+            if (Stats.Vampirism > 0)
+            {
+                ChangeHealth(damage * Stats.Vampirism, HealthContext.Heal);
+            }
         }
 
         protected override bool NeedNewTarget() => Target == null || Target.IsDead;

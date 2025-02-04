@@ -52,11 +52,6 @@ namespace Gameplay.Units
             }
         }
 
-        protected virtual void Tick()
-        {
-            if (CooldownUp == false)
-                _actTimer -= Time.deltaTime;
-        }
         
         protected bool CanFindTarget()
         {
@@ -68,30 +63,19 @@ namespace Gameplay.Units
             return Target != null;
         }
             
+        protected abstract bool NeedNewTarget();
+        protected abstract void SearchNewTarget();
 
-        public void Disable()
-        {
-            _agent.enabled = false;
-            _collider.enabled = false;
-        }
-
-        public void Enable()
-        {
-            _agent.enabled = true;
-            _collider.enabled = true;
-        }
-        
-        private void Update() => Tick();
+        public void Enable() => _agent.enabled = _collider.enabled = true;
+        public void Disable() => _agent.enabled = _collider.enabled = false;
         public void Unleash() => enabled = true;
         public void OnMouseDown() => ServiceLocator.Resolve<GridViewService>().OnClicked(this);
         public void OnMouseUp() => ServiceLocator.Resolve<GridViewService>().OnReleased(this);
         public void Dispose() => View.Dispose();
-        protected abstract bool NeedNewTarget();
-        protected abstract void SearchNewTarget();
+        private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
         protected void TickActTimer() => _actTimer -= Time.deltaTime;
         protected bool InRange() => DistanceTo(Target) <= Stats.Range;
         protected void ResetCooldown() => _actTimer = Stats.ActCooldown;
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, Stats.Range);
-        private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
     }
 }

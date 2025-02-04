@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Gameplay.Units.Healths;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Gameplay.Units
 {
     public class WarriorActor : Actor
     {
-        protected override void Tick()
+        private void Update()
         {
             if (IsDead) return;
 
@@ -22,7 +23,7 @@ namespace Gameplay.Units
 
                 if (CooldownUp)
                 {
-                    PerformAct();
+                    StartCoroutine(PerformAct());
                 }
             }
             else
@@ -34,20 +35,21 @@ namespace Gameplay.Units
             }
         }
 
-        private void PerformAct()
+        private IEnumerator PerformAct()
         {
+            ResetCooldown();
             View.PerformAct();
+            yield return new WaitForSeconds(0.5f);
+            
             float damage = Random.Range(0, 1f) <= Stats.CritChance
                 ? Stats.Damage * (1 + Stats.CritValue)
                 : Stats.Damage;
-            
+
             Target.ChangeHealth(damage, HealthContext.Damage);
             if (Stats.Vampirism > 0)
             {
                 ChangeHealth(damage * Stats.Vampirism, HealthContext.Heal);
             }
-
-            ResetCooldown();
         }
 
         protected override bool NeedNewTarget() => Target == null || Target.IsDead;
