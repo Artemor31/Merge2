@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
   m_Name: OrcMage1
   m_EditorClassIdentifier: 
-  Cost: 1
-  Name: OrcMage
   Data:
     Level: 1
     Race: 2
@@ -21,11 +19,13 @@ MonoBehaviour:
   Stats:
     Health: 100
     Damage: 30
+    CritChance: 0.05
+    CritValue: 2
+    Vampirism: 0
+    Defence: 0
     Range: 5
     ActCooldown: 3
     MoveSpeed: 3
   ViewData:
-    Icon: {fileID: 21300006, guid: ecd359c045351424082d2ba03ec132df, type: 3}
     BaseView: {fileID: 4895926626738250975, guid: a6c60ed1dce80a94e9ff419b29bbd52f, type: 3}
     Skin: {fileID: -5476424926273932336, guid: c93d9dc8d6ecb524cb6e0caacb075aa7, type: 3}
-  Power: 1

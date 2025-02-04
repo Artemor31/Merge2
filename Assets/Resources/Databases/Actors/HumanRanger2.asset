@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020068f03e86444bb5000db70e880352, type: 3}
   m_Name: HumanRanger2
   m_EditorClassIdentifier: 
-  Cost: 2
-  Name: Ranger
   Data:
     Level: 2
     Race: 1
@@ -21,10 +19,13 @@ MonoBehaviour:
   Stats:
     Health: 150
     Damage: 45
+    CritChance: 0.05
+    CritValue: 2
+    Vampirism: 0
+    Defence: 0
     Range: 7
     ActCooldown: 2
     MoveSpeed: 2
   ViewData:
-    Icon: {fileID: 21300020, guid: addd2af175d074643a3b1f29f6c23041, type: 3}
     BaseView: {fileID: 2300282671115125669, guid: 14ae8deda5306634fbe5b161f0ab512b, type: 3}
     Skin: {fileID: -1311207918043606875, guid: 58cbda175e4b7e244b505c462abdefc7, type: 3}

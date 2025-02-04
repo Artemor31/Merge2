@@ -13,63 +13,11 @@ MonoBehaviour:
   m_Name: BuffsDatabase
   m_EditorClassIdentifier: 
   BuffConfigs:
-  - Icon: {fileID: 21300000, guid: 725664868a512aa4f8a98cb4ba7833bb, type: 3}
-    Race: 1
-    Mastery: 0
-    Description: "+\u0420\u0435\u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F
-      \u0445\u043F"
-    Behaviour:
-      _typeName: Services.Buffs.Components.HealthRegenComponent, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: ab25721b7d7f7a245909dce1af507cc3, type: 3}
-    Race: 2
-    Mastery: 0
-    Description: "+\u041C\u0430\u043A\u0441 \u0445\u043F"
-    Behaviour:
-      _typeName: Services.Buffs.Components.AddHealthComponent, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: 287cadedf88128446ab0140994f2a753, type: 3}
-    Race: 3
-    Mastery: 0
-    Description: "-\u0417\u0430\u0449\u0438\u0442\u0430 \u0432\u0440\u0430\u0433\u043E\u0432"
-    Behaviour:
-      _typeName: Services.Buffs.Components.RemoveDefenceComponent, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: d03b9c91d9bea064598fdfad2b0812c2, type: 3}
-    Race: 4
-    Mastery: 0
-    Description: "+\u0423\u0440\u043E\u043D \u043E\u0442 \u0432\u0441\u0435\u0445
-      \u0430\u0442\u0430\u043A"
-    Behaviour:
-      _typeName: Services.Buffs.Components.AddDamageComponent, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: 6fdb23047da7ece4cbaa2c89cc85a520, type: 3}
-    Race: 0
-    Mastery: 1
-    Description: "+\u0417\u0430\u0449\u0438\u0442\u0430 \u043E\u0442 \u0430\u0442\u0430\u043A"
-    Behaviour:
-      _typeName: Services.Buffs.Components.AddDefenceComponent, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: d5c1ebe1dffbb3d4db3e8d25c3c711ec, type: 3}
-    Race: 0
-    Mastery: 2
-    Description: "+\u0420\u0430\u0434\u0438\u0443\u0441 \u0434\u0430\u043B\u044C\u043D\u0438\u0445
-      \u0430\u0442\u0430\u043A"
-    Behaviour:
-      _typeName: Services.Buffs.Components.AddRangeComponent, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: 70214a20220789b4ba6b3d6a4437e656, type: 3}
-    Race: 0
-    Mastery: 3
-    Description: "+\u0412\u0430\u043C\u043F\u0438\u0440\u0438\u0437\u043C \u043E\u0442
-      \u0431\u043B\u0438\u0436\u043D\u0438\u0445 \u0430\u0442\u0430\u043A"
-    Behaviour:
-      _typeName: Services.Buffs.Components.AddVampirismComponent, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Icon: {fileID: 21300000, guid: b8410edff72a852468632606e3b69888, type: 3}
-    Race: 0
-    Mastery: 4
-    Description: "+\u0428\u0430\u043D\u0441 \u043A\u0440\u0438\u0442\u0430"
-    Behaviour:
-      _typeName: Services.Buffs.Components.AddCritChanceComponent, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - {fileID: 11400000, guid: bf60e083cf0153a4e8580d7314691e95, type: 2}
+  - {fileID: 11400000, guid: 2596bbc23751c9a4e92ce6b26304540b, type: 2}
+  - {fileID: 11400000, guid: 94916948e519ccf4ab819379c3c278f3, type: 2}
+  - {fileID: 11400000, guid: 4c66527ec9dac2d4695d2b5a0df9fff4, type: 2}
+  - {fileID: 11400000, guid: 40b32725cec5cff4ab36616d95bf2079, type: 2}
+  - {fileID: 11400000, guid: acd69169c4726ce4e904acf70d3acc02, type: 2}
+  - {fileID: 11400000, guid: fe5e7cc3e1008a3459d0d45a7f11fd1a, type: 2}
+  - {fileID: 11400000, guid: b6d8f78845e80b243a8c09aaf1124752, type: 2}

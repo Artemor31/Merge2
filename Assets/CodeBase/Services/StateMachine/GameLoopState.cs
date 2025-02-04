@@ -46,7 +46,7 @@ namespace Services.StateMachine
             
             _profit = _gameplayService.Crowns;
             _gridService.Save();
-            _buffService.ApplyBuffs(_gridService.PlayerUnits);
+            _buffService.ApplyBuffs(_gridService.PlayerUnits, _waveBuilder.EnemyUnits);
             _upgradeDataService.IncrementStats(_gridService.PlayerUnits);
             
             foreach (Actor actor in _gridService.PlayerUnits)

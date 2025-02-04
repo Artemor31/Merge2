@@ -2,45 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using Databases;
+using Databases.BuffConfigs;
 using Gameplay.Units;
-using Services.Buffs.Components;
-using Services.GridService;
 using Services.Infrastructure;
 using Services.Resources;
-using UnityEngine;
 
 namespace Services.Buffs
 {
     public class BuffService : IService
     {
-        private readonly List<BuffConfig> _configs;
-        private readonly List<BuffConfig> _activeConfigs = new();
-        private readonly GameplayDataService _gameplayService;
-        private readonly WaveBuilder _waveBuilder;
+        private readonly BuffsDatabase _buffsDatabase;
+        private readonly Dictionary<BuffConfig, int> _activeConfigs = new();
         private Dictionary<Mastery, int> _masteries = new();
         private Dictionary<Race, int> _races = new();
 
         public BuffService(DatabaseProvider databaseProvider)
         {
-            _configs = databaseProvider.GetDatabase<BuffsDatabase>().BuffConfigs;
+            _buffsDatabase = databaseProvider.GetDatabase<BuffsDatabase>();
             FillDictionary(_races);
             FillDictionary(_masteries);
         }
-        
-        public void ApplyBuffs(ICollection<Actor> actors)
+
+        public void ApplyBuffs(ICollection<Actor> allies, List<Actor> enemies)
         {
-            CalculateBuffs(actors);
-            
-            foreach (BuffConfig buffConfig in _activeConfigs)
+            CalculateBuffs(allies);
+
+            foreach (var buffConfig in _activeConfigs)
             {
-                foreach (Actor actor in actors)
+                if (buffConfig.Key.ForAllies)
                 {
-                    Component component = actor.gameObject.AddComponent(buffConfig.Behaviour.Type);
+                    foreach (Actor actor in allies)
+                    {
+                        buffConfig.Key.ApplyTo(actor, buffConfig.Value);
+                    }
+                }
+                else
+                {
+                    foreach (Actor actor in enemies)
+                    {
+                        buffConfig.Key.ApplyTo(actor, buffConfig.Value);
+                    }
                 }
             }
         }
-        
-        public List<BuffConfig> CalculateBuffs(ICollection<Actor> actors)
+
+        public IEnumerable<string> CalculateBuffs(ICollection<Actor> actors)
         {
             _races = _races.ToDictionary(p => p.Key, _ => 0);
             _masteries = _masteries.ToDictionary(p => p.Key, _ => 0);
@@ -52,20 +58,20 @@ namespace Services.Buffs
                 _masteries[actor.Data.Mastery]++;
             }
 
-            foreach (var config in _configs)
+            foreach (var config in _buffsDatabase.BuffConfigs)
             {
                 if (_races[config.Race] > 1)
                 {
-                    _activeConfigs.Add(config);
+                    _activeConfigs.Add(config, _races[config.Race]);
                 }
 
                 if (_masteries[config.Mastery] > 1)
                 {
-                    _activeConfigs.Add(config);
+                    _activeConfigs.Add(config, _masteries[config.Mastery]);
                 }
             }
 
-            return _activeConfigs;
+            return _activeConfigs.Keys.Select(k => k.Description);
         }
 
         private void FillDictionary<T>(IDictionary<T, int> dict) where T : Enum

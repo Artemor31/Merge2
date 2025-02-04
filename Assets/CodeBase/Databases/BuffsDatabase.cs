@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Infrastructure;
-using Services.Buffs.Components;
+﻿using System.Collections.Generic;
+using Databases.BuffConfigs;
 using UnityEngine;
 
 namespace Databases
@@ -22,29 +20,16 @@ namespace Databases
             {
                 if (data.Race != Race.None)
                 {
-                    RaceData.Add(data.Race, data);
+                    RaceData.TryAdd(data.Race, data);
                 }
                 else
                 {
-                    MasteryData.Add(data.Mastery, data);
+                    MasteryData.TryAdd(data.Mastery, data);
                 }
             }
         }
 
         public Sprite IconFor(Race race) => RaceData[race].Icon;
-
         public Sprite IconFor(Mastery mastery) => MasteryData[mastery].Icon;
-    }
-    
-    [Serializable]
-    public class BuffConfig
-    {
-        public string Name => Mastery == Mastery.None ? Race.ToString() : Mastery.ToString();
-        public Sprite Icon;
-        public Race Race;
-        public Mastery Mastery;
-        public string Description;
-        public SerializableMonoScript<BuffComponent> Behaviour;
-        public bool IsStatBuff;
     }
 }

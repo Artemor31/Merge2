@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Databases;
+using Databases.BuffConfigs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

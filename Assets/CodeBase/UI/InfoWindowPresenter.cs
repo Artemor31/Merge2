@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Databases;
+using Databases.BuffConfigs;
 using Infrastructure;
 using Services;
 using Services.Resources;

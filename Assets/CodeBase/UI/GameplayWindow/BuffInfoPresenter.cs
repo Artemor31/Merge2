@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Databases;
+﻿using System.Text;
 using Infrastructure;
 using Services.Buffs;
 using Services.GridService;
@@ -35,10 +33,10 @@ namespace UI.GameplayWindow
         private string CreteDescription()
         {
             StringBuilder stringBuilder = new();
-            List<BuffConfig> buffs = _buffService.CalculateBuffs(_gridLogicService.PlayerUnits);
-            foreach (BuffConfig buff in buffs)
+            var buffs = _buffService.CalculateBuffs(_gridLogicService.PlayerUnits);
+            foreach (string buff in buffs)
             {
-                stringBuilder.Append(buff.Description);
+                stringBuilder.Append(buff);
                 stringBuilder.Append("\r\n");
             }
             
