@@ -36,7 +36,12 @@ namespace Gameplay.Units
             }
         }
 
-        public void Die() => _animator.SetTrigger(Died);
+        public void Die()
+        {
+            _animator.SetTrigger(Died);
+            Dispose();
+        }
+
         public void ChangeHealth(float currentRatio) => _healthbar.ChangeHealth(currentRatio);
         public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);

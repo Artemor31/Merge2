@@ -94,11 +94,11 @@ namespace Services
             return rank;
         }
 
-        public GridView CreateGridView()
+        public GridView CreateGridView(Vector2Int size)
         {
             GridView prefab = Load<GridView>(AssetsPath.GridView);
             GridView gridView = Object.Instantiate(prefab);
-            gridView.Init();
+            gridView.Init(size);
             gridView.transform.position = _levelDatabase.GridPosition;
             return gridView;
         }

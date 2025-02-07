@@ -51,8 +51,8 @@
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\VariableGetter.cs" />
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\Enumerators.cs" />
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetector.cs" />
-    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchResult.cs" />
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchResultTreeView.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchResult.cs" />
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorSettings.cs" />
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\ListDrawer.cs" />
     <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorSearchFunctions.cs" />

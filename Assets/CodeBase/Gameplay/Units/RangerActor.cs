@@ -53,6 +53,8 @@ namespace Gameplay.Units
             ResetCooldown();
             View.PerformAct();
             yield return new WaitForSeconds(0.5f);
+
+            if (Target == null) yield break;
             
             float damage = Random.Range(0, 1f) <= Stats.CritChance
                 ? Stats.Damage * (1 + Stats.CritValue)

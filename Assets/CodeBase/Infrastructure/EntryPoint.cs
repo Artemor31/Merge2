@@ -42,6 +42,7 @@ namespace Infrastructure
             CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
             TutorialService tutorialService = new(saveService);
+            GameplayContainer gameplayContainer = new();
 
             PersistantDataService persistantDataService = new(saveService);
             GameplayDataService gameplayService = new(saveService, persistantDataService);
@@ -88,6 +89,7 @@ namespace Infrastructure
             ServiceLocator.Bind(projectileService);
             ServiceLocator.Bind(upgradeDataService);
             ServiceLocator.Bind(tutorialService);
+            ServiceLocator.Bind(gameplayContainer);
         }
 
         private void Update() => Tick?.Invoke();

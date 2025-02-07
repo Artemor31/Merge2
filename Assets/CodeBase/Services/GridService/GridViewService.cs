@@ -45,10 +45,8 @@ namespace Services.GridService
 
         public void OnClicked(Actor actor)
         {
-            if (_gridLogicService.PlayerUnits.Contains(actor))
-            {
+            if (_gridLogicService.PlayerUnits.Contains(actor)) 
                 OnClicked(_gridLogicService.GetPlatformFor(actor));
-            }
         }
 
         public void OnClicked(Platform platform)
@@ -70,12 +68,22 @@ namespace Services.GridService
             }
         }
 
-        public void OnReleased(Actor actor) =>
-            OnReleased(_gridLogicService.GetPlatformFor(actor));
+        public void OnHovered(Actor actor)
+        {
+            if (_gridLogicService.PlayerUnits.Contains(actor))
+                OnHovered(_gridLogicService.GetPlatformFor(actor));
+        }
+
+        public void OnReleased(Actor actor)
+        {
+            if (_gridLogicService.PlayerUnits.Contains(actor))
+                OnReleased(_gridLogicService.GetPlatformFor(actor));
+        }
 
         public void OnReleased(Platform started)
         {
             if (!_dragging) return;
+            if (started == null) return;
 
             Platform ended = started;
             if (Selling)
@@ -145,14 +153,21 @@ namespace Services.GridService
         private bool PointerUnderPlatform(out Platform platform)
         {
             var ray = _cameraService.TouchPointRay();
+
             foreach (RaycastHit hit in _cameraService.RayCast(ray, _platformMask))
             {
                 if (hit.transform.TryGetComponent(out platform))
                 {
                     return true;
                 }
-            }
 
+                if (hit.transform.TryGetComponent(out Actor actor))
+                {
+                    platform = _gridLogicService.GetPlatformFor(actor);
+                    return true;
+                }
+            }
+            
             platform = null;
             return false;
         }

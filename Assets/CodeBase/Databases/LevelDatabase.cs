@@ -10,10 +10,7 @@ namespace Databases
         public Vector3 GridPosition;
         public Vector3 SpawnerPosition;
         public Vector2 SpawnerSize = new (5,3);
-        public float SpawnerDelta = 2;
-
-        public Vector3 StartPlatformPoint;
-        public Vector2 DeltaPlatformDistance;
+        public Vector2 SpawnerDelta = new(1,1);
 
         public IEnumerable<Vector3> GetPositions()
         {
@@ -21,12 +18,11 @@ namespace Databases
             for (int i = 0; i < size.x; i++)
             {
                 Vector3 position = SpawnerPosition;
-                float delta = SpawnerDelta;
-                float currentX = position.x + delta * i;
+                float currentX = position.x + SpawnerDelta.x * i;
 
                 for (int j = 0; j < size.y; j++)
                 {
-                    yield return new Vector3(currentX, 0, position.z + delta * j);
+                    yield return new Vector3(currentX, 0, position.z + SpawnerDelta.y * j);
                 }
             }
         }

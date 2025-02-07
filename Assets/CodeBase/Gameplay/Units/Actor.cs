@@ -24,6 +24,7 @@ namespace Gameplay.Units
         protected bool CooldownUp => _actTimer <= 0;
         protected Actor Target;
         protected SearchTargetService SearchTarget;
+        protected GridViewService GridViewService;
         protected ActorSkin View;
         private float _actTimer;
         private Health _health;
@@ -34,6 +35,7 @@ namespace Gameplay.Units
             Stats = stats;
             View = view;
             SearchTarget = ServiceLocator.Resolve<SearchTargetService>();
+            GridViewService = ServiceLocator.Resolve<GridViewService>();
 
             _health = new Health(stats.Health, stats.Defence);
             _mover.Init(view, stats);
@@ -69,8 +71,9 @@ namespace Gameplay.Units
         public void Enable() => _agent.enabled = _collider.enabled = true;
         public void Disable() => _agent.enabled = _collider.enabled = false;
         public void Unleash() => enabled = true;
-        public void OnMouseDown() => ServiceLocator.Resolve<GridViewService>().OnClicked(this);
-        public void OnMouseUp() => ServiceLocator.Resolve<GridViewService>().OnReleased(this);
+        public void OnMouseDown() => GridViewService.OnClicked(this);
+        public void OnMouseUp() => GridViewService.OnReleased(this);
+        public void OnMouseEnter() => GridViewService.OnHovered(this);
         public void Dispose() => View.Dispose();
         private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
         protected void TickActTimer() => _actTimer -= Time.deltaTime;

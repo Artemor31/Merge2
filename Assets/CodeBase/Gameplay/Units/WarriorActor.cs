@@ -45,6 +45,8 @@ namespace Gameplay.Units
                 ? Stats.Damage * (1 + Stats.CritValue)
                 : Stats.Damage;
 
+            if (Target == null) yield break;
+            
             Target.ChangeHealth(damage, HealthContext.Damage);
             if (Stats.Vampirism > 0)
             {

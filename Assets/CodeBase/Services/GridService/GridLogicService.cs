@@ -41,7 +41,7 @@ namespace Services.GridService
 
         public void CreatePlayerField()
         {
-            _gridView = _gameFactory.CreateGridView();
+            _gridView = _gameFactory.CreateGridView(_dataService.GridSize);
             var platforms = _gridView.GetPlatforms(); 
             _dataService.RestoreDataAt(platforms);
 
