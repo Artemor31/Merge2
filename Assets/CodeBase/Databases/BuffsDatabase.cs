@@ -29,6 +29,8 @@ namespace Databases
             }
         }
 
+        public string NameFor(Race race) => RaceData[race].GetBuffName();
+        public string NameFor(Mastery mastery) => MasteryData[mastery].GetBuffName();
         public Sprite IconFor(Race race) => RaceData[race].Icon;
         public Sprite IconFor(Mastery mastery) => MasteryData[mastery].Icon;
     }

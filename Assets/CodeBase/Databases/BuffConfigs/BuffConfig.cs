@@ -14,7 +14,7 @@ namespace Databases.BuffConfigs
         public bool ForAllies;
         public abstract void ApplyTo(Actor actor, int level);
 
-        private string GetBuffName()
+        public string GetBuffName()
         {
             if (Race != Race.None)
             {

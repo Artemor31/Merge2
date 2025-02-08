@@ -15,6 +15,7 @@ namespace UI
         [SerializeField] private CurrencyAddPopup _currencyPopup;
         [SerializeField] private Button _gridUp;
         [SerializeField] private Button _coinsUp;
+        [SerializeField] private Button _diamondsUp;
 
         private GameStateMachine _gameStateMachine;
         private GameplayDataService _gameplayDataService;
@@ -30,6 +31,7 @@ namespace UI
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
             _gridUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().UpRows());
             _coinsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().UpCrowns());
+            _diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
         }
 
         private void ShowHardAdsPopup() => _currencyPopup.ShowData(Currency.Gem);

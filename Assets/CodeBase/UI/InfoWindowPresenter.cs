@@ -41,29 +41,29 @@ namespace UI
             if (!_dataService.TryBuyGems(ChestCost)) return;
 
             string text;
-            List<(Race, Mastery)> closed = AllClosed();
+            List<(Race, Mastery)> closed = GetClosedTypes();
 
             if (closed.Count == 0)
             {
-                text = "Все типы уже открыты. Ждите обновлений!";
+                text = "Все типы уже открыты.\r\nЖдите обновлений!";
             }
             else
             {
-                ClearItems();
-
                 bool inTutor = !_dataService.IsOpened(Race.Human, Mastery.Ranger);
                 (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : closed.Random();
 
                 _dataService.SetOpened(selection);
-                text = selection.Item1.ToString() + selection.Item2;
+                text = $"{_buffsDatabase.NameFor(selection.Item1)} {_buffsDatabase.NameFor(selection.Item2)}";
+                _chestResult.SetRace(_buffsDatabase.IconFor(selection.Item1));
+                _chestResult.SetMastery(_buffsDatabase.IconFor(selection.Item2));
                 CreateItems();
             }
 
             _chestResult.gameObject.SetActive(true);
-            _chestResult.SetData(text);
+            _chestResult.SetText(text);
         }
 
-        private List<(Race, Mastery)> AllClosed() =>
+        private List<(Race, Mastery)> GetClosedTypes() =>
             _unitsDatabase.AllActorTypes()
                           .SelectMany(keyValuePair =>
                               keyValuePair.Value, (keyValuePair, mastery) =>
@@ -72,14 +72,11 @@ namespace UI
                           .Select(t => (t.keyValuePair.Key, t.mastery))
                           .ToList();
 
-        private void ClearItems()
+        private void CreateItems()
         {
             _items.ForEach(i => Destroy(i.gameObject));
             _items.Clear();
-        }
 
-        private void CreateItems()
-        {
             foreach (Race race in _raceQueue)
             {
                 CreateItem(race);
