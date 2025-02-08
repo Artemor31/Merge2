@@ -108,5 +108,13 @@ namespace Services.GridService
                 for (int j = 0; j < _platforms.GetLength(1); j++)
                     action.Invoke(i, j);
         }
+
+        public void Dispose()
+        {
+            foreach (Actor actor in PlayerUnits)
+            {
+                actor.enabled = false;
+            }
+        }
     }
 }

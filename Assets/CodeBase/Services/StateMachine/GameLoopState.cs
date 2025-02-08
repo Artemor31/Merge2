@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Units;
 using Services.Buffs;
 using Services.GridService;
@@ -18,6 +19,7 @@ namespace Services.StateMachine
         private readonly UpgradeDataService _upgradeDataService;
         private readonly WindowsService _windowsService;
         private int _profit;
+        private List<Actor> _playerUnits;
 
         public GameLoopState(GameStateMachine gameStateMachine,
                              GridDataService gridService, 
@@ -46,10 +48,11 @@ namespace Services.StateMachine
             
             _profit = _gameplayService.Crowns;
             _gridService.Save();
-            _buffService.ApplyBuffs(_gridService.PlayerUnits, _waveBuilder.EnemyUnits);
-            _upgradeDataService.IncrementStats(_gridService.PlayerUnits);
+            _playerUnits = _gridService.PlayerUnits;
+            _buffService.ApplyBuffs(_playerUnits, _waveBuilder.EnemyUnits);
+            _upgradeDataService.IncrementStats(_playerUnits);
             
-            foreach (Actor actor in _gridService.PlayerUnits)
+            foreach (Actor actor in _playerUnits)
             {
                 actor.Died += OnAllyDied;
                 actor.Unleash();
@@ -72,7 +75,7 @@ namespace Services.StateMachine
                 actor.Died -= OnEnemyDied;
             }
 
-            foreach (Actor actor in _gridService.PlayerUnits)
+            foreach (Actor actor in _playerUnits)
             {
                 actor.Died -= OnAllyDied;
             }

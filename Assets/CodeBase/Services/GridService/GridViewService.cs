@@ -4,7 +4,6 @@ using Gameplay.Grid;
 using Gameplay.Units;
 using Services.Infrastructure;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Services.GridService
 {
@@ -45,7 +44,7 @@ namespace Services.GridService
 
         public void OnClicked(Actor actor)
         {
-            if (_gridLogicService.PlayerUnits.Contains(actor)) 
+            if (_dataService.PlayerUnits.Contains(actor)) 
                 OnClicked(_gridLogicService.GetPlatformFor(actor));
         }
 
@@ -70,13 +69,13 @@ namespace Services.GridService
 
         public void OnHovered(Actor actor)
         {
-            if (_gridLogicService.PlayerUnits.Contains(actor))
+            if (_dataService.PlayerUnits.Contains(actor))
                 OnHovered(_gridLogicService.GetPlatformFor(actor));
         }
 
         public void OnReleased(Actor actor)
         {
-            if (_gridLogicService.PlayerUnits.Contains(actor))
+            if (_dataService.PlayerUnits.Contains(actor))
                 OnReleased(_gridLogicService.GetPlatformFor(actor));
         }
 

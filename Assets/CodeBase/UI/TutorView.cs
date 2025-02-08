@@ -9,15 +9,13 @@ namespace UI
     public class TutorView : Presenter
     {
         public event Action Clicked;
-        public Action PreviousAction;
 
-        [field: SerializeField] public int Id { get; private set; }
-        [field: SerializeField] public string Id2 { get; private set; }
-        [field: SerializeField] public bool Is2D { get; private set; }
+        [field: SerializeField] public string Id2 { get; set; }
+        [field: SerializeField] public bool Is2D { get; set; }
         public Transform Transform => transform;
         public RectTransform RectTransform { get; private set; }
         private TutorialService _tutorialService;
-
+        private Action _action;
 
         public override void Init()
         {
@@ -28,6 +26,18 @@ namespace UI
             }
 
             ServiceLocator.Resolve<TutorialService>().AddItem(this);
+        }
+
+        public void AddOneShotHandler(Action action)
+        {
+            _action = action;
+            Clicked += InvokeAction;
+        }
+
+        private void InvokeAction()
+        {
+            _action?.Invoke();
+            Clicked -= InvokeAction;
         }
 
         private void OnMouseDown() => Clicked?.Invoke();

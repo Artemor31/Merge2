@@ -67,7 +67,7 @@ namespace Services
             int count = _wavesDatabase.WavesData.Count;
             int wave = _gameplayData.Wave;
 
-            if (_tutorialService.NeedTutorWave)
+            if (_tutorialService.InTutor)
             {
                 return _wavesDatabase.TutorData[wave];
             }

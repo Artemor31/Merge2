@@ -8,6 +8,7 @@ using Services;
 using Services.GridService;
 using Services.Infrastructure;
 using Services.StateMachine;
+using UI.UpgradeWindow;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,6 @@ namespace UI
 
         private readonly WaitForSeconds _waitHalfSecond = new(0.5f);
         private WindowsService _windowService;
-        private Coroutine _current;
         private GridLogicService _logicService;
         private TutorialService _tutorialService;
         private GameStateMachine _gameStateMachine;
@@ -39,13 +39,33 @@ namespace UI
             _endTutor.onClick.AddListener(Cancel);
         }
 
-        public override void OnShow() => _startPanel.SetActive(true);
-        private void Cancel() => _startPanel.SetActive(false);
+        public override void OnShow()
+        {
+            foreach (Button button in _windowService.Buttons)
+            {
+                button.interactable = _startTutor.gameObject == button.gameObject || 
+                                      _endTutor.gameObject == button.gameObject;
+            }
+            
+            _startPanel.SetActive(true);
+        }
+
+        private void Cancel()
+        {
+            _startPanel.SetActive(false);
+            FreeAllButtons();
+        }
 
         private void BlockAllButtonsBut(TutorView view)
         {
             foreach (Button button in _windowService.Buttons)
                 button.interactable = view.gameObject == button.gameObject;
+        }
+        
+        private void FreeAllButtons()
+        {
+            foreach (Button button in _windowService.Buttons)
+                button.interactable = true;
         }
 
         private void HighlightObject(string id)
@@ -55,7 +75,7 @@ namespace UI
             BlockAllButtonsBut(currentView);
         }
 
-        private void DoThenStateIs(Type state, Action action) => _current = StartCoroutine(AwaitState(state, action));
+        private void DoThenStateIs(Type state, Action action) => StartCoroutine(AwaitState(state, action));
 
         private IEnumerator AwaitState(Type state, Action action)
         {
@@ -64,17 +84,13 @@ namespace UI
                 yield return _waitHalfSecond;
             }
 
-            if (_current != null)
-                StopCoroutine(_current);
-
             action.Invoke();
         }
 
         private void AwaitClicked(string id, Action action)
         {
             TutorView currentView = _tutorialService.GetItem(id);
-            currentView.Clicked += action;
-            currentView.Clicked -= currentView.PreviousAction;
+            currentView.AddOneShotHandler(action);
         }
 
         private void AwaitClickedAndHighlight(string id, Action action)
@@ -85,13 +101,17 @@ namespace UI
 
         private void Step1_OnAcceptClicked()
         {
+            _tutorialService.InTutor = true;
             _startPanel.SetActive(false);
+            FreeAllButtons();
             AwaitClickedAndHighlight("MenuFight", Step2_StartLevelClicked);
             _text.ShowText(0);
         }
 
-        private void Step2_StartLevelClicked() =>
-            _current = StartCoroutine(Step3_LevelLoaded());
+        private void Step2_StartLevelClicked()
+        {
+            StartCoroutine(Step3_LevelLoaded());
+        }
 
         private IEnumerator Step3_LevelLoaded()
         {
@@ -123,7 +143,6 @@ namespace UI
 
         private void Step4_2WarriorsBought()
         {
-            StopCoroutine(_current);
             List<Actor> units = _logicService.PlayerUnits;
             
             if (units.Count == 1)
@@ -159,18 +178,22 @@ namespace UI
 
         private void Step7_FightEnded()
         {
-            DoThenStateIs(typeof(ResultScreenState), () =>
-            {
-                _text.ShowText(4);
-                AwaitClickedAndHighlight("WinNext", Step8_Level2StartLoad);
-            });
+            DoThenStateIs(typeof(ResultScreenState), () => StartCoroutine(AwaitViewLoad()));
+        }
+
+        private IEnumerator AwaitViewLoad()
+        {
+            yield return _waitHalfSecond;
+            yield return _waitHalfSecond;
+            yield return _waitHalfSecond;
+            _text.ShowText(4, TextAllignment.Bottom);
+            AwaitClickedAndHighlight("WinNext", Step8_Level2StartLoad);
         }
 
         private void Step8_Level2StartLoad()
         {
             _text.Hide();
             _finger.Disable();
-            _tutorialService.NeedTutorWave = true;
             DoThenStateIs(typeof(SetupLevelState), () =>
             {
                 _text.ShowText(5);
@@ -187,11 +210,17 @@ namespace UI
 
         private void Step12_WaitLose()
         {
-            DoThenStateIs(typeof(ResultScreenState), () =>
-            {
-                _text.ShowText(6);
-                AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded);
-            });
+            _tutorialService.InTutor = false;
+            DoThenStateIs(typeof(ResultScreenState), () => StartCoroutine(AwaitViewLoad2()));
+        }
+
+        private IEnumerator AwaitViewLoad2()
+        {
+            yield return _waitHalfSecond;
+            yield return _waitHalfSecond;
+            yield return _waitHalfSecond;
+            _text.ShowText(6, TextAllignment.Bottom);
+            AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded);
         }
 
         private void Step13_MenuLoaded()
@@ -202,13 +231,13 @@ namespace UI
 
         private void Step14()
         {
-            _text.ShowText(8);
+            _text.ShowText(8, TextAllignment.Bottom);
             AwaitClickedAndHighlight("BuyChest", Step15_ShopTabOpened);
         }
 
         private void Step15_ShopTabOpened()
         {
-            _text.ShowText(9);
+            _text.ShowText(9, TextAllignment.Bottom);
             AwaitClickedAndHighlight("ConfirmChest", Step15_2_ShopChestTabOpened);
         }
 
@@ -220,16 +249,38 @@ namespace UI
 
         private void Step16_UnitUnlocked()
         {
+            StartCoroutine(PointToButton());
+        }
+
+        private IEnumerator PointToButton()
+        {
+            _finger.Disable();
             _text.ShowText(11);
-            AwaitClickedAndHighlight("BottomUpgrade", CloseAll);
+            yield return _waitHalfSecond;
+
+            UpgradeShopPresenter upgradeShopPresenter = _windowService.Get<UpgradeShopPresenter>();
+            UpgradeItemPresenter[] upgradeItemPresenters = upgradeShopPresenter.GetComponentsInChildren<UpgradeItemPresenter>();
+            Button selected = upgradeItemPresenters[0].GetComponentInChildren<Button>();
+            RectTransform rectTransform = selected.GetComponent<RectTransform>();
+            
+            _finger.PointTo(rectTransform);
+            
+            foreach (Button button in _windowService.Buttons)
+                button.interactable = selected.gameObject == button.gameObject;
+            
+            selected.onClick.AddListener(CloseAll);
         }
 
         private void CloseAll()
         {
             _text.Hide();
             _finger.Disable();
-            foreach (Button button in _windowService.Buttons)
-                button.interactable = true;
+            FreeAllButtons();
+            
+            _windowService.Get<UpgradeShopPresenter>()
+                          .GetComponentsInChildren<UpgradeItemPresenter>()[0]
+                          .GetComponentInChildren<Button>()
+                          .onClick.RemoveListener(CloseAll);
         }
     }
 }

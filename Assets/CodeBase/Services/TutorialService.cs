@@ -8,7 +8,7 @@ namespace Services
     {
         private const string SavePath = "TutorData";
 
-        public bool NeedTutorWave { get; set; }
+        public bool InTutor { get; set; }
         public bool SeenTutor => _tutorData.Seen;
         
         private readonly Dictionary<string, TutorView> _views = new();

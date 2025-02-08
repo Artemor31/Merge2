@@ -33,11 +33,8 @@ namespace Gameplay.Grid
                 {
                     _platforms[x * size.y + y].gameObject.SetActive(true);
                 }
+                
                 _gridDivs[x].gameObject.SetActive(true);
-            }
-
-            for (int y = 0; y < size.x; y++)
-            {
             }
         }
 

@@ -69,7 +69,7 @@ namespace UI.GameplayWindow
             }
         }
 
-        public override void OnShow() => Wave.text = $"{WaveText} {_gameplayService.Wave}";
+        public override void OnShow() => Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
         
@@ -87,6 +87,7 @@ namespace UI.GameplayWindow
 
         private void StartWave()
         {
+            BuffPresenter.gameObject.SetActive(false);
             gameObject.SetActive(false);
             _stateMachine.Enter<GameLoopState>();
         }

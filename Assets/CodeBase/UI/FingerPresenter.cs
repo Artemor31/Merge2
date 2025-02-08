@@ -37,7 +37,7 @@ namespace UI
         {
             if (currentView == null)
             {
-                throw new Exception("Not found item with id = " + currentView.Id);
+                throw new Exception("Not found item with id = " + currentView.Id2);
             }
             
             Active();
@@ -45,6 +45,14 @@ namespace UI
                 ? currentView.RectTransform.TransformPoint(currentView.RectTransform.rect.center)
                 : _cameraService.WorldToScreenPoint(currentView.Transform.position + Vector3.up);
 
+            _rectTransform.position = screenCoordinate + _offset;
+            _routine = StartCoroutine(Blink());
+        }
+
+        public void PointTo(RectTransform rectTransform)
+        {
+            Active();
+            Vector2 screenCoordinate = rectTransform.TransformPoint(rectTransform.rect.center);
             _rectTransform.position = screenCoordinate + _offset;
             _routine = StartCoroutine(Blink());
         }

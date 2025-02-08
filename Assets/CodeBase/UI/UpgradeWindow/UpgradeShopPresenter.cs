@@ -36,10 +36,6 @@ namespace UI.UpgradeWindow
             }
         }
 
-        private bool Opened(BuffConfig data) => data.Mastery == Mastery.None 
-            ? _persistantService.IsOpened(data.Race) 
-            : _persistantService.IsOpened(data.Mastery);
-
         public override void OnHide()
         {
             foreach (UpgradeItemPresenter presenter in _presenters)
@@ -49,6 +45,12 @@ namespace UI.UpgradeWindow
             
             _presenters.Clear();
         }
+
+        public UpgradeItemPresenter GetAt(int index) => _presenters[index];
+
+        private bool Opened(BuffConfig data) => data.Mastery == Mastery.None 
+            ? _persistantService.IsOpened(data.Race) 
+            : _persistantService.IsOpened(data.Mastery);
 
         private void CreateItem(BuffConfig data)
         {

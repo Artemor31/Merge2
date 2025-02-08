@@ -1,4 +1,5 @@
 ﻿using Infrastructure;
+using Services;
 using Services.GridService;
 using TMPro;
 using UnityEngine;
@@ -14,8 +15,13 @@ namespace UI.GameplayWindow
         [SerializeField] private Color _startColor;
         [SerializeField] private Color _secondColor;
         private GridViewService _gridViewService;
+        private TutorialService _tutorialService;
 
-        public override void Init() => _gridViewService = ServiceLocator.Resolve<GridViewService>();
+        public override void Init()
+        {
+            _gridViewService = ServiceLocator.Resolve<GridViewService>();
+            _tutorialService = ServiceLocator.Resolve<TutorialService>();
+        }
 
         public void Show(int cost)
         {
@@ -27,7 +33,7 @@ namespace UI.GameplayWindow
 
         private void Update()
         {
-            float t = Mathf.PingPong(Time.time / 1, 1);
+            float t = Mathf.PingPong(Time.time / 1, 2);
             _view.color = Color.Lerp(_startColor, _secondColor, t);
         }
 
@@ -37,7 +43,12 @@ namespace UI.GameplayWindow
             _gridViewService.Selling = false;
         }
         
-        public void OnPointerEnter(PointerEventData eventData) => _gridViewService.Selling = true;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (_tutorialService.InTutor) return;
+            _gridViewService.Selling = true;
+        }
+
         public void OnPointerExit(PointerEventData eventData) => _gridViewService.Selling = false;
     }
 }

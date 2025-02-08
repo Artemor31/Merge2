@@ -53,6 +53,8 @@ namespace Services.StateMachine
             _windowsService.Close<GameCanvas>();
             _gridLogicService.Dispose();
             _gridDataService.Save();
+            _gridDataService.Dispose();
+            
             _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
