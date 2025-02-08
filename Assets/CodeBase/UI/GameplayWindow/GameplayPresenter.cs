@@ -76,7 +76,7 @@ namespace UI.GameplayWindow
         private void CloseClicked()
         {
             _windowsService.Close<GameCanvas>();
-            _stateMachine.Enter<ResultScreenState, bool>(false);
+            _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
         }
         
         private void BuffsClicked()

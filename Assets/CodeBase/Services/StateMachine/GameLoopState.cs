@@ -86,13 +86,13 @@ namespace Services.StateMachine
             }
         }
 
-        private void Lose() => _gameStateMachine.Enter<ResultScreenState, bool>(false);
+        private void Lose() => _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, false));
 
         private void OnEnemyDied()
         {
             if (_waveBuilder.EnemyUnits.All(a => a.IsDead))
             {
-                _gameStateMachine.Enter<ResultScreenState, bool>(true);
+                _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(true, false));
             }
         }
     }

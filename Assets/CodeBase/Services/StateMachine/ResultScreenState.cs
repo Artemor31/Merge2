@@ -9,7 +9,19 @@ using UnityEngine;
 
 namespace Services.StateMachine
 {
-    public class ResultScreenState : IState<bool>
+    public struct ResultScreenData
+    {
+        public readonly bool IsWin;
+        public readonly bool Force;
+        
+        public ResultScreenData(bool isWin, bool force)
+        {
+            IsWin = isWin;
+            Force = force;
+        }
+    }
+    
+    public class ResultScreenState : IState<ResultScreenData>
     {
         private readonly WindowsService _windowsService;
         private readonly GridDataService _gridDataService;
@@ -36,17 +48,17 @@ namespace Services.StateMachine
             _coroutineRunner = coroutineRunner;
         }
 
-        public void Enter(bool isWin)
+        public void Enter(ResultScreenData data)
         {
             _windowsService.Close<GameCanvas>();
             _gridLogicService.Dispose();
             _gridDataService.Save();
-            _coroutineRunner.StartCoroutine(ShowEndWindow(isWin));
+            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
-        private IEnumerator ShowEndWindow(bool isWin)
+        private IEnumerator ShowEndWindow(bool isWin, bool force)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return force ? null : new WaitForSeconds(1.5f);
             
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
