@@ -11,9 +11,11 @@ namespace Gameplay.Units.Projectiles
         public ProjectileData Data { get; private set; }
         protected Actor Target;
         protected float Damage;
+        private HealthContext _context;
 
-        public virtual void Init(Actor target, float damage, ProjectileData data)
+        public virtual void Init(Actor target, float damage, ProjectileData data, HealthContext context)
         {
+            _context = context;
             Target = target;
             Damage = damage;
             Data = data;
@@ -25,8 +27,9 @@ namespace Gameplay.Units.Projectiles
             Hited = true;
             if (!Target.IsDead)
             {
-                Target.ChangeHealth(Damage, Data.DamageContext);
-                Instantiate(Data.HitVFX, transform.position, Quaternion.identity);
+                Target.ChangeHealth(Damage, _context);
+                if (Data.HitVFX)
+                    Instantiate(Data.HitVFX, transform.position, Quaternion.identity);
             }
         }
 

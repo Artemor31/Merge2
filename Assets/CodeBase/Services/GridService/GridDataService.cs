@@ -111,10 +111,7 @@ namespace Services.GridService
 
         public void Dispose()
         {
-            foreach (Actor actor in PlayerUnits)
-            {
-                actor.enabled = false;
-            }
+            foreach (Actor actor in PlayerUnits) actor.Disable();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UI.GameplayWindow;
+﻿using Gameplay.Units.Healths;
+using UI.GameplayWindow;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -12,9 +13,11 @@ namespace Gameplay.Units
         [SerializeField] private Animator _animator;
         private CanvasHealthbar _healthbar;
         private ActorRank _rank;
+        private ParticleSystem _bloodVfx;
 
-        public void Initialize(CanvasHealthbar healthbar, ActorRank rank)
+        public void Initialize(CanvasHealthbar healthbar, ActorRank rank, ParticleSystem bloodVfx)
         {
+            _bloodVfx = bloodVfx;
             _rank = rank;
             _healthbar = healthbar;
         }
@@ -42,7 +45,15 @@ namespace Gameplay.Units
             Dispose();
         }
 
-        public void ChangeHealth(float currentRatio) => _healthbar.ChangeHealth(currentRatio);
+        public void ChangeHealth(float currentRatio, HealthContext context)
+        {
+            _healthbar.ChangeHealth(currentRatio);
+            if (context == HealthContext.Crit)
+            {
+                _bloodVfx.Play();
+            }
+        }
+
         public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);
         public void GoIdle() => _animator.SetFloat(Speed, 0);

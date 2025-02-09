@@ -46,7 +46,7 @@ namespace Gameplay.Units
         public void ChangeHealth(float value, HealthContext context)
         {
             _health.ChangeHealth(value, context);
-            View.ChangeHealth(_health.CurrentRatio);
+            View.ChangeHealth(_health.CurrentRatio, context);
             if (IsDead)
             {
                 View.Die();
@@ -70,6 +70,7 @@ namespace Gameplay.Units
 
         public void Enable() => _agent.enabled = _collider.enabled = true;
         public void Disable() => _agent.enabled = _collider.enabled = false;
+        public void DisableCollider() => _collider.enabled = false;
         public void Unleash() => enabled = true;
         public void OnMouseDown() => GridViewService.OnClicked(this);
         public void OnMouseUp() => GridViewService.OnReleased(this);
@@ -78,7 +79,11 @@ namespace Gameplay.Units
         private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
         protected void TickActTimer() => _actTimer -= Time.deltaTime;
         protected bool InRange() => DistanceTo(Target) <= Stats.Range;
-        protected void ResetCooldown() => _actTimer = Stats.ActCooldown;
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, Stats.Range);
+        protected void ResetCooldown()
+        {
+            float part = Stats.ActCooldown * 0.2f;
+            _actTimer = Stats.ActCooldown + UnityEngine.Random.Range(-part, part);
+        }
     }
 }

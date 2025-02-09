@@ -97,7 +97,9 @@ namespace Services.GridService
                 {
                     MoveActor(started, ended);
                 }
-                else if (started.Index != ended.Index && started.Actor.Data == ended.Actor.Data)
+                else if (started.Index != ended.Index && 
+                         started.Actor.Data == ended.Actor.Data &&
+                         started.Actor.Data.Level != 3)
                 {
                     _mergeService.Merge(started, ended);
                 }

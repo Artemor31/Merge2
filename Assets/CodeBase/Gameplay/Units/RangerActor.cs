@@ -55,13 +55,13 @@ namespace Gameplay.Units
             yield return new WaitForSeconds(0.5f);
 
             if (Target == null) yield break;
-            
-            float damage = Random.Range(0, 1f) <= Stats.CritChance
-                ? Stats.Damage * (1 + Stats.CritValue)
-                : Stats.Damage;
+
+            bool isCrit = Random.Range(0, 1f) <= Stats.CritChance;
+            float damage = isCrit ? Stats.Damage * (1 + Stats.CritValue) : Stats.Damage;
 
             Vector3 position = transform.position + Vector3.up;
-            _service.Create(_projectileType, position, Target, damage);
+            HealthContext context = isCrit ? HealthContext.Crit : HealthContext.Damage;
+            _service.Create(_projectileType, position, Target, damage, context);
             if (Stats.Vampirism > 0)
             {
                 ChangeHealth(damage * Stats.Vampirism, HealthContext.Heal);

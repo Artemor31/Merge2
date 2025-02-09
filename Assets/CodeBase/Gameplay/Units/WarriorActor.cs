@@ -41,13 +41,13 @@ namespace Gameplay.Units
             View.PerformAct();
             yield return new WaitForSeconds(0.5f);
             
-            float damage = Random.Range(0, 1f) <= Stats.CritChance
-                ? Stats.Damage * (1 + Stats.CritValue)
-                : Stats.Damage;
-
             if (Target == null) yield break;
             
-            Target.ChangeHealth(damage, HealthContext.Damage);
+            bool isCrit = Random.Range(0, 1f) <= Stats.CritChance;
+            float damage = isCrit ? Stats.Damage * (1 + Stats.CritValue) : Stats.Damage;
+
+            Target.ChangeHealth(damage, isCrit ? HealthContext.Crit : HealthContext.Damage);
+            
             if (Stats.Vampirism > 0)
             {
                 ChangeHealth(damage * Stats.Vampirism, HealthContext.Heal);

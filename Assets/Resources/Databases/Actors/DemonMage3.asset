@@ -17,8 +17,8 @@ MonoBehaviour:
     Race: 4
     Mastery: 3
   Stats:
-    Health: 225
-    Damage: 110
+    Health: 500
+    Damage: 150
     CritChance: 0.05
     CritValue: 2
     Vampirism: 0

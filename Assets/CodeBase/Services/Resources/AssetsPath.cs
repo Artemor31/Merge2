@@ -8,5 +8,6 @@
         public const string ActorShadow = "ActorShadow";
         public const string HealthbarCanvas = "HealthbarCanvas";
         public const string ActorRankCanvas = "ActorRank";
+        public const string BloodFromCrit = "BloodFromCrit";
     }
 }

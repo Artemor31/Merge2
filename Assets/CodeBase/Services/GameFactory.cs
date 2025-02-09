@@ -35,11 +35,12 @@ namespace Services
         }
 
         public void CreatePlayerActor(ActorData actorData, Platform platform) =>
-            platform.Actor = CreateActor(actorData, platform.transform.position);
+            platform.Actor = CreateActor(actorData, platform.transform.position, true);
 
-        public Actor CreateEnemyActor(ActorData data, Vector3 position) => CreateActor(data, position);
+        public Actor CreateEnemyActor(ActorData data, Vector3 position) => 
+            CreateActor(data, position, false);
 
-        private Actor CreateActor(ActorData data, Vector3 position)
+        private Actor CreateActor(ActorData data, Vector3 position, bool players)
         {
             ActorConfig config = _unitsDatabase.ConfigFor(data);
             Actor baseView = Object.Instantiate(config.ViewData.BaseView, position, quaternion.identity);
@@ -53,6 +54,9 @@ namespace Services
 
             GameObject shadowPrefab = Load<GameObject>(AssetsPath.ActorShadow);
             Object.Instantiate(shadowPrefab, baseView.transform);
+            
+            if (!players)
+                baseView.DisableCollider();
 
             return baseView;
         }
@@ -72,7 +76,10 @@ namespace Services
         private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, CanvasHealthbar healthbar, ActorRank actorRank)
         {
             ActorSkin skin = Object.Instantiate(prefab, parent, false);
-            skin.Initialize(healthbar, actorRank);
+            ParticleSystem asset = Load<ParticleSystem>(AssetsPath.BloodFromCrit);
+            ParticleSystem particleSystem = Object.Instantiate(asset, skin.transform, false);
+            particleSystem.transform.localPosition = Vector3.up;
+            skin.Initialize(healthbar, actorRank, particleSystem);
             return skin;
         }
 

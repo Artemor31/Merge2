@@ -807,7 +807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 2
   <Id2>k__BackingField: 
   <Is2D>k__BackingField: 1
 --- !u!1 &2475279675291753382
@@ -2959,7 +2958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 0
   <Id2>k__BackingField: BuffButton
   <Is2D>k__BackingField: 1
 --- !u!1 &7356488689436171498
@@ -3027,7 +3025,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Squad
+  m_text: "\u041E\u0442\u0440\u044F\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38987ba59a373409cb94ae65d23e4b49, type: 2}
   m_sharedMaterial: {fileID: -3845100613933225147, guid: 38987ba59a373409cb94ae65d23e4b49, type: 2}
@@ -3232,7 +3230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 3
   <Id2>k__BackingField: 
   <Is2D>k__BackingField: 1
 --- !u!1 &7915406427891346548

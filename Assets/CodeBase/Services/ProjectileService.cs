@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Databases;
 using Gameplay.Units;
+using Gameplay.Units.Healths;
 using Gameplay.Units.Projectiles;
 using Infrastructure;
 using Services.Infrastructure;
@@ -21,7 +22,7 @@ namespace Services
             _database = provider.GetDatabase<ProjectilesDatabase>();
         }
         
-        public void Create(ProjectileType type,  Vector3 position, Actor target, float damage)
+        public void Create(ProjectileType type,  Vector3 position, Actor target, float damage, HealthContext context)
         {
             ProjectileData data = _database.Get(type);
             if (!_pools.ContainsKey(type))
@@ -30,7 +31,7 @@ namespace Services
             }
 
             var projectile = _pools[type].Get(position);
-            projectile.Init(target, damage, data);
+            projectile.Init(target, damage, data, context);
             _active.Add(projectile);
         }
 

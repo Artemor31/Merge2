@@ -24,7 +24,7 @@ MonoBehaviour:
     Vampirism: 0
     Defence: 0
     Range: 7
-    ActCooldown: 2
+    ActCooldown: 3
     MoveSpeed: 2
   ViewData:
     BaseView: {fileID: 2300282671115125669, guid: 14ae8deda5306634fbe5b161f0ab512b, type: 3}

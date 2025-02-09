@@ -17,7 +17,7 @@ MonoBehaviour:
     MoveSpeed: 10
     DamageArea: 0.3
     Prefab: {fileID: 7345155930059112006, guid: ceda6812cc9ec3244b73ad13213ff3d5, type: 3}
-    HitVFX: {fileID: 19867628, guid: 01949c12a89de284792dc4b7b7128404, type: 3}
+    HitVFX: {fileID: 0}
     DamageContext: 1
   - Id: 2
     MoveSpeed: 6
