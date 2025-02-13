@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8408939481474730509}
   - component: {fileID: 5387187518449200982}
   - component: {fileID: 6498481234905238410}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: SimpleMeleeUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

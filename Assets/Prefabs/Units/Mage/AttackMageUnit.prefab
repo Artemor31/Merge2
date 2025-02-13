@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2000911949262941642}
   - component: {fileID: 7625637279324466940}
   - component: {fileID: 6965781950372482492}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: AttackMageUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
