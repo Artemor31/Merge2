@@ -89,7 +89,7 @@ namespace Services.StateMachine
             }
         }
 
-        private void Lose() => _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, false));
+        private void Lose() => _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, false ));
 
         private void OnEnemyDied()
         {

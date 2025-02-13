@@ -44,7 +44,7 @@ namespace Infrastructure
             TutorialService tutorialService = new(saveService);
             GameplayContainer gameplayContainer = new();
 
-            PersistantDataService persistantDataService = new(saveService);
+            PersistantDataService persistantDataService = new(saveService, databaseProvider);
             GameplayDataService gameplayService = new(saveService, persistantDataService);
             GridDataService gridDataService = new(saveService, persistantDataService);
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);

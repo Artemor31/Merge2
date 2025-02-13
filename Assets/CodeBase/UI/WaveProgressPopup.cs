@@ -1,50 +1,32 @@
 ﻿using Infrastructure;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class WaveProgressPopup : BaseItemPopup
     {
-        private int _amount;
-
+        public Button OkButton => _ads;
+        
         public override void Init()
         {
             base.Init();
-            _ads.onClick.AddListener(AdsClicked);
+            _ads.onClick.AddListener(CloseClicked);
             _close.onClick.AddListener(CloseClicked);
         }
 
         public void SetData(Currency currency, int amount)
         {
             _currency = currency;
-            _amount = amount;
-
-            if (currency == Currency.Coin)
-            {
-                _bag.sprite = _coinBag;
-                _coin.gameObject.SetActive(true);
-                _gem.gameObject.SetActive(false);
-            }
-            else if (currency == Currency.Gem)
-            {
-                _bag.sprite = _gemBag;
-                _coin.gameObject.SetActive(false);
-                _gem.gameObject.SetActive(true);
-            }
+            
+            _coin.gameObject.SetActive(currency == Currency.Coin);
+            _gem.gameObject.SetActive(currency == Currency.Gem);
+            _coin.SetData(amount);
+            _gem.SetData(amount);
+            _bag.sprite = currency == Currency.Coin ? _coinBag : _gemBag;
+            
+            gameObject.SetActive(true);
         }
         
         private void CloseClicked() => gameObject.SetActive(false);
-
-        private void AdsClicked()
-        {
-            switch (_currency)
-            {
-                case Currency.Coin:
-                    _persistantDataService.AddCoins(_amount);
-                    break;
-                case Currency.Gem:
-                    _persistantDataService.AddGems(_amount);
-                    break;
-            }
-        }
     }
 }

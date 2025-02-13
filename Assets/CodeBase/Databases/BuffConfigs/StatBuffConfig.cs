@@ -36,7 +36,7 @@ namespace Databases.BuffConfigs
                     stats.Defence += value;
                     break;
                 case Stat.RangeAdd:
-                    if (stats.Range >= 3)
+                    if (stats.Range >= 2)
                         stats.Range += value;
                     break;
                 case Stat.DefenceRemove:

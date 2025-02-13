@@ -44,7 +44,7 @@ namespace Gameplay.Units
             if (Target == null) yield break;
             
             bool isCrit = Random.Range(0, 1f) <= Stats.CritChance;
-            float damage = isCrit ? Stats.Damage * (1 + Stats.CritValue) : Stats.Damage;
+            float damage = isCrit ? Stats.Damage * Stats.CritValue : Stats.Damage;
 
             Target.ChangeHealth(damage, isCrit ? HealthContext.Crit : HealthContext.Damage);
             

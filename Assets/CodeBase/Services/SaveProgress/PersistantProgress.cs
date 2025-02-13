@@ -11,6 +11,7 @@ namespace Services.SaveProgress
         public int Gems;
         public int OpenedRows;
         public int BonusCrowns;
+        public int MaxWave;
         public int[] Races;
         public int[] Masteries;
 
@@ -26,6 +27,7 @@ namespace Services.SaveProgress
                 (Race.Human, Mastery.Warrior), 
             };
             BonusCrowns = 5;
+            MaxWave = 0;
         }
 
         public override void Serialize()

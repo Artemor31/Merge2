@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Databases;
+using Infrastructure;
 using Services.Infrastructure;
+using Services.Resources;
 using Services.SaveProgress;
+using UI;
+using UnityEngine;
 
 namespace Services
 {
@@ -12,33 +16,65 @@ namespace Services
         
         public event Action<int> OnCoinsChanged;
         public event Action<int> OnGemsChanged;
-        
+
         public int Coins => _progress.Coins;
         public int Gems => _progress.Gems;
         public int Rows => _progress.OpenedRows;
         public int Crowns => _progress.BonusCrowns;
+        public int MaxWave => _progress.MaxWave;
+        public int NextWave => _rewardsDatabase.NextWave(MaxWave);
 
         private readonly PersistantProgress _progress;
         private readonly SaveService _saveService;
+        private readonly WaveRewardsDatabase _rewardsDatabase;
 
-        public PersistantDataService(SaveService saveService)
+        public PersistantDataService(SaveService saveService, DatabaseProvider databaseProvider)
         {
             _saveService = saveService;
             _progress = _saveService.Restore<PersistantProgress>(SavePath);
+            _rewardsDatabase = databaseProvider.GetDatabase<WaveRewardsDatabase>();
         }
 
         public void AddCoins(int value)
         {
             _progress.Coins += value;
-            OnCoinsChanged?.Invoke(_progress.Coins);
             Save();
+            OnCoinsChanged?.Invoke(_progress.Coins);
         }
         
         public void AddGems(int gems)
         {
             _progress.Gems += gems;
-            OnGemsChanged?.Invoke(_progress.Gems);
             Save();
+            OnGemsChanged?.Invoke(_progress.Gems);
+        }
+
+        public void TrySetMaxWave(int wave)
+        {
+            if (_progress.MaxWave < wave)
+            {
+                _progress.MaxWave = wave;
+                var reward = _rewardsDatabase.GetFor(_progress.MaxWave);
+                
+                switch (reward.Type)
+                {
+                    case Currency.Coin:
+                        AddCoins(reward.Amount);
+                        break;
+                    case Currency.Gem:
+                        AddGems(reward.Amount);
+                        break;
+                }                
+                
+                Save();
+            }
+        }
+
+        public (Currency Currency, int Amount) RewardCurrentReward()
+        {
+            // TODO do multy type reward, not only currency
+            var reward = _rewardsDatabase.GetFor(_progress.MaxWave);
+            return (reward.Type, reward.Amount);
         }
 
         public bool TryBuyCoins(int cost)
@@ -46,8 +82,8 @@ namespace Services
             if (_progress.Coins < cost) return false;
 
             _progress.Coins -= cost;
-            OnCoinsChanged?.Invoke(_progress.Coins);
             Save();
+            OnCoinsChanged?.Invoke(_progress.Coins);
             return true;
         }
 
@@ -56,8 +92,8 @@ namespace Services
             if (_progress.Gems < cost) return false;
 
             _progress.Gems -= cost;
-            OnGemsChanged?.Invoke(_progress.Gems);
             Save();
+            OnGemsChanged?.Invoke(_progress.Gems);
             return true;
         }
 

@@ -51,10 +51,10 @@ namespace Services.StateMachine
         public void Enter(ResultScreenData data)
         {
             _windowsService.Close<GameCanvas>();
-            _gridLogicService.Dispose();
             _gridDataService.Save();
             _gridDataService.Dispose();
-            
+            _gridLogicService.Dispose();
+            _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
             _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
@@ -105,7 +105,7 @@ namespace Services.StateMachine
             return new ResultData
             {
                 CrownsValue = crownsValue,
-                GemsValue = count,
+                GemsValue = Random.Range(8, 14),
                 CoinsValue = sumCoins   
             };
         }

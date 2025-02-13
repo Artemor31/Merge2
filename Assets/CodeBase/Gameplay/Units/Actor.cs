@@ -72,9 +72,9 @@ namespace Gameplay.Units
         public void Disable() => _agent.enabled = _collider.enabled = false;
         public void DisableCollider() => _collider.enabled = false;
         public void Unleash() => enabled = true;
-        public void OnMouseDown() => GridViewService.OnClicked(this);
-        public void OnMouseUp() => GridViewService.OnReleased(this);
-        public void OnMouseEnter() => GridViewService.OnHovered(this);
+        //public void OnMouseDown() => GridViewService.OnClicked(this);
+        //public void OnMouseUp() => GridViewService.OnReleased(this);
+        //public void OnMouseEnter() => GridViewService.OnHovered(this);
         public void Dispose() => View.Dispose();
         private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
         protected void TickActTimer() => _actTimer -= Time.deltaTime;

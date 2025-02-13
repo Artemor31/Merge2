@@ -47,6 +47,7 @@ namespace Gameplay.Units
 
         public void ChangeHealth(float currentRatio, HealthContext context)
         {
+            if (_healthbar == null) return;
             _healthbar.ChangeHealth(currentRatio);
             if (context == HealthContext.Crit)
             {

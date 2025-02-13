@@ -587,9 +587,13 @@ MonoBehaviour:
   - {fileID: 774165791}
   - {fileID: 774165789}
   - {fileID: 2137768206}
+  - {fileID: 2038328447}
   - {fileID: 774165790}
   - {fileID: 1887334434}
   - {fileID: 987594342}
+  - {fileID: 1078110898}
+  - {fileID: 1471380264}
+  - {fileID: 1006834468}
   - {fileID: 1277560320}
   - {fileID: 4674886299448596221}
   - {fileID: 8371212780217273845}
@@ -2418,6 +2422,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1006834468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1161672035621881247, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d491aaa656433eb5a600e7006499aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019291791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2500,6 +2515,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1078110898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 970463395727234192, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ad0d43c8094cca9216d947b508ef7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1113714061 stripped
@@ -2918,6 +2944,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1471380264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2562964030832456061, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d491aaa656433eb5a600e7006499aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1540271531
@@ -3997,7 +4034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 5
   <Id2>k__BackingField: LoseNext
   <Is2D>k__BackingField: 1
 --- !u!1 &1788624786
@@ -4414,6 +4450,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2038328447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7074109648317640313, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db24db459bee4ec89eb93743cee97e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2042786859
 GameObject:
   m_ObjectHideFlags: 0
@@ -4757,7 +4804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 7
   <Id2>k__BackingField: BuyChest
   <Is2D>k__BackingField: 1
 --- !u!1001 &2131029803
@@ -4986,7 +5032,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 6
   <Id2>k__BackingField: BottmInfo
   <Is2D>k__BackingField: 1
 --- !u!1 &53739769387907209
@@ -5964,7 +6009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 4
   <Id2>k__BackingField: WinNext
   <Is2D>k__BackingField: 1
 --- !u!1 &8773703140656017053
@@ -7231,7 +7275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 8
   <Id2>k__BackingField: ConfirmChest
   <Is2D>k__BackingField: 1
 --- !u!1 &8850576639691935754 stripped
@@ -7251,7 +7294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 9
   <Id2>k__BackingField: BottomUpgrade
   <Is2D>k__BackingField: 1
 --- !u!1660057539 &9223372036854775807
