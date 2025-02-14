@@ -16,11 +16,19 @@ namespace UI
         [SerializeField] private InfoActorPresenter _prefab;
         private readonly List<InfoActorPresenter> _presenters = new();
         
-        public void SetData(BuffConfig raceConfig, IEnumerable<(BuffConfig config, bool opened)> actors)
+        public void SetData(BuffConfig raceConfig, IEnumerable<(BuffConfig config, bool opened)> actors, bool isOpened)
         {
             _icon.sprite = raceConfig.Icon;
-            _name.text = raceConfig.Name;
-            _description.text = raceConfig.Description;
+
+            if (isOpened)
+            {
+                _name.text = raceConfig.Name;
+                _description.text = raceConfig.Description;
+            }
+            else
+            {
+                _name.text = _description.text = "???";
+            }
             
             foreach (var actor in actors)
             {
@@ -28,7 +36,7 @@ namespace UI
 
                 if (actor.opened)
                 {
-                    presenter.SetData(actor.config.Icon, actor.config.Name);
+                    presenter.SetData(actor.config.Icon, actor.config.Name, actor.config.Description);
                 }
                 else
                 {

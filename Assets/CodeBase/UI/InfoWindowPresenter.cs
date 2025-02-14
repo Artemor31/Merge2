@@ -85,11 +85,11 @@ namespace UI
 
         private void CreateItem(Race race)
         {
-            IEnumerable<(BuffConfig, bool)> data = _unitsDatabase.AllActorTypes()[race]
-                                                                 .Select(mastery => CheckOpened(race, mastery));
+            var masteries = _unitsDatabase.AllActorTypes()[race];
+            IEnumerable<(BuffConfig, bool)> data = masteries.Select(mastery => CheckOpened(race, mastery));
 
             InfoItemPresenter presenter = Instantiate(_prefab, _actorsParent);
-            presenter.SetData(_buffsDatabase.RaceData[race], data);
+            presenter.SetData(_buffsDatabase.RaceData[race], data, _dataService.IsOpened(race));
             _items.Add(presenter);
         }
 

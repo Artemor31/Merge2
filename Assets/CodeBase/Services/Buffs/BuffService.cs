@@ -81,10 +81,13 @@ namespace Services.Buffs
                 switch (level)
                 {
                     case 1:
+                        return "+";
                         return "\u2191";
                     case 2: 
+                        return "++";
                         return "\u2191\u2191"; 
                     case 3:
+                        return "+++";
                         return "\u2191\u2191\u2191";
                 }
             }
