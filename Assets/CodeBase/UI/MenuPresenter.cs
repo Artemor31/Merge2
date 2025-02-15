@@ -15,28 +15,22 @@ namespace UI
         [SerializeField] private CurrencyAddPopup _currencyPopup;
         [SerializeField] private WaveProgressPopup _waveRewardPopup;
         [SerializeField] private MenuWaveProgressPresenter _slider;
-        [SerializeField] private Button _gridUp;
-        [SerializeField] private Button _coinsUp;
         [SerializeField] private Button _diamondsUp;
 
         private GameStateMachine _gameStateMachine;
         private GameplayDataService _gameplayDataService;
         private GridDataService _gridDataService;
-        private PersistantDataService _persistantDataService;
 
         public override void Init()
         {
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
-            _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
             
             _fightButton.onClick.AddListener(PlayClicked);
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
             
-            _gridUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().UpRows());
-            _coinsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().UpCrowns());
             _diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
         }
 

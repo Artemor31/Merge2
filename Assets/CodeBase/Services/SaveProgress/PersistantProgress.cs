@@ -26,7 +26,7 @@ namespace Services.SaveProgress
             {
                 (Race.Human, Mastery.Warrior), 
             };
-            BonusCrowns = 5;
+            BonusCrowns = 0;
             MaxWave = 0;
         }
 

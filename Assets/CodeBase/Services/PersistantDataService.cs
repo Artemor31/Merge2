@@ -5,8 +5,6 @@ using Infrastructure;
 using Services.Infrastructure;
 using Services.Resources;
 using Services.SaveProgress;
-using UI;
-using UnityEngine;
 
 namespace Services
 {
@@ -16,6 +14,7 @@ namespace Services
         
         public event Action<int> OnCoinsChanged;
         public event Action<int> OnGemsChanged;
+        public event Action<PersistantProgress> OnProgressChanged;
 
         public int Coins => _progress.Coins;
         public int Gems => _progress.Gems;
@@ -107,6 +106,7 @@ namespace Services
         {
             _progress.Opened.Add(data);
             Save();
+            OnProgressChanged?.Invoke(_progress);
         }
 
         public bool IsOpened(Mastery mastery) => _progress.Opened.Any(p => p.Item2 == mastery);
@@ -114,22 +114,30 @@ namespace Services
         public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
         public bool IsOpened(Race race, Mastery mastery) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
 
-        public void UpRows()
+        public bool TryUpRows()
         {
             if (Rows < 4)
             {
                 _progress.OpenedRows++;
                 Save();
+                OnProgressChanged?.Invoke(_progress);
+                return true;
             }
+
+            return false;
         }
 
-        public void UpCrowns()
+        public bool TryUpCrowns()
         {
             if (_progress.BonusCrowns < 30)
             {
                 _progress.BonusCrowns += 5;
                 Save();
+                OnProgressChanged?.Invoke(_progress);
+                return true;
             }
+            
+            return false;
         }
     }
 }
