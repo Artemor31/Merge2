@@ -41,66 +41,61 @@ namespace UI
             _openChest.onClick.AddListener(OpenChestClicked);
             _buyGrid.onClick.AddListener(OpenGridClicked);
             _buyCoins.onClick.AddListener(OpenCoinsClicked);
-            _chestCost.text = ChestCost.ToString();
-            _gridCost.text = ChestCost.ToString();
-            _coinsCost.text = ChestCost.ToString();
+            SetChestCost();
+            SetCrownsCost();
+            SetRowsCost();
             UpdateCrownDescr();
             UpdateRowsDescr();
         }
 
-        private void UpdateRowsDescr() => _gridDescription.text = StartGrid + (_dataService.Rows+1);
+        private void UpdateRowsDescr() => _gridDescription.text = StartGrid + _dataService.Rows;
         private void UpdateCrownDescr() => _crownsDescription.text = StartCrowns + _dataService.Crowns;
 
         private void OpenCoinsClicked()
         {
+            if (_dataService.CrownsAtMax) return;
             if (!_dataService.TryBuyGems(ChestCost)) return;
-            if (!_dataService.TryUpCrowns())
-            {
-                _coinsCost.text = Max;
-            }
-            else
-            {
-                UpdateCrownDescr();
-            }
+            _dataService.TryUpCrowns();
+            UpdateCrownDescr();
+            SetCrownsCost();
         }
+
+        private void SetCrownsCost() => _coinsCost.text = _dataService.CrownsAtMax ? Max : ChestCost.ToString();
+        private void SetRowsCost() => _gridCost.text = _dataService.RowsAtMax ? Max : ChestCost.ToString();
+        private void SetChestCost() => _chestCost.text = ChestCost.ToString();
 
         private void OpenGridClicked()
         {
+            if (_dataService.CrownsAtMax) return;
             if (!_dataService.TryBuyGems(ChestCost)) return;
-            if (!_dataService.TryUpRows())
-            {
-                _gridCost.text = Max;
-            }
-            else
-            {
-                UpdateRowsDescr();
-            }
+            _dataService.TryUpRows();
+            UpdateRowsDescr();
+            SetRowsCost();
         }
 
         private void OpenChestClicked()
         {
-            if (!_dataService.TryBuyGems(ChestCost)) return;
-
-            string text;
             List<(Race, Mastery)> closed = GetClosedTypes();
-
+            SetChestCost();
             if (closed.Count == 0)
             {
-                text = "Все типы уже открыты.\r\nЖдите обновлений!";
+                _chestResult.gameObject.SetActive(true);
+                _chestResult.SetText("Все типы уже открыты.\r\nЖдите обновлений!");
+                return;
             }
-            else
-            {
-                bool inTutor = !_dataService.IsOpened(Race.Human, Mastery.Ranger);
-                (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : closed.Random();
+            
+            if (!_dataService.TryBuyGems(ChestCost)) return;
+            
+            bool inTutor = !_dataService.IsOpened(Race.Human, Mastery.Ranger);
+            (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : closed.Random();
 
-                _dataService.SetOpened(selection);
-                text = $"{_buffsDatabase.NameFor(selection.Item1)} {_buffsDatabase.NameFor(selection.Item2)}";
-                _chestResult.SetRace(_buffsDatabase.IconFor(selection.Item1));
-                _chestResult.SetMastery(_buffsDatabase.IconFor(selection.Item2));
-            }
+            _dataService.SetOpened(selection);
+            _chestResult.SetRace(_buffsDatabase.IconFor(selection.Item1));
+            _chestResult.SetMastery(_buffsDatabase.IconFor(selection.Item2));
 
-            _chestResult.gameObject.SetActive(true);
+            string text = $"{_buffsDatabase.NameFor(selection.Item1)} {_buffsDatabase.NameFor(selection.Item2)}";
             _chestResult.SetText(text);
+            _chestResult.gameObject.SetActive(true);
         }
 
         private List<(Race, Mastery)> GetClosedTypes()

@@ -19,7 +19,9 @@ namespace Services
         public int Coins => _progress.Coins;
         public int Gems => _progress.Gems;
         public int Rows => _progress.OpenedRows;
+        public bool RowsAtMax => _progress.OpenedRows == 4;
         public int Crowns => _progress.BonusCrowns;
+        public bool CrownsAtMax => _progress.BonusCrowns == 30;
         public int MaxWave => _progress.MaxWave;
         public int NextWave => _rewardsDatabase.NextWave(MaxWave);
 
