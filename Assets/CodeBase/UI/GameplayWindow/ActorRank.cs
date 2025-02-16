@@ -19,17 +19,12 @@ namespace UI.GameplayWindow
         private Transform _target;
         private CameraService _cameraService;
         private RectTransform _parentCanvas;
-        private IUpdateable _updateable;
 
-        public void Init(RectTransform rectTransform,
-                         Transform target,
-                         ActorData data)
+        public void Init(RectTransform rectTransform, Transform target, ActorData data)
         {
             _parentCanvas = rectTransform;
             _target = target;
             _cameraService = ServiceLocator.Resolve<CameraService>();
-            _updateable = ServiceLocator.Resolve<IUpdateable>();
-            _updateable.Tick += UpdateableOnTick;
 
             var buffsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<BuffsDatabase>();
             _raceImage.sprite = buffsDatabase.IconFor(data.Race);
@@ -37,13 +32,7 @@ namespace UI.GameplayWindow
             _level.text = data.Level.ToString();
         }
 
-        public void UnInit()
-        {
-            _updateable.Tick -= UpdateableOnTick;
-            _target = null;
-        }
-
-        private void UpdateableOnTick()
+        private void Update()
         {
             if (_target == null) return;
             

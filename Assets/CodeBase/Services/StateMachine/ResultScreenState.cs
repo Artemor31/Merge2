@@ -51,11 +51,11 @@ namespace Services.StateMachine
         public void Enter(ResultScreenData data)
         {
             _windowsService.Close<GameCanvas>();
+            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
             _gridDataService.Save();
             _gridDataService.Dispose();
             _gridLogicService.Dispose();
             _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
-            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
         private IEnumerator ShowEndWindow(bool isWin, bool force)
@@ -65,13 +65,11 @@ namespace Services.StateMachine
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.gameObject.SetActive(false);
-                actor.Dispose();
             }
 
             foreach (Actor actor in _gridDataService.PlayerUnits)
             {
                 actor.gameObject.SetActive(false);
-                actor.Dispose();
             }
             
             if (isWin)

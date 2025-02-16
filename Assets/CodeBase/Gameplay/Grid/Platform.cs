@@ -22,7 +22,7 @@ namespace Gameplay.Grid
 
         public void Clear()
         {
-            Actor.Dispose();
+            //Actor.Dispose();
             Destroy(Actor.gameObject);
             Actor = null;
         }

@@ -93,7 +93,7 @@ namespace Services.StateMachine
 
         private void OnEnemyDied()
         {
-            if (_waveBuilder.EnemyUnits.All(a => a.IsDead))
+            if (_waveBuilder.EnemyUnits.Count <=0 || _waveBuilder.EnemyUnits.All(a => a.IsDead))
             {
                 _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(true, false));
             }

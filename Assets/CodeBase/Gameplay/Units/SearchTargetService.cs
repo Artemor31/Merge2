@@ -34,7 +34,7 @@ namespace Gameplay.Units
             {
                 Side.Enemy => new ActorCollection(_actor, isPlayers ? _waveBuilder.EnemyUnits : _dataService.PlayerUnits),
                 Side.Ally => new ActorCollection(_actor, isPlayers ? _dataService.PlayerUnits : _waveBuilder.EnemyUnits),
-                Side.All => new ActorCollection(_actor, _dataService.PlayerUnits.Concat(_waveBuilder.EnemyUnits).ToList()),
+                Side.All => new ActorCollection(_actor, _dataService.PlayerUnits.Concat(_waveBuilder.EnemyUnits)),
                 Side.None => throw new ArgumentOutOfRangeException(nameof(side), side, null),
                 _ => throw new ArgumentOutOfRangeException(nameof(side), side, null)
             };
@@ -45,7 +45,7 @@ namespace Gameplay.Units
             private readonly Actor _owner;
             private List<Actor> _actors;
 
-            public ActorCollection(Actor owner, List<Actor> actors)
+            public ActorCollection(Actor owner, IEnumerable<Actor> actors)
             {
                 _owner = owner;
                 _actors = actors == null ? new List<Actor>() : actors.ToList();

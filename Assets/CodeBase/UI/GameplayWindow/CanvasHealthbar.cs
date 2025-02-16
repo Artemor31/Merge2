@@ -12,29 +12,20 @@ namespace UI.GameplayWindow
         [SerializeField] private Image _value;
 
         private CameraService _cameraService;
-        private IUpdateable _updateable;
         private RectTransform _parentCanvas;
         private Transform _target;
 
         public void Init(RectTransform canvas, Transform actor)
         {
             _cameraService = ServiceLocator.Resolve<CameraService>();
-            _updateable = ServiceLocator.Resolve<IUpdateable>();
             _parentCanvas = canvas;
             _target = actor;
-            _updateable.Tick += UpdateableOnTick;
             ChangeHealth(1);
         }
         
         public void ChangeHealth(float ratio) => _value.fillAmount = ratio;
         
-        public void UnInit()
-        {
-            _updateable.Tick -= UpdateableOnTick;
-            _target = null;
-        }
-
-        private void UpdateableOnTick()
+        private void Update()
         {
             if (_target == null) return;
             

@@ -75,11 +75,18 @@ namespace Gameplay.Units
         //public void OnMouseDown() => GridViewService.OnClicked(this);
         //public void OnMouseUp() => GridViewService.OnReleased(this);
         //public void OnMouseEnter() => GridViewService.OnHovered(this);
-        public void Dispose() => View.Dispose();
+        //public void Dispose() => View.Dispose();
         private float DistanceTo(Actor actor) => Vector3.Distance(transform.position, actor.transform.position);
         protected void TickActTimer() => _actTimer -= Time.deltaTime;
         protected bool InRange() => DistanceTo(Target) <= Stats.Range;
         protected void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, Stats.Range);
+
+        protected void LookAtTarget()
+        {
+            
+            Quaternion targetRotation = Quaternion.LookRotation(Target.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+        }
         protected void ResetCooldown()
         {
             float part = Stats.ActCooldown * 0.2f;

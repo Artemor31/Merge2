@@ -28,7 +28,7 @@ namespace Gameplay.Units
 
             if (!CanFindTarget()) return;
 
-            transform.LookAt(Target.transform);
+            LookAtTarget();
 
             if (InRange())
             {

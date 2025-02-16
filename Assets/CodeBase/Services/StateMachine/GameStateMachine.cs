@@ -4,6 +4,7 @@ using Services.Buffs;
 using Services.GridService;
 using Services.Infrastructure;
 using UI.UpgradeWindow;
+using UnityEngine;
 
 namespace Services.StateMachine
 {
@@ -50,7 +51,10 @@ namespace Services.StateMachine
         
         public void Enter<T, TParam>(TParam param) where T : IState
         {
-            if (_currentState?.GetType() == typeof(T)) return;
+            if (_currentState?.GetType() == typeof(T))
+            {
+                Debug.LogError("Same state enter error");
+            }
             
             if (_currentState is IExitableState state)
                 state.Exit();
