@@ -40,6 +40,7 @@ namespace Services.StateMachine
 
         public void Enter()
         {
+            _playerUnits = _gridService.PlayerUnits;
             if (_gridService.PlayerUnits.Count == 0)
             {
                 Lose();
@@ -48,7 +49,6 @@ namespace Services.StateMachine
             
             _profit = _gameplayService.Crowns;
             _gridService.Save();
-            _playerUnits = _gridService.PlayerUnits;
             _buffService.ApplyBuffs(_playerUnits, _waveBuilder.EnemyUnits);
             _upgradeDataService.IncrementStats(_playerUnits);
             

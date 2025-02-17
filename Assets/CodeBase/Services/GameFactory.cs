@@ -61,17 +61,8 @@ namespace Services
             return baseView;
         }
 
-        private T Load<T>(string path) where T : Object
-        {
-            if (_cache.TryGetValue(path, out Object value))
-            {
-                return (T)value;
-            }
-
-            T prefab = _assetsProvider.Load<T>(path);
-            _cache.Add(path, prefab);
-            return prefab;
-        }
+        public void CreateMergeVFX(Vector3 position) => 
+            Object.Instantiate(Load<GameObject>(AssetsPath.MergeVFX), position + Vector3.up, Quaternion.identity);
 
         private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, CanvasHealthbar healthbar, ActorRank actorRank)
         {
@@ -108,6 +99,18 @@ namespace Services
             gridView.Init(size);
             gridView.transform.position = _levelDatabase.GridPosition;
             return gridView;
+        }
+
+        private T Load<T>(string path) where T : Object
+        {
+            if (_cache.TryGetValue(path, out Object value))
+            {
+                return (T)value;
+            }
+
+            T prefab = _assetsProvider.Load<T>(path);
+            _cache.Add(path, prefab);
+            return prefab;
         }
     }
 }

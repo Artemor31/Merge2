@@ -65,11 +65,13 @@ namespace Services.StateMachine
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.gameObject.SetActive(false);
+                actor.Dispose();
             }
 
             foreach (Actor actor in _gridDataService.PlayerUnits)
             {
                 actor.gameObject.SetActive(false);
+                actor.Dispose();
             }
             
             if (isWin)

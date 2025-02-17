@@ -9,5 +9,6 @@
         public const string HealthbarCanvas = "HealthbarCanvas";
         public const string ActorRankCanvas = "ActorRank";
         public const string BloodFromCrit = "BloodFromCrit";
+        public const string MergeVFX = "MergeVFX";
     }
 }

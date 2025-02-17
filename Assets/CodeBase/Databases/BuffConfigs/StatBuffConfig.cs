@@ -24,10 +24,10 @@ namespace Databases.BuffConfigs
                     actor.ChangeHealth(bonus, HealthContext.Heal);
                     break;
                 case Stat.DamageAdd:
-                    stats.Damage *= value;
+                    stats.Damage += stats.Damage * value;
                     break;
                 case Stat.CritChanceAdd:
-                    stats.CritChance *= value;
+                    stats.CritChance += stats.CritChance * value;
                     break;
                 case Stat.VampirismAdd:
                     stats.Vampirism += value;

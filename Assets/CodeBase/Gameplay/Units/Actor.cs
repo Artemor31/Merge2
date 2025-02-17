@@ -92,5 +92,7 @@ namespace Gameplay.Units
             float part = Stats.ActCooldown * 0.2f;
             _actTimer = Stats.ActCooldown + UnityEngine.Random.Range(-part, part);
         }
+
+        public void Dispose()=> View.Dispose();
     }
 }

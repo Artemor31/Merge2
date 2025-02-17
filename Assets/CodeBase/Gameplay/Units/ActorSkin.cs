@@ -1,4 +1,5 @@
-﻿using Gameplay.Units.Healths;
+﻿using System;
+using Gameplay.Units.Healths;
 using UI.GameplayWindow;
 using UnityEngine;
 
@@ -32,9 +33,29 @@ namespace Gameplay.Units
             }
         }
 
-        public void Die() => _animator.SetTrigger(Died);
         public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);
         public void GoIdle() => _animator.SetFloat(Speed, 0);
+        
+        public void Dispose()
+        {
+            if (_healthbar != null)
+            {
+                Destroy(_healthbar.gameObject);
+                _healthbar = null;
+            }            
+            
+            if (_rank != null)
+            {
+                Destroy(_rank.gameObject);
+                _rank = null;
+            }
+        }
+
+        public void Die()
+        {
+            _animator.SetTrigger(Died);
+            Dispose();
+        }
     }
 }

@@ -54,7 +54,7 @@ namespace Infrastructure
             
             GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, 
                 gameplayService, persistantDataService);
-            MergeService mergeService = new(databaseProvider, gridLogicService);
+            MergeService mergeService = new(databaseProvider, gridLogicService, gameFactory);
             BuffService buffService = new(databaseProvider);
             
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
