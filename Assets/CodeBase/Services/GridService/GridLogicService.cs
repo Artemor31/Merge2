@@ -18,7 +18,7 @@ namespace Services.GridService
         public event Action OnPlayerFieldChanged;
 
         public List<Actor> PlayerUnits => _dataService.PlayerUnits;
-        
+
         private readonly GridDataService _dataService;
         private readonly GameFactory _gameFactory;
         private readonly GameplayDataService _gameplayService;
@@ -42,27 +42,28 @@ namespace Services.GridService
         public void CreatePlayerField()
         {
             _gridView = _gameFactory.CreateGridView(_dataService.GridSize);
-            var platforms = _gridView.GetPlatforms(); 
-            _dataService.RestoreDataAt(platforms);
 
-            for (int i = 0; i < platforms.GetLength(0); i++)
+            int openedCount = _dataService.GridSize.x * _dataService.GridSize.y;
+            Debug.LogError(openedCount);
+            
+            _dataService.RestoreData(_gridView.Platforms.GetRange(0, openedCount));
+            for (int i = 0; i < openedCount; i++)
             {
-                for (int j = 0; j < platforms.GetLength(1); j++)
+                Platform platform = _gridView.Platforms[i];
+                platform.Init(i);
+                platform.gameObject.SetActive(true);
+                
+                ActorData data = _dataService.ActorDataAt(i);
+                if (!data.Equals(ActorData.None))
                 {
-                    platforms[i, j].Init(i, j);
-                    platforms[i, j].gameObject.SetActive(true);
-                    var data = _dataService.ActorDataAt(i, j);
-                    if (!data.Equals(ActorData.None))
-                    {
-                        _gameFactory.CreatePlayerActor(data, platforms[i, j]);
-                    }
+                    _gameFactory.CreatePlayerActor(data, platform);
                 }
             }
 
             OnPlayerFieldChanged?.Invoke();
         }
 
-        public bool CanAddUnit() => _dataService.HasFreePlatform(out Platform _);
+        public bool CanAddUnit() => _dataService.TryGetFreePlatform(out Platform _);
         public Platform GetPlatformFor(Actor actor) => _gridView.PlatformWith(actor);
 
         public void TryCreatePlayerUnit(int tier)
@@ -77,7 +78,7 @@ namespace Services.GridService
 
         public void TryCreatePlayerUnit(ActorConfig unitCard)
         {
-            _dataService.HasFreePlatform(out Platform platform);
+            _dataService.TryGetFreePlatform(out Platform platform);
             _gameFactory.CreatePlayerActor(unitCard.Data, platform);
             OnPlayerFieldChanged?.Invoke();
         }
@@ -99,15 +100,18 @@ namespace Services.GridService
             return (int)value;
         }
 
-        public void SellUnitAt(Vector2Int selected)
+        public void SellUnitAt(int index)
         {
-            var platform = _dataService.GetDataAt(selected);
-            _gameplayService.AddCrowns(GetCostFor(platform.Actor.Data.Level));
+            Platform platform = _gridView.Platforms[index];
+            int costFor = GetCostFor(platform.Actor.Data.Level);
+            _gameplayService.AddCrowns(costFor);
             platform.Clear();
         }
 
         public void Dispose()
         {
+            _dataService.Dispose();
+            
             if (!_gridView) return;
             Object.Destroy(_gridView.gameObject);
             _gridView = null;

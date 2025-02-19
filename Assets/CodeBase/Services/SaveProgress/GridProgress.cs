@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Databases.Data;
 
 namespace Services.SaveProgress
@@ -6,8 +7,8 @@ namespace Services.SaveProgress
     [Serializable]
     public class GridProgress : SaveData
     {
-        public ActorData[,] UnitIds;
-        public GridProgress(ActorData[,] unitId) => UnitIds = unitId;
+        public List<ActorData> UnitIds;
+        public GridProgress(List<ActorData> actorDatas) => UnitIds = actorDatas;
         public GridProgress() => UnitIds = null;
     }
 }

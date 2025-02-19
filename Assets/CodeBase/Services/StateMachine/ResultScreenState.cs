@@ -53,7 +53,6 @@ namespace Services.StateMachine
             _windowsService.Close<GameCanvas>();
             _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
             _gridDataService.Save();
-            _gridDataService.Dispose();
             _gridLogicService.Dispose();
             _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
         }

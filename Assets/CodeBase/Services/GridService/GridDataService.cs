@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Databases.Data;
 using Gameplay.Grid;
 using Gameplay.Units;
@@ -20,7 +20,7 @@ namespace Services.GridService
         private readonly SaveService _saveService;
         private readonly PersistantDataService _persistantDataService;
         private GridProgress _gridProgress;
-        private Platform[,] _platforms;
+        private List<Platform> _platforms;
 
         public GridDataService(SaveService saveService, PersistantDataService persistantDataService)
         {
@@ -28,58 +28,38 @@ namespace Services.GridService
             _persistantDataService = persistantDataService;
         }
 
-        public ActorData ActorDataAt(int i, int j) => _gridProgress.UnitIds[i, j];
-        public Platform GetDataAt(Vector2Int selected) => _platforms[selected.x, selected.y];
+        public ActorData ActorDataAt(int index) => _gridProgress.UnitIds.Count > index
+            ? _gridProgress.UnitIds[index]
+            : ActorData.None;
+        
+        public Platform GetPlatform(int index) => _platforms[index];
 
-        public void RestoreDataAt(Platform[,] platforms)
+        public void RestoreData(List<Platform> platforms)
         {
             _platforms = platforms;
             _gridProgress = _saveService.Restore<GridProgress>(SavePath);
-            _gridProgress.UnitIds ??= new ActorData[GridSize.x, GridSize.y];
+            _gridProgress.UnitIds ??= new List<ActorData>(_platforms.Count);
+            
+            foreach (var unused in _platforms)
+                _gridProgress.UnitIds.Add(ActorData.None);
         }
-        
-        public bool HasFreePlatform(out Platform platform)
+
+        public bool TryGetFreePlatform(out Platform platform)
         {
-            for (var i = 0; i < _platforms.GetLength(0); i++)
-            {
-                for (var j = 0; j < _platforms.GetLength(1); j++)
-                {
-                    if (_platforms[i, j].Free)
-                    {
-                        platform = _platforms[i, j];
-                        return true;
-                    }
-                }
-            }
-
-            platform = null;
-            return false;
+            platform = _platforms.FirstOrDefault(p => p.Free);
+            return platform != null;
         }
-        
-        public Platform RandomPlatform()
-        {
 
-            List<Platform> platforms = new();
-            for (var i = 0; i < _platforms.GetLength(0); i++)
-            {
-                for (var j = 0; j < _platforms.GetLength(1); j++)
-                {
-                    if (_platforms[i, j].Free)
-                    {
-                        platforms.Add(_platforms[i, j]);
-                    }
-                }
-            }
-
-            return platforms.Random();
-        }
+        public Platform RandomPlatform() => 
+            _platforms.Where(platform => platform.Free).Random();
 
         public void Save()
         {
-            DoForeach((i, j) =>
+            for (int i = 0; i < _platforms.Count; i++)
             {
-                _gridProgress.UnitIds[i, j] = _platforms[i, j].Busy ? _platforms[i, j].Actor.Data : ActorData.None;
-            });
+                Platform platform = _platforms[i];
+                _gridProgress.UnitIds[i] = platform.Busy ? platform.Actor.Data : ActorData.None;
+            }
             
             _saveService.Save(SavePath, _gridProgress);
         }
@@ -90,28 +70,16 @@ namespace Services.GridService
             _saveService.Save(SavePath, _gridProgress);
         }
 
-        private List<Actor> GetPlayerUnits()
-        {
-            List<Actor> units = new();
-            DoForeach((i, j) =>
-            {
-                if (_platforms[i, j].Busy)
-                    units.Add(_platforms[i, j].Actor);
-            });
-
-            return units;
-        }
-
-        private void DoForeach(Action<int, int> action)
-        {
-            for (int i = 0; i < _platforms.GetLength(0); i++)
-                for (int j = 0; j < _platforms.GetLength(1); j++)
-                    action.Invoke(i, j);
-        }
+        private List<Actor> GetPlayerUnits() => _platforms.Where(platform => platform.Busy)
+                                                          .Select(platform => platform.Actor)
+                                                          .ToList();
 
         public void Dispose()
         {
-            foreach (Actor actor in PlayerUnits) actor.Disable();
+            foreach (Actor actor in PlayerUnits)
+            {
+                actor.Disable();
+            }
         }
     }
 }

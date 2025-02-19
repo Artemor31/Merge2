@@ -22,7 +22,7 @@ namespace Services.GridService
         private readonly MergeService _mergeService;
         private readonly CameraService _cameraService;
         private readonly GridLogicService _gridLogicService;
-        private Vector2Int _selected;
+        private int _selected;
         private bool _dragging;
 
         public GridViewService(IUpdateable updateable,
@@ -40,12 +40,6 @@ namespace Services.GridService
             _groundMask = 1 << LayerMask.NameToLayer("Ground");
 
             _updateable.Tick += OnTick;
-        }
-
-        public void OnClicked(Actor actor)
-        {
-            if (_dataService.PlayerUnits.Contains(actor)) 
-                OnClicked(_gridLogicService.GetPlatformFor(actor));
         }
 
         public void OnClicked(Platform platform)
@@ -67,18 +61,6 @@ namespace Services.GridService
             }
         }
 
-        public void OnHovered(Actor actor)
-        {
-            if (_dataService.PlayerUnits.Contains(actor))
-                OnHovered(_gridLogicService.GetPlatformFor(actor));
-        }
-
-        public void OnReleased(Actor actor)
-        {
-            if (_dataService.PlayerUnits.Contains(actor))
-                OnReleased(_gridLogicService.GetPlatformFor(actor));
-        }
-
         public void OnReleased(Platform started)
         {
             if (!_dragging) return;
@@ -91,7 +73,7 @@ namespace Services.GridService
             }
             else if (PointerUnderPlatform(out Platform platform))
             {
-                ended = _dataService.GetDataAt(platform.Index);
+                ended = _dataService.GetPlatform(platform.Index);
 
                 if (ended.Free)
                 {
@@ -114,7 +96,7 @@ namespace Services.GridService
             }
 
             _dragging = false;
-            _selected = Vector2Int.zero;
+            _selected = 0;
             OnPlatformReleased?.Invoke(ended);
         }
 
@@ -128,7 +110,7 @@ namespace Services.GridService
             {
                 if (_cameraService.CastPlane(hit.transform, ray, out float distance))
                 {
-                    _dataService.GetDataAt(_selected).Actor.transform.position = ray.GetPoint(distance);
+                    _dataService.GetPlatform(_selected).Actor.transform.position = ray.GetPoint(distance);
                     return;
                 }
             }
@@ -138,7 +120,7 @@ namespace Services.GridService
             {
                 if (_cameraService.CastPlane(hit.transform, ray, out float distance))
                 {
-                    _dataService.GetDataAt(_selected).Actor.transform.position = ray.GetPoint(distance);
+                    _dataService.GetPlatform(_selected).Actor.transform.position = ray.GetPoint(distance);
                     return;
                 }
             }

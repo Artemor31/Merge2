@@ -10,6 +10,7 @@ namespace UI
     public class MenuPresenter : Presenter
     {
         [SerializeField] private Button _fightButton;
+        [SerializeField] private Button _storyFightButton;
         [SerializeField] private Button _addHardButton;
         [SerializeField] private Button _addSoftButton;
         [SerializeField] private CurrencyAddPopup _currencyPopup;
@@ -28,6 +29,7 @@ namespace UI
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             
             _fightButton.onClick.AddListener(PlayClicked);
+            _storyFightButton.onClick.AddListener(PlayStoryClicked);
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
             
@@ -45,6 +47,15 @@ namespace UI
         private void ShowSoftAdsPopup() => _currencyPopup.ShowData(Currency.Coin);
 
         private void PlayClicked()
+        {
+            gameObject.SetActive(false);
+
+            _gameplayDataService.Reset();
+            _gridDataService.Reset();
+            _gameStateMachine.Enter<LoadLevelState>();
+        }
+        
+        private void PlayStoryClicked()
         {
             gameObject.SetActive(false);
 

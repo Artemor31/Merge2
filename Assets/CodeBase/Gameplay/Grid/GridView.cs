@@ -10,6 +10,7 @@ namespace Gameplay.Grid
 {
     public class GridView : MonoBehaviour
     {
+        public List<Platform> Platforms => _platforms;
         [SerializeField] private List<Platform> _platforms;
         [SerializeField] private Platform _selectPlatform;
         [SerializeField] private List<GameObject> _gridDivs;
@@ -38,24 +39,6 @@ namespace Gameplay.Grid
             }
         }
 
-        public Platform[,] GetPlatforms()
-        {
-            int gridSizeX = _gridDataService.GridSize.x;
-            int gridSizeY = _gridDataService.GridSize.y;
-            var array = new Platform[gridSizeX, gridSizeY];
-
-            for (int i = 0; i < gridSizeX; i++)
-            {
-                
-                for (int j = 0; j < gridSizeY; j++)
-                {
-                    array[i, j] = _platforms[i * gridSizeY + j];
-                }
-            }
-
-            return array;
-        }
-
         public Platform PlatformWith(Actor actor) => _platforms.FirstOrDefault(p => p.Actor == actor);
         private void PlatformOnOnReleased(Platform ended) => IsHighlighted(false);
         private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
@@ -79,11 +62,10 @@ namespace Gameplay.Grid
             _gameplayContainer.Get<EnemyGrid>().Disable();
         }
 
-        private void SetSelected(Vector2Int position)
+        private void SetSelected(int index)
         {
-            int index = position.y + position.x * _gridDataService.GridSize.y;
             _selectPlatform.transform.position = _platforms[index].transform.position;
-            _gameplayContainer.Get<EnemyGrid>().Highlinght(position.y);
+            _gameplayContainer.Get<EnemyGrid>().Highlinght(index % _gridDataService.GridSize.y);
         }
     }
 }
