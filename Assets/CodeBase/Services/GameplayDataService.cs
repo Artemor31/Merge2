@@ -7,6 +7,7 @@ namespace Services
     public class GameplayDataService : IService
     {
         private const string PlayerData = "GameplayData";
+        private const string StoryData = "StoryData";
         
         public event Action<int> OnCrownsChanged;
         public int Wave => _progress.Wave;
@@ -14,12 +15,19 @@ namespace Services
         private readonly SaveService _saveService;
         private readonly PersistantDataService _persistantDataService;
         private GameplayProgress _progress;
+        private string _saveKey;
 
         public GameplayDataService(SaveService saveService, PersistantDataService persistantDataService)
         {
             _saveService = saveService;
             _persistantDataService = persistantDataService;
             _progress = _saveService.Restore<GameplayProgress>(PlayerData);
+        }
+        
+        public void SelectMode(bool isStory)
+        {
+            _saveKey = isStory ? StoryData : PlayerData;
+            _progress = _saveService.Restore<GameplayProgress>(_saveKey);
         }
 
         public void CompleteLevel()
@@ -53,6 +61,6 @@ namespace Services
             OnCrownsChanged?.Invoke(_progress.Crowns);
         }
 
-        private void Save() => _saveService.Save(PlayerData, _progress);
+        private void Save() => _saveService.Save(_saveKey, _progress);
     }
 }

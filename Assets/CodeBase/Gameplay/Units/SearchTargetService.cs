@@ -110,8 +110,12 @@ namespace Gameplay.Units
 
             private List<Actor> MostDamaged(List<Actor> actors)
             {
-                Actor target = actors.First(a => !a.IsDead);
-                if (target.IsDead) return new List<Actor>();
+                if (actors.Count == 0 || actors.First(a => !a.IsDead))
+                {
+                    return new List<Actor>();
+                }
+                
+                Actor target = actors.First();
                 
                 foreach (Actor actor in actors)
                 {

@@ -44,7 +44,6 @@ namespace Services.GridService
             _gridView = _gameFactory.CreateGridView(_dataService.GridSize);
 
             int openedCount = _dataService.GridSize.x * _dataService.GridSize.y;
-            Debug.LogError(openedCount);
             
             _dataService.RestoreData(_gridView.Platforms.GetRange(0, openedCount));
             for (int i = 0; i < openedCount; i++)

@@ -59,8 +59,28 @@ namespace Services.StateMachine
 
         private IEnumerator ShowEndWindow(bool isWin, bool force)
         {
-            yield return force ? null : new WaitForSeconds(1.5f);
+            yield return force ? null : new WaitForSeconds(1.2f);
+            DisposeActors();
             
+            if (isWin)
+            {
+                _gameplayService.CompleteLevel();
+                _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(true));
+            }
+            else
+            {
+                if (!_gridDataService.InStory)
+                {
+                    _gridDataService.Reset();
+                    _gameplayService.Reset();
+                }
+                
+                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(false));
+            }
+        }
+
+        private void DisposeActors()
+        {
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.gameObject.SetActive(false);
@@ -71,18 +91,6 @@ namespace Services.StateMachine
             {
                 actor.gameObject.SetActive(false);
                 actor.Dispose();
-            }
-            
-            if (isWin)
-            {
-                _gameplayService.CompleteLevel();
-                _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(true));
-            }
-            else
-            {
-                _gridDataService.Reset();
-                _gameplayService.Reset();
-                _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(false));
             }
         }
 

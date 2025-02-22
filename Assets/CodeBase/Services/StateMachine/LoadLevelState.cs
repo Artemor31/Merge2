@@ -13,18 +13,21 @@ namespace Services.StateMachine
         private readonly WaveBuilder _waveBuilder;
         private readonly GridLogicService _gridLogicService;
         private readonly WindowsService _windowsService;
+        private readonly GameplayDataService _gameplayDataService;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
                               GridLogicService gridLogicService,
-                              WindowsService windowsService)
+                              WindowsService windowsService, 
+                              GameplayDataService gameplayDataService)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _waveBuilder = waveBuilder;
             _gridLogicService = gridLogicService;
             _windowsService = windowsService;
+            _gameplayDataService = gameplayDataService;
         }
 
         public void Enter()
@@ -36,7 +39,7 @@ namespace Services.StateMachine
         public void Exit()
         {
             _gridLogicService.CreatePlayerField();
-            _waveBuilder.BuildEnemyWave();
+            _waveBuilder.BuildEnemyWave(_gameplayDataService.Wave);
             _windowsService.Close<LoadingScreen>();
         }
     }

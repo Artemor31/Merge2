@@ -1,9 +1,9 @@
-﻿using Infrastructure;
-using Services;
+﻿using Services.StateMachine;
 using Services.GridService;
-using Services.StateMachine;
-using UnityEngine;
 using UnityEngine.UI;
+using Infrastructure;
+using UnityEngine;
+using Services;
 
 namespace UI
 {
@@ -36,31 +36,29 @@ namespace UI
             _diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
         }
 
-        public override void OnShow()
-        {
-            base.OnShow();
-
-            _slider.Show();
-        }
-
+        public override void OnShow() => _slider.Show();
         private void ShowHardAdsPopup() => _currencyPopup.ShowData(Currency.Gem);
         private void ShowSoftAdsPopup() => _currencyPopup.ShowData(Currency.Coin);
 
         private void PlayClicked()
         {
             gameObject.SetActive(false);
-
+            
+            _gridDataService.SelectMode(false);
+            _gameplayDataService.SelectMode(false);
             _gameplayDataService.Reset();
             _gridDataService.Reset();
+            
             _gameStateMachine.Enter<LoadLevelState>();
         }
         
         private void PlayStoryClicked()
         {
             gameObject.SetActive(false);
-
-            _gameplayDataService.Reset();
-            _gridDataService.Reset();
+            
+            _gridDataService.SelectMode(true);
+            _gameplayDataService.SelectMode(true);
+            
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }
