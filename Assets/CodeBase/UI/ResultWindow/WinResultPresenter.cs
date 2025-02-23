@@ -1,10 +1,18 @@
-﻿using Infrastructure;
+﻿using Gameplay;
+using Infrastructure;
+using Services;
 using Services.StateMachine;
 
 namespace UI.ResultWindow
 {
     public class WinResultPresenter : BaseResultPresenter, IWindowDataReceiver<ResultData>
     {
+        public override void OnShow()
+        {
+            base.OnShow();
+            ServiceLocator.Resolve<GameplayContainer>().Get<Confetti>().Play();
+        }
+
         public void SetData(ResultData data)
         {
             Clear();

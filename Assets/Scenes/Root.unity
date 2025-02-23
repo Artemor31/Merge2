@@ -2936,9 +2936,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 222938518}
     m_Modifications:
+    - target: {fileID: 512442824570831030, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924257636589436319, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940029313459131801, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5065371041569186750, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
       propertyPath: m_Name
       value: WinWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065371041569186750, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5937070286533753641, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
       propertyPath: m_Pivot.x
