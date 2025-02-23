@@ -67,10 +67,11 @@ namespace Services
         private ActorSkin CreateSkin(ActorSkin prefab, Transform parent, CanvasHealthbar healthbar, ActorRank actorRank)
         {
             ActorSkin skin = Object.Instantiate(prefab, parent, false);
-            ParticleSystem asset = Load<ParticleSystem>(AssetsPath.BloodFromCrit);
-            ParticleSystem particleSystem = Object.Instantiate(asset, skin.transform, false);
-            particleSystem.transform.localPosition = Vector3.up;
-            skin.Initialize(healthbar, actorRank, particleSystem);
+            ParticleSystem blood = Object.Instantiate(Load<ParticleSystem>(AssetsPath.BloodFromCrit), skin.transform, false);
+            ParticleSystem skull = Object.Instantiate(Load<ParticleSystem>(AssetsPath.DeathSkull), skin.transform, false);
+            blood.transform.localPosition = Vector3.up;
+            skull.transform.localPosition = Vector3.up;
+            skin.Initialize(healthbar, actorRank, blood, skull);
             return skin;
         }
 

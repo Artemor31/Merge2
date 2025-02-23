@@ -10,6 +10,7 @@ namespace Databases.BuffConfigs
     {
         public Stat BuffStat;
         public float BuffValue;
+        private WaitForSeconds _waitForSeconds;
 
         public override void ApplyTo(Actor actor, int level)
         {
@@ -27,7 +28,7 @@ namespace Databases.BuffConfigs
                     stats.Damage += stats.Damage * value;
                     break;
                 case Stat.CritChanceAdd:
-                    stats.CritChance += stats.CritChance * value;
+                    stats.CritChance += value;
                     break;
                 case Stat.VampirismAdd:
                     stats.Vampirism += value;
@@ -43,10 +44,10 @@ namespace Databases.BuffConfigs
                     stats.Defence -= value;
                     break;
                 case Stat.SlowEnemies:
-                    stats.MoveSpeed -= value;
+                    stats.MoveSpeed = stats.MoveSpeed * (1 - value);
                     break;
                 case Stat.HealthRegenAdd:
-                    float regen = actor.Stats.Health * value / 2;
+                    float regen = actor.Stats.Health * value;
                     actor.StartCoroutine(HealthRegen(actor, regen));
                     break;
             }
@@ -56,10 +57,12 @@ namespace Databases.BuffConfigs
 
         private IEnumerator HealthRegen(Actor actor, float regen)
         {
+            _waitForSeconds = new WaitForSeconds(0.5f);
+            var regenHalf = regen / 2;
             while (!actor.IsDead)
             {
-                actor.ChangeHealth(regen, HealthContext.Heal);
-                yield return new WaitForSeconds(0.5f);
+                actor.ChangeHealth(regenHalf, HealthContext.Heal);
+                yield return _waitForSeconds;
             }
         }
 

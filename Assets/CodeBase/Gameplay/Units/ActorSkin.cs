@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Gameplay.Units.Healths;
 using UI.GameplayWindow;
 using UnityEngine;
@@ -15,9 +17,11 @@ namespace Gameplay.Units
         private CanvasHealthbar _healthbar;
         private ActorRank _rank;
         private ParticleSystem _bloodVfx;
+        private ParticleSystem _death;
 
-        public void Initialize(CanvasHealthbar healthbar, ActorRank rank, ParticleSystem bloodVfx)
+        public void Initialize(CanvasHealthbar healthbar, ActorRank rank, ParticleSystem bloodVfx, ParticleSystem death)
         {
+            _death = death;
             _bloodVfx = bloodVfx;
             _rank = rank;
             _healthbar = healthbar;
@@ -55,7 +59,14 @@ namespace Gameplay.Units
         public void Die()
         {
             _animator.SetTrigger(Died);
+            StartCoroutine(Death());
             Dispose();
+        }
+
+        private IEnumerator Death()
+        {
+            yield return new WaitForSeconds(0.7f);
+            _death.Play();
         }
     }
 }

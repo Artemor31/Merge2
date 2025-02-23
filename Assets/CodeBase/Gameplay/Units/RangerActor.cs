@@ -56,7 +56,7 @@ namespace Gameplay.Units
 
             if (Target == null) yield break;
 
-            bool isCrit = Random.Range(0, 1f) <= Stats.CritChance;
+            bool isCrit = Random.Range(0, 1f) >= 1 - Stats.CritChance;
             float damage = isCrit ? Stats.Damage * Stats.CritValue : Stats.Damage;
 
             Vector3 position = transform.position + Vector3.up;

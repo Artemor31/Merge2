@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Editor", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayerPrefsEditor.EditorResources", "Unity.PlayerPrefsEditor.EditorResources.csproj", "{f7ae7cb0-d161-889a-5849-f8b22080c0e0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{4bde428d-790d-87c2-c138-9cd16588bb1b}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,8 +34,6 @@ Global
 		{fc32db46-1572-ee89-1069-38abcad252b1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{f7ae7cb0-d161-889a-5849-f8b22080c0e0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{f7ae7cb0-d161-889a-5849-f8b22080c0e0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4bde428d-790d-87c2-c138-9cd16588bb1b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4bde428d-790d-87c2-c138-9cd16588bb1b}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
