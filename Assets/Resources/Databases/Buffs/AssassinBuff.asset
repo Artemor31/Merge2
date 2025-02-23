@@ -15,7 +15,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: b8410edff72a852468632606e3b69888, type: 3}
   Race: 0
   Mastery: 4
-  Description: "+\u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+  Description: "\u041A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439
     \u0443\u0440\u043E\u043D"
   ForAllies: 1
   BuffStat: 3

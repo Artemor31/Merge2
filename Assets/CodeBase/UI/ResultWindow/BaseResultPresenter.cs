@@ -46,13 +46,7 @@ namespace UI.ResultWindow
             _rewards = new List<CurrencyElement>();
         }
 
-        protected virtual void OnNextLevelClicked()
-        {
-            _persistantDataService.AddCoins(ResultData.CoinsValue);
-            _persistantDataService.AddGems(ResultData.GemsValue);
-            _gameplayDataService.AddCrowns(ResultData.CrownsValue);
-            gameObject.SetActive(false);
-        }
+        protected virtual void OnNextLevelClicked() => gameObject.SetActive(false);
 
         protected void AddReward(Currency currency, string value)
         {

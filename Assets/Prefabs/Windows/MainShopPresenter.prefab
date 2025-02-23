@@ -1235,6 +1235,7 @@ GameObject:
   - component: {fileID: 3386804217497922149}
   - component: {fileID: 2940740102369665313}
   - component: {fileID: 8616241107873858614}
+  - component: {fileID: 1290829383190836708}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1344,6 +1345,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1290829383190836708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447498065247105409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id2>k__BackingField: ConfirmChest
+  <Is2D>k__BackingField: 1
 --- !u!1 &2582423718711707627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2653,6 +2668,7 @@ GameObject:
   - component: {fileID: 6852818353082804804}
   - component: {fileID: 3287523978262205796}
   - component: {fileID: 7908282474196520955}
+  - component: {fileID: 6978779957766528413}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2763,6 +2779,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6978779957766528413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5772563613307346715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id2>k__BackingField: BuyGrid
+  <Is2D>k__BackingField: 1
 --- !u!1 &5875497583392881971
 GameObject:
   m_ObjectHideFlags: 0

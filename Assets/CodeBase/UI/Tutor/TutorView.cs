@@ -4,7 +4,7 @@ using Services;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Tutor
 {
     public class TutorView : Presenter
     {

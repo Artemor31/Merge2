@@ -22,6 +22,7 @@ namespace Gameplay.Units.Healths
             switch (contexts)
             {
                 case HealthContext.None: break;
+                case HealthContext.Crit:
                 case HealthContext.Damage:
                     value *= 1f - _defence;
                     _current -= value;
