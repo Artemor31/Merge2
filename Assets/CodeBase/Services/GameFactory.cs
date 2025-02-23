@@ -70,7 +70,7 @@ namespace Services
             ParticleSystem blood = Object.Instantiate(Load<ParticleSystem>(AssetsPath.BloodFromCrit), skin.transform, false);
             ParticleSystem skull = Object.Instantiate(Load<ParticleSystem>(AssetsPath.DeathSkull), skin.transform, false);
             blood.transform.localPosition = Vector3.up;
-            skull.transform.localPosition = Vector3.up;
+            skull.transform.localPosition = Vector3.up / 2;
             skin.Initialize(healthbar, actorRank, blood, skull);
             return skin;
         }

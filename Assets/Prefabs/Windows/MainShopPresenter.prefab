@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 2548978958303672471}
   - component: {fileID: 7238547249748234028}
   - component: {fileID: 1894849988895029720}
+  - component: {fileID: 1255215117812685835}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -490,6 +491,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1255215117812685835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942681122946903450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id2>k__BackingField: BuyChest
+  <Is2D>k__BackingField: 1
 --- !u!1 &971390205386914482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,8 +4083,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075803213262639494, guid: 6503800c907f340498c18d5863eb0525, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2668829182913640585}
   m_SourcePrefab: {fileID: 100100000, guid: 6503800c907f340498c18d5863eb0525, type: 3}
+--- !u!1 &3330582804312711372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075803213262639494, guid: 6503800c907f340498c18d5863eb0525, type: 3}
+  m_PrefabInstance: {fileID: 1632750610723844426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2668829182913640585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330582804312711372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id2>k__BackingField: BottomUpgrade
+  <Is2D>k__BackingField: 1
 --- !u!224 &6981060388563514500 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8523351913991751118, guid: 6503800c907f340498c18d5863eb0525, type: 3}

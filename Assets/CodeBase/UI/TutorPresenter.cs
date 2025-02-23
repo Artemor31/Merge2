@@ -226,7 +226,7 @@ namespace UI
         private void Step13_MenuLoaded()
         {
             _text.ShowText(7);
-            AwaitClickedAndHighlight("BottmInfo", Step14);
+            AwaitClickedAndHighlight("BottmShop", Step14);
         }
 
         private void Step14()
@@ -238,7 +238,13 @@ namespace UI
         private void Step15_ShopTabOpened()
         {
             _text.ShowText(9, TextAllignment.Bottom);
-            AwaitClickedAndHighlight("ConfirmChest", Step15_2_ShopChestTabOpened);
+            AwaitClickedAndHighlight("ConfirmChest", Step15_2);
+        }
+        
+        private void Step15_2()
+        {
+            _text.ShowText(12, TextAllignment.Bottom);
+            AwaitClickedAndHighlight("BuyGrid", Step15_2_ShopChestTabOpened);
         }
 
         private void Step15_2_ShopChestTabOpened()

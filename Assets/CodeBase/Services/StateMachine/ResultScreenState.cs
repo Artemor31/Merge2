@@ -61,6 +61,11 @@ namespace Services.StateMachine
         {
             yield return force ? null : new WaitForSeconds(1.2f);
             DisposeActors();
+
+            if (force)
+            {
+                _windowsService.Show<CloseConfirmPresenter>();
+            }
             
             if (isWin)
             {

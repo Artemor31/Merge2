@@ -3734,7 +3734,6 @@ GameObject:
   - component: {fileID: 7298241956841106940}
   - component: {fileID: 5312254170440139939}
   - component: {fileID: 6973374609806791915}
-  - component: {fileID: 6425842571620496223}
   m_Layer: 5
   m_Name: StoryFight
   m_TagString: Untagged
@@ -3844,20 +3843,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6425842571620496223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8523158918769630138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Id2>k__BackingField: MenuFight
-  <Is2D>k__BackingField: 1
 --- !u!1 &8710176163147422558
 GameObject:
   m_ObjectHideFlags: 0

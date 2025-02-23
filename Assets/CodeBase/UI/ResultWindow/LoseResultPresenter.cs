@@ -20,7 +20,15 @@ namespace UI.ResultWindow
         protected override void OnNextLevelClicked()
         {
             base.OnNextLevelClicked();
-            GameStateMachine.Enter<MenuState>();
+
+            if (GridDataService.InStory)
+            {
+                GameStateMachine.Enter<LoadLevelState>();
+            }
+            else
+            {
+                GameStateMachine.Enter<MenuState>();
+            }
         }
     }
 }

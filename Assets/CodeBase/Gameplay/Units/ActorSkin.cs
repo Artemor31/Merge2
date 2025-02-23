@@ -65,8 +65,10 @@ namespace Gameplay.Units
 
         private IEnumerator Death()
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.9f);
             _death.Play();
+            yield return new WaitForSeconds(1f);
+            gameObject.SetActive(false);
         }
     }
 }

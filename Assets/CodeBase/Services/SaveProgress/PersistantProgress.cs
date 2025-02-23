@@ -20,7 +20,7 @@ namespace Services.SaveProgress
         public PersistantProgress()
         {
             Coins = 1000;
-            Gems = 100;
+            Gems = 200;
             OpenedRows = 1;
             Opened = new List<(Race, Mastery)>
             {

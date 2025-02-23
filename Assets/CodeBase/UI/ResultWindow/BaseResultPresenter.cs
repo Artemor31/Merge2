@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Infrastructure;
 using Services;
+using Services.GridService;
 using Services.SaveProgress;
 using Services.StateMachine;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace UI.ResultWindow
         [SerializeField] private Button _showAds;
 
         protected GameStateMachine GameStateMachine;
+        protected GridDataService GridDataService;
         protected ResultData ResultData;
         
         private PersistantDataService _persistantDataService;
@@ -38,6 +40,7 @@ namespace UI.ResultWindow
             _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             GameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
+            GridDataService = ServiceLocator.Resolve<GridDataService>();
             _nextLevel.onClick.AddListener(OnNextLevelClicked);
             _showAds.onClick.AddListener(OnShowAdsClicked);
             _rewards = new List<CurrencyElement>();
