@@ -36,8 +36,8 @@ namespace UI.Tutor
 
         private void InvokeAction()
         {
-            _action?.Invoke();
             Clicked -= InvokeAction;
+            _action?.Invoke();
         }
 
         private void OnMouseDown() => Clicked?.Invoke();

@@ -66,8 +66,7 @@ namespace Services.StateMachine
             {
                 _windowsService.Show<CloseConfirmPresenter>();
             }
-            
-            if (isWin)
+            else if (isWin)
             {
                 _gameplayService.CompleteLevel();
                 _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(true));

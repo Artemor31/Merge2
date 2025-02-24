@@ -14,7 +14,31 @@ namespace UI
         public override void Init() => _ok.onClick.AddListener(Ok);
         private void Ok() => gameObject.SetActive(false);
         public void SetText(string openContent) => _text.text = openContent;
-        public void SetRace(Sprite sprite) => _race.sprite = sprite;
-        public void SetMastery(Sprite sprite) => _mastery.sprite = sprite;
+        
+        public void SetRace(Sprite sprite)
+        {
+            if (sprite == null)
+            {
+                _race.gameObject.SetActive(false);
+            }
+            else
+            {
+                _race.gameObject.SetActive(true);
+                _race.sprite = sprite;
+            }
+        }
+
+        public void SetMastery(Sprite sprite)
+        {
+            if (sprite == null)
+            {
+                _mastery.gameObject.SetActive(false);
+            }
+            else
+            {
+                _mastery.gameObject.SetActive(true);
+                _mastery.sprite = sprite;
+            }
+        }
     }
 }

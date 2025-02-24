@@ -275,7 +275,13 @@ namespace UI
             foreach (Button button in _windowService.Buttons)
                 button.interactable = selected.gameObject == button.gameObject;
             
-            selected.onClick.AddListener(CloseAll);
+            selected.onClick.AddListener(Step17_GoToFight);
+        }
+        
+        private void Step17_GoToFight()
+        {
+            _text.Hide();
+            AwaitClickedAndHighlight("MainFight", CloseAll);
         }
 
         private void CloseAll()

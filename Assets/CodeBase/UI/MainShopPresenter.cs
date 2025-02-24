@@ -81,6 +81,8 @@ namespace UI
             {
                 _chestResult.gameObject.SetActive(true);
                 _chestResult.SetText("Все типы уже открыты.\r\nЖдите обновлений!");
+                _chestResult.SetMastery(null);
+                _chestResult.SetRace(null);
                 return;
             }
             

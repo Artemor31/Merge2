@@ -53,10 +53,12 @@ namespace Services.GridService
             }
         }
 
+        private int _hovered;
         public void OnHovered(Platform gridData)
         {
             if (_dragging)
             {
+                _hovered = gridData.Index;
                 OnPlatformHovered?.Invoke(gridData);
             }
         }
@@ -65,15 +67,15 @@ namespace Services.GridService
         {
             if (!_dragging) return;
             if (started == null) return;
-
+            
             Platform ended = started;
             if (Selling)
             {
                 _gridLogicService.SellUnitAt(_selected);
             }
-            else if (PointerUnderPlatform(out Platform platform))
+            else if(true)// (PointerUnderPlatform(out Platform platform))
             {
-                ended = _dataService.GetPlatform(platform.Index);
+                ended = _dataService.GetPlatform(_hovered);
 
                 if (ended.Free)
                 {
@@ -95,6 +97,7 @@ namespace Services.GridService
                 ResetActorPosition(started);
             }
 
+            _hovered = 0;
             _dragging = false;
             _selected = 0;
             OnPlatformReleased?.Invoke(ended);
