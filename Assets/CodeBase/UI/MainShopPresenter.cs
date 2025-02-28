@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Databases;
@@ -89,7 +90,7 @@ namespace UI
             if (!_dataService.TryBuyGems(ChestCost)) return;
             
             bool inTutor = !_dataService.IsOpened(Race.Human, Mastery.Ranger);
-            (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : closed.Random();
+            (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : GetNextType(closed);
 
             _dataService.SetOpened(selection);
             _chestResult.SetRace(_buffsDatabase.IconFor(selection.Item1));
@@ -99,6 +100,23 @@ namespace UI
             _chestResult.SetText(text);
             _chestResult.gameObject.SetActive(true);
         }
+
+        private (Race, Mastery) GetNextType(List<(Race, Mastery)> closed)
+        {
+            if (HasClosed(closed, Race.Human))
+                return closed.Last(c => c.Item1 == Race.Human);
+            if (HasClosed(closed, Race.Orc))
+                return closed.Last(c => c.Item1 == Race.Human);
+            if (HasClosed(closed, Race.Undead))
+                return closed.Last(c => c.Item1 == Race.Human);
+            if (HasClosed(closed, Race.Demon))
+                return closed.Last(c => c.Item1 == Race.Human);
+
+            throw new Exception("All types opened");
+        }
+        
+        private bool HasClosed(List<(Race, Mastery)> closed, Race race) => 
+            closed.Where(c => c.Item1 == race).ToList().Count != 0;
 
         private List<(Race, Mastery)> GetClosedTypes()
         {

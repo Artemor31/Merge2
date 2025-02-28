@@ -45,9 +45,7 @@ namespace UI.UpgradeWindow
             
             _presenters.Clear();
         }
-
-        public UpgradeItemPresenter GetAt(int index) => _presenters[index];
-
+        
         private bool Opened(BuffConfig data) => data.Mastery == Mastery.None 
             ? _persistantService.IsOpened(data.Race) 
             : _persistantService.IsOpened(data.Mastery);

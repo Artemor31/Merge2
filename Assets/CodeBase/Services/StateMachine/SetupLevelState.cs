@@ -12,6 +12,7 @@ namespace Services.StateMachine
         public void Enter()
         {
             _windowsService.Show<GameplayPresenter>();
+            _windowsService.Show<ShopPresenter>();
             _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
         }
     }

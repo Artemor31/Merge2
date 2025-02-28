@@ -110,22 +110,19 @@ namespace Gameplay.Units
 
             private List<Actor> MostDamaged(List<Actor> actors)
             {
-                if (actors.Count == 0 || actors.First(a => !a.IsDead))
+                float health = float.MaxValue;
+                int index = -1;
+
+                for (int i = 0; i < actors.Count; i++)
                 {
-                    return new List<Actor>();
-                }
-                
-                Actor target = actors.First();
-                
-                foreach (Actor actor in actors)
-                {
-                    if (!actor.IsDead && actor.Health < target.Health)
+                    if (!actors[i].IsDead && actors[i].Health < health)
                     {
-                        target = actor;
+                        index = i;
+                        health = actors[i].Health;
                     }
                 }
 
-                return new List<Actor> {target};
+                return index == -1 ? new List<Actor>() : new List<Actor> {actors[index]};
             }
 
             private float DistanceTo(Transform owner,Actor actor) => 

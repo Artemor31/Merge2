@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Databases;
 using Gameplay.Grid;
 using Infrastructure;
@@ -52,7 +53,6 @@ namespace UI.GameplayWindow
             Close.onClick.AddListener(CloseClicked);
 
             _gameplayService.OnCrownsChanged += OnCrownsChanged;
-            OnCrownsChanged(_gameplayService.Crowns);
             _gridViewService.OnPlatformPressed += PlatformPressedHandler;
             _gridViewService.OnPlatformReleased += PlatformReleasedHandler;
             
@@ -69,7 +69,12 @@ namespace UI.GameplayWindow
             }
         }
 
-        public override void OnShow() => Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
+        public override void OnShow()
+        {
+            Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
+            OnCrownsChanged(_gameplayService.Crowns);
+        }
+
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
         

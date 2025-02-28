@@ -48,7 +48,7 @@ namespace Services
 
             var positions = _levelDatabase.GetPositions().ToList();
 
-            foreach (ActorData data in CreateActorsWave(waveData))
+            foreach (ActorData data in CreateActorsWave(waveData, positions.Count))
             {
                 var position = positions.Random();
                 Actor enemyActor = _factory.CreateEnemyActor(data, position);
@@ -95,43 +95,49 @@ namespace Services
             return waveData;
         }
 
-        private IEnumerable<ActorData> CreateActorsWave(WaveData waveData)
+        private IEnumerable<ActorData> CreateActorsWave(WaveData waveData, int posLeft)
         {
             Dictionary<int, List<ActorConfig>> variants = FillVariants(waveData);
+            
             int limit = waveData.PowerLimit;
+            int maxCost = waveData.MaxLevel switch {1 => 1, 2 => 2, 3 => 4, _ => 1};
 
-            while (limit > 0)
+            while (limit > 0 && posLeft > 0)
             {
-                int currentLevel = Math.Min(waveData.MaxLevel, limit);
-                while (currentLevel > 1)
+                int range = Random.Range(1, 11);
+                int range2 = Random.Range(1, 11);
+                
+                if (range > 7 || posLeft < 5) // try spawn max level unit
                 {
-                    if (Roll70Percantage())
-                    {
-                        limit -= currentLevel;
-                        yield return variants[currentLevel].Random().Data;
-                        break;
-                    }
-
-                    currentLevel--;
+                    limit -= maxCost;
+                    yield return variants[maxCost].Random().Data;
                 }
-
-                limit--;
-                yield return variants[1].Random().Data;
+                else if (range2 > 7 && maxCost == 4) // if max lvl was == 3 try spawn lvl 2
+                {
+                    maxCost = 2;
+                    limit -= maxCost;
+                    yield return variants[maxCost].Random().Data;
+                } 
+                else // spawn lvl 1 anyway
+                {
+                    maxCost = 1;
+                    limit -= maxCost;
+                    yield return variants[maxCost].Random().Data;
+                }
             }
         }
 
+        private readonly Dictionary<int, List<ActorConfig>> _variants = new();
         private Dictionary<int, List<ActorConfig>> FillVariants(WaveData waveData)
         {
-            Dictionary<int, List<ActorConfig>> variants = new();
+            _variants.Clear();
             for (int level = 1; level <= waveData.MaxLevel; level++)
             {
                 List<ActorConfig> actorConfigs = _unitsDatabase.ConfigsFor(level, waveData.Races, waveData.Masteries).ToList();
-                variants.Add(level, actorConfigs);
+                _variants.Add(level, actorConfigs);
             }
 
-            return variants;
+            return _variants;
         }
-
-        private static bool Roll70Percantage() => Random.Range(1, 11) <= 7;
     }
 }

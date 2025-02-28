@@ -39,7 +39,7 @@ namespace Gameplay.Units
         {
             ResetCooldown();
             View.PerformAct();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.65f);
             
             if (Target == null) yield break;
             

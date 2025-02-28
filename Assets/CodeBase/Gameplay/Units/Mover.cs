@@ -26,7 +26,7 @@ namespace Gameplay.Units
             _agent.isStopped = true;
         }
 
-        private void MoveTo(Vector3 target)
+        public void MoveTo(Vector3 target)
         {
             _animator.Move(_speed);
             _agent.isStopped = false;

@@ -13,7 +13,6 @@ namespace UI.GameplayWindow
 {
     public class ShopPresenter : Presenter
     {
-        [SerializeField] private Button _openUnitShop;
         [SerializeField] private Button _buyUnit;
         [SerializeField] private Button _closeShop;
         [SerializeField] private TextMeshProUGUI _buyUnitCost;
@@ -21,24 +20,36 @@ namespace UI.GameplayWindow
         [SerializeField] private Button _prevUnit;
         [SerializeField] private GameObject _unitShop;
         [SerializeField] private List<Image> _stars;
+        [SerializeField] public Button _getUnitButton;
 
-        private UnitsDatabase _unitsDatabase;
         private GridLogicService _gridService;
         private GameplayDataService _gameplayService;
 
-        private int _selectedStars;
+        private int _selectedStars = 1;
 
         public override void Init()
         {
-            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
             _gridService = ServiceLocator.Resolve<GridLogicService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
 
-            _openUnitShop.onClick.AddListener(OpenActorShop);
             _closeShop.onClick.AddListener(CloseActorShop);
             _buyUnit.onClick.AddListener(TryBuyUnit);
             _nextUnit.onClick.AddListener(ClickNextUnit);
             _prevUnit.onClick.AddListener(ClickPrevUnit);
+            _getUnitButton.onClick.AddListener(UnitForAdsRequested);
+        }
+
+        public override void OnShow()
+        {
+            UpdateCost();
+            //if ()
+            // show unit for ads button
+        }
+
+        private void UnitForAdsRequested()
+        {
+            if (_gridService.CanAddUnit() == false) return;
+            _gridService.TryCreatePlayerUnit(_selectedStars);
         }
 
         private void ClickPrevUnit()
@@ -65,32 +76,29 @@ namespace UI.GameplayWindow
             if (_gameplayService.TryBuy(GetCostForLevel()))
             {
                 _gridService.TryCreatePlayerUnit(_selectedStars);
+                UpdateCost();
             }
         }
 
         private void CloseActorShop() => _unitShop.SetActive(false);
 
-        private void OpenActorShop()
-        {
-            _selectedStars = 1;
-            TryBuyUnit();
-            return;
-            _unitShop.SetActive(true);
-            _stars.ForEach(s => s.color = Color.black);
-            _stars[0].color = Color.white;
-            _selectedStars = 1;
-            UpdateCost();
-        }
-
         private void UpdateCost() => _buyUnitCost.text = GetCostForLevel().ToString();
         
         // TODO move to config
-        private int GetCostForLevel() => _selectedStars switch
+        private int GetCostForLevel()
         {
-            1 => 10,
-            2 => 19,
-            3 => 26,
-            _ => throw new Exception("not correct level")
-        };
+            return 10 + _gameplayService.Wave * 3;
+            switch (_selectedStars)
+            {
+                case 1:
+                    return 10;
+                case 2:
+                    return 19;
+                case 3:
+                    return 26;
+                default:
+                    throw new Exception("not correct level");
+            }
+        }
     }
 }

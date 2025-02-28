@@ -822,7 +822,7 @@ PlayerSettings:
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
   webGLMemorySize: 16
-  webGLExceptionSupport: 1
+  webGLExceptionSupport: 2
   webGLNameFilesAsHashes: 1
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
@@ -850,7 +850,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    WebGL: YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;GameLabel_yg;Review_yg;Authorization_yg;RewardedAdv_yg;Storage_yg;InterstitialAdv_yg;Leaderboards_yg;Metrica_yg
+    WebGL: YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;GameLabel_yg;Review_yg;Authorization_yg;RewardedAdv_yg;Storage_yg;InterstitialAdv_yg;Leaderboards_yg;Metrica_yg;NJSON_YG2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -868,7 +868,7 @@ PlayerSettings:
     QNX: 1
     Stadia: 1
     VisionOS: 1
-    WebGL: 2
+    WebGL: 4
     Windows Store Apps: 1
     XboxOne: 1
     iPhone: 1

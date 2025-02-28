@@ -46,7 +46,15 @@ namespace UI.ResultWindow
             _rewards = new List<CurrencyElement>();
         }
 
-        protected virtual void OnNextLevelClicked() => gameObject.SetActive(false);
+        protected virtual void OnNextLevelClicked()
+        {
+            gameObject.SetActive(false);
+
+            if (_gameplayDataService.Wave % 3 == 0)
+            {
+                YG2.InterstitialAdvShow();
+            }
+        }
 
         protected void AddReward(Currency currency, string value)
         {

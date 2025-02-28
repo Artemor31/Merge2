@@ -51,6 +51,8 @@ namespace Services.StateMachine
         public void Enter(ResultScreenData data)
         {
             _windowsService.Close<GameCanvas>();
+            _windowsService.Close<GameplayPresenter>();
+            _windowsService.Close<ShopPresenter>();
             _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
             _gridDataService.Save();
             _gridLogicService.Dispose();

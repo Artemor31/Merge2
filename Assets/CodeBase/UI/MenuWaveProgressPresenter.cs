@@ -32,7 +32,7 @@ namespace UI
 
         public void Show()
         {
-            int record = _persistantDataService.MaxWave;
+            int record = _persistantDataService.MaxWave == 0 ? 0 : _persistantDataService.MaxWave - 1;
             int nextWave = _persistantDataService.NextWave;
             
             _currentMax.text = record.ToString();

@@ -11,6 +11,15 @@ namespace Databases
         public ActorData Data;
         public ActorStats Stats;
         public ActorViewData ViewData;
+        [SerializeField] private string _dpm;
+        [SerializeField] private string _ratio;
+
+        private void OnValidate()
+        {
+            float statsActCooldown = Stats.Damage * 10 / Stats.ActCooldown;
+            _dpm = statsActCooldown.ToString();
+            _ratio = (Stats.Health / statsActCooldown).ToString();
+        }
     }
 
     [Serializable]
