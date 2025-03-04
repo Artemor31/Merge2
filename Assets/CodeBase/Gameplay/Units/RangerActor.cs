@@ -62,17 +62,6 @@ namespace Gameplay.Units
             Vector3 position = transform.position + Vector3.up;
             HealthContext context = isCrit ? HealthContext.Crit : HealthContext.Damage;
             _service.Create(_projectileType, position, Target, damage, context);
-            if (Stats.Vampirism > 0)
-            {
-                ChangeHealth(damage * Stats.Vampirism, HealthContext.Heal);
-            }
-
-            yield return new WaitForSeconds(0.5f);
-
-            Vector3 forward = Vector3.forward / 4 + Vector3.left * Random.Range(-0.5f, 0.5f);
-            _mover.MoveTo(transform.position + forward);
-
-            yield return new WaitForSeconds(0.5f);
         }
 
         protected override bool NeedNewTarget() => Target == null || Target.IsDead;

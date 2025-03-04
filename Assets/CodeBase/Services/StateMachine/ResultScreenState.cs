@@ -53,10 +53,10 @@ namespace Services.StateMachine
             _windowsService.Close<GameCanvas>();
             _windowsService.Close<GameplayPresenter>();
             _windowsService.Close<ShopPresenter>();
-            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
             _gridDataService.Save();
             _gridLogicService.Dispose();
             _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
+            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
         private IEnumerator ShowEndWindow(bool isWin, bool force)
@@ -103,8 +103,17 @@ namespace Services.StateMachine
         private ResultData CollectRewards(bool isWin)
         {
             int sumCoins = 0;
-            int crownsValue = isWin ? Random.Range(8, 14) : 0; 
             int count = _waveBuilder.EnemyUnits.Count(u => u.IsDead);
+
+            int crownsValue;
+            if (_gridDataService.InStory)
+            {
+                crownsValue = isWin ? Random.Range(7, 12) * 2 : 2 * count;
+            }
+            else
+            {
+                crownsValue = isWin ? Random.Range(8, 15) : count; 
+            }
             
             for (int i = 0; i < count; i++)
             {
@@ -118,7 +127,7 @@ namespace Services.StateMachine
             return new ResultData
             {
                 CrownsValue = crownsValue,
-                GemsValue = Random.Range(8, 14),
+                GemsValue = count,
                 CoinsValue = sumCoins   
             };
         }

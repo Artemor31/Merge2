@@ -5,6 +5,8 @@ using Infrastructure;
 using Services.Infrastructure;
 using Services.Resources;
 using Services.SaveProgress;
+using UnityEngine;
+using YG;
 
 namespace Services
 {
@@ -55,6 +57,7 @@ namespace Services
             if (_progress.MaxWave < wave)
             {
                 _progress.MaxWave = wave;
+                YG2.SetLeaderboard("BestWave", _progress.MaxWave);
                 var reward = _rewardsDatabase.GetFor(_progress.MaxWave);
                 
                 switch (reward.Type)

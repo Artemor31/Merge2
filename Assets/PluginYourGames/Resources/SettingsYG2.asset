@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SettingsYG2
   m_EditorClassIdentifier: 
   Authorization:
-    scopes: 0
+    scopes: 1
     playerPhotoSize: 0
     authorized: 1
     playerName: Player current
@@ -187,7 +187,7 @@ MonoBehaviour:
     log: 1
   RewardedAdv:
     rewardedAfterClosing: 1
-    skipInterAdvAfterReward: 0
+    skipInterAdvAfterReward: 1
     labelAdvSimLabel: 0
   Storage:
     saveLocal: 1
@@ -240,6 +240,8 @@ MonoBehaviour:
     pixelRatioEnable: 1
     pixelRatioValue: 1.3
     developerBuild: 0
+  platformInfo:
+    ownHost: 0
   platformToggles:
     showFirstAdv: 0
     interAdvInterval: 0
@@ -251,6 +253,7 @@ MonoBehaviour:
     compressionFormat: 1
     decompressionFallback: 1
     autoGraphicsAPI: 1
+    minimalCodeCompression: 1
     dataCaching: 0
     colorSpace: 0
     archivingBuild: 0

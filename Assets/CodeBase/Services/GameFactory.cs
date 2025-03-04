@@ -40,12 +40,12 @@ namespace Services
         public Actor CreateEnemyActor(ActorData data, Vector3 position) => 
             CreateActor(data, position, false);
 
-        private Actor CreateActor(ActorData data, Vector3 position, bool players)
+        private Actor CreateActor(ActorData data, Vector3 position, bool isMy)
         {
             ActorConfig config = _unitsDatabase.ConfigFor(data);
             Actor baseView = Object.Instantiate(config.ViewData.BaseView, position, quaternion.identity);
 
-            CanvasHealthbar healthbar = CreateHealthbar(baseView.transform);
+            CanvasHealthbar healthbar = CreateHealthbar(baseView.transform, isMy);
             ActorRank actorRank = CreateActorRank(baseView.transform, data);
             ActorSkin skin = CreateSkin(config.ViewData.Skin, baseView.transform, healthbar, actorRank);
 
@@ -55,7 +55,7 @@ namespace Services
             GameObject shadowPrefab = Load<GameObject>(AssetsPath.ActorShadow);
             Object.Instantiate(shadowPrefab, baseView.transform);
             
-            if (!players)
+            if (!isMy)
                 baseView.DisableCollider();
 
             return baseView;
@@ -75,11 +75,12 @@ namespace Services
             return skin;
         }
 
-        private CanvasHealthbar CreateHealthbar(Transform target)
+        private CanvasHealthbar CreateHealthbar(Transform target, bool isMy)
         {
             RectTransform rectTransform = _windowsService.Get<GameCanvas>().HealthParent;
             CanvasHealthbar asset = Load<CanvasHealthbar>(AssetsPath.HealthbarCanvas);
             CanvasHealthbar healthbar = Object.Instantiate(asset, rectTransform);
+            healthbar.SetColor(isMy);
             healthbar.Init(rectTransform, target);
             return healthbar;
         }

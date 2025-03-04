@@ -22,7 +22,9 @@ namespace UI.GameplayWindow
             _target = actor;
             ChangeHealth(1);
         }
-        
+
+        public void SetColor(bool isMy) => _value.color = isMy ? Color.green : Color.red;
+
         public void ChangeHealth(float ratio) => _value.fillAmount = ratio;
         
         private void Update()

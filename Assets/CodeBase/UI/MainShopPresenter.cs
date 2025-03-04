@@ -67,7 +67,7 @@ namespace UI
 
         private void OpenGridClicked()
         {
-            if (_dataService.CrownsAtMax) return;
+            if (_dataService.RowsAtMax) return;
             if (!_dataService.TryBuyGems(ChestCost)) return;
             _dataService.TryUpRows();
             UpdateRowsDescr();
@@ -106,11 +106,11 @@ namespace UI
             if (HasClosed(closed, Race.Human))
                 return closed.Last(c => c.Item1 == Race.Human);
             if (HasClosed(closed, Race.Orc))
-                return closed.Last(c => c.Item1 == Race.Human);
+                return closed.Last(c => c.Item1 == Race.Orc);
             if (HasClosed(closed, Race.Undead))
-                return closed.Last(c => c.Item1 == Race.Human);
+                return closed.Last(c => c.Item1 == Race.Undead);
             if (HasClosed(closed, Race.Demon))
-                return closed.Last(c => c.Item1 == Race.Human);
+                return closed.Last(c => c.Item1 == Race.Demon);
 
             throw new Exception("All types opened");
         }

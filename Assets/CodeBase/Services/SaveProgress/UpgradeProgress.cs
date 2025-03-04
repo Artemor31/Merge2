@@ -5,22 +5,6 @@ using System.Linq;
 namespace Services.SaveProgress
 {
     [Serializable]
-    public class UpgradeProgress : SaveData
-    {
-        public List<UpgradeProgressPair> Pairs = new();
-
-        public UpgradeProgressPair Progress(string id)
-        {
-            UpgradeProgressPair firstOrDefault = Pairs.FirstOrDefault(p => p.Id == id);
-            if (firstOrDefault != null) return firstOrDefault;
-            
-            UpgradeProgressPair pair = new(id, 1);
-            Pairs.Add(pair);
-            return pair;
-        }
-    }
-
-    [Serializable]
     public class UpgradeProgressPair
     {
         public string Id;
@@ -30,6 +14,25 @@ namespace Services.SaveProgress
         {
             Id = id;
             Level = i;
+        }
+    }
+
+    [Serializable]
+    public class UpgradeProgress : SaveData
+    {
+        public List<UpgradeProgressPair> Pairs = new();
+
+        public UpgradeProgressPair GetPair(string id)
+        {
+            UpgradeProgressPair firstOrDefault = Pairs.FirstOrDefault(p => p.Id == id);
+            if (firstOrDefault == null)
+            {
+                UpgradeProgressPair pair = new(id, 1);
+                Pairs.Add(pair);
+                return pair;
+            }
+
+            return firstOrDefault;
         }
     }
 }

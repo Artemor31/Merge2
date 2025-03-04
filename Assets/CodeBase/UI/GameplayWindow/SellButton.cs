@@ -33,11 +33,11 @@ namespace UI.GameplayWindow
             _view.color = _startColor;
         }
 
-        private void Update()
-        {
-            float t = Mathf.PingPong(Time.time / 1, 2);
-            _view.color = Color.Lerp(_startColor, _secondColor, t);
-        }
+        // private void Update()
+        // {
+        //     float t = Mathf.PingPong(Time.time / 1, 2);
+        //     _view.color = Color.Lerp(_startColor, _secondColor, t);
+        // }
 
         public void Hide()
         {

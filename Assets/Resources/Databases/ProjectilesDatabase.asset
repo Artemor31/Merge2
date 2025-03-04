@@ -15,7 +15,7 @@ MonoBehaviour:
   ProjectileDatas:
   - Id: 1
     MoveSpeed: 10
-    DamageArea: 0.3
+    DamageArea: 0.15
     Prefab: {fileID: 7345155930059112006, guid: ceda6812cc9ec3244b73ad13213ff3d5, type: 3}
     HitVFX: {fileID: 0}
     DamageContext: 1

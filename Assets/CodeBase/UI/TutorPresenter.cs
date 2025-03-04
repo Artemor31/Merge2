@@ -28,6 +28,7 @@ namespace UI
         private GridLogicService _logicService;
         private TutorialService _tutorialService;
         private GameStateMachine _gameStateMachine;
+        private PersistantDataService _persistantDataService;
 
         public override void Init()
         {
@@ -35,6 +36,7 @@ namespace UI
             _tutorialService = ServiceLocator.Resolve<TutorialService>();
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _logicService = ServiceLocator.Resolve<GridLogicService>();
+            _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
             
             _startTutor.onClick.AddListener(Step1_OnAcceptClicked);
             _endTutor.onClick.AddListener(Cancel);
@@ -232,6 +234,7 @@ namespace UI
 
         private void Step14()
         {
+            _persistantDataService.AddGems(100);
             _text.ShowText(8, TextAllignment.Bottom);
             AwaitClickedAndHighlight("BuyChest", Step15_ShopTabOpened);
         }
@@ -244,6 +247,7 @@ namespace UI
         
         private void Step15_2()
         {
+            _persistantDataService.AddGems(100);
             _text.ShowText(12, TextAllignment.Bottom);
             AwaitClickedAndHighlight("BuyGrid", Step15_2_ShopChestTabOpened);
         }

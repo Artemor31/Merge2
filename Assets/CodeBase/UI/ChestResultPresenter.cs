@@ -19,11 +19,11 @@ namespace UI
         {
             if (sprite == null)
             {
-                _race.gameObject.SetActive(false);
+                _race.transform.parent.gameObject.SetActive(false);
             }
             else
             {
-                _race.gameObject.SetActive(true);
+                _race.transform.parent.gameObject.SetActive(true);
                 _race.sprite = sprite;
             }
         }
@@ -32,11 +32,11 @@ namespace UI
         {
             if (sprite == null)
             {
-                _mastery.gameObject.SetActive(false);
+                _mastery.transform.parent.gameObject.SetActive(false);
             }
             else
             {
-                _mastery.gameObject.SetActive(true);
+                _mastery.transform.parent.gameObject.SetActive(true);
                 _mastery.sprite = sprite;
             }
         }

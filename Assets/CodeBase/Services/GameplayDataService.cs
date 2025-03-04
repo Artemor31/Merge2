@@ -6,8 +6,8 @@ namespace Services
 {
     public class GameplayDataService : IService
     {
-        private const string PlayerData = "GameplayData";
-        private const string StoryData = "StoryData";
+        public const string RaidData = "GameplayData";
+        public const string StoryData = "StoryData";
         
         public event Action<int> OnCrownsChanged;
         public int Wave => _progress.Wave;
@@ -21,12 +21,12 @@ namespace Services
         {
             _saveService = saveService;
             _persistantDataService = persistantDataService;
-            _progress = _saveService.Restore<GameplayProgress>(PlayerData);
+            _progress = _saveService.Restore<GameplayProgress>(RaidData);
         }
         
         public void SelectMode(bool isStory)
         {
-            _saveKey = isStory ? StoryData : PlayerData;
+            _saveKey = isStory ? StoryData : RaidData;
             _progress = _saveService.Restore<GameplayProgress>(_saveKey);
         }
 

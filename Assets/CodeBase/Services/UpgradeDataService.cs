@@ -39,7 +39,7 @@ namespace UI.UpgradeWindow
             return false;
         }
         
-        public int LevelOf(string id) => _progress.Progress(id).Level;
+        public int LevelOf(string id) => _progress.GetPair(id).Level;
         
         public int CalculateCostForLevel(int n) => Mathf.RoundToInt(0.5f * Mathf.Pow(n, 2) + 5);
 

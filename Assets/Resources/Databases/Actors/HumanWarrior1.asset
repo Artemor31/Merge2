@@ -19,7 +19,7 @@ MonoBehaviour:
   Stats:
     Health: 125
     Damage: 25
-    CritChance: 0.05
+    CritChance: 0
     CritValue: 2
     Vampirism: 0
     Defence: 0

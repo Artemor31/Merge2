@@ -107,12 +107,12 @@ namespace Services
                 int range = Random.Range(1, 11);
                 int range2 = Random.Range(1, 11);
                 
-                if (range > 7 || posLeft < 5) // try spawn max level unit
+                if (range > 3 || posLeft < 5) // try spawn max level unit
                 {
                     limit -= maxCost;
                     yield return variants[maxCost].Random().Data;
                 }
-                else if (range2 > 7 && maxCost == 4) // if max lvl was == 3 try spawn lvl 2
+                else if (range2 > 3 && maxCost == 4) // if max lvl was == 3 try spawn lvl 2
                 {
                     maxCost = 2;
                     limit -= maxCost;
