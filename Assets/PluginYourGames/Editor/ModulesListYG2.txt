@@ -5,4 +5,5 @@ Leaderboards v1.0
 Metrica v1.001
 Review v1.0
 RewardedAdv v1.0
+StickyAdv v1.0
 Storage v1.0

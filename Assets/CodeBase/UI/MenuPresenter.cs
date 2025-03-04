@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Infrastructure;
 using UnityEngine;
 using Services;
+using YG;
 
 namespace UI
 {
@@ -33,7 +34,14 @@ namespace UI
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
             
-            _diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
+            //_diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
+
+            YG2.StickyAdActivity(true);
+            if (!ServiceLocator.Resolve<TutorialService>().SeenTutor &&
+                ServiceLocator.Resolve<PersistantDataService>().Coins == 100)
+            {
+                YG2.StickyAdActivity(false);
+            }
         }
 
         public override void OnShow() => _slider.Show();

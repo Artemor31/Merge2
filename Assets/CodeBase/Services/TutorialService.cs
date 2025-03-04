@@ -2,6 +2,7 @@
 using Services.Infrastructure;
 using UI;
 using UI.Tutor;
+using YG;
 
 namespace Services
 {
@@ -10,7 +11,7 @@ namespace Services
         private const string SavePath = "TutorData";
 
         public bool InTutor { get; set; }
-        public bool SeenTutor => _tutorData.Seen;
+        public bool SeenTutor => _saveService.Restore<TutorData>(SavePath).Seen;
         
         private readonly Dictionary<string, TutorView> _views = new();
         private readonly SaveService _saveService;
