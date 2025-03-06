@@ -8,6 +8,7 @@ using Services.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace UI
 {
@@ -49,6 +50,7 @@ namespace UI
             UpdateRowsDescr();
         }
 
+        public override void OnShow() => YG2.InterstitialAdvShow();
         private void UpdateRowsDescr() => _gridDescription.text = StartGrid + _dataService.Rows;
         private void UpdateCrownDescr() => _crownsDescription.text = StartCrowns + _dataService.Crowns;
 

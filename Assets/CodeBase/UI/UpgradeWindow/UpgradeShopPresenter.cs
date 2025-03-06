@@ -5,6 +5,7 @@ using Infrastructure;
 using Services;
 using Services.Resources;
 using UnityEngine;
+using YG;
 
 namespace UI.UpgradeWindow
 {
@@ -34,6 +35,8 @@ namespace UI.UpgradeWindow
                     CreateItem(data);
                 }
             }
+
+            YG2.InterstitialAdvShow();
         }
 
         public override void OnHide()

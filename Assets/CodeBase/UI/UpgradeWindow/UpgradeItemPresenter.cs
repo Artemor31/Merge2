@@ -56,7 +56,7 @@ namespace UI.UpgradeWindow
 
         private void OnEnable() => _buy.onClick.AddListener(Buy);
         private void SetDescription() => _description.text = $"текущий бонус: +{_dataService.LevelOf(_config.Name)}%";
-        private void SetCost() => _cost.text = _dataService.CalculateCostForLevel(_dataService.LevelOf(_config.Name)).ToString();
+        private void SetCost() => _cost.text = _dataService.CalculateCostForLevel(_dataService.LevelOf(_config.Name) + 1).ToString();
         private void OnDisable() => _buy.onClick.RemoveListener(Buy);
     }
 }

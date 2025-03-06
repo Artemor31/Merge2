@@ -50,7 +50,7 @@ namespace UI.ResultWindow
         {
             gameObject.SetActive(false);
 
-            if (_gameplayDataService.Wave % 3 == 0)
+            if (_gameplayDataService.Wave % 2 == 0)
             {
                 YG2.InterstitialAdvShow();
             }
