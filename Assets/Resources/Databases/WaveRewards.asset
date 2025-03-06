@@ -15,16 +15,16 @@ MonoBehaviour:
   _rewards:
   - WaveToGet: 5
     Type: 3
-    Amount: 100
+    Amount: 50
   - WaveToGet: 10
     Type: 3
-    Amount: 150
+    Amount: 50
   - WaveToGet: 15
-    Type: 3
-    Amount: 150
-  - WaveToGet: 20
     Type: 2
-    Amount: 500
+    Amount: 300
+  - WaveToGet: 20
+    Type: 3
+    Amount: 100
   - WaveToGet: 25
     Type: 2
     Amount: 1000

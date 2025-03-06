@@ -120,14 +120,15 @@ namespace Services.StateMachine
                 sumCoins += Random.Range(1, 4);
             }
 
+            var gems = Random.Range(1, 6);
             _persistantDataService.AddCoins(sumCoins);
-            _persistantDataService.AddGems(count);
+            _persistantDataService.AddGems(gems);
             _gameplayService.AddCrowns(crownsValue);
 
             return new ResultData
             {
                 CrownsValue = crownsValue,
-                GemsValue = count,
+                GemsValue = gems,
                 CoinsValue = sumCoins   
             };
         }
