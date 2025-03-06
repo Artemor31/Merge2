@@ -23,7 +23,7 @@ MonoBehaviour:
     CritValue: 2
     Vampirism: 0
     Defence: 0
-    Range: 2
+    Range: 1.8
     ActCooldown: 2.5
     MoveSpeed: 3
   ViewData:

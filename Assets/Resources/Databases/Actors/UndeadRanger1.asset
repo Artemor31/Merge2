@@ -18,7 +18,7 @@ MonoBehaviour:
     Mastery: 2
   Stats:
     Health: 60
-    Damage: 55
+    Damage: 60
     CritChance: 0.05
     CritValue: 2
     Vampirism: 0
@@ -29,5 +29,5 @@ MonoBehaviour:
   ViewData:
     BaseView: {fileID: 2300282671115125669, guid: 14ae8deda5306634fbe5b161f0ab512b, type: 3}
     Skin: {fileID: 1610746412557178616, guid: 8e2977f5a857a494b87e31324c2eeef6, type: 3}
-  _dpm: 220
-  _ratio: 0,2727273
+  _dpm: 240
+  _ratio: 0,25

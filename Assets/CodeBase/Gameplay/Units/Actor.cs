@@ -13,6 +13,7 @@ namespace Gameplay.Units
     {
         public event Action Died;
         public float Health => _health.CurrentRatio;
+        public float HealthValue => _health.CurrentValue;
         public bool IsDead => _health.IsDead;
         public ActorData Data { get; private set; }
         public ActorStats Stats { get; set; }

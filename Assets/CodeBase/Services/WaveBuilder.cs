@@ -22,8 +22,9 @@ namespace Services
         private readonly LevelDatabase _levelDatabase;
         private readonly UnitsDatabase _unitsDatabase;
         private readonly GameFactory _factory;
+        private readonly Dictionary<int, List<ActorConfig>> _variants = new();
 
-        public WaveBuilder(GameFactory factory, 
+        public WaveBuilder(GameFactory factory,
                            DatabaseProvider provider,
                            TutorialService tutorialService)
         {
@@ -37,24 +38,50 @@ namespace Services
 
         public void BuildEnemyWave(int wave)
         {
-            EnemyUnits.ForEach(Object.Destroy);
             EnemyUnits.Clear();
-            SpawnUnits(wave);
-        }
-
-        private void SpawnUnits(int wave)
-        {
             WaveData waveData = GetWaveData(wave);
 
             var positions = _levelDatabase.GetPositions().ToList();
+            var datas = CreateActorsWave(waveData, positions.Count);
 
-            foreach (ActorData data in CreateActorsWave(waveData, positions.Count))
+            foreach (ActorData data in datas)
             {
+                if (positions.Count == 0) return;
+
                 var position = positions.Random();
                 Actor enemyActor = _factory.CreateEnemyActor(data, position);
                 positions.Remove(position);
                 enemyActor.transform.Rotate(new Vector3(0, 180, 0));
                 EnemyUnits.Add(enemyActor);
+            }
+        }
+
+        private IEnumerable<ActorData> CreateActorsWave(WaveData waveData, int posLeft)
+        {
+            Dictionary<int, List<ActorConfig>> variants = FillVariants(waveData);
+
+            int limit = waveData.PowerLimit;
+            int maxCost = waveData.MaxLevel switch {1 => 1, 2 => 2, 3 => 4, _ => 1};
+
+            while (limit > 0 && posLeft > 0)
+            {
+                int range = posLeft >= 5 ? Random.Range(1, 11) : 1;
+
+                if (maxCost == 4 && range < 7) // try spawn lvl 3
+                {
+                    limit -= 4;
+                    yield return variants[3].Random().Data;
+                }
+                else if (maxCost == 2 && range < 9) // try spawn lvl 2
+                {
+                    limit -= 2;
+                    yield return variants[2].Random().Data;
+                }
+                else // spawn lvl 1
+                {
+                    limit -= 1;
+                    yield return variants[1].Random().Data;
+                }
             }
         }
 
@@ -95,45 +122,13 @@ namespace Services
             return waveData;
         }
 
-        private IEnumerable<ActorData> CreateActorsWave(WaveData waveData, int posLeft)
-        {
-            Dictionary<int, List<ActorConfig>> variants = FillVariants(waveData);
-            
-            int limit = waveData.PowerLimit;
-            int maxCost = waveData.MaxLevel switch {1 => 1, 2 => 2, 3 => 4, _ => 1};
-
-            while (limit > 0 && posLeft > 0)
-            {
-                int range = Random.Range(1, 11);
-                int range2 = Random.Range(1, 11);
-                
-                if (range > 3 || posLeft < 5) // try spawn max level unit
-                {
-                    limit -= maxCost;
-                    yield return variants[maxCost].Random().Data;
-                }
-                else if (range2 > 3 && maxCost == 4) // if max lvl was == 3 try spawn lvl 2
-                {
-                    maxCost = 2;
-                    limit -= maxCost;
-                    yield return variants[maxCost].Random().Data;
-                } 
-                else // spawn lvl 1 anyway
-                {
-                    maxCost = 1;
-                    limit -= maxCost;
-                    yield return variants[maxCost].Random().Data;
-                }
-            }
-        }
-
-        private readonly Dictionary<int, List<ActorConfig>> _variants = new();
         private Dictionary<int, List<ActorConfig>> FillVariants(WaveData waveData)
         {
             _variants.Clear();
             for (int level = 1; level <= waveData.MaxLevel; level++)
             {
-                List<ActorConfig> actorConfigs = _unitsDatabase.ConfigsFor(level, waveData.Races, waveData.Masteries).ToList();
+                List<ActorConfig> actorConfigs =
+                    _unitsDatabase.ConfigsFor(level, waveData.Races, waveData.Masteries).ToList();
                 _variants.Add(level, actorConfigs);
             }
 

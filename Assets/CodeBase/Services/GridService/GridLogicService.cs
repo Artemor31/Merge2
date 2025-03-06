@@ -48,14 +48,13 @@ namespace Services.GridService
             _dataService.RestoreData(_gridView.Platforms.GetRange(0, openedCount));
             for (int i = 0; i < openedCount; i++)
             {
-                Platform platform = _gridView.Platforms[i];
-                platform.Init(i);
-                platform.gameObject.SetActive(true);
+                _gridView.Platforms[i].Init(i);
+                _gridView.Platforms[i].gameObject.SetActive(true);
                 
                 ActorData data = _dataService.ActorDataAt(i);
                 if (!data.Equals(ActorData.None))
                 {
-                    _gameFactory.CreatePlayerActor(data, platform);
+                    _gameFactory.CreatePlayerActor(data, _gridView.Platforms[i]);
                 }
             }
 

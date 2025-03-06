@@ -61,6 +61,7 @@ namespace Gameplay.Units
                     Strategy.OnSameLine => OnSameLine(_owner.transform, _actors),
                     Strategy.Closest => Closest(_owner.transform, _actors),
                     Strategy.MostDamaged => MostDamaged(_actors),
+                    Strategy.LowestHealth => LowestHealth(_actors),
                     _ => _actors
                 };
 
@@ -86,7 +87,7 @@ namespace Gameplay.Units
                     tries *= 2;
                 }
 
-                return actualTargets;
+                return Closest(owner, actualTargets);
             }
 
             private List<Actor> Closest(Transform owner, List<Actor> actors)
@@ -124,6 +125,23 @@ namespace Gameplay.Units
 
                 return index == -1 ? new List<Actor>() : new List<Actor> {actors[index]};
             }
+            
+            private List<Actor> LowestHealth(List<Actor> actors)
+            {
+                float health = float.MaxValue;
+                int index = -1;
+
+                for (int i = 0; i < actors.Count; i++)
+                {
+                    if (!actors[i].IsDead && actors[i].HealthValue < health)
+                    {
+                        index = i;
+                        health = actors[i].HealthValue;
+                    }
+                }
+
+                return index == -1 ? new List<Actor>() : new List<Actor> {actors[index]};
+            }
 
             private float DistanceTo(Transform owner,Actor actor) => 
                 Vector3.Distance(owner.position, actor.transform.position);
@@ -136,6 +154,7 @@ namespace Gameplay.Units
         OnSameLine = 1,
         Closest = 2,
         MostDamaged = 3,
+        LowestHealth = 4
     }
 
     public enum Side

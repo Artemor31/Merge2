@@ -23,7 +23,10 @@ namespace Gameplay.Units
         public void Stop()
         {
             _animator.Move(0);
-            _agent.isStopped = true;
+            if (_agent.isOnNavMesh)
+            {
+                _agent.isStopped = true;
+            }
         }
 
         public void MoveTo(Vector3 target)

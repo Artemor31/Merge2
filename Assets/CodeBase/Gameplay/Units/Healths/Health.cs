@@ -5,6 +5,7 @@ namespace Gameplay.Units.Healths
     public struct Health
     {
         public float CurrentRatio => _current / _maxHealth;
+        public float CurrentValue => _current;
         public bool IsDead => _current <= 0;
         
         private readonly float _maxHealth;

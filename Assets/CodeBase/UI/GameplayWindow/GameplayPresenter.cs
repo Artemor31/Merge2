@@ -26,6 +26,7 @@ namespace UI.GameplayWindow
         [SerializeField] public string WaveText;
         [SerializeField] public BuffInfoPresenter BuffPresenter;
         [SerializeField] public SellButton SellButton;
+        [SerializeField] public Button Respawn;
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
@@ -46,6 +47,7 @@ namespace UI.GameplayWindow
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _windowsService = ServiceLocator.Resolve<WindowsService>();
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
+            Respawn.onClick.AddListener(() => ServiceLocator.Resolve<WaveBuilder>().BuildEnemyWave(_gameplayService.Wave));
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);

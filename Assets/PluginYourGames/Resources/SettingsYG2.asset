@@ -219,16 +219,16 @@ MonoBehaviour:
     gradientBackgroundByLoadGame:
       radial: 0
       angleInclination: 140
-      color1: {r: 1, g: 0.831, b: 0.149, a: 1}
-      color2: {r: 0.36, g: 0.09, b: 1, a: 1}
+      color1: {r: 0.50980395, g: 0.2509804, b: 1, a: 1}
+      color2: {r: 0.14901961, g: 0.17254902, b: 1, a: 0.69803923}
     customProgressBar: 1
     progressBarSettigs:
       round: 1
       roundAngle: 10
       width: 30
       height: 24
-      color1: {r: 0.5104642, g: 0.25098038, b: 1, a: 1}
-      color2: {r: 0.1490196, g: 0.17130458, b: 1, a: 0.7}
+      color1: {r: 0.8301887, g: 0.5618494, b: 0.23495904, a: 1}
+      color2: {r: 0.8313726, g: 0.56078434, b: 0.23529413, a: 1}
     fixedAspectRatio: 1
     aspectRatio: 9/16
     fillBackground: 1
