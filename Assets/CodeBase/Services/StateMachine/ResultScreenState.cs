@@ -30,6 +30,7 @@ namespace Services.StateMachine
         private readonly PersistantDataService _persistantDataService;
         private readonly GridLogicService _gridLogicService;
         private readonly ICoroutineRunner _coroutineRunner;
+        private readonly GameStateMachine _gameStateMachine;
 
         public ResultScreenState(WindowsService windowsService, 
                                  GridDataService gridDataService,
@@ -37,7 +38,8 @@ namespace Services.StateMachine
                                  WaveBuilder waveBuilder,
                                  PersistantDataService persistantDataService,
                                  GridLogicService gridLogicService,
-                                 ICoroutineRunner coroutineRunner)
+                                 ICoroutineRunner coroutineRunner,
+                                 GameStateMachine gameStateMachine)
         {
             _windowsService = windowsService;
             _gridDataService = gridDataService;
@@ -46,6 +48,7 @@ namespace Services.StateMachine
             _persistantDataService = persistantDataService;
             _gridLogicService = gridLogicService;
             _coroutineRunner = coroutineRunner;
+            _gameStateMachine = gameStateMachine;
         }
 
         public void Enter(ResultScreenData data)
@@ -66,9 +69,11 @@ namespace Services.StateMachine
 
             if (force)
             {
-                _windowsService.Show<CloseConfirmPresenter>();
+                _gameStateMachine.Enter<MenuState>();
+                yield break; 
             }
-            else if (isWin)
+            
+            if (isWin)
             {
                 _gameplayService.CompleteLevel();
                 _windowsService.Show<WinResultPresenter, ResultData>(CollectRewards(true));
@@ -80,7 +85,7 @@ namespace Services.StateMachine
                     _gridDataService.Reset();
                     _gameplayService.Reset();
                 }
-                
+
                 _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(false));
             }
         }
@@ -120,7 +125,8 @@ namespace Services.StateMachine
                 sumCoins += Random.Range(1, 4);
             }
 
-            var gems = Random.Range(1, 6);
+            var gems = count > 0 ? Random.Range(1, 6) : 0;
+            
             _persistantDataService.AddCoins(sumCoins);
             _persistantDataService.AddGems(gems);
             _gameplayService.AddCrowns(crownsValue);

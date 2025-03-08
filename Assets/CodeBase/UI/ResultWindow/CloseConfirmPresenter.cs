@@ -21,12 +21,12 @@ namespace UI.ResultWindow
             _left.onClick.AddListener(OnLeftClick);
         }
 
+        private void OnLeftClick() => gameObject.SetActive(false);
+
         private void OnRightClick()
         {
             gameObject.SetActive(false);
-            _gameStateMachine.Enter<MenuState>();            
+            _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
         }
-
-        private void OnLeftClick() => gameObject.SetActive(false);
     }
 }

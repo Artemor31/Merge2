@@ -9,6 +9,7 @@ using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;
 using TMPro;
+using UI.ResultWindow;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,9 +61,7 @@ namespace UI.GameplayWindow
             
             CreatePlayerCards();
         }
-
-        private void PlatformReleasedHandler(Platform platform) => SellButton.Hide();
-
+        
         private void PlatformPressedHandler(Platform platform)
         {
             if (platform.Busy)
@@ -77,15 +76,11 @@ namespace UI.GameplayWindow
             OnCrownsChanged(_gameplayService.Crowns);
         }
 
+        private void PlatformReleasedHandler(Platform platform) => SellButton.Hide();
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
-        
-        private void CloseClicked()
-        {
-            _windowsService.Close<GameCanvas>();
-            _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
-        }
-        
+        private void CloseClicked() => _windowsService.Show<CloseConfirmPresenter>();
+
         private void BuffsClicked()
         {
             BuffPresenter.gameObject.SetActive(!BuffPresenter.gameObject.activeInHierarchy);

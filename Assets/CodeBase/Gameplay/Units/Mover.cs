@@ -31,6 +31,8 @@ namespace Gameplay.Units
 
         public void MoveTo(Vector3 target)
         {
+            if (!_agent.isOnNavMesh) return;
+            
             _animator.Move(_speed);
             _agent.isStopped = false;
             _agent.destination = target;
