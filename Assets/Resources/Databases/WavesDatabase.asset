@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: WavesDatabase
   m_EditorClassIdentifier: 
   TutorData:
-  - PowerLimit: 2
+  - PowerLimit: 1
     MaxLevel: 1
     Masteries: 01000000
     Races: 01000000
-  - PowerLimit: 8
+  - PowerLimit: 10
     MaxLevel: 2
     Masteries: 0100000002000000
     Races: 01000000
   _wavesData:
-  - PowerLimit: 2
+  - PowerLimit: 1
     MaxLevel: 1
     Masteries: 01000000
     Races: 01000000

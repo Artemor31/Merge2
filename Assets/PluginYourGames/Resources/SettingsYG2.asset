@@ -193,7 +193,7 @@ MonoBehaviour:
     saveLocal: 1
     saveCloud: 1
     saveCloudInterval: 0
-    flush: 0
+    flush: 1
   Basic:
     platform: {fileID: 11400000, guid: c2a303d33a9fd394bae4c4b88b9a1c44, type: 2}
     autoApplySettings: 1
