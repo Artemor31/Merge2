@@ -107,7 +107,7 @@ namespace UI
             _tutorialService.InTutor = true;
             _startPanel.SetActive(false);
             FreeAllButtons();
-            AwaitClickedAndHighlight("MenuFight", Step2_StartLevelClicked);
+            AwaitClickedAndHighlight("MenuFight2", Step2_StartLevelClicked);
             _text.ShowText(0);
         }
 
@@ -223,7 +223,18 @@ namespace UI
             yield return _waitHalfSecond;
             yield return _waitHalfSecond;
             _text.ShowText(6, TextAllignment.Bottom);
-            AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded);
+            //AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded);
+            AwaitClickedAndHighlight("LoseNext", ClickExit);
+        }
+
+        private void ClickExit()
+        {
+            AwaitClickedAndHighlight("CloseGame", ClickExitConfirm);
+        }
+
+        private void ClickExitConfirm()
+        {
+            AwaitClickedAndHighlight("CloseGameConfirm", Step13_MenuLoaded);
         }
 
         private void Step13_MenuLoaded()

@@ -2216,7 +2216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4252776915204475952
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4373,6 +4373,7 @@ GameObject:
   - component: {fileID: 7298241956841106940}
   - component: {fileID: 5312254170440139939}
   - component: {fileID: 6973374609806791915}
+  - component: {fileID: 3400606485290024100}
   m_Layer: 5
   m_Name: StoryFight
   m_TagString: Untagged
@@ -4482,6 +4483,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3400606485290024100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523158918769630138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777bddc436324b2f82dc38a7d3200bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id2>k__BackingField: MenuFight2
+  <Is2D>k__BackingField: 1
 --- !u!1 &8710176163147422558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4655,7 +4670,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -281, y: 829}
+  m_AnchoredPosition: {x: -540, y: 829}
   m_SizeDelta: {x: 370, y: 253.86578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9017944721510909002

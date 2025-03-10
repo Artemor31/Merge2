@@ -17,7 +17,7 @@ MonoBehaviour:
     Race: 4
     Mastery: 3
   Stats:
-    Health: 400
+    Health: 320
     Damage: 250
     CritChance: 0
     CritValue: 0
@@ -30,4 +30,4 @@ MonoBehaviour:
     BaseView: {fileID: 7625637279324466940, guid: db6d1b2631d3ae74d936abf7404aae70, type: 3}
     Skin: {fileID: 3702341303646861076, guid: 221da06752a62924dab5a8e584281841, type: 3}
   _dpm: 714,2857
-  _ratio: 1,785714
+  _ratio: 0,448
