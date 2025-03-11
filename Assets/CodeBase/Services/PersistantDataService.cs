@@ -3,9 +3,7 @@ using System.Linq;
 using Databases;
 using Infrastructure;
 using Services.Infrastructure;
-using Services.Resources;
 using Services.SaveProgress;
-using UnityEngine;
 using YG;
 
 namespace Services
@@ -23,19 +21,16 @@ namespace Services
         public int Rows => _progress.OpenedRows;
         public bool RowsAtMax => _progress.OpenedRows == 4;
         public int Crowns => _progress.BonusCrowns;
-        public bool CrownsAtMax => _progress.BonusCrowns == 30;
+        public bool CrownsAtMax => _progress.BonusCrowns == 10;
         public int MaxWave => _progress.MaxWave;
-        public int NextWave => _rewardsDatabase.NextWave(MaxWave);
 
         private readonly PersistantProgress _progress;
         private readonly SaveService _saveService;
-        private readonly WaveRewardsDatabase _rewardsDatabase;
 
-        public PersistantDataService(SaveService saveService, DatabaseProvider databaseProvider)
+        public PersistantDataService(SaveService saveService)
         {
             _saveService = saveService;
             _progress = _saveService.Restore<PersistantProgress>(SavePath);
-            _rewardsDatabase = databaseProvider.GetDatabase<WaveRewardsDatabase>();
         }
 
         public void AddCoins(int value)
@@ -54,31 +49,11 @@ namespace Services
 
         public void TrySetMaxWave(int wave)
         {
-            if (_progress.MaxWave < wave)
-            {
-                _progress.MaxWave = wave;
-                YG2.SetLeaderboard("BestWave", _progress.MaxWave);
-                var reward = _rewardsDatabase.GetFor(_progress.MaxWave);
-                
-                switch (reward.Type)
-                {
-                    case Currency.Coin:
-                        AddCoins(reward.Amount);
-                        break;
-                    case Currency.Gem:
-                        AddGems(reward.Amount);
-                        break;
-                }                
-                
-                Save();
-            }
-        }
-
-        public (Currency Currency, int Amount) RewardCurrentReward()
-        {
-            // TODO do multy type reward, not only currency
-            var reward = _rewardsDatabase.GetFor(_progress.MaxWave);
-            return (reward.Type, reward.Amount);
+            if (_progress.MaxWave >= wave) return;
+            
+            _progress.MaxWave = wave;
+            YG2.SetLeaderboard("BestWave", _progress.MaxWave);
+            Save();
         }
 
         public bool TryBuyCoins(int cost)
@@ -134,9 +109,9 @@ namespace Services
 
         public bool TryUpCrowns()
         {
-            if (_progress.BonusCrowns < 30)
+            if (_progress.BonusCrowns < 10)
             {
-                _progress.BonusCrowns += 5;
+                _progress.BonusCrowns += 2;
                 Save();
                 OnProgressChanged?.Invoke(_progress);
                 return true;

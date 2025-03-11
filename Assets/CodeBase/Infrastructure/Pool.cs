@@ -33,7 +33,8 @@ namespace Infrastructure
         
         public T Get(Vector3 at)
         {
-            if (_data.TryPop(out var pop))
+            bool tryPop = _data.TryPop(out var pop);
+            if (tryPop)
             {
                 pop.transform.position = at;
                 pop.Release();

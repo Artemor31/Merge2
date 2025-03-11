@@ -39,13 +39,13 @@ namespace Infrastructure
             AssetsProvider assetsProvider = new();
             SaveService saveService = new();
             SceneLoader sceneLoader = new(this);
-            CameraService cameraService = new(sceneLoader);
+            CameraService cameraService = new(sceneLoader, _windowsService);
             DatabaseProvider databaseProvider = new(assetsProvider);
             TutorialService tutorialService = new(saveService);
             GameplayContainer gameplayContainer = new();
 
-            PersistantDataService persistantDataService = new(saveService, databaseProvider);
-            GameplayDataService gameplayService = new(saveService, persistantDataService);
+            PersistantDataService persistantDataService = new(saveService);
+            GameplayDataService gameplayService = new(saveService);
             GridDataService gridDataService = new(saveService, persistantDataService);
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
@@ -62,10 +62,10 @@ namespace Infrastructure
             GridViewService gridViewService = new(this, gridDataService, mergeService, 
                 cameraService, gridLogicService);
             
-            GameStateMachine stateMachine = 
-                new(sceneLoader, _windowsService, waveBuilder, 
+            GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, gameplayService, 
-                gridLogicService, buffService, upgradeDataService, persistantDataService, tutorialService, this);
+                gridLogicService, buffService, upgradeDataService,
+                persistantDataService, tutorialService, this, projectileService);
 
             ServiceLocator.Bind<ICoroutineRunner>(this);
             ServiceLocator.Bind<IUpdateable>(this);

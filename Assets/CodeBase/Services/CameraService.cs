@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Services.Infrastructure;
 using UnityEngine;
 
@@ -8,12 +8,14 @@ namespace Services
     {
         private const float MaxDistance = 1000;
         private readonly SceneLoader _sceneLoader;
+        private readonly WindowsService _windowsService;
         private readonly RaycastHit[] _hits;
         private Camera _camera;
 
-        public CameraService(SceneLoader sceneLoader)
+        public CameraService(SceneLoader sceneLoader, WindowsService windowsService)
         {
             _sceneLoader = sceneLoader;
+            _windowsService = windowsService;
             _camera = Camera.main;
             _hits = new RaycastHit[5];
             _sceneLoader.OnSceneChanged += SceneChangedHandler;
@@ -25,16 +27,17 @@ namespace Services
         public bool CastPlane(Transform transform, Ray ray, out float distance) => 
             new Plane(Vector3.up, transform.position).Raycast(ray, out distance);
 
-        public IEnumerable<RaycastHit> RayCast(Ray ray, int layerMask)
+        public RaycastHit[] RayCast(Ray ray, int layerMask)
         {
-            int count = Physics.RaycastNonAlloc(ray, _hits, MaxDistance, layerMask);
-
-            for (int i = 0; i < count; i++)
+            if (_windowsService.BlockRaycast)
             {
-                yield return _hits[i];
+                return Array.Empty<RaycastHit>();
             }
+            
+            Physics.RaycastNonAlloc(ray, _hits, MaxDistance, layerMask);
+            return _hits;
         }
 
-        private void SceneChangedHandler() => _camera = UnityEngine.Camera.main;
+        private void SceneChangedHandler() => _camera = Camera.main;
     }
 }

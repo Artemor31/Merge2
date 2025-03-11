@@ -31,6 +31,7 @@ namespace Services.StateMachine
         private readonly GridLogicService _gridLogicService;
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly GameStateMachine _gameStateMachine;
+        private readonly ProjectileService _projectileService;
 
         public ResultScreenState(WindowsService windowsService, 
                                  GridDataService gridDataService,
@@ -39,7 +40,8 @@ namespace Services.StateMachine
                                  PersistantDataService persistantDataService,
                                  GridLogicService gridLogicService,
                                  ICoroutineRunner coroutineRunner,
-                                 GameStateMachine gameStateMachine)
+                                 GameStateMachine gameStateMachine,
+                                 ProjectileService projectileService)
         {
             _windowsService = windowsService;
             _gridDataService = gridDataService;
@@ -49,6 +51,7 @@ namespace Services.StateMachine
             _gridLogicService = gridLogicService;
             _coroutineRunner = coroutineRunner;
             _gameStateMachine = gameStateMachine;
+            _projectileService = projectileService;
         }
 
         public void Enter(ResultScreenData data)
@@ -59,6 +62,7 @@ namespace Services.StateMachine
             _gridDataService.Save();
             _gridLogicService.Dispose();
             _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
+            _projectileService.ClearField();
             _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
@@ -80,12 +84,6 @@ namespace Services.StateMachine
             }
             else
             {
-                if (!_gridDataService.InStory)
-                {
-                    _gridDataService.Reset();
-                    _gameplayService.Reset();
-                }
-
                 _windowsService.Show<LoseResultPresenter, ResultData>(CollectRewards(false));
             }
         }
@@ -109,15 +107,27 @@ namespace Services.StateMachine
         {
             int sumCoins = 0;
             int count = _waveBuilder.EnemyUnits.Count(u => u.IsDead);
+            int levelsSum = _waveBuilder.EnemyUnits.Sum(u => u.Data.Level);
 
             int crownsValue;
-            if (_gridDataService.InStory)
+            if (true)
             {
-                crownsValue = isWin ? Random.Range(7, 12) * 2 : 2 * count;
-            }
-            else
-            {
-                crownsValue = isWin ? Random.Range(8, 15) : count; 
+                if (isWin)
+                {
+                    if (_gameplayService.Wave < 20)
+                    {
+                        // old approach
+                        crownsValue = Random.Range(7, 12) * 2;
+                    }
+                    else
+                    {
+                        crownsValue = levelsSum + count / 2;
+                    }
+                }
+                else
+                {
+                    crownsValue = 2 * count + levelsSum / 10;
+                }
             }
             
             for (int i = 0; i < count; i++)
@@ -126,6 +136,8 @@ namespace Services.StateMachine
             }
 
             var gems = count > 0 ? Random.Range(1, 6) : 0;
+
+            crownsValue += _persistantDataService.Crowns;
             
             _persistantDataService.AddCoins(sumCoins);
             _persistantDataService.AddGems(gems);

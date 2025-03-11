@@ -25,7 +25,8 @@ namespace Services.StateMachine
                                 UpgradeDataService upgradeDataService,
                                 PersistantDataService persistantDataService,
                                 TutorialService tutorialService, 
-                                ICoroutineRunner coroutineRunner)
+                                ICoroutineRunner coroutineRunner,
+                                 ProjectileService projectileService)
         {
             _states = new Dictionary<Type, IState>
             {
@@ -34,7 +35,7 @@ namespace Services.StateMachine
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService, gameplayData)},
                 {typeof(SetupLevelState), new SetupLevelState(windowsService)},
                 {typeof(GameLoopState), new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService, windowsService)},
-                {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData, waveBuilder, persistantDataService, gridLogicService, coroutineRunner, this)},
+                {typeof(ResultScreenState), new ResultScreenState(windowsService, service, gameplayData, waveBuilder, persistantDataService, gridLogicService, coroutineRunner, this, projectileService)},
             };
         }
 

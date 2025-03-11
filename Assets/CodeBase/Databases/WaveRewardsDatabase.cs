@@ -12,34 +12,24 @@ namespace Databases
 
         public RewardData GetFor(int maxWave)
         {
-            for (var i = 0; i < _rewards.Count; i++)
+            foreach (RewardData data in _rewards)
             {
-                if (_rewards[i].WaveToGet >= maxWave && i != 0)
+                if (maxWave >= data.StartWave && maxWave < data.WaveToGet)
                 {
-                    return _rewards[i - 1];
+                    return data;
                 }
             }
-            
-            throw new Exception("No wave to reward");
-        }
 
-        public int NextWave(int maxWave)
-        {
-            for (int i = 0; i < _rewards.Count - 1; i++)
-            {
-                if (_rewards[i].WaveToGet >= maxWave)
-                    return _rewards[i].WaveToGet;
-            }
-
-            return maxWave;
+            return _rewards[^1];
         }
-
-        [Serializable]
-        public class RewardData
-        {
-            public int WaveToGet;
-            public Currency Type;
-            public int Amount;
-        }
+    }
+    
+    [Serializable]
+    public class RewardData
+    {
+        public int WaveToGet;
+        public int StartWave;
+        public Currency Type;
+        public int Amount;
     }
 }

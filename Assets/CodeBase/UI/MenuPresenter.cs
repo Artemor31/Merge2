@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using Infrastructure;
 using UnityEngine;
 using Services;
+using Services.Infrastructure;
+using UI.ResultWindow;
 using YG;
 
 namespace UI
@@ -18,6 +20,7 @@ namespace UI
         [SerializeField] private WaveProgressPopup _waveRewardPopup;
         [SerializeField] private MenuWaveProgressPresenter _slider;
         [SerializeField] private Button _diamondsUp;
+        [SerializeField] private Button _patchShow;
 
         private GameStateMachine _gameStateMachine;
         private GameplayDataService _gameplayDataService;
@@ -29,10 +32,11 @@ namespace UI
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             
-            _fightButton.onClick.AddListener(PlayClicked);
+            //_fightButton.onClick.AddListener(PlayClicked);
             _storyFightButton.onClick.AddListener(PlayStoryClicked);
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
+            _patchShow.onClick.AddListener(ShowPatch);
             
             //_diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
 
@@ -44,27 +48,28 @@ namespace UI
             }
         }
 
+        private void ShowPatch() => ServiceLocator.Resolve<WindowsService>().Show<SimpleInfoWindow>();
+
         public override void OnShow() => _slider.Show();
         private void ShowHardAdsPopup() => _currencyPopup.ShowData(Currency.Gem);
         private void ShowSoftAdsPopup() => _currencyPopup.ShowData(Currency.Coin);
 
-        private void PlayClicked()
-        {
-            gameObject.SetActive(false);
-            
-            _gridDataService.SelectMode(false);
-            _gameplayDataService.SelectMode(false);
-            _gameplayDataService.Reset();
-            _gridDataService.Reset();
-            
-            _gameStateMachine.Enter<LoadLevelState>();
-        }
+        // ne zashlo bratan4ik
+        // private void PlayClicked()
+        // {
+        //     gameObject.SetActive(false);
+        //     
+        //     _gameplayDataService.SelectMode(false);
+        //     _gameplayDataService.Reset();
+        //     _gridDataService.Reset();
+        //     
+        //     _gameStateMachine.Enter<LoadLevelState>();
+        // }
         
         private void PlayStoryClicked()
         {
             gameObject.SetActive(false);
             
-            _gridDataService.SelectMode(true);
             _gameplayDataService.SelectMode(true);
             
             _gameStateMachine.Enter<LoadLevelState>();

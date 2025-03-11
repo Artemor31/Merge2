@@ -1,4 +1,5 @@
 ﻿using Infrastructure;
+using Services.Infrastructure;
 using Services.StateMachine;
 using TMPro;
 using UnityEngine;
@@ -21,11 +22,11 @@ namespace UI.ResultWindow
             _left.onClick.AddListener(OnLeftClick);
         }
 
-        private void OnLeftClick() => gameObject.SetActive(false);
+        private void OnLeftClick() => ServiceLocator.Resolve<WindowsService>().Close<CloseConfirmPresenter>();
 
         private void OnRightClick()
         {
-            gameObject.SetActive(false);
+            OnLeftClick();
             _gameStateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
         }
     }

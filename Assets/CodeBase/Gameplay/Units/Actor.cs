@@ -50,6 +50,7 @@ namespace Gameplay.Units
             View.ChangeHealth(_health.CurrentRatio, context);
             if (IsDead)
             {
+                _mover.Stop();
                 View.Die();
                 Died?.Invoke();
             }

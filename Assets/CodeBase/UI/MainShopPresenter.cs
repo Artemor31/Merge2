@@ -16,7 +16,7 @@ namespace UI
     {
         private const int ChestCost = 100;
         private const string Max = "MAX";
-        private const string StartCrowns = "Начальные короны: +";
+        private const string StartCrowns = "Бонусные короны за победу: +";
         private const string StartGrid = "Количество рядов: ";
 
         [SerializeField] private Button _openChest;

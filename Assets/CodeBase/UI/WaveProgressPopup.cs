@@ -1,4 +1,5 @@
-﻿using Infrastructure;
+﻿using Databases;
+using Infrastructure;
 using UnityEngine.UI;
 
 namespace UI
@@ -14,15 +15,15 @@ namespace UI
             _close.onClick.AddListener(CloseClicked);
         }
 
-        public void SetData(Currency currency, int amount)
+        public void SetData(RewardData reward)
         {
-            _currency = currency;
+            _currency = reward.Type;
             
-            _coin.gameObject.SetActive(currency == Currency.Coin);
-            _gem.gameObject.SetActive(currency == Currency.Gem);
-            _coin.SetData(amount);
-            _gem.SetData(amount);
-            _bag.sprite = currency == Currency.Coin ? _coinBag : _gemBag;
+            _coin.gameObject.SetActive(reward.Type == Currency.Coin);
+            _gem.gameObject.SetActive(reward.Type == Currency.Gem);
+            _coin.SetData(reward.Amount);
+            _gem.SetData(reward.Amount);
+            _bag.sprite = reward.Type == Currency.Coin ? _coinBag : _gemBag;
             
             gameObject.SetActive(true);
         }

@@ -106,7 +106,7 @@ namespace Services.GridService
         private void OnTick()
         {
             if (!_dragging) return;
-
+            
             var ray = _cameraService.TouchPointRay();
             IEnumerable<RaycastHit> hits = _cameraService.RayCast(ray, _platformMask);
             foreach (RaycastHit hit in hits)

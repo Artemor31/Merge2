@@ -34,7 +34,12 @@ namespace Gameplay.Units.Projectiles
         }
 
         public abstract void Tick();
-        public void Collect() => gameObject.SetActive(false);
-        public void Release() => gameObject.SetActive(true);
+        public virtual void Collect()
+        {
+            gameObject.SetActive(false);
+            Hited = false;
+        }
+
+        public virtual void Release() => gameObject.SetActive(true);
     }
 }

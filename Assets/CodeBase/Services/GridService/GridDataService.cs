@@ -12,26 +12,21 @@ namespace Services.GridService
 {
     public class GridDataService : IService
     {
-        private const string SavePath = "GridData";
         private const string StoryGridData = "StoryGridData";
         
         public List<Actor> PlayerUnits => GetPlayerUnits();
         public Vector2Int GridSize => new(_persistantDataService.Rows, 5);
-        public bool InStory => _saveKey == StoryGridData;
 
         private readonly SaveService _saveService;
         private readonly PersistantDataService _persistantDataService;
         private GridProgress _gridProgress;
         private List<Platform> _platforms;
-        private string _saveKey;
 
         public GridDataService(SaveService saveService, PersistantDataService persistantDataService)
         {
             _saveService = saveService;
             _persistantDataService = persistantDataService;
         }
-
-        public void SelectMode(bool isStory) => _saveKey = isStory ? StoryGridData : SavePath;
 
         public ActorData ActorDataAt(int index) => 
             _gridProgress.UnitIds.Count > index ? _gridProgress.UnitIds[index] : ActorData.None;
@@ -41,7 +36,7 @@ namespace Services.GridService
         public void RestoreData(List<Platform> platforms)
         {
             _platforms = platforms;
-            _gridProgress = _saveService.Restore<GridProgress>(_saveKey);
+            _gridProgress = _saveService.Restore<GridProgress>(StoryGridData);
             _gridProgress.UnitIds ??= new List<ActorData>(_platforms.Count);
             
             foreach (var unused in _platforms)
@@ -65,13 +60,13 @@ namespace Services.GridService
                 _gridProgress.UnitIds[i] = platform.Busy ? platform.Actor.Data : ActorData.None;
             }
             
-            _saveService.Save(_saveKey, _gridProgress);
+            _saveService.Save(StoryGridData, _gridProgress);
         }
 
         public void Reset()
         {
             _gridProgress = new GridProgress();
-            _saveService.Save(_saveKey, _gridProgress);
+            _saveService.Save(StoryGridData, _gridProgress);
         }
 
         private List<Actor> GetPlayerUnits() => _platforms.Where(platform => platform.Busy)

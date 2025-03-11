@@ -27,7 +27,7 @@ namespace Services
             ProjectileData data = _database.Get(type);
             if (!_pools.ContainsKey(type))
             {
-                _pools.Add(type, new Pool<Projectile>(10, 3, data.Prefab));
+                _pools.Add(type, new Pool<Projectile>(25, 7, data.Prefab));
             }
 
             var projectile = _pools[type].Get(position);
@@ -35,10 +35,23 @@ namespace Services
             _active.Add(projectile);
         }
 
+        public void ClearField()
+        {
+            foreach (Projectile projectile in _active)
+            {   
+                _pools[projectile.Data.Id].Collect(projectile);
+            }
+            
+            _active.Clear();
+        }
+
         private void Tick()
         {
+            
             for (int index = _active.Count - 1; index >= 0; index--)
             {
+                if (_active.Count <= index) return;
+                
                 var projectile = _active[index];
                 
                 projectile.Tick();

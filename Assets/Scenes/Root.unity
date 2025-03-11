@@ -358,6 +358,7 @@ MonoBehaviour:
   - {fileID: 1006834468}
   - {fileID: 774165789}
   - {fileID: 1171386129}
+  - {fileID: 794014083}
   - {fileID: 7466999821106549603}
   - {fileID: 7466999821106549605}
   - {fileID: 7466999821106549604}
@@ -410,6 +411,8 @@ MonoBehaviour:
   - {fileID: 63639221}
   - {fileID: 51071042}
   - {fileID: 154958592}
+  - {fileID: 794014082}
+  - {fileID: 794014081}
   - {fileID: 1042777078}
   - {fileID: 1380659199}
   - {fileID: 67276120}
@@ -1028,6 +1031,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &794014081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3380552850499050779, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &794014082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5228642530791861566, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &794014083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 40487025461127782, guid: 389d8830604457b4db557fac8d3d0e8f, type: 3}
+  m_PrefabInstance: {fileID: 774165786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8253802ad0d94d3ebd42104cad7f7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &825281555 stripped
@@ -2628,9 +2664,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8651089495579615767, guid: 91f68addfd9ad3a488cceef3b6bcbdc7, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8819973113775797745, guid: 91f68addfd9ad3a488cceef3b6bcbdc7, type: 3}
       propertyPath: m_Name
       value: ClosePresenter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819973113775797745, guid: 91f68addfd9ad3a488cceef3b6bcbdc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

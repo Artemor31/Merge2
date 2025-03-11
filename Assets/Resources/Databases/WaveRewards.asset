@@ -14,17 +14,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rewards:
   - WaveToGet: 5
+    StartWave: 0
     Type: 3
     Amount: 50
   - WaveToGet: 10
+    StartWave: 5
     Type: 3
     Amount: 50
   - WaveToGet: 15
+    StartWave: 10
     Type: 2
     Amount: 300
   - WaveToGet: 20
+    StartWave: 15
     Type: 3
     Amount: 100
   - WaveToGet: 25
+    StartWave: 20
     Type: 2
     Amount: 1000
+  - WaveToGet: 30
+    StartWave: 25
+    Type: 3
+    Amount: 100
+  - WaveToGet: 35
+    StartWave: 30
+    Type: 2
+    Amount: 1500
+  - WaveToGet: 40
+    StartWave: 35
+    Type: 3
+    Amount: 150
+  - WaveToGet: 45
+    StartWave: 40
+    Type: 2
+    Amount: 3000
+  - WaveToGet: 50
+    StartWave: 45
+    Type: 2
+    Amount: 3000
+  - WaveToGet: 60
+    StartWave: 50
+    Type: 3
+    Amount: 250
+  - WaveToGet: 70
+    StartWave: 60
+    Type: 2
+    Amount: 3000
+  - WaveToGet: 80
+    StartWave: 70
+    Type: 2
+    Amount: 3000
+  - WaveToGet: 90
+    StartWave: 80
+    Type: 2
+    Amount: 3000
+  - WaveToGet: 150
+    StartWave: 90
+    Type: 3
+    Amount: 3000

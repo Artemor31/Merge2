@@ -13,14 +13,12 @@ namespace Services
         public int Wave => _progress.Wave;
         public int Crowns => _progress.Crowns;
         private readonly SaveService _saveService;
-        private readonly PersistantDataService _persistantDataService;
         private GameplayProgress _progress;
         private string _saveKey;
 
-        public GameplayDataService(SaveService saveService, PersistantDataService persistantDataService)
+        public GameplayDataService(SaveService saveService)
         {
             _saveService = saveService;
-            _persistantDataService = persistantDataService;
             _progress = _saveService.Restore<GameplayProgress>(RaidData);
         }
         
@@ -56,7 +54,6 @@ namespace Services
         public void Reset()
         {
             _progress = new GameplayProgress();
-            _progress.Crowns += _persistantDataService.Crowns; 
             Save();
             OnCrownsChanged?.Invoke(_progress.Crowns);
         }
