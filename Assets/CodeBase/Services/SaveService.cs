@@ -55,7 +55,6 @@ namespace Services
             else if (type == typeof(PersistantProgress)) json = YG2.saves.PersistantProgress;
             else if (type == typeof(UpgradeProgress)) json = YG2.saves.UpgradeProgress;
             else if (type == typeof(GameplayProgress) && path == GameplayDataService.StoryData) json = YG2.saves.StoryGameplayProgress;
-            else if (type == typeof(GameplayProgress) && path == GameplayDataService.RaidData) json = YG2.saves.RaidGameplayProgress;
 
             if (string.IsNullOrEmpty(json))
             {
@@ -77,7 +76,6 @@ namespace Services
             else if (type == typeof(PersistantProgress)) YG2.saves.PersistantProgress = JsonConvert.SerializeObject(data);
             else if (type == typeof(UpgradeProgress)) YG2.saves.UpgradeProgress = JsonConvert.SerializeObject(data);
             else if (type == typeof(GameplayProgress) && path == GameplayDataService.StoryData) YG2.saves.StoryGameplayProgress = JsonConvert.SerializeObject(data);
-            else if (type == typeof(GameplayProgress) && path == GameplayDataService.RaidData) YG2.saves.RaidGameplayProgress = JsonConvert.SerializeObject(data);
             
             YG2.SaveProgress();
         }

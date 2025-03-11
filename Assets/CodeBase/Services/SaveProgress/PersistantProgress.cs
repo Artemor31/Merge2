@@ -26,6 +26,11 @@ namespace Services.SaveProgress
                 Races[i] = (int)Opened[i].Item1;
                 Masteries[i] = (int)Opened[i].Item2;
             }
+
+            if (BonusCrowns > 10)
+            {
+                BonusCrowns = 10;
+            }
         }
 
         public override void Deserialize()

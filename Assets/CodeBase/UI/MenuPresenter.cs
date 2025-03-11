@@ -69,9 +69,6 @@ namespace UI
         private void PlayStoryClicked()
         {
             gameObject.SetActive(false);
-            
-            _gameplayDataService.SelectMode(true);
-            
             _gameStateMachine.Enter<LoadLevelState>();
         }
     }

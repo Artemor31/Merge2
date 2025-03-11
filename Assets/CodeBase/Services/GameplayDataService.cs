@@ -6,7 +6,6 @@ namespace Services
 {
     public class GameplayDataService : IService
     {
-        public const string RaidData = "GameplayData";
         public const string StoryData = "StoryData";
         
         public event Action<int> OnCrownsChanged;
@@ -14,18 +13,11 @@ namespace Services
         public int Crowns => _progress.Crowns;
         private readonly SaveService _saveService;
         private GameplayProgress _progress;
-        private string _saveKey;
 
         public GameplayDataService(SaveService saveService)
         {
             _saveService = saveService;
-            _progress = _saveService.Restore<GameplayProgress>(RaidData);
-        }
-        
-        public void SelectMode(bool isStory)
-        {
-            _saveKey = isStory ? StoryData : RaidData;
-            _progress = _saveService.Restore<GameplayProgress>(_saveKey);
+            _progress = _saveService.Restore<GameplayProgress>(StoryData);
         }
 
         public void CompleteLevel()
@@ -58,6 +50,6 @@ namespace Services
             OnCrownsChanged?.Invoke(_progress.Crowns);
         }
 
-        private void Save() => _saveService.Save(_saveKey, _progress);
+        private void Save() => _saveService.Save(StoryData, _progress);
     }
 }
