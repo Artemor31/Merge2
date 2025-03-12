@@ -76,35 +76,25 @@ namespace Services.Buffs
 
         private string GetBuffArrow(int level, bool forAllies)
         {
+            // "\u2191" or "\u2193"
             if (forAllies)
             {
-                switch (level)
+                return level switch
                 {
-                    case 1:
-                        return "+";
-                        return "\u2191";
-                    case 2: 
-                        return "++";
-                        return "\u2191\u2191"; 
-                    case 3:
-                        return "+++";
-                        return "\u2191\u2191\u2191";
-                }
+                    1 => "+",
+                    2 => "++",
+                    3 => "+++",
+                    _ => "+++"
+                };
             }
-            else
+
+            return level switch
             {
-                switch (level)
-                {
-                    case 1:
-                        return "\u2193";
-                    case 2: 
-                        return "\u2193\u2193"; 
-                    case 3:
-                        return "\u2193\u2193\u2193";
-                }
-            }
-            
-            throw new NotImplementedException();
+                1 => "-",
+                2 => "--",
+                3 => "---",
+                _ => "---"
+            };
         }
 
         private void FillDictionary<T>(IDictionary<T, int> dict) where T : Enum

@@ -3,6 +3,7 @@ Shader "Custom/UnlitWithOutline"
     Properties
     {
         _BaseColor ("Base Color", Color) = (1, 1, 1, 1)
+        _MainTex ("Main Texture", 2D) = "white" {}
         _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
         _OutlineThickness ("Outline Thickness", Float) = 0.1
     }
@@ -24,18 +25,23 @@ Shader "Custom/UnlitWithOutline"
             {
                 float4 positionOS : POSITION;
                 float3 normalOS : NORMAL;
+                float2 uv : TEXCOORD0;
             };
 
             struct Varyings
             {
                 float4 positionHCS : SV_POSITION;
-                float3 normalWS : TEXCOORD0;
+                float2 uv : TEXCOORD0;
             };
+
+            TEXTURE2D(_MainTex);
+            SAMPLER(sampler_MainTex);
 
             CBUFFER_START(UnityPerMaterial)
             float4 _BaseColor;
             float4 _OutlineColor;
             float _OutlineThickness;
+            float4 _MainTex_ST;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
@@ -43,27 +49,29 @@ Shader "Custom/UnlitWithOutline"
                 Varyings OUT;
 
                 // Основной проход
-                float3 normalWS = TransformObjectToWorldNormal(IN.normalOS);
-                float4 positionWS = TransformObjectToWorld(IN.positionOS);
+                float3 positionWS = TransformObjectToWorld(IN.positionOS);
                 OUT.positionHCS = TransformWorldToHClip(positionWS);
-                OUT.normalWS = normalWS;
+
+                // Передаем UV-координаты с учетом tiling и offset
+                OUT.uv = TRANSFORM_TEX(IN.uv, _MainTex);
 
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                return _BaseColor;
+                // Чтение текстуры и применение цвета
+                half4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
+                return texColor * _BaseColor;
             }
             ENDHLSL
         }
 
-        Pass
+Pass
         {
             Name "Outline"
             Tags { "LightMode"="UniversalForward" }
 
-            Cull Front
             ZWrite On
 
             HLSLPROGRAM
@@ -94,8 +102,12 @@ Shader "Custom/UnlitWithOutline"
 
                 // Смещение вершин для создания контура
                 float3 normalWS = TransformObjectToWorldNormal(IN.normalOS);
-                float4 positionWS = TransformObjectToWorld(IN.positionOS);
+                float3 positionWS = TransformObjectToWorld(IN.positionOS);
+
+                // Смещение позиции вершин вдоль нормали
                 positionWS.xyz += normalWS * _OutlineThickness;
+
+                // Преобразуем мировые координаты в клипсовые
                 OUT.positionHCS = TransformWorldToHClip(positionWS);
 
                 return OUT;
