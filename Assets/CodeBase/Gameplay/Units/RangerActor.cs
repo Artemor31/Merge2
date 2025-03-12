@@ -54,7 +54,7 @@ namespace Gameplay.Units
             View.PerformAct();
             yield return new WaitForSeconds(0.5f);
 
-            if (Target == null) yield break;
+            if (Target == null || IsDead) yield break;
 
             bool isCrit = Random.Range(0, 1f) >= 1 - Stats.CritChance;
             float damage = isCrit ? Stats.Damage * Stats.CritValue : Stats.Damage;

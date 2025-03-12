@@ -41,7 +41,7 @@ namespace Gameplay.Units
             View.PerformAct();
             yield return new WaitForSeconds(0.55f);
             
-            if (Target == null) yield break;
+            if (Target == null || IsDead) yield break;
             
             if (!InRange()) yield break;
             

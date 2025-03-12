@@ -44,7 +44,7 @@ namespace Gameplay.Units
 
             yield return new WaitForSeconds(0.5f);
 
-            if (Target == null) yield break;
+            if (Target == null || IsDead) yield break;
             
             SpawnVFX(Target.transform.position + Vector3.up);
             Target.ChangeHealth(Stats.Damage, HealthContext.Heal);
