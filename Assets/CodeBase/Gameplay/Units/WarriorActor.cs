@@ -40,10 +40,12 @@ namespace Gameplay.Units
             ResetCooldown();
             View.PerformAct();
             yield return new WaitForSeconds(0.55f);
-            
-            if (Target == null || IsDead) yield break;
-            
-            if (!InRange()) yield break;
+
+            if (Target == null || IsDead || !InRange())
+            {
+                View.GoIdle(true);
+                yield break;
+            }
             
             bool isCrit = Random.Range(0, 1f) >= 1 - Stats.CritChance;
             float damage = isCrit ? Stats.Damage + Stats.Damage * Stats.CritValue : Stats.Damage;

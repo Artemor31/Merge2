@@ -12,10 +12,10 @@ namespace Databases.BuffConfigs
         public float BuffValue;
         private WaitForSeconds _waitForSeconds;
 
-        public override void ApplyTo(Actor actor, int level)
+        public override void ApplyTo(Actor actor)
         {
             ActorStats stats = actor.Stats;
-            float value = BuffValue * level;
+            float value = BuffValue * actor.Data.Level;
             switch (BuffStat)
             {
                 case Stat.HealthMaxAdd:
@@ -37,14 +37,16 @@ namespace Databases.BuffConfigs
                     stats.Defence += value;
                     break;
                 case Stat.RangeAdd:
-                    if (stats.Range >= 2)
+                    if (stats.Range >= 4)
+                    {
                         stats.Range += value;
+                    }
                     break;
                 case Stat.DefenceRemove:
                     stats.Defence -= value;
                     break;
                 case Stat.SlowEnemies:
-                    stats.MoveSpeed = stats.MoveSpeed * (1 - value);
+                    stats.MoveSpeed *= 1 - value;
                     break;
                 case Stat.HealthRegenAdd:
                     float regen = actor.Stats.Health * value;

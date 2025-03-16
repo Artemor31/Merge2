@@ -33,14 +33,14 @@ namespace Services.Buffs
                 {
                     foreach (Actor actor in allies)
                     {
-                        buffConfig.Key.ApplyTo(actor, buffConfig.Value);
+                        buffConfig.Key.ApplyTo(actor);
                     }
                 }
                 else
                 {
                     foreach (Actor actor in enemies)
                     {
-                        buffConfig.Key.ApplyTo(actor, buffConfig.Value);
+                        buffConfig.Key.ApplyTo(actor);
                     }
                 }
             }

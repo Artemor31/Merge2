@@ -39,8 +39,16 @@ namespace Gameplay.Units
 
         public void PerformAct() => _animator.SetTrigger(Atk);
         public void Move(float speed) => _animator.SetFloat(Speed, speed);
-        public void GoIdle() => _animator.SetFloat(Speed, 0);
-        
+        public void GoIdle(bool force)
+        {
+            if (force)
+            {
+                _animator.Play("Idle");
+            }
+            
+            _animator.SetFloat(Speed, 0);
+        }
+
         public void Dispose()
         {
             if (_healthbar != null)

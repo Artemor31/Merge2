@@ -12,7 +12,7 @@ namespace Databases.BuffConfigs
         public Mastery Mastery;
         public string Description;
         public bool ForAllies;
-        public abstract void ApplyTo(Actor actor, int level);
+        public abstract void ApplyTo(Actor actor);
 
         public string GetBuffName()
         {
