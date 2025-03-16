@@ -1,8 +1,5 @@
-using System;
 using Databases;
 using Infrastructure;
-using Services;
-using Services.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,68 +14,50 @@ namespace UI
         [SerializeField] private Image _rewardImage;
         [SerializeField] private TextMeshProUGUI _rewardAmount;
         [SerializeField] private TextMeshProUGUI _nextWaveValue;
-        [SerializeField] private WaveProgressPopup _waveProgressPopup;
         [SerializeField] private Sprite _coinBag;
         [SerializeField] private Sprite _gemBag;
 
-        private PersistantDataService _persistantDataService;
+        private WaveRewardsService _waveService;
         private int _nextValue;
-        private GameplayDataService _gameplayDataService;
-        private WaveRewardsDatabase _waveRewardsDatabase;
 
         public override void Init()
         {
-            _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
-            _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
-            _waveRewardsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<WaveRewardsDatabase>();
-            _waveProgressPopup.OkButton.onClick.AddListener(Show);
+            _waveService = ServiceLocator.Resolve<WaveRewardsService>();
+            _waveService.OnRewardCollected += HandleRewardCollected;
             Show();
         }
 
+        private void HandleRewardCollected(int waveWithReward) => Show();
         private void Start() => Show();
 
         public void Show()
         {
-            int current = _persistantDataService.MaxWave;
-            var rewardData = _waveRewardsDatabase.GetFor(current);
-
-            _nextValue = rewardData.WaveToGet;
-
-            FillSlider(current, rewardData.StartWave, rewardData.WaveToGet);
-            SetView(current, rewardData);
-
-            if (rewardData.WaveToGet > _nextValue)
-            {
-                _waveProgressPopup.SetData(rewardData);
-
-                switch (rewardData.Type)
-                {
-                    case Currency.Coin:
-                        _persistantDataService.AddCoins(rewardData.Amount);
-                        break;
-                    case Currency.Gem:
-                        _persistantDataService.AddGems(rewardData.Amount);
-                        break;
-                }
-            }
+            var waveData = _waveService.GetWaveViewData();
+            
+            CurrentRatio(waveData);
+            SetView(waveData);
         }
 
-        private void SetView(int current, RewardData rewardData)
+        private void CurrentRatio((int CurrentWave, RewardData rewardData) waveData)
         {
-            _currentMax.text = current.ToString();
-            _nextWaveValue.text = _nextValue.ToString();
-            _rewardImage.sprite = rewardData.Type == Currency.Coin ? _coinBag : _gemBag;
-            _rewardAmount.text = rewardData.Amount.ToString();
-        }
-
-        private void FillSlider(int current,int min, int max)
-        {
+            int min = waveData.rewardData.StartWave;
+            int max = waveData.rewardData.WaveToGet;
+            int current = waveData.CurrentWave;
+            
             float maxNormal = max - min;
             float currentNormal = current - min;
             float f = currentNormal / maxNormal;
-            _slider.value = f;
             int ratio = Mathf.RoundToInt(f * 100);
+            _slider.value = f;
             _value.text = $"{ratio}%";
+        }
+
+        private void SetView((int CurrentWave, RewardData rewardData) waveData)
+        {
+            _currentMax.text = waveData.CurrentWave.ToString();
+            _nextWaveValue.text = waveData.rewardData.WaveToGet.ToString();
+            _rewardImage.sprite = waveData.rewardData.Type == Currency.Coin ? _coinBag : _gemBag;
+            _rewardAmount.text = waveData.rewardData.Amount.ToString();
         }
     }
 }

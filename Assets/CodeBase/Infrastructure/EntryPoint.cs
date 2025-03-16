@@ -6,6 +6,7 @@ using Services.GridService;
 using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;
+using UI;
 using UI.UpgradeWindow;
 using UnityEngine;
 
@@ -39,7 +40,7 @@ namespace Infrastructure
             AssetsProvider assetsProvider = new();
             SaveService saveService = new();
             SceneLoader sceneLoader = new(this);
-            CameraService cameraService = new(sceneLoader, _windowsService);
+            CameraService cameraService = new(sceneLoader);
             DatabaseProvider databaseProvider = new(assetsProvider);
             TutorialService tutorialService = new(saveService);
             GameplayContainer gameplayContainer = new();
@@ -66,6 +67,10 @@ namespace Infrastructure
                 gridDataService, gridDataService, gameplayService, 
                 gridLogicService, buffService, upgradeDataService,
                 persistantDataService, tutorialService, this, projectileService);
+            
+            
+            WaveRewardsService waveRewardsService = new(persistantDataService, databaseProvider, stateMachine,
+                gameplayService, saveService, _windowsService);
 
             ServiceLocator.Bind<ICoroutineRunner>(this);
             ServiceLocator.Bind<IUpdateable>(this);
@@ -90,6 +95,7 @@ namespace Infrastructure
             ServiceLocator.Bind(upgradeDataService);
             ServiceLocator.Bind(tutorialService);
             ServiceLocator.Bind(gameplayContainer);
+            ServiceLocator.Bind(waveRewardsService);
         }
 
         private void Update() => Tick?.Invoke();

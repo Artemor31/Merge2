@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UI;
-using UI.ResultWindow;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,6 @@ namespace Services.Infrastructure
         [SerializeField] private List<Presenter> _windows;
         public List<Button> Buttons;
         private readonly Dictionary<Type, Presenter> _cache = new();
-        public bool BlockRaycast { get; private set; }
 
         public void InitWindows()
         {
@@ -54,11 +52,6 @@ namespace Services.Infrastructure
 
         public void Show<T>() where T : Presenter
         {
-            if (typeof(T) == typeof(CloseConfirmPresenter))
-            {
-                BlockRaycast = true;
-            }
-            
             Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
             presenter.OnShow();
             presenter.gameObject.SetActive(true);
@@ -66,11 +59,6 @@ namespace Services.Infrastructure
 
         public void Show<TWindow, TData>(TData data) where TWindow : Presenter where TData : WindowData
         {
-            if (typeof(TWindow) == typeof(CloseConfirmPresenter))
-            {
-                BlockRaycast = true;
-            }
-            
             Presenter presenter = _windows.First(w => w.GetType() == typeof(TWindow));
             presenter.OnShow();
 
@@ -84,11 +72,6 @@ namespace Services.Infrastructure
 
         public void Close<T>()
         {
-            if (typeof(T) == typeof(CloseConfirmPresenter))
-            {
-                BlockRaycast = false;
-            }
-            
             Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
             presenter.OnHide();
             presenter.gameObject.SetActive(false);

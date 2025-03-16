@@ -7,5 +7,6 @@
         public string GridProgress;
         public string PersistantProgress;
         public string UpgradeProgress;
+        public string WaveRewardData;
     }
 }

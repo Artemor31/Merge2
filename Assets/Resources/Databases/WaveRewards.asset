@@ -28,7 +28,7 @@ MonoBehaviour:
   - WaveToGet: 20
     StartWave: 15
     Type: 3
-    Amount: 100
+    Amount: 50
   - WaveToGet: 25
     StartWave: 20
     Type: 2
@@ -36,7 +36,7 @@ MonoBehaviour:
   - WaveToGet: 30
     StartWave: 25
     Type: 3
-    Amount: 100
+    Amount: 50
   - WaveToGet: 35
     StartWave: 30
     Type: 2
@@ -56,7 +56,7 @@ MonoBehaviour:
   - WaveToGet: 60
     StartWave: 50
     Type: 3
-    Amount: 250
+    Amount: 100
   - WaveToGet: 70
     StartWave: 60
     Type: 2
@@ -72,4 +72,12 @@ MonoBehaviour:
   - WaveToGet: 150
     StartWave: 90
     Type: 3
-    Amount: 3000
+    Amount: 150
+  - WaveToGet: 500
+    StartWave: 150
+    Type: 2
+    Amount: 100000
+  - WaveToGet: 1000
+    StartWave: 500
+    Type: 2
+    Amount: 10000000

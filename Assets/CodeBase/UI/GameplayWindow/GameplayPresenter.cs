@@ -79,7 +79,11 @@ namespace UI.GameplayWindow
         private void PlatformReleasedHandler(Platform platform) => SellButton.Hide();
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
-        private void CloseClicked() => _windowsService.Show<CloseConfirmPresenter>();
+        private void CloseClicked()
+        {
+            _windowsService.Close<GameCanvas>();
+            _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
+        }
 
         private void BuffsClicked()
         {

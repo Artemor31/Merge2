@@ -19,7 +19,7 @@ namespace UI
         public void ShowData(Currency currency)
         {
             gameObject.SetActive(true);
-            _currency = currency;
+            Currency = currency;
             _coin.gameObject.SetActive(currency == Currency.Coin);
             _gem.gameObject.SetActive(currency == Currency.Gem);
             _bag.sprite = currency == Currency.Coin ? _coinBag : _gemBag;
@@ -30,16 +30,16 @@ namespace UI
         
         private void Callback()
         {
-            switch (_currency)
+            switch (Currency)
             {
                 case Currency.None: return;
-                case Currency.Coin: _persistantDataService.AddCoins(100);
+                case Currency.Coin: PersistantDataService.AddCoins(100);
                     break;
-                case Currency.Gem: _persistantDataService.AddGems(30);
+                case Currency.Gem: PersistantDataService.AddGems(30);
                     break;
             }
 
-            _currency = Currency.None;
+            Currency = Currency.None;
             CloseClicked();
         }
     }

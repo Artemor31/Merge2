@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Services.Infrastructure;
 using Services.SaveProgress;
+using UI;
 using UnityEngine;
 using YG;
 
@@ -54,6 +55,7 @@ namespace Services
             else if (type == typeof(GridProgress)) json = YG2.saves.GridProgress;
             else if (type == typeof(PersistantProgress)) json = YG2.saves.PersistantProgress;
             else if (type == typeof(UpgradeProgress)) json = YG2.saves.UpgradeProgress;
+            else if (type == typeof(WaveRewardData)) json = YG2.saves.WaveRewardData;
             else if (type == typeof(GameplayProgress) && path == GameplayDataService.StoryData) json = YG2.saves.StoryGameplayProgress;
 
             if (string.IsNullOrEmpty(json))
@@ -75,6 +77,7 @@ namespace Services
             else if (type == typeof(GridProgress)) YG2.saves.GridProgress = JsonConvert.SerializeObject(data);
             else if (type == typeof(PersistantProgress)) YG2.saves.PersistantProgress = JsonConvert.SerializeObject(data);
             else if (type == typeof(UpgradeProgress)) YG2.saves.UpgradeProgress = JsonConvert.SerializeObject(data);
+            else if (type == typeof(WaveRewardData)) YG2.saves.WaveRewardData = JsonConvert.SerializeObject(data);
             else if (type == typeof(GameplayProgress) && path == GameplayDataService.StoryData) YG2.saves.StoryGameplayProgress = JsonConvert.SerializeObject(data);
             
             YG2.SaveProgress();

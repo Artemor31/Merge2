@@ -33,6 +33,19 @@ namespace Services
             _progress = _saveService.Restore<PersistantProgress>(SavePath);
         }
 
+        public void AddCurrency(Currency currency, int amount)
+        {
+            switch (currency)
+            {
+                case Currency.Coin:
+                    AddCoins(amount);
+                    break;
+                case Currency.Gem:
+                    AddGems(amount);
+                    break;
+            }
+        }
+
         public void AddCoins(int value)
         {
             _progress.Coins += value;

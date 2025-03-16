@@ -15,12 +15,9 @@ namespace UI
         [SerializeField] protected Sprite _gemBag;
         [SerializeField] protected Image _bag;
         
-        protected PersistantDataService _persistantDataService;
-        protected Currency _currency = Currency.None;
-
-        public override void Init()
-        {
-            _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
-        }
+        protected PersistantDataService PersistantDataService;
+        protected Currency Currency = Currency.None;
+        public override void Init() => 
+            PersistantDataService = ServiceLocator.Resolve<PersistantDataService>();
     }
 }

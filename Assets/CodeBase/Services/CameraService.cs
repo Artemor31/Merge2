@@ -1,5 +1,4 @@
-﻿using System;
-using Services.Infrastructure;
+﻿using Services.Infrastructure;
 using UnityEngine;
 
 namespace Services
@@ -8,14 +7,12 @@ namespace Services
     {
         private const float MaxDistance = 1000;
         private readonly SceneLoader _sceneLoader;
-        private readonly WindowsService _windowsService;
         private readonly RaycastHit[] _hits;
         private Camera _camera;
 
-        public CameraService(SceneLoader sceneLoader, WindowsService windowsService)
+        public CameraService(SceneLoader sceneLoader)
         {
             _sceneLoader = sceneLoader;
-            _windowsService = windowsService;
             _camera = Camera.main;
             _hits = new RaycastHit[5];
             _sceneLoader.OnSceneChanged += SceneChangedHandler;
@@ -29,11 +26,6 @@ namespace Services
 
         public RaycastHit[] RayCast(Ray ray, int layerMask)
         {
-            if (_windowsService.BlockRaycast)
-            {
-                return Array.Empty<RaycastHit>();
-            }
-            
             Physics.RaycastNonAlloc(ray, _hits, MaxDistance, layerMask);
             return _hits;
         }

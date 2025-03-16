@@ -1,24 +1,24 @@
 ﻿using Databases;
 using Infrastructure;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class WaveProgressPopup : BaseItemPopup
+    public class WaveProgressPopup : Presenter, IWindowDataReceiver<RewardData>
     {
-        public Button OkButton => _ads;
+        [SerializeField] protected CurrencyElement _coin;
+        [SerializeField] protected CurrencyElement _gem;
+        [SerializeField] private Button _ok;
+        [SerializeField] protected Sprite _coinBag;
+        [SerializeField] protected Sprite _gemBag;
+        [SerializeField] protected Image _bag;
         
-        public override void Init()
-        {
-            base.Init();
-            _ads.onClick.AddListener(CloseClicked);
-            _close.onClick.AddListener(CloseClicked);
-        }
+        public override void Init() => _ok.onClick.AddListener(() => gameObject.SetActive(false));
 
         public void SetData(RewardData reward)
         {
-            _currency = reward.Type;
-            
             _coin.gameObject.SetActive(reward.Type == Currency.Coin);
             _gem.gameObject.SetActive(reward.Type == Currency.Gem);
             _coin.SetData(reward.Amount);
@@ -27,7 +27,5 @@ namespace UI
             
             gameObject.SetActive(true);
         }
-        
-        private void CloseClicked() => gameObject.SetActive(false);
     }
 }
