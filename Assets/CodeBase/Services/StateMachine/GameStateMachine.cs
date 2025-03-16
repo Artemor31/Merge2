@@ -37,7 +37,7 @@ namespace Services.StateMachine
                     typeof(LoadLevelState),
                     new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService, gameplayData)
                 },
-                {typeof(SetupLevelState), new SetupLevelState(windowsService)},
+                {typeof(SetupLevelState), new SetupLevelState(windowsService, gridLogicService)},
                 {
                     typeof(GameLoopState),
                     new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService,
