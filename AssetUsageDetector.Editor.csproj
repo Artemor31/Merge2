@@ -46,21 +46,21 @@
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\VariableGetter.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\SearchResult.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorSearchFunctions.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorWindow.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\SearchResultTooltip.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\ObjectToSearch.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorSettings.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\Utilities.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorCache.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\AssetUsageDetector.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\Enumerators.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\SearchResultTreeView.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\ListDrawer.cs" />
-    <Compile Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\SearchRefactoring.cs" />
-    <None Include="Assets\ImportedAssets\Plugins\AssetUsageDetector\Editor\AssetUsageDetector.Editor.asmdef" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorCache.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\Utilities.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\VariableGetter.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\Enumerators.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetector.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchResultTreeView.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchResult.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorSettings.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\ListDrawer.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorSearchFunctions.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\ObjectToSearch.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchResultTooltip.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetectorWindow.cs" />
+    <Compile Include="Assets\Plugins\AssetUsageDetector\Editor\SearchRefactoring.cs" />
+    <None Include="Assets\Plugins\AssetUsageDetector\Editor\AssetUsageDetector.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditors\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

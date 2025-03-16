@@ -46,16 +46,16 @@
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\Dialogs\TextFieldDialog.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\PreferencesEditor\PreferenceStorageAccessor.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\PreferencesEditor\PreferenceEntry.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\Dialogs\TextValidator.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\Extensions\CenterOnWindow.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\PreferencesEditor\PreferencesEditorWindow.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\PreferencesEditor\PreferenceEntryHolder.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\Styles.cs" />
-    <Compile Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\PreferencesEditor\RegistryMonitor.cs" />
-    <None Include="Assets\ImportedAssets\Code\PlayerPrefsEditor\Editor\Unity.PlayerPrefsEditor.Editor.asmdef" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\PreferencesEditor\PreferencesEditorWindow.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\Styles.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\Extensions\CenterOnWindow.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\Dialogs\TextValidator.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\PreferencesEditor\PreferenceStorageAccessor.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\PreferencesEditor\RegistryMonitor.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\Dialogs\TextFieldDialog.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\PreferencesEditor\PreferenceEntryHolder.cs" />
+    <Compile Include="Assets\Plugins\PlayerPrefsEditor\Editor\PreferencesEditor\PreferenceEntry.cs" />
+    <None Include="Assets\Plugins\PlayerPrefsEditor\Editor\Unity.PlayerPrefsEditor.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditors\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
