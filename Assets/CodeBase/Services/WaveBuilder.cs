@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Databases;
 using Databases.Data;
@@ -8,7 +7,6 @@ using Infrastructure;
 using Services.Infrastructure;
 using Services.Resources;
 using UnityEngine;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace Services

@@ -2,7 +2,7 @@
 {
     public interface IPoolable
     {
-        void Collect();
-        void Release();
+        void Disable();
+        void Enable();
     }
 }

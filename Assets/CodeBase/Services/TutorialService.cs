@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using Services.Infrastructure;
-using UI;
 using UI.Tutor;
-using YG;
 
 namespace Services
 {

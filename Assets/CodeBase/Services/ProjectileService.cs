@@ -39,7 +39,7 @@ namespace Services
         {
             foreach (Projectile projectile in _active)
             {   
-                _pools[projectile.Data.Id].Collect(projectile);
+                _pools[projectile.Data.Id].ToPool(projectile);
             }
             
             _active.Clear();
@@ -47,7 +47,6 @@ namespace Services
 
         private void Tick()
         {
-            
             for (int index = _active.Count - 1; index >= 0; index--)
             {
                 if (_active.Count <= index) return;
@@ -58,7 +57,7 @@ namespace Services
                 if (projectile.Hited)
                 {
                     _active.Remove(projectile);
-                    _pools[projectile.Data.Id].Collect(projectile);
+                    _pools[projectile.Data.Id].ToPool(projectile);
                 }
             }
         }

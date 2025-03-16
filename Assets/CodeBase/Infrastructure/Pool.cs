@@ -19,41 +19,30 @@ namespace Infrastructure
                 _data.Push(instance);
             }
         }
-
-        public T Get()
-        {
-            if (_data.TryPop(out var pop))
-            {
-                pop.Release();
-                return pop;
-            }
-
-            return CreateInstance();
-        }
         
         public T Get(Vector3 at)
         {
-            bool tryPop = _data.TryPop(out var pop);
-            if (tryPop)
+            if (!_data.TryPop(out T instance))
             {
-                pop.transform.position = at;
-                pop.Release();
-                return pop;
+                instance = CreateInstance();
             }
 
-            return CreateInstance();
+            instance.transform.position = at;
+            instance.Enable();
+            return instance;
         }
 
-        public void Collect(T instance)
+        public void ToPool(T instance)
         {
-            instance.Collect();
+            instance.Disable();
             _data.Push(instance);
         }
 
         private T CreateInstance()
         {
             var instance = Object.Instantiate(_prefab, new Vector3(0, 1000, 0), Quaternion.identity);
-            instance.Collect();
+            instance.Disable();
+            instance.name += Random.Range(int.MinValue, int.MaxValue);
             Object.DontDestroyOnLoad(instance);
             return instance;
         }

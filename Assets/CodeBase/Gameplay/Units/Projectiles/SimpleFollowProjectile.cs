@@ -6,14 +6,14 @@ namespace Gameplay.Units.Projectiles
     {
         [SerializeField] private TrailRenderer _trailRenderer;
 
-        public override void Release()
+        public override void Enable()
         {
             if (_trailRenderer)
             {
                 _trailRenderer.Clear();
             }
             
-            base.Release();
+            base.Enable();
         }
 
         public override void Tick()
