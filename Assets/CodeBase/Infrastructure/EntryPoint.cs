@@ -50,7 +50,7 @@ namespace Infrastructure
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
             GameFactory gameFactory = new(databaseProvider, assetsProvider, _windowsService, this);
-            WaveBuilder waveBuilder = new(gameFactory, databaseProvider, tutorialService);
+            WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             
             GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, 
                 gameplayService, persistantDataService);

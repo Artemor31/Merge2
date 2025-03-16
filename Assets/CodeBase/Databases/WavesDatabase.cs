@@ -20,12 +20,12 @@ namespace Databases
             {
                 if (_wavesData[i].Races.Count == 1 && _wavesData[i].Races[0] == Race.None)
                 {
-                    _wavesData[i].Races = (Enum.GetValues(typeof(Race)) as Race[]).ToList();
+                    _wavesData[i].Races = (Enum.GetValues(typeof(Race)) as Race[])!.ToList();
                 }
                 
                 if (_wavesData[i].Masteries.Count == 1 && _wavesData[i].Masteries[0] == Mastery.None)
                 {
-                    _wavesData[i].Masteries = (Enum.GetValues(typeof(Mastery)) as Mastery[]).ToList();
+                    _wavesData[i].Masteries = (Enum.GetValues(typeof(Mastery)) as Mastery[])!.ToList();
                 }
 
                 if (_wavesData[i].Masteries.Contains(Mastery.None))
@@ -47,5 +47,6 @@ namespace Databases
         public int MaxLevel;
         public List<Mastery> Masteries;
         public List<Race> Races;
+        public int LevelsAhead;
     }
 }
