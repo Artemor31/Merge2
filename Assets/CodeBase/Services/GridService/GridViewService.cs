@@ -50,6 +50,7 @@ namespace Services.GridService
                 _selected = platform.Index;
                 platform.Actor.Disable();
                 OnPlatformPressed?.Invoke(platform);
+                _gridLogicService.GridView.HighlightSame(platform);
             }
         }
 
@@ -67,7 +68,7 @@ namespace Services.GridService
         {
             if (!_dragging) return;
             if (started == null) return;
-            
+            _gridLogicService.GridView.Enable(false);
             Platform ended = started;
             if (Selling)
             {

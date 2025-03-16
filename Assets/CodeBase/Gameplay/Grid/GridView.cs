@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Databases.Data;
 using Gameplay.Units;
 using Infrastructure;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
@@ -36,13 +37,14 @@ namespace Gameplay.Grid
                 {
                     _platforms[x * size.y + y].gameObject.SetActive(true);
                 }
-                
+
                 _gridDivs[x].gameObject.SetActive(true);
             }
         }
-        
+
         public void Enable(bool enable)
         {
+            return;
             _collider.enabled = enable;
             foreach (var platform in _platforms)
             {
@@ -53,7 +55,7 @@ namespace Gameplay.Grid
         public Platform PlatformWith(Actor actor) => _platforms.FirstOrDefault(p => p.Actor == actor);
         private void PlatformOnOnReleased(Platform ended) => IsHighlighted(false);
         private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
-        
+
         private void OnDisable()
         {
             _gridViewService.OnPlatformPressed -= PlatformOnOnPressed;
@@ -66,7 +68,23 @@ namespace Gameplay.Grid
             SetSelected(platform.Index);
             IsHighlighted(true);
         }
-        
+
+        public void HighlightSame(Platform platform)
+        {
+            return;
+            if (platform.Actor == null) return;
+            
+            ActorData data = platform.Actor.Data;
+            for (int i = 0; i < _platforms.Count; i++)
+            {
+                var actor = _platforms[i].Actor;
+                if (platform.Index != i && actor != null && actor.Data == data)
+                {
+                    _platforms[i].SameUnitView.enabled = true;
+                }
+            }
+        }
+
         private void IsHighlighted(bool active)
         {
             _selectPlatform.gameObject.SetActive(active);

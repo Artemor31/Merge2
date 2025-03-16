@@ -8,6 +8,7 @@ namespace Gameplay.Grid
     public class Platform : MonoBehaviour
     {
         public Collider Collider;
+        public MeshRenderer SameUnitView;
         public int Index { get; private set; }
         public Actor Actor { get; set; }
         public bool Busy => Actor;
