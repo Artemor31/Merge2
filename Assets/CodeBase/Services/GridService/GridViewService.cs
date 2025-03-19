@@ -74,7 +74,7 @@ namespace Services.GridService
             {
                 _gridLogicService.SellUnitAt(_selected);
             }
-            else if(true)// (PointerUnderPlatform(out Platform platform))
+            else // (PointerUnderPlatform(out Platform platform))
             {
                 ended = _dataService.GetPlatform(_hovered);
 
@@ -92,10 +92,6 @@ namespace Services.GridService
                 {
                     ResetActorPosition(started);
                 }
-            }
-            else
-            {
-                ResetActorPosition(started);
             }
 
             _hovered = 0;

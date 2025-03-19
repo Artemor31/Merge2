@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Databases;
 using Gameplay.Grid;
 using Infrastructure;
@@ -9,7 +8,6 @@ using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;
 using TMPro;
-using UI.ResultWindow;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +25,6 @@ namespace UI.GameplayWindow
         [SerializeField] public string WaveText;
         [SerializeField] public BuffInfoPresenter BuffPresenter;
         [SerializeField] public SellButton SellButton;
-        [SerializeField] public Button Respawn;
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
@@ -48,7 +45,6 @@ namespace UI.GameplayWindow
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _windowsService = ServiceLocator.Resolve<WindowsService>();
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
-            Respawn.onClick.AddListener(() => ServiceLocator.Resolve<WaveBuilder>().BuildEnemyWave(_gameplayService.Wave));
 
             StartWaveButton.onClick.AddListener(StartWave);
             GreedButton.onClick.AddListener(AddMoney);

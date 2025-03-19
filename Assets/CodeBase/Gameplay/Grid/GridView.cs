@@ -22,6 +22,27 @@ namespace Gameplay.Grid
         private GridDataService _gridDataService;
         private GameplayContainer _gameplayContainer;
 
+        public Vector2 GridBoundsX;
+        public Vector2 GridBoundsY;
+        public Vector2Int GridSize;
+
+        [Button]
+        public void AllignGrid()
+        {
+            float diff = GridBoundsX.y - GridBoundsY.x;
+            diff /= GridSize.x;
+
+            for (int i = 0; i < GridSize.x; i++)
+            {
+                for (int j = 0; j < GridSize.y; j++)
+                {
+                    int gridSizeX = i * GridSize.y + j;
+                    Debug.LogError(gridSizeX);
+                    _platforms[gridSizeX].transform.localPosition = new Vector3(diff * i, 0, -3);
+                }
+            }
+        }
+
         public void Init(Vector2Int size)
         {
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
