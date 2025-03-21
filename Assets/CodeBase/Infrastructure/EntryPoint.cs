@@ -53,19 +53,16 @@ namespace Infrastructure
             GameFactory gameFactory = new(databaseProvider, assetsProvider, _windowsService, this);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             
-            GridLogicService gridLogicService = new(gridDataService, gameFactory, databaseProvider, 
-                gameplayService, persistantDataService);
-            MergeService mergeService = new(databaseProvider, gridLogicService, gameFactory);
             BuffService buffService = new(databaseProvider);
-            
+            GridViewService gridViewService = new(this, gridDataService, cameraService, 
+                gameFactory, databaseProvider, gameplayService, persistantDataService);
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
-            GridViewService gridViewService = new(this, gridDataService, mergeService, 
-                cameraService, gridLogicService);
+
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, gameplayService, 
-                gridLogicService, buffService, upgradeDataService,
+                gridViewService, buffService, upgradeDataService,
                 persistantDataService, tutorialService, this, projectileService, gameplayContainer);
             
             
@@ -81,11 +78,9 @@ namespace Infrastructure
             ServiceLocator.Bind(databaseProvider);
             ServiceLocator.Bind(gridDataService);
             ServiceLocator.Bind(gridViewService);
-            ServiceLocator.Bind(gridLogicService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);
-            ServiceLocator.Bind(mergeService);
             ServiceLocator.Bind(cameraService);
             ServiceLocator.Bind(gameplayService);
             ServiceLocator.Bind(buffService);

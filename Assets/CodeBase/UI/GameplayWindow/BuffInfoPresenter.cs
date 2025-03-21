@@ -11,12 +11,12 @@ namespace UI.GameplayWindow
     {
         [SerializeField] private TextMeshProUGUI _description;
         private BuffService _buffService;
-        private GridLogicService _gridLogicService;
+        private GridViewService _gridLogicService;
 
         public override void Init()
         {
             _buffService = ServiceLocator.Resolve<BuffService>();
-            _gridLogicService = ServiceLocator.Resolve<GridLogicService>();
+            _gridLogicService = ServiceLocator.Resolve<GridViewService>();
             _gridLogicService.OnPlayerFieldChanged += PlayerFieldChanged;
         }
 

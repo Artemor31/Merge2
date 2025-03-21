@@ -1,48 +1,143 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Databases;
+using Databases.Data;
 using Gameplay.Grid;
 using Gameplay.Units;
+using Infrastructure;
 using Services.Infrastructure;
+using Services.Resources;
 using UI.GameplayWindow;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Object = UnityEngine.Object;
 
 namespace Services.GridService
 {
     public class GridViewService : IService
     {
+        public event Action OnPlayerFieldChanged;
         public event Action<Platform> OnPlatformPressed;
         public event Action<Platform> OnPlatformReleased;
         public event Action<Platform> OnPlatformHovered;
+        
+        public GridView GridView { get; private set; }
+        public List<Actor> PlayerUnits => _dataService.PlayerUnits;
 
         private readonly IUpdateable _updateable;
         private readonly GridDataService _dataService;
         private readonly LayerMask _platformMask;
         private readonly LayerMask _groundMask;
-        private readonly MergeService _mergeService;
         private readonly CameraService _cameraService;
-        private readonly GridLogicService _gridLogicService;
+        private readonly GameFactory _gameFactory;
+        private readonly GameplayDataService _gameplayService;
+        private readonly PersistantDataService _persistantDataService;
+        private readonly UnitsDatabase _unitsDatabase;
+        
+        
         private readonly List<RaycastResult> _results = new();
         private readonly PointerEventData _pointerData = new(EventSystem.current);
         private int _selected;
         private bool _dragging;
+        private int _hovered;
 
         public GridViewService(IUpdateable updateable,
                                GridDataService dataService,
-                               MergeService mergeService,
                                CameraService cameraService,
-                               GridLogicService gridLogicService)
+                               GameFactory gameFactory,
+                               DatabaseProvider databaseProvider,
+                               GameplayDataService gameplayService,
+                               PersistantDataService persistantDataService)
         {
             _updateable = updateable;
             _dataService = dataService;
-            _mergeService = mergeService;
             _cameraService = cameraService;
-            _gridLogicService = gridLogicService;
+            _gameFactory = gameFactory;
+            _gameplayService = gameplayService;
+            _persistantDataService = persistantDataService;
+            _unitsDatabase = databaseProvider.GetDatabase<UnitsDatabase>();
+            
             _platformMask = 1 << LayerMask.NameToLayer("Platform");
             _groundMask = 1 << LayerMask.NameToLayer("Ground");
 
             _updateable.Tick += OnTick;
+        }
+        
+        public void CreatePlayerField()
+        {
+            GridView = _gameFactory.CreateGridView(_dataService.GridSize);
+
+            int openedCount = _dataService.GridSize.x * _dataService.GridSize.y;
+            
+            _dataService.RestoreData(GridView.Platforms.GetRange(0, openedCount));
+            for (int i = 0; i < openedCount; i++)
+            {
+                GridView.Platforms[i].Init(i);
+                GridView.Platforms[i].gameObject.SetActive(true);
+                
+                ActorData data = _dataService.ActorDataAt(i);
+                if (!data.Equals(ActorData.None))
+                {
+                    _gameFactory.CreatePlayerActor(data, GridView.Platforms[i]);
+                }
+            }
+
+            OnPlayerFieldChanged?.Invoke();
+        }
+
+        public bool CanAddUnit() => _dataService.TryGetFreePlatform(out Platform _);
+        public Platform GetPlatformFor(Actor actor) => GridView.PlatformWith(actor);
+
+        public void TryCreatePlayerUnit(int tier)
+        {
+            var platform = _dataService.RandomPlatform();
+            IEnumerable<ActorConfig> actorConfigs = _unitsDatabase.ConfigsFor(tier);
+            var configs = actorConfigs.Where(c => _persistantDataService.IsOpened(c.Data.Mastery, c.Data.Race));
+
+            _gameFactory.CreatePlayerActor(configs.Random().Data, platform);
+            OnPlayerFieldChanged?.Invoke();
+        }
+
+        public void TryCreatePlayerUnit(ActorConfig unitCard)
+        {
+            _dataService.TryGetFreePlatform(out Platform platform);
+            _gameFactory.CreatePlayerActor(unitCard.Data, platform);
+            OnPlayerFieldChanged?.Invoke();
+        }
+
+        public bool TryCreatePlayerUnitAt(ActorConfig config, Platform platform)
+        {
+            if (platform.Busy) return false;
+            _gameFactory.CreatePlayerActor(config.Data, platform);
+            _dataService.Save();
+            OnPlayerFieldChanged?.Invoke();
+            return true;
+        }
+
+        public int GetCostFor(int level)
+        {
+            if (level == 1) return 7;
+
+            double value = Math.Pow(2, level - 1) * 7f;
+            return (int)value;
+        }
+
+        public void SellUnitAt(int index)
+        {
+            Platform platform = GridView.Platforms[index];
+            int costFor = GetCostFor(platform.Actor.Data.Level);
+            _gameplayService.AddCrowns(costFor);
+            platform.Clear();
+        }
+
+        public void Dispose()
+        {
+            _dataService.Dispose();
+            
+            if (!GridView) return;
+            Object.Destroy(GridView.gameObject);
+            GridView = null;
         }
 
         public void OnClicked(Platform platform)
@@ -53,11 +148,10 @@ namespace Services.GridService
                 _selected = platform.Index;
                 platform.Actor.Disable();
                 OnPlatformPressed?.Invoke(platform);
-                _gridLogicService.GridView.HighlightSame(platform);
+                GridView.HighlightSame(platform);
             }
         }
 
-        private int _hovered;
         public void OnHovered(Platform gridData)
         {
             if (_dragging)
@@ -76,7 +170,7 @@ namespace Services.GridService
             
             if (PointerUnderSellButton())
             {
-                _gridLogicService.SellUnitAt(_selected);
+                SellUnitAt(_selected);
             }
             else
             {
@@ -90,7 +184,7 @@ namespace Services.GridService
                          started.Actor.Data == ended.Actor.Data &&
                          started.Actor.Data.Level != 3)
                 {
-                    _mergeService.Merge(started, ended);
+                    Merge(started, ended);
                 }
                 else
                 {
@@ -166,13 +260,25 @@ namespace Services.GridService
 
                 if (hit.transform.TryGetComponent(out Actor actor))
                 {
-                    platform = _gridLogicService.GetPlatformFor(actor);
+                    platform = GetPlatformFor(actor);
                     return true;
                 }
             }
             
             platform = null;
             return false;
+        }
+        
+        public void Merge(Platform started, Platform ended)
+        {
+            ActorData startData = started.Actor.Data;
+            started.Clear();
+            ended.Clear();
+
+            startData.Level++;
+            ActorConfig actorConfig = _unitsDatabase.ConfigFor(startData);
+            TryCreatePlayerUnitAt(actorConfig, ended);
+            _gameFactory.CreateMergeVFX(ended.transform.position);
         }
 
         private void ResetActorPosition(Platform data)

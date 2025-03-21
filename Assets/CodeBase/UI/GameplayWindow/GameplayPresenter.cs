@@ -30,7 +30,7 @@ namespace UI.GameplayWindow
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
-        private GridLogicService _gridService;
+        private GridViewService _gridService;
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
         private bool _refreshed;
@@ -40,7 +40,7 @@ namespace UI.GameplayWindow
         {
             _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            _gridService = ServiceLocator.Resolve<GridLogicService>();
+            _gridService = ServiceLocator.Resolve<GridViewService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _gridViewService = ServiceLocator.Resolve<GridViewService>();

@@ -28,7 +28,7 @@ namespace Services.StateMachine
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         private readonly PersistantDataService _persistantDataService;
-        private readonly GridLogicService _gridLogicService;
+        private readonly GridViewService _gridLogicService;
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly GameStateMachine _gameStateMachine;
         private readonly ProjectileService _projectileService;
@@ -38,7 +38,7 @@ namespace Services.StateMachine
                                  GameplayDataService gameplayService,
                                  WaveBuilder waveBuilder,
                                  PersistantDataService persistantDataService,
-                                 GridLogicService gridLogicService,
+                                 GridViewService gridLogicService,
                                  ICoroutineRunner coroutineRunner,
                                  GameStateMachine gameStateMachine,
                                  ProjectileService projectileService)

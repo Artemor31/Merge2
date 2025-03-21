@@ -85,18 +85,7 @@ namespace Gameplay.Grid
 
         public void HighlightSame(Platform platform)
         {
-            return;
-            if (platform.Actor == null) return;
             
-            ActorData data = platform.Actor.Data;
-            for (int i = 0; i < _platforms.Count; i++)
-            {
-                var actor = _platforms[i].Actor;
-                if (platform.Index != i && actor != null && actor.Data == data)
-                {
-                    _platforms[i].SameUnitView.enabled = true;
-                }
-            }
         }
 
         private void IsHighlighted(bool active)

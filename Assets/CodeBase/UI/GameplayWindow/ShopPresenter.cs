@@ -21,11 +21,8 @@ namespace UI.GameplayWindow
         [SerializeField] private GameObject _unitShop;
         [SerializeField] private List<Image> _stars;
         [SerializeField] public Button _getUnitButton;
-        [SerializeField] public Image _getUnitButtonImage;
-        [SerializeField] private Color _startColor;
-        [SerializeField] private Color _secondColor;
 
-        private GridLogicService _gridService;
+        private GridViewService _gridService;
         private GameplayDataService _gameplayService;
 
         private int _selectedStars = 1;
@@ -33,7 +30,7 @@ namespace UI.GameplayWindow
 
         public override void Init()
         {
-            _gridService = ServiceLocator.Resolve<GridLogicService>();
+            _gridService = ServiceLocator.Resolve<GridViewService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
 
             _closeShop.onClick.AddListener(CloseActorShop);
@@ -41,12 +38,6 @@ namespace UI.GameplayWindow
             _nextUnit.onClick.AddListener(ClickNextUnit);
             _prevUnit.onClick.AddListener(ClickPrevUnit);
             _getUnitButton.onClick.AddListener(UnitForAdsRequested);
-        }
-        
-        private void Update()
-        {
-            float t = Mathf.PingPong(Time.time / 1, 1);
-            _getUnitButtonImage.color = Color.Lerp(_startColor, _secondColor, t);
         }
 
         public override void OnShow()

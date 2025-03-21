@@ -8,10 +8,10 @@ namespace Services.StateMachine
     public class SetupLevelState : IExitableState
     {
         private readonly WindowsService _windowsService;
-        private readonly GridLogicService _gridLogicService;
+        private readonly GridViewService _gridLogicService;
         private readonly GameplayContainer _gameplayContainer;
 
-        public SetupLevelState(WindowsService windowsService, GridLogicService gridLogicService, GameplayContainer gameplayContainer)
+        public SetupLevelState(WindowsService windowsService, GridViewService gridLogicService, GameplayContainer gameplayContainer)
         {
             _windowsService = windowsService;
             _gridLogicService = gridLogicService;

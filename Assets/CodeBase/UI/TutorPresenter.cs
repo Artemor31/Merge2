@@ -25,7 +25,7 @@ namespace UI
 
         private readonly WaitForSeconds _waitHalfSecond = new(0.5f);
         private WindowsService _windowService;
-        private GridLogicService _logicService;
+        private GridViewService _logicService;
         private TutorialService _tutorialService;
         private GameStateMachine _gameStateMachine;
         private PersistantDataService _persistantDataService;
@@ -35,7 +35,7 @@ namespace UI
             _windowService = ServiceLocator.Resolve<WindowsService>();
             _tutorialService = ServiceLocator.Resolve<TutorialService>();
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            _logicService = ServiceLocator.Resolve<GridLogicService>();
+            _logicService = ServiceLocator.Resolve<GridViewService>();
             _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
             
             _startTutor.onClick.AddListener(Step1_OnAcceptClicked);
