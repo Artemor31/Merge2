@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Databases.Data;
 using Gameplay.Units;
@@ -19,40 +20,14 @@ namespace Gameplay.Grid
         [SerializeField] private Collider _collider;
         [SerializeField] private List<Platform> _bufferPlatforms;
 
-        private GridViewService _gridViewService;
         private GridDataService _gridDataService;
         private GameplayContainer _gameplayContainer;
 
-        public Vector2 GridBoundsX;
-        public Vector2 GridBoundsY;
-        public Vector2Int GridSize;
-
-        [Button]
-        public void AllignGrid()
-        {
-            float diff = GridBoundsX.y - GridBoundsY.x;
-            diff /= GridSize.x;
-
-            for (int i = 0; i < GridSize.x; i++)
-            {
-                for (int j = 0; j < GridSize.y; j++)
-                {
-                    int gridSizeX = i * GridSize.y + j;
-                    Debug.LogError(gridSizeX);
-                    _platforms[gridSizeX].transform.localPosition = new Vector3(diff * i, 0, -3);
-                }
-            }
-        }
-
         public void Init(Vector2Int size)
         {
-            _gridViewService = ServiceLocator.Resolve<GridViewService>();
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _gameplayContainer = ServiceLocator.Resolve<GameplayContainer>();
-            _gridViewService.OnPlatformPressed += PlatformOnOnPressed;
-            _gridViewService.OnPlatformHovered += PlatformOnOnHovered;
-            _gridViewService.OnPlatformReleased += PlatformOnOnReleased;
-
+            
             for (int x = 0; x < size.x; x++)
             {
                 for (int y = 0; y < size.y; y++)
@@ -66,38 +41,38 @@ namespace Gameplay.Grid
 
         public void Enable(bool enable) => gameObject.SetActive(enable);
 
-        public Platform PlatformWith(Actor actor) => _platforms.FirstOrDefault(p => p.Actor == actor);
-        private void PlatformOnOnReleased(Platform ended) => IsHighlighted(false);
-        private void PlatformOnOnHovered(Platform gridData) => SetSelected(gridData.Index);
-
-        private void OnDisable()
+        public void SetState(ViewState state, Platform platform)
         {
-            _gridViewService.OnPlatformPressed -= PlatformOnOnPressed;
-            _gridViewService.OnPlatformHovered -= PlatformOnOnHovered;
-            _gridViewService.OnPlatformReleased -= PlatformOnOnReleased;
-        }
+            switch (state)
+            {
+                case ViewState.Normal:
+                {
+                    _gameplayContainer.Get<EnemyGrid>().Disable();
+                    foreach (Platform item in _platforms)
+                    {
+                        item.SetViewState(ViewState.Normal);
+                    }
 
-        private void PlatformOnOnPressed(Platform platform)
-        {
-            SetSelected(platform.Index);
-            IsHighlighted(true);
-        }
+                    break;
+                }
+                case ViewState.ShowSame:
+                {
+                    foreach (Platform item in _platforms)
+                    {
+                        if (item.Actor?.Data == platform.Actor?.Data && item != platform)
+                        {
+                            item.SetViewState(ViewState.ShowSame);
+                        }
+                    }
 
-        public void HighlightSame(Platform platform)
-        {
-            
-        }
-
-        private void IsHighlighted(bool active)
-        {
-            _selectPlatform.gameObject.SetActive(active);
-            _gameplayContainer.Get<EnemyGrid>().Disable();
-        }
-
-        private void SetSelected(int index)
-        {
-            _selectPlatform.transform.position = _platforms[index].transform.position;
-            _gameplayContainer.Get<EnemyGrid>().Highlinght(index % _gridDataService.GridSize.y);
+                    break;
+                }
+                case ViewState.ShowAttackLine:
+                    _gameplayContainer.Get<EnemyGrid>().Highlinght(platform.Index % _gridDataService.GridSize.y);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(state), state, null);
+            }
         }
     }
 }

@@ -126,9 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainRenderer: {fileID: 3936349595480969056}
   _lineShowRenderer: {fileID: 5603346433166958285}
-  _startColor: {r: 0.99215686, g: 0.38013798, b: 0.01568625, a: 1}
-  _secondColor: {r: 1, g: 0.86263114, b: 0, a: 1}
-  _colorChangeSpeed: 1
+  _startColor: {r: 1, g: 0.19406922, b: 0, a: 1}
+  _secondColor: {r: 1, g: 0.7524739, b: 0, a: 1}
+  _colorChangeSpeed: 0.7
 --- !u!1 &2488476711124689565
 GameObject:
   m_ObjectHideFlags: 0

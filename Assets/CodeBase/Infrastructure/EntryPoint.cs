@@ -54,7 +54,7 @@ namespace Infrastructure
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
             
             BuffService buffService = new(databaseProvider);
-            GridViewService gridViewService = new(this, gridDataService, cameraService, 
+            GridService gridService = new(this, gridDataService, cameraService, 
                 gameFactory, databaseProvider, gameplayService, persistantDataService);
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
@@ -62,7 +62,7 @@ namespace Infrastructure
             
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, gameplayService, 
-                gridViewService, buffService, upgradeDataService,
+                gridService, buffService, upgradeDataService,
                 persistantDataService, tutorialService, this, projectileService, gameplayContainer);
             
             
@@ -77,7 +77,7 @@ namespace Infrastructure
             ServiceLocator.Bind(assetsProvider);
             ServiceLocator.Bind(databaseProvider);
             ServiceLocator.Bind(gridDataService);
-            ServiceLocator.Bind(gridViewService);
+            ServiceLocator.Bind(gridService);
             ServiceLocator.Bind(gameFactory);
             ServiceLocator.Bind(waveBuilder);
             ServiceLocator.Bind(stateMachine);

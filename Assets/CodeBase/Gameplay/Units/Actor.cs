@@ -25,7 +25,7 @@ namespace Gameplay.Units
         protected bool CooldownUp => _actTimer <= 0;
         protected Actor Target;
         protected SearchTargetService SearchTarget;
-        protected GridViewService GridViewService;
+        protected GridService GridService;
         protected ActorSkin View;
         private float _actTimer;
         private Health _health;
@@ -36,7 +36,7 @@ namespace Gameplay.Units
             Stats = stats;
             View = view;
             SearchTarget = ServiceLocator.Resolve<SearchTargetService>();
-            GridViewService = ServiceLocator.Resolve<GridViewService>();
+            GridService = ServiceLocator.Resolve<GridService>();
 
             _health = new Health(stats.Health, stats.Defence);
             _mover.Init(view, stats);

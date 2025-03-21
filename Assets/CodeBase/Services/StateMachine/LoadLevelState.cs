@@ -11,14 +11,14 @@ namespace Services.StateMachine
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly WaveBuilder _waveBuilder;
-        private readonly GridViewService _gridLogicService;
+        private readonly GridService.GridService _gridLogicService;
         private readonly WindowsService _windowsService;
         private readonly GameplayDataService _gameplayDataService;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
                               SceneLoader sceneLoader,
                               WaveBuilder waveBuilder,
-                              GridViewService gridLogicService,
+                              GridService.GridService gridLogicService,
                               WindowsService windowsService, 
                               GameplayDataService gameplayDataService)
         {

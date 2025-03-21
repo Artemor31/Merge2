@@ -27,7 +27,7 @@ namespace UI.GameplayWindow
         [SerializeField] public SellButton SellButton;
         [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
 
-        private GridViewService _gridService;
+        private GridService _gridService;
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
@@ -39,7 +39,7 @@ namespace UI.GameplayWindow
         {
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            _gridService = ServiceLocator.Resolve<GridViewService>();
+            _gridService = ServiceLocator.Resolve<GridService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
             ShowBuffsButton.onClick.AddListener(BuffsClicked);

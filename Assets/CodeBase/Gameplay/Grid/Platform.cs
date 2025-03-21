@@ -18,12 +18,12 @@ namespace Gameplay.Grid
         [SerializeField] private Color _secondColor;
         [SerializeField] private float _colorChangeSpeed;
 
-        private GridViewService _viewService;
+        private GridService _service;
         private ViewState _state;
 
         public void Init(int index)
         {
-            _viewService = ServiceLocator.Resolve<GridViewService>();
+            _service = ServiceLocator.Resolve<GridService>();
             Index = index;
             _state = ViewState.Normal;
             gameObject.SetActive(true);
@@ -40,27 +40,29 @@ namespace Gameplay.Grid
         public void SetViewState(ViewState state)
         {
             _state = state;
-            UpdateState();
-        }
-
-        private void UpdateState()
-        {
             _lineShowRenderer.gameObject.SetActive(_state == ViewState.ShowAttackLine);
-            _mainRenderer.gameObject.SetActive(_state == ViewState.Normal);
+            _mainRenderer.gameObject.SetActive(_state is ViewState.Normal or ViewState.ShowSame);
+
+            _mainRenderer.color = _state switch
+            {
+                ViewState.Normal => Color.white,
+                ViewState.ShowSame => Color.green,
+                _ => _mainRenderer.color
+            };
         }
 
         private void Update()
         {
-            if (_state == ViewState.ShowSame)
+            if (_state == ViewState.ShowAttackLine)
             {
                 float t = Mathf.PingPong(Time.time / 1, _colorChangeSpeed);
-                _mainRenderer.color = Color.Lerp(_startColor, _secondColor, t);
+                _lineShowRenderer.color = Color.Lerp(_startColor, _secondColor, t);
             }
         }
 
-        private void OnMouseDown() => _viewService.OnMouseDown(this);
-        private void OnMouseUp() => _viewService.OnMouseUp(this);
-        private void OnMouseEnter() => _viewService.OnMouseEnter(this);
+        private void OnMouseDown() => _service.OnMouseDown(this);
+        private void OnMouseUp() => _service.OnMouseUp(this);
+        private void OnMouseEnter() => _service.OnMouseEnter(this);
     }
 
     public enum ViewState

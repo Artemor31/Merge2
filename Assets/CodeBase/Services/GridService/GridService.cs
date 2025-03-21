@@ -14,12 +14,11 @@ using Object = UnityEngine.Object;
 
 namespace Services.GridService
 {
-    public class GridViewService : IService
+    public class GridService : IService
     {
         public event Action OnPlayerFieldChanged;
         public event Action<Platform> OnPlatformPressed;
         public event Action<Platform> OnPlatformReleased;
-        public event Action<Platform> OnPlatformHovered;
         
         public GridView GridView { get; private set; }
         public List<Actor> PlayerUnits => _dataService.PlayerUnits;
@@ -37,7 +36,7 @@ namespace Services.GridService
         private bool _dragging;
         private int _hovered;
 
-        public GridViewService(IUpdateable updateable, GridDataService dataService,
+        public GridService(IUpdateable updateable, GridDataService dataService,
                                CameraService cameraService, GameFactory gameFactory,
                                DatabaseProvider databaseProvider, GameplayDataService gameplayData,
                                PersistantDataService persistantData)
@@ -99,17 +98,18 @@ namespace Services.GridService
                 _dragging = true;
                 _selected = platform.Index;
                 platform.Actor.Disable();
+                GridView.SetState(ViewState.ShowSame, platform);
+                GridView.SetState(ViewState.ShowAttackLine, platform);
                 OnPlatformPressed?.Invoke(platform);
-                GridView.HighlightSame(platform);
             }
         }
 
-        public void OnMouseEnter(Platform gridData)
+        public void OnMouseEnter(Platform platform)
         {
             if (_dragging)
             {
-                _hovered = gridData.Index;
-                OnPlatformHovered?.Invoke(gridData);
+                _hovered = platform.Index;
+                GridView.SetState(ViewState.ShowAttackLine, platform);
             }
         }
 
@@ -149,6 +149,7 @@ namespace Services.GridService
             _selected = 0;
             _dragging = false;
             OnPlatformReleased?.Invoke(ended);
+            GridView.SetState(ViewState.Normal, ended);
         }
 
         private void OnTick()

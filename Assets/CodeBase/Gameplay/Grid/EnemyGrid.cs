@@ -20,8 +20,17 @@ namespace Gameplay.Grid
 
         public void Highlinght(int line)
         {
-            Disable();
-            _lines[line].Highlinght();
+            for (int i = 0; i < _lines.Count; i++)
+            {
+                if (i == line)
+                {
+                    _lines[i].Highlinght();
+                }
+                else
+                {
+                    _lines[i].Disable();
+                }
+            }
         }
 
         [Serializable]

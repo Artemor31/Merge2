@@ -22,7 +22,7 @@ namespace UI.GameplayWindow
         [SerializeField] private List<Image> _stars;
         [SerializeField] public Button _getUnitButton;
 
-        private GridViewService _gridService;
+        private GridService _gridService;
         private GameplayDataService _gameplayService;
 
         private int _selectedStars = 1;
@@ -30,7 +30,7 @@ namespace UI.GameplayWindow
 
         public override void Init()
         {
-            _gridService = ServiceLocator.Resolve<GridViewService>();
+            _gridService = ServiceLocator.Resolve<GridService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
 
             _closeShop.onClick.AddListener(CloseActorShop);

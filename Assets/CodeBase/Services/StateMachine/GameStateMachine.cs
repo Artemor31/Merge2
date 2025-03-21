@@ -21,7 +21,7 @@ namespace Services.StateMachine
                                 GridDataService gridDataService,
                                 GridDataService service,
                                 GameplayDataService gameplayData,
-                                GridViewService gridLogicService,
+                                GridService.GridService gridLogicService,
                                 BuffService buffService,
                                 UpgradeDataService upgradeDataService,
                                 PersistantDataService persistantDataService,
