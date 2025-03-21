@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Infrastructure;
 using Services;
-using Services.GridService;
 using Services.SaveProgress;
 using Services.StateMachine;
 using UnityEngine;
@@ -28,24 +27,31 @@ namespace UI.ResultWindow
         [SerializeField] private Button _showAds;
 
         protected GameStateMachine GameStateMachine;
-        protected GridDataService GridDataService;
-        protected ResultData ResultData;
-        
         private PersistantDataService _persistantDataService;
         private List<CurrencyElement> _rewards;
         private GameplayDataService _gameplayDataService;
+        private ResultData _resultData;
 
         public override void Init()
         {
             _persistantDataService = ServiceLocator.Resolve<PersistantDataService>();
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             GameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            GridDataService = ServiceLocator.Resolve<GridDataService>();
             _nextLevel.onClick.AddListener(OnNextLevelClicked);
             _showAds.onClick.AddListener(OnShowAdsClicked);
             _rewards = new List<CurrencyElement>();
         }
 
+        public void SetData(ResultData data)
+        {
+            Clear();
+            _resultData = data;
+
+            AddReward(Currency.Crown, _resultData.CrownsValue);
+            AddReward(Currency.Coin, _resultData.CoinsValue);
+            AddReward(Currency.Gem, _resultData.GemsValue);
+        }
+        
         protected virtual void OnNextLevelClicked()
         {
             gameObject.SetActive(false);
@@ -56,14 +62,16 @@ namespace UI.ResultWindow
             }
         }
 
-        protected void AddReward(Currency currency, string value)
+        private void AddReward(Currency currency, int value)
         {
+            if (value <= 0) return;
+            
             CurrencyElement element = Instantiate(_prefab, _rewardParent);
-            element.SetData(SpriteFor(currency), value);
+            element.SetData(SpriteFor(currency), value.ToString());
             _rewards.Add(element);
         }
 
-        protected void Clear()
+        private void Clear()
         {
             foreach (CurrencyElement element in _rewards)
             {
@@ -71,7 +79,7 @@ namespace UI.ResultWindow
             }
 
             _rewards.Clear();
-            ResultData = new ResultData();
+            _resultData = new ResultData();
         }
 
         private Sprite SpriteFor(Currency currency) => _pairs.First(p => p.Currency == currency).Sprite;
@@ -79,9 +87,9 @@ namespace UI.ResultWindow
 
         private void AdWatched()
         {
-            _persistantDataService.AddCoins(ResultData.CoinsValue);
-            _persistantDataService.AddGems(ResultData.GemsValue);
-            _gameplayDataService.AddCrowns(ResultData.CrownsValue);
+            _persistantDataService.AddCoins(_resultData.CoinsValue);
+            _persistantDataService.AddGems(_resultData.GemsValue);
+            _gameplayDataService.AddCrowns(_resultData.CrownsValue);
             OnNextLevelClicked();
         }
 

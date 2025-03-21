@@ -13,16 +13,6 @@ namespace UI.ResultWindow
             ServiceLocator.Resolve<GameplayContainer>().Get<Confetti>().Play();
         }
 
-        public void SetData(ResultData data)
-        {
-            Clear();
-            ResultData = data;
-
-            AddReward(Currency.Crown, ResultData.CrownsValue.ToString());
-            AddReward(Currency.Coin, ResultData.CoinsValue.ToString());
-            AddReward(Currency.Gem, ResultData.GemsValue.ToString());
-        }
-
         protected override void OnNextLevelClicked()
         {
             base.OnNextLevelClicked();

@@ -2709,6 +2709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1423652897089872854, guid: c488b4d1c499fd341895b660716a3818, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392140717087934761, guid: c488b4d1c499fd341895b660716a3818, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2817,6 +2821,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoseWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 1550031418577430528, guid: f60d1c3127d764b40b0b148ea955faff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663594810686042054, guid: f60d1c3127d764b40b0b148ea955faff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5819621867716169081, guid: f60d1c3127d764b40b0b148ea955faff, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2924,6 +2936,10 @@ PrefabInstance:
     - target: {fileID: 5065371041569186750, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
       propertyPath: m_Name
       value: WinWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5065371041569186750, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5937070286533753641, guid: dbdc2de5d35e0d64e84b5c3dda79eaf5, type: 3}
       propertyPath: m_Pivot.x
