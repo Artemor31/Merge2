@@ -1621,6 +1621,7 @@ MonoBehaviour:
   - {fileID: 4984516229883421907}
   - {fileID: 1809674885690518887}
   _collider: {fileID: 5421485776279037556}
+  _bufferPlatforms: []
   GridBoundsX: {x: -5, y: 5}
   GridBoundsY: {x: 0, y: 0}
   GridSize: {x: 5, y: 4}

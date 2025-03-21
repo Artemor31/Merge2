@@ -66,7 +66,7 @@ namespace Infrastructure
             GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
                 gridDataService, gridDataService, gameplayService, 
                 gridLogicService, buffService, upgradeDataService,
-                persistantDataService, tutorialService, this, projectileService);
+                persistantDataService, tutorialService, this, projectileService, gameplayContainer);
             
             
             WaveRewardsService waveRewardsService = new(persistantDataService, databaseProvider, stateMachine,

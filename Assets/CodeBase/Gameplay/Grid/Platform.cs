@@ -13,9 +13,9 @@ namespace Gameplay.Grid
         public Actor Actor { get; set; }
         public bool Busy => Actor;
         public bool Free => !Actor;
-        private GridViewService _viewService;
-
-        public void Init(int index)
+        protected GridViewService _viewService;
+        
+        public virtual void Init(int index)
         {
             _viewService = ServiceLocator.Resolve<GridViewService>();
             Index = index;
@@ -28,7 +28,7 @@ namespace Gameplay.Grid
             Actor = null;
         }
 
-        public void OnMouseDown() => _viewService.OnClicked(this);
+        private void OnMouseDown() => _viewService.OnClicked(this);
         private void OnMouseUp() => _viewService.OnReleased(this);
         private void OnMouseEnter() => _viewService.OnHovered(this);
     }

@@ -17,6 +17,7 @@ namespace Gameplay.Grid
         [SerializeField] private Platform _selectPlatform;
         [SerializeField] private List<GameObject> _gridDivs;
         [SerializeField] private Collider _collider;
+        [SerializeField] private List<Platform> _bufferPlatforms;
 
         private GridViewService _gridViewService;
         private GridDataService _gridDataService;
@@ -63,15 +64,7 @@ namespace Gameplay.Grid
             }
         }
 
-        public void Enable(bool enable)
-        {
-            return;
-            _collider.enabled = enable;
-            foreach (var platform in _platforms)
-            {
-                platform.Collider.enabled = enable;
-            }
-        }
+        public void Enable(bool enable) => gameObject.SetActive(enable);
 
         public Platform PlatformWith(Actor actor) => _platforms.FirstOrDefault(p => p.Actor == actor);
         private void PlatformOnOnReleased(Platform ended) => IsHighlighted(false);

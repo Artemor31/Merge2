@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Grid;
 using Gameplay.Units;
 using Services.Infrastructure;
+using UI.GameplayWindow;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Services.GridService
 {
     public class GridViewService : IService
     {
-        public bool Selling { get; set; }
-
         public event Action<Platform> OnPlatformPressed;
         public event Action<Platform> OnPlatformReleased;
         public event Action<Platform> OnPlatformHovered;
@@ -22,6 +23,8 @@ namespace Services.GridService
         private readonly MergeService _mergeService;
         private readonly CameraService _cameraService;
         private readonly GridLogicService _gridLogicService;
+        private readonly List<RaycastResult> _results = new();
+        private readonly PointerEventData _pointerData = new(EventSystem.current);
         private int _selected;
         private bool _dragging;
 
@@ -68,13 +71,14 @@ namespace Services.GridService
         {
             if (!_dragging) return;
             if (started == null) return;
-            _gridLogicService.GridView.Enable(false);
+            
             Platform ended = started;
-            if (Selling)
+            
+            if (PointerUnderSellButton())
             {
                 _gridLogicService.SellUnitAt(_selected);
             }
-            else // (PointerUnderPlatform(out Platform platform))
+            else
             {
                 ended = _dataService.GetPlatform(_hovered);
 
@@ -131,6 +135,22 @@ namespace Services.GridService
             ended.Actor = started.Actor;
             started.Actor = null;
             ResetActorPosition(ended);
+        }
+
+        private bool PointerUnderSellButton()
+        {
+            _pointerData.position = Input.mousePosition;
+            EventSystem.current.RaycastAll(_pointerData, _results);
+
+            foreach (RaycastResult result in _results)
+            {
+                if (result.gameObject.TryGetComponent<SellButton>(out _))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private bool PointerUnderPlatform(out Platform platform)

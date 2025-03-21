@@ -1,4 +1,5 @@
-﻿using Services.GridService;
+﻿using Gameplay.Grid;
+using Services.GridService;
 using Services.Infrastructure;
 using UI.GameplayWindow;
 
@@ -8,11 +9,13 @@ namespace Services.StateMachine
     {
         private readonly WindowsService _windowsService;
         private readonly GridLogicService _gridLogicService;
+        private readonly GameplayContainer _gameplayContainer;
 
-        public SetupLevelState(WindowsService windowsService, GridLogicService gridLogicService)
+        public SetupLevelState(WindowsService windowsService, GridLogicService gridLogicService, GameplayContainer gameplayContainer)
         {
             _windowsService = windowsService;
             _gridLogicService = gridLogicService;
+            _gameplayContainer = gameplayContainer;
         }
 
         public void Enter()
@@ -21,8 +24,13 @@ namespace Services.StateMachine
             _windowsService.Show<ShopPresenter>();
             _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
             _gridLogicService.GridView.Enable(true);
+            _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(false);
         }
 
-        public void Exit() => _gridLogicService.GridView.Enable(false);
+        public void Exit()
+        {
+            _gridLogicService.GridView.Enable(false);
+            _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(false);
+        }
     }
 }

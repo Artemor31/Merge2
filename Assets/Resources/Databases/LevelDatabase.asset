@@ -15,4 +15,4 @@ MonoBehaviour:
   GridPosition: {x: 0, y: -0.11, z: -8}
   SpawnerPosition: {x: -3.2, y: 0, z: 0.88}
   SpawnerSize: {x: 5, y: 4}
-  SpawnerDelta: {x: 1.6, y: 2.6}
+  SpawnerDelta: {x: 1.6, y: 2.3}

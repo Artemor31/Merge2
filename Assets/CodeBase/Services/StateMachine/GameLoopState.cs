@@ -12,7 +12,7 @@ namespace Services.StateMachine
     public class GameLoopState : IExitableState
     {
         private readonly GameStateMachine _gameStateMachine;
-        private readonly GridDataService _gridService;
+        private readonly GridDataService _gridDataService;
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         private readonly BuffService _buffService;
@@ -22,7 +22,7 @@ namespace Services.StateMachine
         private List<Actor> _playerUnits;
 
         public GameLoopState(GameStateMachine gameStateMachine,
-                             GridDataService gridService, 
+                             GridDataService gridDataService, 
                              GameplayDataService gameplayService,
                              WaveBuilder waveBuilder,
                              BuffService buffService,
@@ -30,7 +30,7 @@ namespace Services.StateMachine
                              WindowsService windowsService)
         {
             _gameStateMachine = gameStateMachine;
-            _gridService = gridService;
+            _gridDataService = gridDataService;
             _gameplayService = gameplayService;
             _waveBuilder = waveBuilder;
             _buffService = buffService;
@@ -40,15 +40,15 @@ namespace Services.StateMachine
 
         public void Enter()
         {
-            _playerUnits = _gridService.PlayerUnits;
-            if (_gridService.PlayerUnits.Count == 0)
+            _playerUnits = _gridDataService.PlayerUnits;
+            if (_gridDataService.PlayerUnits.Count == 0)
             {
                 Lose();
                 return;
             }
             
             _profit = _gameplayService.Crowns;
-            _gridService.Save();
+            _gridDataService.Save();
             _buffService.ApplyBuffs(_playerUnits, _waveBuilder.EnemyUnits);
             _upgradeDataService.IncrementStats(_playerUnits);
             
@@ -83,7 +83,7 @@ namespace Services.StateMachine
 
         private void OnAllyDied()
         {
-            if (_gridService.PlayerUnits.All(a => a.IsDead))
+            if (_gridDataService.PlayerUnits.All(a => a.IsDead))
             {
                 Lose();
             }

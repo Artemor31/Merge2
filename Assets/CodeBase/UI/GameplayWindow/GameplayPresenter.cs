@@ -25,11 +25,11 @@ namespace UI.GameplayWindow
         [SerializeField] public string WaveText;
         [SerializeField] public BuffInfoPresenter BuffPresenter;
         [SerializeField] public SellButton SellButton;
+        [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
 
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
-        private WindowsService _windowsService;
         private GridLogicService _gridService;
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
@@ -43,7 +43,6 @@ namespace UI.GameplayWindow
             _gridService = ServiceLocator.Resolve<GridLogicService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            _windowsService = ServiceLocator.Resolve<WindowsService>();
             _gridViewService = ServiceLocator.Resolve<GridViewService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
@@ -54,37 +53,35 @@ namespace UI.GameplayWindow
             _gameplayService.OnCrownsChanged += OnCrownsChanged;
             _gridViewService.OnPlatformPressed += PlatformPressedHandler;
             _gridViewService.OnPlatformReleased += PlatformReleasedHandler;
-            
+
+#if UNITY_EDITOR
             CreatePlayerCards();
-        }
-        
-        private void PlatformPressedHandler(Platform platform)
-        {
-            if (platform.Busy)
-            {
-                SellButton.Show(_gridService.GetCostFor(platform.Actor.Data.Level));
-            }
+#endif
         }
 
         public override void OnShow()
         {
             Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
             OnCrownsChanged(_gameplayService.Crowns);
+            MenuWaveProgress.Show();
+        }
+
+        private void PlatformPressedHandler(Platform platform)
+        {
+            if (!platform.Busy) return;
+            int costFor = _gridService.GetCostFor(platform.Actor.Data.Level);
+            SellButton.Show(costFor);
         }
 
         private void PlatformReleasedHandler(Platform platform) => SellButton.Hide();
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
-        private void CloseClicked()
-        {
-            _windowsService.Close<GameCanvas>();
-            _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
-        }
+        private void CloseClicked() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
 
         private void BuffsClicked()
         {
-            BuffPresenter.gameObject.SetActive(!BuffPresenter.gameObject.activeInHierarchy);
             BuffPresenter.OnShow();
+            BuffPresenter.gameObject.SetActive(!BuffPresenter.gameObject.activeInHierarchy);
         }
 
         private void StartWave()

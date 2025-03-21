@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Infrastructure;
 using Services;
 using Services.GridService;
@@ -28,6 +29,7 @@ namespace UI.GameplayWindow
         private GameplayDataService _gameplayService;
 
         private int _selectedStars = 1;
+        private bool _adsRequested;
 
         public override void Init()
         {
@@ -50,7 +52,7 @@ namespace UI.GameplayWindow
         public override void OnShow()
         {
             UpdateCost();
-            _getUnitButton.gameObject.SetActive(_gameplayService.Wave % 3 == 0 && _gameplayService.Wave > 1);
+            _adsRequested = false;
         }
 
         private void UnitForAdsRequested()
@@ -63,6 +65,7 @@ namespace UI.GameplayWindow
         {
             _gridService.TryCreatePlayerUnit(_selectedStars);
             _getUnitButton.gameObject.SetActive(false);
+            _adsRequested = true;
         }
 
         private void ClickPrevUnit()
@@ -90,7 +93,18 @@ namespace UI.GameplayWindow
             {
                 _gridService.TryCreatePlayerUnit(_selectedStars);
                 UpdateCost();
+
+                if (_gameplayService.Crowns < CostOfUnit() && !_adsRequested)
+                {
+                    StartCoroutine(ShowGetUnitForAds());
+                }
             }
+        }
+
+        private IEnumerator ShowGetUnitForAds()
+        {
+            yield return new WaitForSeconds(1);
+            _getUnitButton.gameObject.SetActive(true);
         }
 
         private void CloseActorShop() => _unitShop.SetActive(false);
