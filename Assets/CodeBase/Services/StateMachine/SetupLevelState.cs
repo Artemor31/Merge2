@@ -24,7 +24,7 @@ namespace Services.StateMachine
             _windowsService.Show<ShopPresenter>();
             _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
             _gridLogicService.GridView.Enable(true);
-            _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(false);
+            _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(true);
         }
 
         public void Exit()

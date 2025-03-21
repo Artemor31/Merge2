@@ -48,7 +48,7 @@ namespace UI.GameplayWindow
 
         private void UnitForAdsRequested()
         {
-            if (_gridService.CanAddUnit() == false) return;
+            if (_gridService.CanAddUnit == false) return;
             YG2.RewardedAdvShow(AdsId.GetUnit, GetUnitForAds);
         }
 
@@ -79,7 +79,7 @@ namespace UI.GameplayWindow
 
         private void TryBuyUnit()
         {
-            if (_gridService.CanAddUnit() == false) return;
+            if (_gridService.CanAddUnit == false) return;
             if (_gameplayService.TryBuy(CostOfUnit()))
             {
                 _gridService.TryCreatePlayerUnit(_selectedStars);

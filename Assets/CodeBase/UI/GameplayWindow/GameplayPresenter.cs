@@ -27,34 +27,32 @@ namespace UI.GameplayWindow
         [SerializeField] public SellButton SellButton;
         [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
 
+        private GridViewService _gridService;
         private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
-        private GridViewService _gridService;
         private UnitsDatabase _unitsDatabase;
         private UnitCard _cardPrefab;
         private bool _refreshed;
-        private GridViewService _gridViewService;
 
         public override void Init()
         {
-            _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
-            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            _gridService = ServiceLocator.Resolve<GridViewService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
-            _gridViewService = ServiceLocator.Resolve<GridViewService>();
+            _gridService = ServiceLocator.Resolve<GridViewService>();
 
             StartWaveButton.onClick.AddListener(StartWave);
-            GreedButton.onClick.AddListener(AddMoney);
             ShowBuffsButton.onClick.AddListener(BuffsClicked);
             Close.onClick.AddListener(CloseClicked);
 
             _gameplayService.OnCrownsChanged += OnCrownsChanged;
-            _gridViewService.OnPlatformPressed += PlatformPressedHandler;
-            _gridViewService.OnPlatformReleased += PlatformReleasedHandler;
+            _gridService.OnPlatformPressed += PlatformPressedHandler;
+            _gridService.OnPlatformReleased += PlatformReleasedHandler;
 
 #if UNITY_EDITOR
+            GreedButton.onClick.AddListener(AddMoney);
+            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
+            _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
             CreatePlayerCards();
 #endif
         }
@@ -69,7 +67,7 @@ namespace UI.GameplayWindow
         private void PlatformPressedHandler(Platform platform)
         {
             if (!platform.Busy) return;
-            int costFor = _gridService.GetCostFor(platform.Actor.Data.Level);
+            int costFor = _gameplayService.GetCostFor(platform.Actor.Data.Level);
             SellButton.Show(costFor);
         }
 
@@ -106,7 +104,7 @@ namespace UI.GameplayWindow
 
         private void CardClicked(UnitCard card)
         {
-            if (_gridService.CanAddUnit())
+            if (_gridService.CanAddUnit)
             {
                 _gridService.TryCreatePlayerUnit(_unitCards[card]);
             }

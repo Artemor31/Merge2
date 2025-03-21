@@ -10,7 +10,11 @@ namespace Gameplay.Grid
     {
         [SerializeField] private List<GridLine> _lines;
 
-        private void Start() => ServiceLocator.Resolve<GameplayContainer>().Add(this);
+        private void Start()
+        {
+            ServiceLocator.Resolve<GameplayContainer>().Add(this);
+            _lines.ForEach(l => l.Disable());
+        }
 
         public void Disable() => _lines.ForEach(l => l.Disable());
 
@@ -23,9 +27,9 @@ namespace Gameplay.Grid
         [Serializable]
         private class GridLine
         {
-            [SerializeField] private List<GameObject> _objects;
-            public void Highlinght() => _objects.ForEach(obj => obj.SetActive(true));
-            public void Disable() => _objects.ForEach(obj => obj.SetActive(false));
+            [SerializeField] private List<Platform> _objects;
+            public void Highlinght() => _objects.ForEach(obj => obj.SetViewState(ViewState.ShowAttackLine));
+            public void Disable() => _objects.ForEach(obj => obj.SetViewState(ViewState.Normal));
         }
     }
 }

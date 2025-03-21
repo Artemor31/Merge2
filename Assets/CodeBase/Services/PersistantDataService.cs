@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Databases;
+using Databases.Data;
 using Infrastructure;
 using Services.Infrastructure;
 using Services.SaveProgress;
@@ -102,10 +103,11 @@ namespace Services
             OnProgressChanged?.Invoke(_progress);
         }
 
-        public bool IsOpened(Mastery mastery) => _progress.Opened.Any(p => p.Item2 == mastery);
+        public bool IsOpened(ActorData data) => IsOpened(data.Mastery, data.Race);
         public bool IsOpened(Race race) => _progress.Opened.Any(p => p.Item1 == race);
-        public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
+        public bool IsOpened(Mastery mastery) => _progress.Opened.Any(p => p.Item2 == mastery);
         public bool IsOpened(Race race, Mastery mastery) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
+        public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
 
         public bool TryUpRows()
         {

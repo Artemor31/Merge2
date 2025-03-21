@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.Units;
+﻿using Gameplay.Units;
 using Infrastructure;
 using Services.GridService;
 using UnityEngine;
@@ -27,6 +26,8 @@ namespace Gameplay.Grid
             _viewService = ServiceLocator.Resolve<GridViewService>();
             Index = index;
             _state = ViewState.Normal;
+            gameObject.SetActive(true);
+            SetViewState(ViewState.Normal);
         }
 
         public void Clear()
@@ -57,9 +58,9 @@ namespace Gameplay.Grid
             }
         }
 
-        private void OnMouseDown() => _viewService.OnClicked(this);
-        private void OnMouseUp() => _viewService.OnReleased(this);
-        private void OnMouseEnter() => _viewService.OnHovered(this);
+        private void OnMouseDown() => _viewService.OnMouseDown(this);
+        private void OnMouseUp() => _viewService.OnMouseUp(this);
+        private void OnMouseEnter() => _viewService.OnMouseEnter(this);
     }
 
     public enum ViewState
