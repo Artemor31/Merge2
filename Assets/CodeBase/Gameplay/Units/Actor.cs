@@ -4,7 +4,7 @@ using Infrastructure;
 using UnityEngine;
 using Databases;
 using System;
-using Services.GridService;
+using Services.GridServices;
 using UnityEngine.AI;
 
 namespace Gameplay.Units

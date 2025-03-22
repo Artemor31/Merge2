@@ -29,7 +29,7 @@ namespace UI.GameplayWindow
             var buffsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<BuffsDatabase>();
             _raceImage.sprite = buffsDatabase.IconFor(data.Race);
             _masteryImage.sprite = buffsDatabase.IconFor(data.Mastery);
-            _level.text = data.Level.ToString();
+            _level.text = data.Level == 3 ? "MAX" : data.Level.ToString();
         }
 
         private void Update()

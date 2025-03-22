@@ -5,7 +5,7 @@ using System.Linq;
 using Gameplay.Units;
 using Infrastructure;
 using Services;
-using Services.GridService;
+using Services.GridServices;
 using Services.Infrastructure;
 using Services.StateMachine;
 using UI.Tutor;

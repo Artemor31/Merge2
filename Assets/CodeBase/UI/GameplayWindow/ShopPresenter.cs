@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Infrastructure;
 using Services;
-using Services.GridService;
+using Services.GridServices;
 using Services.SaveProgress;
 using TMPro;
 using UnityEngine;

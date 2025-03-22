@@ -1,4 +1,5 @@
 ﻿using Services.Infrastructure;
+using UnityEngine.SceneManagement;
 
 namespace Services.StateMachine
 {
@@ -19,8 +20,7 @@ namespace Services.StateMachine
 
         public void Enter()
         {
-            _sceneLoader.Load(MenuSceneName, () => _gameStateMachine.Enter<MenuState>());
-            
+            _sceneLoader.Load(MenuSceneName, LoadSceneMode.Single, () => _gameStateMachine.Enter<MenuState>());
             _windowsService.InitWindows();
         }
     }

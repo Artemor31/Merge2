@@ -6,7 +6,7 @@ using Gameplay.Units;
 using Infrastructure;
 using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using Services;
-using Services.GridService;
+using Services.GridServices;
 using UnityEngine;
 
 namespace Gameplay.Grid
@@ -16,7 +16,6 @@ namespace Gameplay.Grid
         public List<Platform> Platforms => _platforms;
         [SerializeField] private List<Platform> _platforms;
         [SerializeField] private Platform _selectPlatform;
-        [SerializeField] private List<GameObject> _gridDivs;
         [SerializeField] private Collider _collider;
         [SerializeField] private List<Platform> _bufferPlatforms;
 
@@ -27,16 +26,6 @@ namespace Gameplay.Grid
         {
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _gameplayContainer = ServiceLocator.Resolve<GameplayContainer>();
-            
-            for (int x = 0; x < size.x; x++)
-            {
-                for (int y = 0; y < size.y; y++)
-                {
-                    _platforms[x * size.y + y].gameObject.SetActive(true);
-                }
-
-                _gridDivs[x].gameObject.SetActive(true);
-            }
         }
 
         public void Enable(bool enable) => gameObject.SetActive(enable);

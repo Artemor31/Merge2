@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Infrastructure;
 using Services.Buffs;
-using Services.GridService;
+using Services.GridServices;
 using TMPro;
 using UnityEngine;
 

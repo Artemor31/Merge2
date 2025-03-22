@@ -6,26 +6,26 @@ namespace Services.Infrastructure
 {
     public class SceneLoader : IService
     {
-        public event Action OnSceneChanged; 
+        public event Action OnSceneChanged;
         private readonly ICoroutineRunner _coroutineRunner;
-
-        public SceneLoader(ICoroutineRunner coroutineRunner) =>
+        
+        public SceneLoader(ICoroutineRunner coroutineRunner) => 
             _coroutineRunner = coroutineRunner;
 
-        public void Load(string name, Action then = null) =>
-            _coroutineRunner.StartCoroutine(LoadScene(name, then));
+        public void Load(string name, LoadSceneMode mode = LoadSceneMode.Single, Action then = null) =>
+            _coroutineRunner.StartCoroutine(LoadScene(name, mode, then));
 
         public void Unload(string name, Action onUnloaded = null) =>
             _coroutineRunner.StartCoroutine(UnloadScene(name, onUnloaded));
 
-        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
+        private IEnumerator LoadScene(string nextScene, LoadSceneMode mode, Action onLoaded = null)
         {
-            var operation = SceneManager.LoadSceneAsync(nextScene);
+            var operation = SceneManager.LoadSceneAsync(nextScene, mode);
             while (!operation.isDone)
             {
                 yield return null;
             }
-            
+
             OnSceneChanged?.Invoke();
             onLoaded?.Invoke();
         }

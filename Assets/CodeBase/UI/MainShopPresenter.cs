@@ -56,8 +56,7 @@ namespace UI
 
         private void OpenCoinsClicked()
         {
-            if (_dataService.CrownsAtMax) return;
-            if (!_dataService.TryBuyGems(ChestCost)) return;
+            if (_dataService.CrownsAtMax || !_dataService.TryBuyGems(ChestCost)) return;
             _dataService.TryUpCrowns();
             UpdateCrownDescr();
             SetCrownsCost();
@@ -69,8 +68,7 @@ namespace UI
 
         private void OpenGridClicked()
         {
-            if (_dataService.RowsAtMax) return;
-            if (!_dataService.TryBuyGems(ChestCost)) return;
+            if (_dataService.RowsAtMax || !_dataService.TryBuyGems(GridUpCost())) return;
             _dataService.TryUpRows();
             UpdateRowsDescr();
             SetRowsCost();
@@ -128,5 +126,13 @@ namespace UI
             IEnumerable<(Race Key, Mastery mastery)> valueTuples = enumerable.Select(t => (t.keyValuePair.Key, t.mastery));
             return valueTuples.ToList();
         }
+        
+        private int GridUpCost() => _dataService.Rows switch
+        {
+            1 => 100,
+            2 => 300,
+            3 => 500,
+            _ => 99999
+        };
     }
 }

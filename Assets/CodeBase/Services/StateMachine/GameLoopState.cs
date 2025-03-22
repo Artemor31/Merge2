@@ -2,7 +2,7 @@
 using System.Linq;
 using Gameplay.Units;
 using Services.Buffs;
-using Services.GridService;
+using Services.GridServices;
 using Services.Infrastructure;
 using UI.GameplayWindow;
 using UI.UpgradeWindow;

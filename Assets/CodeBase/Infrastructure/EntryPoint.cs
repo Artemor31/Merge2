@@ -2,7 +2,7 @@
 using Gameplay.Units;
 using Services;
 using Services.Buffs;
-using Services.GridService;
+using Services.GridServices;
 using Services.Infrastructure;
 using Services.Resources;
 using Services.StateMachine;

@@ -1,6 +1,6 @@
 ﻿using Gameplay.Units;
 using Infrastructure;
-using Services.GridService;
+using Services.GridServices;
 using UnityEngine;
 
 namespace Gameplay.Grid

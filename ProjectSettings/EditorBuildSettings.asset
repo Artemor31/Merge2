@@ -9,9 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Root.unity
     guid: 619976cf6c2dd974493b0794d3033b50
   - enabled: 1
-    path: Assets/Scenes/Gameplay/Gameplay.unity
+    path: Assets/Scenes/Gameplay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Menu/Menu.unity
+    path: Assets/Scenes/Menu.unity
     guid: d905b495c1c426a459ab84e728b8f2e7
+  - enabled: 1
+    path: Assets/Scenes/MainHall.unity
+    guid: 250387c68499ffa48ba812ed83e04684
+  - enabled: 1
+    path: Assets/Scenes/Entrance.unity
+    guid: c12cda032898856479db2263b3dce9a1
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

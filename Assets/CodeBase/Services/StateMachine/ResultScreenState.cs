@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using Gameplay.Units;
-using Services.GridService;
+using Services.GridServices;
 using Services.Infrastructure;
 using UI.GameplayWindow;
 using UI.ResultWindow;
@@ -28,7 +28,7 @@ namespace Services.StateMachine
         private readonly GameplayDataService _gameplayService;
         private readonly WaveBuilder _waveBuilder;
         private readonly PersistantDataService _persistantDataService;
-        private readonly GridService.GridService _gridLogicService;
+        private readonly GridServices.GridService _gridLogicService;
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly GameStateMachine _gameStateMachine;
         private readonly ProjectileService _projectileService;
@@ -38,7 +38,7 @@ namespace Services.StateMachine
                                  GameplayDataService gameplayService,
                                  WaveBuilder waveBuilder,
                                  PersistantDataService persistantDataService,
-                                 GridService.GridService gridLogicService,
+                                 GridServices.GridService gridLogicService,
                                  ICoroutineRunner coroutineRunner,
                                  GameStateMachine gameStateMachine,
                                  ProjectileService projectileService)

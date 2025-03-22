@@ -12,7 +12,7 @@ using UI.GameplayWindow;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Services.GridService
+namespace Services.GridServices
 {
     public class GridService : IService
     {

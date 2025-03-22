@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Services;
-using Services.GridService;
+using Services.GridServices;
 using Services.Infrastructure;
 using UnityEngine;
 

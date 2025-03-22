@@ -8,7 +8,7 @@ using Services.Infrastructure;
 using Services.SaveProgress;
 using UnityEngine;
 
-namespace Services.GridService
+namespace Services.GridServices
 {
     public class GridDataService : IService
     {
