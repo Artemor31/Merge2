@@ -11,7 +11,7 @@ namespace YG
 {
     public static partial class YG2
     {
-        public static SavesYG saves = new SavesYG();
+        public static Services.ProgressData.SavesYG saves = new Services.ProgressData.SavesYG();
         public static Action onDefaultSaves;
 
         private static bool isFirstSession;
@@ -21,7 +21,7 @@ namespace YG
         {
 #if UNITY_EDITOR
             // Reset static for ECS
-            saves = new SavesYG();
+            saves = new Services.ProgressData.SavesYG();
             onDefaultSaves = null;
 
 #endif
@@ -53,7 +53,7 @@ namespace YG
         {
             Message("Reset Save Progress");
             int idSave = saves.idSave;
-            saves = new SavesYG { idSave = idSave };
+            saves = new Services.ProgressData.SavesYG { idSave = idSave };
 
             if (Time.unscaledTime < 0.5f)
             {
@@ -138,7 +138,7 @@ namespace YG.Insides
 #if NJSON_STORAGE_YG2
                 YG2.saves = JsonConvert.DeserializeObject<SavesYG>(json);
 #else
-                YG2.saves = JsonUtility.FromJson<SavesYG>(json);
+                YG2.saves = JsonUtility.FromJson<Services.ProgressData.SavesYG>(json);
 #endif
             }
             else
@@ -172,7 +172,7 @@ namespace YG.Insides
 #if NJSON_STORAGE_YG2
                 YG2.saves = JsonConvert.DeserializeObject<SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
 #else
-                YG2.saves = JsonUtility.FromJson<SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
+                YG2.saves = JsonUtility.FromJson<Services.ProgressData.SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
 #endif
             }
         }
@@ -201,8 +201,8 @@ namespace YG.Insides
         {
             DataState cloudDataState = DataState.Exist;
             DataState localDataState = DataState.Exist;
-            SavesYG cloudData = new SavesYG();
-            SavesYG localData = new SavesYG();
+            Services.ProgressData.SavesYG cloudData = new Services.ProgressData.SavesYG();
+            Services.ProgressData.SavesYG localData = new Services.ProgressData.SavesYG();
 
             if (data != InfoYG.NO_DATA && !string.IsNullOrEmpty(data))
             {
@@ -216,7 +216,7 @@ namespace YG.Insides
 #if NJSON_STORAGE_YG2
                     cloudData = JsonConvert.DeserializeObject<SavesYG>(data);
 #else
-                    cloudData = JsonUtility.FromJson<SavesYG>(data);
+                    cloudData = JsonUtility.FromJson<Services.ProgressData.SavesYG>(data);
 #endif
                 }
                 catch (Exception e)
@@ -253,7 +253,7 @@ namespace YG.Insides
 #if NJSON_STORAGE_YG2
                     localData = JsonConvert.DeserializeObject<SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
 #else
-                    localData = JsonUtility.FromJson<SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
+                    localData = JsonUtility.FromJson<Services.ProgressData.SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
 #endif
                 }
                 catch (Exception e)
@@ -296,7 +296,7 @@ namespace YG.Insides
 #if NJSON_STORAGE_YG2
                 YG2.saves = JsonConvert.DeserializeObject<SavesYG>(data);
 #else
-                YG2.saves = JsonUtility.FromJson<SavesYG>(data);
+                YG2.saves = JsonUtility.FromJson<Services.ProgressData.SavesYG>(data);
 #endif
                 Message("Cloud Saves Partially Restored!");
             }
@@ -308,7 +308,7 @@ namespace YG.Insides
 #if NJSON_STORAGE_YG2
                 YG2.saves = JsonConvert.DeserializeObject<SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
 #else
-                YG2.saves = JsonUtility.FromJson<SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
+                YG2.saves = JsonUtility.FromJson<Services.ProgressData.SavesYG>(LocalStorage.GetKey(STORAGE_KEY));
 #endif
                 Message("Local Saves Partially Restored!");
             }

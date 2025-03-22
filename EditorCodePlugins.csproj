@@ -41,12 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Assets\CodeBase\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.deps.json" />
-    <None Include="Assets\CodeBase\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.xml" />
     <None Include="Assets\CodeBase\Plugins\EditorCodePlugins.asmdef" />
-    <None Include="Assets\CodeBase\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.xml" />
-    <None Include="Assets\CodeBase\Plugins\NaughtyAttributes\package.json" />
-    <None Include="Assets\CodeBase\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.deps.json" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditors\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

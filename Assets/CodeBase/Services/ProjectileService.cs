@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using Databases;
 using Gameplay.Units;
-using Gameplay.Units.Healths;
 using Gameplay.Units.Projectiles;
 using Infrastructure;
 using Services.Infrastructure;
-using Services.Resources;
 using UnityEngine;
 
 namespace Services

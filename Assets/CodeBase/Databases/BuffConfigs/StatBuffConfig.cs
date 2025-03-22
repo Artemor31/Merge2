@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Gameplay.Units;
-using Gameplay.Units.Healths;
 using UnityEngine;
 
 namespace Databases.BuffConfigs

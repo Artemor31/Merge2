@@ -41,6 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll" />
+    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
@@ -430,7 +432,7 @@
       <HintPath>C:\UnityProjects\Merge2\Library\PackageCache\com.unity.testtools.codecoverage\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\UnityProjects\Merge2\Assets\CodeBase\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\UnityProjects\Merge2\Assets\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>C:\UnityProjects\Merge2\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>

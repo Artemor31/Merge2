@@ -1,5 +1,7 @@
 ﻿using Services.Infrastructure;
 using UI;
+using UI.MenuWindow;
+using UI.TutorWindow;
 
 namespace Services.StateMachine
 {

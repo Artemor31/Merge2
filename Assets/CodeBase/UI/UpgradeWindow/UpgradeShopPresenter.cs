@@ -3,7 +3,8 @@ using Databases;
 using Databases.BuffConfigs;
 using Infrastructure;
 using Services;
-using Services.Resources;
+using Services.DataServices;
+using Services.Infrastructure;
 using UnityEngine;
 using YG;
 

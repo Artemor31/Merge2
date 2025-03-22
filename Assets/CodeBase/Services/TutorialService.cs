@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Services.Infrastructure;
-using UI.Tutor;
+using Services.ProgressData;
+using UI.TutorWindow;
 
 namespace Services
 {

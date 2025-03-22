@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using Databases;
-using Databases.Data;
 using Gameplay.Grid;
 using Gameplay.Units;
 using Services.Infrastructure;
-using Services.Resources;
 using UI.GameplayWindow;
+using UI.WorldSpace;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -94,12 +93,10 @@ namespace Services
             return rank;
         }
 
-        public GridView CreateGridView(Vector2Int size)
+        public GridView CreateGridView()
         {
             GridView prefab = Load<GridView>(AssetsPath.GridView);
-            GridView gridView = Object.Instantiate(prefab);
-            gridView.Init(size);
-            gridView.transform.position = _levelDatabase.GridPosition;
+            GridView gridView = Object.Instantiate(prefab, _levelDatabase.GridPosition, quaternion.identity);
             return gridView;
         }
 

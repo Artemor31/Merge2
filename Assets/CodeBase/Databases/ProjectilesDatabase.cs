@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Gameplay.Units.Healths;
+using Gameplay.Units;
 using Gameplay.Units.Projectiles;
 using UnityEngine;
 

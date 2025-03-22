@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Services.Buffs;
-using Services.GridServices;
+using Services.DataServices;
 using Services.Infrastructure;
 using UI.UpgradeWindow;
 using UnityEngine;
@@ -21,7 +20,7 @@ namespace Services.StateMachine
                                 GridDataService gridDataService,
                                 GridDataService service,
                                 GameplayDataService gameplayData,
-                                GridServices.GridService gridLogicService,
+                                GridService gridLogicService,
                                 BuffService buffService,
                                 UpgradeDataService upgradeDataService,
                                 PersistantDataService persistantDataService,

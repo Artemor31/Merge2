@@ -41,34 +41,34 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll" />
+    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Editor\TreeLib\TreeViewWithTreeModel.cs" />
-    <Compile Include="Assets\Plugins\Editor\OptimizerUtils.cs" />
-    <Compile Include="Assets\Plugins\EasyFpsCounter\Editor\EasyFpsEditor.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\BuildLogs\BuildLogs.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\TextureOptimizations\TextureTree.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\ModelOptimizations\ModelTree.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\AudioOptimizations\AudioOptimization.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\ModelOptimizations\ModelTreeItem.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\BuildLogs\BuildLogTreeItem.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\ExportOptimizations.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\ModelOptimizations\ModelOptimization.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\TextureOptimizations\TextureTreeItem.cs" />
-    <Compile Include="Assets\Plugins\Editor\TreeLib\TreeExtensionMethods.cs" />
-    <Compile Include="Assets\Plugins\EasyFpsCounter\Editor\EasyFpsManager.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\AudioOptimizations\AudioTreeItem.cs" />
-    <Compile Include="Assets\Plugins\Editor\TreeLib\TreeElement.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\AudioOptimizations\AudioTree.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\BuildLogs\BuildLogTree.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\About.cs" />
-    <Compile Include="Assets\Plugins\Editor\WindowComponents\TextureOptimizations\TextureOptimization.cs" />
-    <Compile Include="Assets\Plugins\Editor\TreeLib\TreeModel.cs" />
-    <Compile Include="Assets\Plugins\Editor\TreeLib\TreeElementUtility.cs" />
-    <Compile Include="Assets\Plugins\Editor\OptimizerWindow.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\ModelOptimizations\ModelOptimization.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\AudioOptimizations\AudioTreeItem.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\BuildLogs\BuildLogTreeItem.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\BuildLogs\BuildLogTree.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\AudioOptimizations\AudioOptimization.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\OptimizerWindow.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\OptimizerUtils.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\ExportOptimizations.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\ModelOptimizations\ModelTree.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\TextureOptimizations\TextureTreeItem.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\TreeLib\TreeElementUtility.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\ModelOptimizations\ModelTreeItem.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\TreeLib\TreeModel.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\TextureOptimizations\TextureTree.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\About.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\TextureOptimizations\TextureOptimization.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\TreeLib\TreeElement.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\BuildLogs\BuildLogs.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\WindowComponents\AudioOptimizations\AudioTree.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\TreeLib\TreeExtensionMethods.cs" />
+    <Compile Include="Assets\Plugins\Optimizer\Editor\TreeLib\TreeViewWithTreeModel.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UnityEditors\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -451,7 +451,7 @@
       <HintPath>C:\UnityProjects\Merge2\Library\PackageCache\com.unity.testtools.codecoverage\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\UnityProjects\Merge2\Assets\CodeBase\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\UnityProjects\Merge2\Assets\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>C:\UnityProjects\Merge2\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
@@ -1046,17 +1046,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{4bde428d-790d-87c2-c138-9cd16588bb1b}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
-    <ProjectReference Include="NaughtyAttributes.Core.csproj">
-      <Project>{e0e6b62f-e8b0-bae6-2e42-ce33b390c5da}</Project>
-      <Name>NaughtyAttributes.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="AssetUsageDetector.Editor.csproj">
       <Project>{bd517a44-4263-07bc-baef-a2ca47f92650}</Project>
       <Name>AssetUsageDetector.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
+      <Project>{fc32db46-1572-ee89-1069-38abcad252b1}</Project>
+      <Name>NaughtyAttributes.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.PlayerPrefsEditor.EditorResources.csproj">
       <Project>{f7ae7cb0-d161-889a-5849-f8b22080c0e0}</Project>
@@ -1066,9 +1062,9 @@
       <Project>{a0ae406a-aea6-ce10-d469-e938c9f71d63}</Project>
       <Name>Unity.PlayerPrefsEditor.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
-      <Project>{fc32db46-1572-ee89-1069-38abcad252b1}</Project>
-      <Name>NaughtyAttributes.Editor</Name>
+    <ProjectReference Include="NaughtyAttributes.Core.csproj">
+      <Project>{e0e6b62f-e8b0-bae6-2e42-ce33b390c5da}</Project>
+      <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,17 +1,17 @@
 ﻿using Gameplay.Grid;
-using Services.GridServices;
 using Services.Infrastructure;
 using UI.GameplayWindow;
+using UI.WorldSpace;
 
 namespace Services.StateMachine
 {
     public class SetupLevelState : IExitableState
     {
         private readonly WindowsService _windowsService;
-        private readonly GridServices.GridService _gridLogicService;
+        private readonly GridService _gridLogicService;
         private readonly GameplayContainer _gameplayContainer;
 
-        public SetupLevelState(WindowsService windowsService, GridServices.GridService gridLogicService, GameplayContainer gameplayContainer)
+        public SetupLevelState(WindowsService windowsService, GridService gridLogicService, GameplayContainer gameplayContainer)
         {
             _windowsService = windowsService;
             _gridLogicService = gridLogicService;

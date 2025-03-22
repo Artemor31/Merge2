@@ -1,7 +1,7 @@
 ﻿using System;
-using Newtonsoft.Json;
+using Services.DataServices;
 using Services.Infrastructure;
-using Services.SaveProgress;
+using Services.ProgressData;
 using UI;
 using UnityEngine;
 using YG;
@@ -31,7 +31,7 @@ namespace Services
         private void SaveEditor<TData>(string path, TData data) where TData : SaveData
         {
             data.Serialize();
-            PlayerPrefs.SetString(path, JsonConvert.SerializeObject(data));
+            PlayerPrefs.SetString(path, JsonUtility.ToJson(data));
         }
 
         private TData RestoreEditor<TData>(string path) where TData : SaveData, new()
@@ -42,7 +42,7 @@ namespace Services
             }
             
             string json = PlayerPrefs.GetString(path);
-            TData data = JsonConvert.DeserializeObject<TData>(json);
+            TData data = JsonUtility.FromJson<TData>(json);
             data.Deserialize();
             return data;
         }
@@ -63,7 +63,7 @@ namespace Services
                 return new TData();
             }
 
-            TData data = JsonConvert.DeserializeObject<TData>(json);
+            TData data = JsonUtility.FromJson<TData>(json);
             data.Deserialize();
             return data;
         }
@@ -73,12 +73,12 @@ namespace Services
             data.Serialize();
             Type type = data.GetType();
 
-            if (type == typeof(TutorData)) YG2.saves.TutorData = JsonConvert.SerializeObject(data);
-            else if (type == typeof(GridProgress)) YG2.saves.GridProgress = JsonConvert.SerializeObject(data);
-            else if (type == typeof(PersistantProgress)) YG2.saves.PersistantProgress = JsonConvert.SerializeObject(data);
-            else if (type == typeof(UpgradeProgress)) YG2.saves.UpgradeProgress = JsonConvert.SerializeObject(data);
-            else if (type == typeof(WaveRewardData)) YG2.saves.WaveRewardData = JsonConvert.SerializeObject(data);
-            else if (type == typeof(GameplayProgress) && path == GameplayDataService.StoryData) YG2.saves.StoryGameplayProgress = JsonConvert.SerializeObject(data);
+            if (type == typeof(TutorData)) YG2.saves.TutorData = JsonUtility.ToJson(data);
+            else if (type == typeof(GridProgress)) YG2.saves.GridProgress = JsonUtility.ToJson(data);
+            else if (type == typeof(PersistantProgress)) YG2.saves.PersistantProgress = JsonUtility.ToJson(data);
+            else if (type == typeof(UpgradeProgress)) YG2.saves.UpgradeProgress = JsonUtility.ToJson(data);
+            else if (type == typeof(WaveRewardData)) YG2.saves.WaveRewardData = JsonUtility.ToJson(data);
+            else if (type == typeof(GameplayProgress) && path == GameplayDataService.StoryData) YG2.saves.StoryGameplayProgress = JsonUtility.ToJson(data);
             
             YG2.SaveProgress();
         }
