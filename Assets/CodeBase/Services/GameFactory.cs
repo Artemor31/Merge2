@@ -3,7 +3,6 @@ using Databases;
 using Gameplay.Grid;
 using Gameplay.Units;
 using Services.Infrastructure;
-using UI.GameplayWindow;
 using UI.WorldSpace;
 using Unity.Mathematics;
 using UnityEngine;

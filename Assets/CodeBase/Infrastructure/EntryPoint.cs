@@ -4,8 +4,6 @@ using Services;
 using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
-using UI;
-using UI.UpgradeWindow;
 using UnityEngine;
 
 namespace Infrastructure

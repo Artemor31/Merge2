@@ -24,11 +24,9 @@ namespace UI.WaveSlider
         public override void Init()
         {
             _waveService = ServiceLocator.Resolve<WaveRewardsService>();
-            _waveService.OnRewardCollected += HandleRewardCollected;
             Show();
         }
 
-        private void HandleRewardCollected(int waveWithReward) => Show();
         private void Start() => Show();
 
         public void Show()

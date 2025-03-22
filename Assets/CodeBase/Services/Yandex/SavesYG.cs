@@ -1,4 +1,4 @@
-﻿namespace Services.ProgressData
+﻿namespace YG
 {
     public partial class SavesYG
     {

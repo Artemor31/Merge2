@@ -10,8 +10,6 @@ namespace Services
 {
     public class WaveRewardsService : IService
     {
-        public event Action<int> OnRewardCollected;
-        
         private const string SavePath = "WaveRewardData";
         private readonly PersistantDataService _persistantDataService;
         private readonly WaveRewardsDatabase _waveRewardsDatabase;
@@ -24,7 +22,8 @@ namespace Services
                                   DatabaseProvider databaseProvider,
                                   GameStateMachine gameStateMachine,
                                   GameplayDataService gameplayDataService,
-                                  SaveService saveService, WindowsService windowsService)
+                                  SaveService saveService, 
+                                  WindowsService windowsService)
         {
             _waveRewardsDatabase = databaseProvider.GetDatabase<WaveRewardsDatabase>();
             _persistantDataService = persistantDataService;
