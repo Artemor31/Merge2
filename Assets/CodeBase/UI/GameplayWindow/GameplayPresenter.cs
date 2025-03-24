@@ -67,7 +67,7 @@ namespace UI.GameplayWindow
         private void PlatformPressedHandler(Platform platform)
         {
             if (!platform.Busy) return;
-            int costFor = _gameplayService.GetCostFor(platform.Actor.Data.Level);
+            int costFor = _gameplayService.GetCostFor(platform.Data.Level);
             SellButton.Show(costFor);
         }
 

@@ -10,6 +10,8 @@ namespace Gameplay.Grid
     public class GridView : MonoBehaviour
     {
         public List<Platform> Platforms => _platforms;
+        public List<Platform> StashPlatforms => _bufferPlatforms;
+
         [SerializeField] private List<Platform> _platforms;
         [SerializeField] private Platform _selectPlatform;
         [SerializeField] private Collider _collider;
@@ -20,11 +22,16 @@ namespace Gameplay.Grid
         private GameplayContainer _gameplayContainer;
         
         public void Enable(bool enable) => gameObject.SetActive(enable);
-        
-        private void OnEnable()
+
+        public void Init(int count)
         {
             _gridDataService = ServiceLocator.Resolve<GridDataService>();
             _gameplayContainer = ServiceLocator.Resolve<GameplayContainer>();
+            
+            for (int i = 0; i < count; i++)
+            {
+                _platforms[i].gameObject.SetActive(true);
+            }
         }
         
         public void SetState(ViewState state, Platform platform)
@@ -33,6 +40,7 @@ namespace Gameplay.Grid
             {
                 case ViewState.Normal:
                 {
+                    //_bufferParent.SetActive(false);
                     _gameplayContainer.Get<EnemyGrid>().Disable();
                     foreach (Platform item in _platforms)
                     {
@@ -43,9 +51,10 @@ namespace Gameplay.Grid
                 }
                 case ViewState.ShowSame:
                 {
+                    //_bufferParent.SetActive(true);
                     foreach (Platform item in _platforms)
                     {
-                        if (item.Actor?.Data == platform.Actor?.Data && item != platform)
+                        if (item.Data == platform.Data && item != platform)
                         {
                             item.SetViewState(ViewState.ShowSame);
                         }

@@ -63,7 +63,7 @@ namespace UI.ShopWindow
         }
 
         private void SetCrownsCost() => _coinsCost.text = _dataService.CrownsAtMax ? Max : ChestCost.ToString();
-        private void SetRowsCost() => _gridCost.text = _dataService.RowsAtMax ? Max : ChestCost.ToString();
+        private void SetRowsCost() => _gridCost.text = _dataService.RowsAtMax ? Max : GridUpCost().ToString();
         private void SetChestCost() => _chestCost.text = ChestCost.ToString();
 
         private void OpenGridClicked()

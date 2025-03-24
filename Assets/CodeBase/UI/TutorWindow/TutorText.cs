@@ -44,7 +44,7 @@ namespace UI.TutorWindow
                 case TextAllignment.Bottom:
                     _view.anchorMax = new Vector2(0.5f, 0f);
                     _view.anchorMin = new Vector2(0.5f, 0f);
-                    _view.anchoredPosition = new Vector2(0, -800);
+                    _view.anchoredPosition = new Vector2(0, -500);
                     break;
             }
         }

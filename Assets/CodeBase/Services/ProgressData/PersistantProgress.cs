@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Databases;
+using UnityEngine;
+using UnityEngine.LowLevelPhysics;
 
 namespace Services.ProgressData
 {
@@ -18,13 +20,20 @@ namespace Services.ProgressData
 
         public override void Serialize()
         {
-            Races = new int[Opened.Count];
-            Masteries = new int[Opened.Count];
-
-            for (int i = 0; i < Opened.Count; i++)
+            var uniqOpened = new List<(Race, Mastery)>();
+            foreach (var opened in Opened)
             {
-                Races[i] = (int)Opened[i].Item1;
-                Masteries[i] = (int)Opened[i].Item2;
+                if (uniqOpened.Contains(opened)) continue;
+                uniqOpened.Add(opened);
+            }
+            
+            Races = new int[uniqOpened.Count];
+            Masteries = new int[uniqOpened.Count];
+
+            for (int i = 0; i < uniqOpened.Count; i++)
+            {
+                Races[i] = (int)uniqOpened[i].Item1;
+                Masteries[i] = (int)uniqOpened[i].Item2;
             }
 
             if (BonusCrowns > 10)
@@ -35,9 +44,20 @@ namespace Services.ProgressData
 
         public override void Deserialize()
         {
-            for (int i = 0; i < Races.Length; i++)
+            Opened = new();
+            int min = Math.Min(Races.Length, Masteries.Length);
+            for (int i = 0; i < min; i++)
             {
-                Opened[i] = ((Race)Races[i], (Mastery)Masteries[i]);
+                int race = Races[i];
+                int mastery = Masteries[i];
+                
+                if (Opened.Contains(((Race)race, (Mastery)mastery)))
+                {
+                    Debug.LogError("contains = " + race + ":" + mastery);
+                    continue;
+                }
+                
+                Opened.Add(((Race)race, (Mastery)mastery));
             }
         }
     }

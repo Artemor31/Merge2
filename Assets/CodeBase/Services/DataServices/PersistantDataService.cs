@@ -91,7 +91,6 @@ namespace Services.DataServices
 
         private void Save()
         {
-            _progress.Serialize();
             _saveService.Save(SavePath, _progress);
         }
 

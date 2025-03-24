@@ -92,10 +92,11 @@ namespace Services
             return rank;
         }
 
-        public GridView CreateGridView()
+        public GridView CreateGridView(int count)
         {
             GridView prefab = Load<GridView>(AssetsPath.GridView);
-            GridView gridView = Object.Instantiate(prefab, _levelDatabase.GridPosition, quaternion.identity);
+            GridView gridView = Object.Instantiate(prefab, _levelDatabase.GridPosition, _levelDatabase.GridRotation);
+            gridView.Init(count);
             return gridView;
         }
 

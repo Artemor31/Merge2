@@ -133,13 +133,13 @@ namespace UI.TutorWindow
             
             _logicService.OnPlayerFieldChanged -= ShowBuffButton;
             AwaitClickedAndHighlight("BuffButton", HideBuffButton);
-            _text.ShowText(12);
+            _text.ShowText(2, TextAllignment.Bottom);
         }
 
         private void HideBuffButton()
         {
             AwaitClickedAndHighlight("BuffButton", Step4_2WarriorsBought);
-            _text.ShowText(13);
+            _text.ShowText(3, TextAllignment.Bottom);
         }
         
 
@@ -153,7 +153,7 @@ namespace UI.TutorWindow
             }
             else
             {
-                _text.ShowText(2);
+                _text.ShowText(4, TextAllignment.Bottom);
                 TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
                 TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
                 _finger.MoveBetween(currentView, currentView2);
@@ -167,7 +167,7 @@ namespace UI.TutorWindow
             {
                 _logicService.OnPlayerFieldChanged -= Step5_WarriorsMerged;
                 HighlightObject("GameplayFight");
-                _text.ShowText(3);
+                _text.ShowText(5, TextAllignment.Bottom);
 
                 DoThenStateIs(typeof(GameLoopState), () =>
                 {
@@ -178,18 +178,15 @@ namespace UI.TutorWindow
             }
         }
 
-        private void Step7_FightEnded()
-        {
-            DoThenStateIs(typeof(ResultScreenState), () => StartCoroutine(AwaitViewLoad()));
-        }
+        private void Step7_FightEnded() => DoThenStateIs(typeof(ResultScreenState), () => StartCoroutine(AwaitViewLoad()));
 
         private IEnumerator AwaitViewLoad()
         {
             yield return _waitHalfSecond;
             yield return _waitHalfSecond;
             yield return _waitHalfSecond;
-            _text.ShowText(4, TextAllignment.Bottom);
             AwaitClickedAndHighlight("WinNext", Step8_Level2StartLoad);
+            _tutorialService.InTutor = false;
         }
 
         private void Step8_Level2StartLoad()
@@ -198,7 +195,7 @@ namespace UI.TutorWindow
             _finger.Disable();
             DoThenStateIs(typeof(SetupLevelState), () =>
             {
-                _text.ShowText(5);
+                _text.ShowText(6, TextAllignment.Bottom);
                 AwaitClickedAndHighlight("GameplayFight", Step10_Level2Started);
             });
         }
@@ -212,35 +209,17 @@ namespace UI.TutorWindow
 
         private void Step12_WaitLose()
         {
-            _tutorialService.InTutor = false;
-            DoThenStateIs(typeof(ResultScreenState), () => StartCoroutine(AwaitViewLoad2()));
+            FreeAllButtons();
+            DoThenStateIs(typeof(SetupLevelState), AwaitViewLoad2);
         }
 
-        private IEnumerator AwaitViewLoad2()
-        {
-            yield return _waitHalfSecond;
-            yield return _waitHalfSecond;
-            yield return _waitHalfSecond;
-            _text.ShowText(6, TextAllignment.Bottom);
-            //AwaitClickedAndHighlight("LoseNext", Step13_MenuLoaded);
-            AwaitClickedAndHighlight("LoseNext", ClickExit);
-        }
-
-        private void ClickExit()
-        {
-            AwaitClickedAndHighlight("CloseGame", ClickExitConfirm);
-        }
-
-        private void ClickExitConfirm()
-        {
-            AwaitClickedAndHighlight("CloseGameConfirm", Step13_MenuLoaded);
-        }
-
-        private void Step13_MenuLoaded()
+        private void AwaitViewLoad2()
         {
             _text.ShowText(7);
-            AwaitClickedAndHighlight("BottmShop", Step14);
+            AwaitClickedAndHighlight("ExitToMenu", Step13_MenuLoaded);
         }
+
+        private void Step13_MenuLoaded() => AwaitClickedAndHighlight("BottmShop", Step14);
 
         private void Step14()
         {
@@ -249,34 +228,22 @@ namespace UI.TutorWindow
             AwaitClickedAndHighlight("BuyChest", Step15_ShopTabOpened);
         }
 
-        private void Step15_ShopTabOpened()
-        {
-            _text.ShowText(9, TextAllignment.Bottom);
-            AwaitClickedAndHighlight("ConfirmChest", Step15_2);
-        }
-        
+        private void Step15_ShopTabOpened() => AwaitClickedAndHighlight("ConfirmChest", Step15_2);
+
         private void Step15_2()
         {
             _persistantDataService.AddGems(100);
-            _text.ShowText(12, TextAllignment.Bottom);
+            _text.ShowText(9, TextAllignment.Bottom);
             AwaitClickedAndHighlight("BuyGrid", Step15_2_ShopChestTabOpened);
         }
 
-        private void Step15_2_ShopChestTabOpened()
-        {
-            _text.ShowText(10);
-            AwaitClickedAndHighlight("BottomUpgrade", Step16_UnitUnlocked);
-        }
-
-        private void Step16_UnitUnlocked()
-        {
-            StartCoroutine(PointToButton());
-        }
+        private void Step15_2_ShopChestTabOpened() => AwaitClickedAndHighlight("BottomUpgrade", Step16_UnitUnlocked);
+        private void Step16_UnitUnlocked() => StartCoroutine(PointToButton());
 
         private IEnumerator PointToButton()
         {
             _finger.Disable();
-            _text.ShowText(11);
+            _text.ShowText(10);
             yield return _waitHalfSecond;
 
             UpgradeShopPresenter upgradeShopPresenter = _windowService.Get<UpgradeShopPresenter>();

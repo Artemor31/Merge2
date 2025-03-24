@@ -2,6 +2,7 @@
 using UnityEngine;
 using Databases;
 using System;
+using System.Threading.Tasks;
 using Services;
 using UnityEngine.AI;
 
@@ -28,6 +29,8 @@ namespace Gameplay.Units
         private float _actTimer;
         private Health _health;
 
+        public void Dispose()=> View.Dispose();
+        
         public virtual void Initialize(ActorSkin view, ActorData data, ActorStats stats)
         {
             Data = data;
@@ -53,7 +56,6 @@ namespace Gameplay.Units
                 Died?.Invoke();
             }
         }
-
         
         protected bool CanFindTarget()
         {
@@ -83,16 +85,14 @@ namespace Gameplay.Units
 
         protected void LookAtTarget()
         {
-            
             Quaternion targetRotation = Quaternion.LookRotation(Target.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
         }
+        
         protected void ResetCooldown()
         {
             float part = Stats.ActCooldown * 0.2f;
             _actTimer = Stats.ActCooldown + UnityEngine.Random.Range(-part, part);
         }
-
-        public void Dispose()=> View.Dispose();
     }
 }

@@ -1,12 +1,19 @@
-﻿using Gameplay.Units;
+﻿using Databases;
+using Gameplay.Units;
 using Infrastructure;
 using Services;
 using UnityEngine;
 
 namespace Gameplay.Grid
 {
-    public sealed class Platform : MonoBehaviour
+    public class StashPlatform : Platform
     {
+        
+    }
+    
+    public class Platform : MonoBehaviour
+    {
+        public ActorData Data => Actor == null ? default : Actor.Data;
         public int Index { get; private set; }
         public Actor Actor { get; set; }
         public bool Busy => Actor;

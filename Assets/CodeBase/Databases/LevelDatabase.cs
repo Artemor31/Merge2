@@ -9,8 +9,9 @@ namespace Databases
     {
         public Vector3 GridPosition;
         public Vector3 SpawnerPosition;
-        public Vector2 SpawnerSize = new (5,3);
-        public Vector2 SpawnerDelta = new(1,1);
+        public Vector2 SpawnerSize = new(5, 3);
+        public Vector2 SpawnerDelta = new(1, 1);
+        public Quaternion GridRotation => Quaternion.Euler(0, 180, 0);
 
         public IEnumerable<Vector3> GetPositions()
         {

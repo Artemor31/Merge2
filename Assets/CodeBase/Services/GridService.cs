@@ -33,7 +33,7 @@ namespace Services
         
         private int _selected;
         private bool _dragging;
-        private int _hovered;
+        private int _hovered = -1;
 
         public GridService(IUpdateable updateable, GridDataService dataService,
                                CameraService cameraService, GameFactory gameFactory,
@@ -52,8 +52,8 @@ namespace Services
         
         public void CreatePlayerField()
         {
-            GridView = _gameFactory.CreateGridView();
             int openedCount = _dataService.GridSize.x * _dataService.GridSize.y;
+            GridView = _gameFactory.CreateGridView(openedCount);
             _dataService.RestoreData(GridView.Platforms.GetRange(0, openedCount));
             for (int i = 0; i < openedCount; i++)
             {
@@ -64,6 +64,11 @@ namespace Services
                 {
                     _gameFactory.CreatePlayerActor(data, GridView.Platforms[i]);
                 }
+            }
+
+            for (int i = 0; i < GridView.StashPlatforms.Count; i++)
+            {
+                GridView.StashPlatforms[i].Init(i);
             }
 
             OnPlayerFieldChanged?.Invoke();
@@ -127,16 +132,25 @@ namespace Services
             }
             else
             {
-                ended = _dataService.GetPlatform(_hovered);
-                if (ended.Free)
+                ended = _hovered == -1 ? null : _dataService.GetPlatform(_hovered);
+
+                if (ended != null)
                 {
-                    ended.Actor = started.Actor;
-                    started.Actor = null;
-                    ResetActorPosition(ended);
-                }
-                else if (started.Index != ended.Index && started.Actor.Data == ended.Actor.Data && started.Actor.Data.Level != 3)
-                {
-                    Merge(started, ended);
+                    if (ended.Free)
+                    {
+                        ended.Actor = started.Actor;
+                        started.Actor = null;
+                        ResetActorPosition(ended);
+                    }
+                    else if (started.Index != ended.Index && started.Actor.Data == ended.Actor.Data &&
+                             started.Actor.Data.Level != 3)
+                    {
+                        Merge(started, ended);
+                    }
+                    else
+                    {
+                        ResetActorPosition(started);
+                    }
                 }
                 else
                 {
@@ -144,7 +158,7 @@ namespace Services
                 }
             }
 
-            _hovered = 0;
+            _hovered = -1;
             _selected = 0;
             _dragging = false;
             OnPlatformReleased?.Invoke(ended);
