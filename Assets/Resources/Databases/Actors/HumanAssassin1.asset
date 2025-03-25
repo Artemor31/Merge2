@@ -18,16 +18,16 @@ MonoBehaviour:
     Mastery: 4
   Stats:
     Health: 70
-    Damage: 20
+    Damage: 15
     CritChance: 0.2
     CritValue: 2
     Vampirism: 0
     Defence: 0
     Range: 1.2
     ActCooldown: 1.3
-    MoveSpeed: 3
+    MoveSpeed: 4
   ViewData:
     BaseView: {fileID: 8652129761144634173, guid: 5e219ace06927e44c88164de3e106970, type: 3}
     Skin: {fileID: -8475109202112240594, guid: ce549758abfe8f143b0c7c5f34dba971, type: 3}
-  _dpm: 153,8462
-  _ratio: 0,455
+  _dpm: 115,3846
+  _ratio: 0,6066666

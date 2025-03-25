@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Gameplay.Units.Classes
@@ -6,7 +7,8 @@ namespace Gameplay.Units.Classes
     public class HealerActor : Actor
     {
         [SerializeField] private ParticleSystem _healVfxPrefab;
-        
+        private readonly WaitForSeconds _waitForSeconds = new(0.7f);
+
         private void Update()
         {
             if (IsDead) return;
@@ -23,7 +25,7 @@ namespace Gameplay.Units.Classes
 
                 if (CooldownUp)
                 {
-                    PerformAct();
+                    StartCoroutine(PerformAct());
                 }
             }
             else
@@ -34,12 +36,13 @@ namespace Gameplay.Units.Classes
 
         private void SpawnVFX(Vector3 point) => Instantiate(_healVfxPrefab, point, Quaternion.identity).Play();
 
-        private void PerformAct()
+        private IEnumerator PerformAct()
         {
             ResetCooldown();
             View.PerformAct();
             SpawnVFX(Target.transform.position + Vector3.up);
             Target.ChangeHealth(Stats.Damage, HealthContext.Heal);
+            yield return _waitForSeconds;
         }
 
         protected override bool NeedNewTarget() => true;
