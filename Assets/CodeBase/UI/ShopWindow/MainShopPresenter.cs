@@ -16,8 +16,6 @@ namespace UI.ShopWindow
     {
         private const int ChestCost = 100;
         private const string Max = "MAX";
-        private const string StartCrowns = "Бонусные короны за победу: +";
-        private const string StartGrid = "Количество рядов: ";
 
         [SerializeField] private Button _openChest;
         [SerializeField] private Button _buyGrid;
@@ -81,7 +79,7 @@ namespace UI.ShopWindow
             if (closed.Count == 0)
             {
                 _chestResult.gameObject.SetActive(true);
-                _chestResult.SetText("Все типы уже открыты.\r\nЖдите обновлений!");
+                _chestResult.SetText(AllOpenText);
                 _chestResult.SetMastery(null);
                 _chestResult.SetRace(null);
                 return;
@@ -133,6 +131,27 @@ namespace UI.ShopWindow
             2 => 300,
             3 => 500,
             _ => 99999
+        };
+        
+        private string AllOpenText => YG2.lang switch
+        {
+            "ru" => "Все типы уже открыты.\r\nЖдите обновлений!",
+            "tr" => "Tüm tipler halihazırda açık.\r\nGüncellemeleri bekleyin!",
+            _ => "All types are already open.\r\nWait for updates!"
+        };
+        
+        private string StartGrid => YG2.lang switch
+        {
+            "ru" => "Количество рядов: ",
+            "tr" => "Satır sayısı:",
+            _ => "Number of rows:"
+        };
+        
+        private string StartCrowns => YG2.lang switch
+        {
+            "ru" => "Бонусные короны за победу: +",
+            "tr" => "Kazananlara bonus taçlar: +",
+            _ => "Bonus crowns for winning: +"
         };
     }
 }
