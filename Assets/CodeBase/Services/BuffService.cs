@@ -70,7 +70,7 @@ namespace Services
                 }
             }
 
-            return _activeConfigs.Keys.Select(k => $"{k.Description}" + GetBuffArrow(_activeConfigs[k]/2, k.ForAllies));
+            return _activeConfigs.Keys.Select(k => $"{k.GetDescription()}" + GetBuffArrow(_activeConfigs[k]/2, k.ForAllies));
         }
 
         private string GetBuffArrow(int level, bool forAllies)

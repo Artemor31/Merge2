@@ -25,6 +25,11 @@ namespace Databases
     [Serializable]
     public struct TextData
     {
+        [Multiline]
         public string RusText;
+        [Multiline]
+        public string EnText;
+        [Multiline]
+        public string TurText;
     }
 }

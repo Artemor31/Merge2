@@ -181,6 +181,8 @@ MonoBehaviour:
         rank: 5
         score: 127000
         extraData: 
+  Localization:
+    setLanguageMod: 1
   Metrica:
     enable: 0
     metricaCounterID: 0

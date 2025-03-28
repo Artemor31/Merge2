@@ -16,6 +16,8 @@ MonoBehaviour:
   Race: 0
   Mastery: 3
   Description: "\u0417\u0430\u043C\u0435\u0434\u043B\u0435\u043D\u0438\u0435 \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F"
+  DescriptionEn: Slowing the movement
+  DescriptionTr: "Hareketi yava\u015Flatmak"
   ForAllies: 0
   BuffStat: 8
   BuffValue: 0.2

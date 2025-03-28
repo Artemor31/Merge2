@@ -5,6 +5,7 @@ using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
 using UnityEngine;
+using YG;
 
 namespace Infrastructure
 {
@@ -18,6 +19,8 @@ namespace Infrastructure
 
         private void Start()
         {
+            YG2.SwitchLanguage("en");
+            
             BindServices();
 
             if (_instance == null)

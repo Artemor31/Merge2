@@ -10,6 +10,7 @@ using TMPro;
 using UI.WaveSlider;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace UI.GameplayWindow
 {
@@ -22,7 +23,6 @@ namespace UI.GameplayWindow
         [SerializeField] public Button Close;
         [SerializeField] public TMP_Text Money;
         [SerializeField] public TMP_Text Wave;
-        [SerializeField] public string WaveText;
         [SerializeField] public BuffInfoPresenter BuffPresenter;
         [SerializeField] public SellButton SellButton;
         [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
@@ -109,5 +109,12 @@ namespace UI.GameplayWindow
                 _gridService.TryCreatePlayerUnit(_unitCards[card]);
             }
         }
+        
+        private string WaveText => YG2.lang switch
+        {
+            "ru" => "волна",
+            "tr" => "dalga",
+            _ => "wave"
+        };
     }
 }

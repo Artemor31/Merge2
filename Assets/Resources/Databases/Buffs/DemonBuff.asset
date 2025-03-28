@@ -16,6 +16,8 @@ MonoBehaviour:
   Race: 4
   Mastery: 0
   Description: "\u0423\u0441\u0438\u043B\u0435\u043D\u0438\u0435 \u0443\u0440\u043E\u043D\u0430"
+  DescriptionEn: Damage Boost
+  DescriptionTr: "Hasar Art\u0131\u015F\u0131"
   ForAllies: 1
   BuffStat: 2
   BuffValue: 0.05

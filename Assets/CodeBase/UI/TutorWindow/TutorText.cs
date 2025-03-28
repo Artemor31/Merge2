@@ -1,6 +1,8 @@
-﻿using Databases;
+﻿using System;
+using Databases;
 using TMPro;
 using UnityEngine;
+using YG;
 
 namespace UI.TutorWindow
 {
@@ -21,7 +23,16 @@ namespace UI.TutorWindow
 
         public void ShowText(int id, TextAllignment alignment = TextAllignment.Center)
         {
-            _text.text = _database.GetData(id).RusText;
+            TextData textData = _database.GetData(id);
+
+            string text = YG2.lang switch
+            {
+                "ru" => textData.RusText,
+                "tr" => textData.TurText,
+                _ => textData.EnText
+            };
+
+            _text.text = text;
             _view.gameObject.SetActive(true);
             MovePanel(alignment);            
             ResizeDarkPanel(id);
