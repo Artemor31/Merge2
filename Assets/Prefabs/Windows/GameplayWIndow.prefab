@@ -1193,7 +1193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1495040555313370978
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1620,7 +1620,6 @@ MonoBehaviour:
   Close: {fileID: 3229437092628337226}
   Money: {fileID: 121086854525791753}
   Wave: {fileID: 8128016873292902146}
-  WaveText: "\u0412\u043E\u043B\u043D\u0430:"
   BuffPresenter: {fileID: 7088709869098057208}
   SellButton: {fileID: 1860526162583733655}
   MenuWaveProgress: {fileID: 4701983534953506918}
@@ -4129,7 +4128,7 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1

@@ -112,9 +112,9 @@ namespace UI.GameplayWindow
         
         private string WaveText => YG2.lang switch
         {
-            "ru" => "волна",
-            "tr" => "dalga",
-            _ => "wave"
+            "ru" => "Dолна: ",
+            "tr" => "Dalga: ",
+            _ => "Wave: "
         };
     }
 }
