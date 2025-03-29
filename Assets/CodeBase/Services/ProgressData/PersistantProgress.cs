@@ -36,9 +36,9 @@ namespace Services.ProgressData
                 Masteries[i] = (int)uniqOpened[i].Item2;
             }
 
-            if (BonusCrowns > 10)
+            if (BonusCrowns > 20)
             {
-                BonusCrowns = 10;
+                BonusCrowns = 20;
             }
         }
 

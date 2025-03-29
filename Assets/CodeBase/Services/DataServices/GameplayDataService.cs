@@ -33,13 +33,7 @@ namespace Services.DataServices
             Save();
         }
         
-        public int GetCostFor(int level)
-        {
-            if (level == 1) return 7;
-
-            double value = Math.Pow(2, level - 1) * 7f;
-            return (int)value;
-        }
+        public int GetCostFor(int level) => level * 70;
 
         public bool TryBuy(int cost)
         {

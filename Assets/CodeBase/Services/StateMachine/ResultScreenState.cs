@@ -14,14 +14,14 @@ namespace Services.StateMachine
     {
         public readonly bool IsWin;
         public readonly bool Force;
-        
+
         public ResultScreenData(bool isWin, bool force)
         {
             IsWin = isWin;
             Force = force;
         }
     }
-    
+
     public class ResultScreenState : IState<ResultScreenData>
     {
         private readonly WindowsService _windowsService;
@@ -34,7 +34,7 @@ namespace Services.StateMachine
         private readonly GameStateMachine _gameStateMachine;
         private readonly ProjectileService _projectileService;
 
-        public ResultScreenState(WindowsService windowsService, 
+        public ResultScreenState(WindowsService windowsService,
                                  GridDataService gridDataService,
                                  GameplayDataService gameplayService,
                                  WaveBuilder waveBuilder,
@@ -57,27 +57,37 @@ namespace Services.StateMachine
 
         public void Enter(ResultScreenData data)
         {
+            CloseUI();
+            ClearField();
+            _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
+            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
+        }
+
+        private void ClearField()
+        {
+            _gridDataService.Save();
+            _gridLogicService.Dispose();
+            _projectileService.ClearField();
+        }
+
+        private void CloseUI()
+        {
             _windowsService.Close<GameCanvas>();
             _windowsService.Close<GameplayPresenter>();
             _windowsService.Close<ShopPresenter>();
-            _gridDataService.Save();
-            _gridLogicService.Dispose();
-            _persistantDataService.TrySetMaxWave(_gameplayService.Wave);
-            _projectileService.ClearField();
-            _coroutineRunner.StartCoroutine(ShowEndWindow(data.IsWin, data.Force));
         }
 
         private IEnumerator ShowEndWindow(bool isWin, bool force)
         {
-            yield return force ? null : new WaitForSeconds(1.2f);
+            yield return force ? null : new WaitForSeconds(0.7f);
             DisposeActors();
 
             if (force)
             {
                 _gameStateMachine.Enter<MenuState>();
-                yield break; 
+                yield break;
             }
-            
+
             if (isWin)
             {
                 _gameplayService.CompleteLevel();
@@ -106,40 +116,24 @@ namespace Services.StateMachine
 
         private ResultData CollectRewards(bool isWin)
         {
-            int sumCoins = 0;
             int count = _waveBuilder.EnemyUnits.Count(u => u.IsDead);
-            int levelsSum = _waveBuilder.EnemyUnits.Sum(u => u.Data.Level);
 
-            int crownsValue;
-            if (true)
+            int sumCoins = 0;
+            int crownsValue = 0;
+            int gems = 0;
+            if (isWin)
             {
-                if (isWin)
-                {
-                    if (_gameplayService.Wave < 20)
-                    {
-                        // old approach
-                        crownsValue = Random.Range(7, 12) * 2;
-                    }
-                    else
-                    {
-                        crownsValue = levelsSum + count / 2;
-                    }
-                }
-                else
-                {
-                    crownsValue = 2 * count + levelsSum / 10;
-                }
+                crownsValue = Random.Range(150, 450) * (_persistantDataService.Crowns / 100);
+                sumCoins = Random.Range(40, 100);
+                gems = (int)(count * 0.7f);
             }
-            
-            for (int i = 0; i < count; i++)
+            else if (count > 0)
             {
-                sumCoins += Random.Range(1, 4);
+                crownsValue = Random.Range(100, 200) * (_persistantDataService.Crowns / 100);
+                sumCoins = count * 5;
+                gems = count;
             }
 
-            var gems = count > 0 ? Random.Range(1, 6) : 0;
-
-            crownsValue += _persistantDataService.Crowns;
-            
             _persistantDataService.AddCoins(sumCoins);
             _persistantDataService.AddGems(gems);
             _gameplayService.AddCrowns(crownsValue);
@@ -148,13 +142,12 @@ namespace Services.StateMachine
             {
                 CrownsValue = crownsValue,
                 GemsValue = gems,
-                CoinsValue = sumCoins   
+                CoinsValue = sumCoins
             };
         }
 
         public void Enter()
         {
-            
         }
     }
 }

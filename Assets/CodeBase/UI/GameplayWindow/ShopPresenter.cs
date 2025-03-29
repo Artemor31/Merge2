@@ -25,6 +25,7 @@ namespace UI.GameplayWindow
         private GridService _gridService;
         private GameplayDataService _gameplayService;
 
+        private int CostOfUnit => 100;
         private int _selectedStars = 1;
         private bool _adsRequested;
 
@@ -80,12 +81,12 @@ namespace UI.GameplayWindow
         private void TryBuyUnit()
         {
             if (_gridService.CanAddUnit == false) return;
-            if (_gameplayService.TryBuy(CostOfUnit()))
+            if (_gameplayService.TryBuy(CostOfUnit))
             {
                 _gridService.TryCreatePlayerUnit(_selectedStars);
                 UpdateCost();
 
-                if (_gameplayService.Crowns < CostOfUnit() && !_adsRequested)
+                if (_gameplayService.Crowns < CostOfUnit && !_adsRequested)
                 {
                     StartCoroutine(ShowGetUnitForAds());
                 }
@@ -99,7 +100,6 @@ namespace UI.GameplayWindow
         }
 
         private void CloseActorShop() => _unitShop.SetActive(false);
-        private void UpdateCost() => _buyUnitCost.text = CostOfUnit().ToString();
-        private int CostOfUnit() => 10 + _gameplayService.Wave * 3;
+        private void UpdateCost() => _buyUnitCost.text = CostOfUnit.ToString();
     }
 }

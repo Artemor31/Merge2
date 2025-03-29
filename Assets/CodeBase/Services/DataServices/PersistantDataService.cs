@@ -122,9 +122,9 @@ namespace Services.DataServices
 
         public bool TryUpCrowns()
         {
-            if (_progress.BonusCrowns < 10)
+            if (_progress.BonusCrowns < 20)
             {
-                _progress.BonusCrowns += 2;
+                _progress.BonusCrowns += 4;
                 Save();
                 OnProgressChanged?.Invoke(_progress);
                 return true;
