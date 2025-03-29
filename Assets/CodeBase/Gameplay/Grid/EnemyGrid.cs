@@ -38,7 +38,7 @@ namespace Gameplay.Grid
         {
             [SerializeField] private List<Platform> _objects;
             public void Highlinght() => _objects.ForEach(obj => obj.SetViewState(ViewState.ShowAttackLine));
-            public void Disable() => _objects.ForEach(obj => obj.SetViewState(ViewState.Normal));
+            public void Disable() => _objects.ForEach(obj => obj.SetViewState(ViewState.Disabled));
         }
     }
 }

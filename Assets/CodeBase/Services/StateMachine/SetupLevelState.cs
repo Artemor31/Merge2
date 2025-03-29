@@ -31,6 +31,9 @@ namespace Services.StateMachine
         {
             _gridLogicService.GridView.Enable(false);
             _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(false);
+            
+            _windowsService.Close<GameplayPresenter>();
+            _windowsService.Close<BuffInfoPresenter>();
         }
     }
 }

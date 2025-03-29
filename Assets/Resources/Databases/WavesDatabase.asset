@@ -12,121 +12,139 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d468ca9e584777b5f69127fd2c7a25, type: 3}
   m_Name: WavesDatabase
   m_EditorClassIdentifier: 
-  TutorData:
-  - PowerLimit: 1
-    MaxLevel: 1
-    Masteries: 01000000
-    Races: 01000000
-  - PowerLimit: 10
-    MaxLevel: 2
-    Masteries: 0100000002000000
-    Races: 01000000
   _wavesData:
   - PowerLimit: 1
     MaxLevel: 1
-    Masteries: 01000000
-    Races: 01000000
+    Masteries: 0100
+    Races: 0100
+    LevelsAhead: 0
   - PowerLimit: 2
     MaxLevel: 1
-    Masteries: 0100000002000000
-    Races: 01000000
+    Masteries: 01000200
+    Races: 0100
+    LevelsAhead: 0
   - PowerLimit: 3
     MaxLevel: 1
-    Masteries: 0100000002000000
-    Races: 01000000
+    Masteries: 01000200
+    Races: 0100
+    LevelsAhead: 0
   - PowerLimit: 4
     MaxLevel: 1
-    Masteries: 0100000002000000
-    Races: 01000000
+    Masteries: 01000200
+    Races: 0100
+    LevelsAhead: 0
   - PowerLimit: 6
     MaxLevel: 1
-    Masteries: 0100000002000000
-    Races: 01000000
+    Masteries: 01000200
+    Races: 0100
+    LevelsAhead: 0
   - PowerLimit: 8
     MaxLevel: 1
-    Masteries: 01000000020000000400000003000000
-    Races: 02000000
+    Masteries: 0100020004000300
+    Races: 0200
+    LevelsAhead: 0
   - PowerLimit: 9
     MaxLevel: 2
-    Masteries: 01000000020000000400000003000000
-    Races: 02000000
+    Masteries: 0100020004000300
+    Races: 0200
+    LevelsAhead: 0
   - PowerLimit: 9
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 02000000
+    Masteries: 0100020003000400
+    Races: 0200
+    LevelsAhead: 0
   - PowerLimit: 11
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 02000000
+    Masteries: 0100020003000400
+    Races: 0200
+    LevelsAhead: 0
   - PowerLimit: 13
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 0100000002000000
+    Masteries: 0100020003000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 15
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 0100000002000000
+    Masteries: 0100020003000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 15
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 0100000002000000
+    Masteries: 0100020003000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 17
     MaxLevel: 2
-    Masteries: 0100000003000000
-    Races: 0100000002000000
+    Masteries: 01000300
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 17
     MaxLevel: 2
-    Masteries: 0100000003000000
-    Races: 0100000002000000
+    Masteries: 01000300
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 19
     MaxLevel: 2
-    Masteries: 010000000200000003000000
-    Races: 010000000200000003000000
+    Masteries: 010002000300
+    Races: 010002000300
+    LevelsAhead: 0
   - PowerLimit: 21
     MaxLevel: 2
-    Masteries: 0100000004000000
-    Races: 0100000002000000
+    Masteries: 01000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 21
     MaxLevel: 2
-    Masteries: 0100000004000000
-    Races: 0100000002000000
+    Masteries: 01000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 22
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 0100000002000000
+    Masteries: 0100020003000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 23
     MaxLevel: 2
-    Masteries: 01000000020000000300000004000000
-    Races: 0100000002000000
+    Masteries: 0100020003000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 24
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 0100000002000000
+    Masteries: 0100020003000400
+    Races: 01000200
+    LevelsAhead: 0
   - PowerLimit: 26
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 010000000200000003000000
+    Masteries: 0100020003000400
+    Races: 010002000300
+    LevelsAhead: 0
   - PowerLimit: 28
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 010000000200000003000000
+    Masteries: 0100020003000400
+    Races: 010002000300
+    LevelsAhead: 0
   - PowerLimit: 30
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 010000000200000003000000
+    Masteries: 0100020003000400
+    Races: 010002000300
+    LevelsAhead: 0
   - PowerLimit: 31
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 010000000200000003000000
+    Masteries: 0100020003000400
+    Races: 010002000300
+    LevelsAhead: 0
   - PowerLimit: 31
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 01000000020000000300000004000000
+    Masteries: 0100020003000400
+    Races: 0100020003000400
+    LevelsAhead: 0
   - PowerLimit: 32
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 01000000020000000300000004000000
+    Masteries: 0100020003000400
+    Races: 0100020003000400
+    LevelsAhead: 0
   - PowerLimit: 33
     MaxLevel: 3
-    Masteries: 01000000020000000300000004000000
-    Races: 01000000020000000300000004000000
+    Masteries: 0100020003000400
+    Races: 0100020003000400
+    LevelsAhead: 0

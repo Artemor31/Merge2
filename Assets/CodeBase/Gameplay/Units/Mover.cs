@@ -14,6 +14,7 @@ namespace Gameplay.Units
         {
             _animator = animator;
             _agent.speed = _speed = stats.MoveSpeed;
+            _agent.stoppingDistance = stats.Range * 0.8f;
             Stop();
         }
 

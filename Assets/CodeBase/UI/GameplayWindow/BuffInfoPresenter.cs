@@ -19,7 +19,11 @@ namespace UI.GameplayWindow
             _gridLogicService.OnPlayerFieldChanged += PlayerFieldChanged;
         }
 
-        public override void OnShow() => _description.text = CreteDescription();
+        public void Show()
+        {
+            gameObject.SetActive(!gameObject.activeInHierarchy);
+            _description.text = CreteDescription();
+        }
 
         private void PlayerFieldChanged()
         {

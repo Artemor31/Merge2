@@ -41,8 +41,8 @@ namespace UI.GameplayWindow
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _gridService = ServiceLocator.Resolve<GridService>();
 
-            StartWaveButton.onClick.AddListener(StartWave);
-            ShowBuffsButton.onClick.AddListener(BuffsClicked);
+            StartWaveButton.onClick.AddListener(() => _stateMachine.Enter<GameLoopState>());
+            ShowBuffsButton.onClick.AddListener(() => BuffPresenter.Show());
             Close.onClick.AddListener(CloseClicked);
 
             _gameplayService.OnCrownsChanged += OnCrownsChanged;
@@ -75,19 +75,6 @@ namespace UI.GameplayWindow
         private void AddMoney() => _gameplayService.AddCrowns(50);
         private void OnCrownsChanged(int money) => Money.text = money.ToString();
         private void CloseClicked() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
-
-        private void BuffsClicked()
-        {
-            BuffPresenter.OnShow();
-            BuffPresenter.gameObject.SetActive(!BuffPresenter.gameObject.activeInHierarchy);
-        }
-
-        private void StartWave()
-        {
-            BuffPresenter.gameObject.SetActive(false);
-            gameObject.SetActive(false);
-            _stateMachine.Enter<GameLoopState>();
-        }
 
         private void CreatePlayerCards()
         {

@@ -42,7 +42,7 @@ namespace Databases
         public float MoveSpeed;
     }
     
-    public enum Race
+    public enum Race : short
     {
         None = 0,
         Human = 1,
@@ -51,7 +51,7 @@ namespace Databases
         Demon = 4
     }
 
-    public enum Mastery
+    public enum Mastery : short
     {
         None = 0,
         Warrior = 1,

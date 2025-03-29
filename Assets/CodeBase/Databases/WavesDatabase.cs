@@ -11,7 +11,7 @@ namespace Databases
     {
         public List<WaveData> WavesData => _wavesData;
         [SerializeField] private List<WaveData> _wavesData;
-
+        
         [Button]
         public void FillFields()
         {

@@ -5,13 +5,13 @@ namespace Databases
     [Serializable]
     public struct ActorData
     {
-        public int Level;
+        public short Level;
         public Race Race;
         public Mastery Mastery;
 
         public ActorData(int level, Race race, Mastery mastery)
         {
-            Level = level;
+            Level = (short)level;
             Race = race;
             Mastery = mastery;
         }

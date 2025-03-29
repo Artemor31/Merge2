@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorsParent: {fileID: 805140043854063083}
   _prefab: {fileID: 999456032641914545, guid: 648844a506f60e5459edcf38e98faffa, type: 3}
-  _raceQueue: 01000000020000000300000004000000
+  _raceQueue: 0100020003000400
 --- !u!1 &2897471458532166631
 GameObject:
   m_ObjectHideFlags: 0

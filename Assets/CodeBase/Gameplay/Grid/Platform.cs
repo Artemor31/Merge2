@@ -78,6 +78,7 @@ namespace Gameplay.Grid
         Normal = 1,
         ShowSame = 2,
         ShowAttackLine = 3,
-        ShowSelected = 4
+        ShowSelected = 4,
+        Disabled = 5
     }
 }

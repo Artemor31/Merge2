@@ -4627,7 +4627,7 @@ MonoBehaviour:
       hi: 
   text: 
   ru: "\u041F\u0440\u0438\u0437\u0432\u0430\u0442\u044C"
-  en: Call
+  en: Summon
   tr: Arama
   az: 
   be: 
@@ -8458,6 +8458,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5494600835017786930, guid: 82435e510c97c894c95d079a7fa751c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1295763667}
+    - targetCorrespondingSourceObject: {fileID: 2582423718711707627, guid: 82435e510c97c894c95d079a7fa751c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2057337088}
     - targetCorrespondingSourceObject: {fileID: 3711810425453391531, guid: 82435e510c97c894c95d079a7fa751c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 924035138}
@@ -9656,6 +9659,190 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2057337084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2582423718711707627, guid: 82435e510c97c894c95d079a7fa751c1, type: 3}
+  m_PrefabInstance: {fileID: 1846087467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2057337086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8173206082634455729, guid: 82435e510c97c894c95d079a7fa751c1, type: 3}
+  m_PrefabInstance: {fileID: 1846087467}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057337084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2057337088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057337084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 2057337086}
+  uniqueFontTMP: {fileID: 0}
+  textLComponent: {fileID: 0}
+  info:
+    domainAutoLocalization: com
+    languages:
+      ru: 1
+      en: 1
+      tr: 1
+      az: 0
+      be: 0
+      he: 0
+      hy: 0
+      ka: 0
+      et: 0
+      fr: 0
+      kk: 0
+      ky: 0
+      lt: 0
+      lv: 0
+      ro: 0
+      tg: 0
+      tk: 0
+      uk: 0
+      uz: 0
+      es: 0
+      pt: 0
+      ar: 0
+      id: 0
+      ja: 0
+      it: 0
+      de: 0
+      hi: 0
+    fonts:
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
+      az: []
+      be: []
+      he: []
+      hy: []
+      ka: []
+      et: []
+      fr: []
+      kk: []
+      ky: []
+      lt: []
+      lv: []
+      ro: []
+      tg: []
+      tk: []
+      uk: []
+      uz: []
+      es: []
+      pt: []
+      ar: []
+      id: []
+      ja: []
+      it: []
+      de: []
+      hi: []
+    fontsTMP:
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
+      az: []
+      be: []
+      he: []
+      hy: []
+      ka: []
+      et: []
+      fr: []
+      kk: []
+      ky: []
+      lt: []
+      lv: []
+      ro: []
+      tg: []
+      tk: []
+      uk: []
+      uz: []
+      es: []
+      pt: []
+      ar: []
+      id: []
+      ja: []
+      it: []
+      de: []
+      hi: []
+    fontsSizeCorrect:
+      ru: 
+      en: 
+      tr: 
+      az: 
+      be: 
+      he: 
+      hy: 
+      ka: 
+      et: 
+      fr: 
+      kk: 
+      ky: 
+      lt: 
+      lv: 
+      ro: 
+      tg: 
+      tk: 
+      uk: 
+      uz: 
+      es: 
+      pt: 
+      ar: 
+      id: 
+      ja: 
+      it: 
+      de: 
+      hi: 
+  text: 
+  ru: "\u0421\u043B\u0443\u0447\u0430\u0439\u043D\u044B\u0439 \u043D\u043E\u0432\u044B\u0439
+    \u0431\u043E\u0435\u0446"
+  en: A random new fighter
+  tr: "Rastgele yeni bir sava\u015F\xE7\u0131"
+  az: 
+  be: 
+  he: 
+  hy: 
+  ka: 
+  et: 
+  fr: 
+  kk: 
+  ky: 
+  lt: 
+  lv: 
+  ro: 
+  tg: 
+  tk: 
+  uk: 
+  uz: 
+  es: 
+  pt: 
+  ar: 
+  id: 
+  ja: 
+  it: 
+  de: 
+  hi: 
+  changeOnlyFont: 0
+  fontNumber: 0
+  uniqueFont: {fileID: 0}
+  additionalText: {fileID: 0}
+  textHeight: 20
+  processTranslateLabel: 3/3 completed
+  componentTextField: 1
+  countLang: 3
 --- !u!224 &2059604640 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2772596866811356741, guid: f61ccf8a0bfc12c42a5013cf06ee8472, type: 3}
