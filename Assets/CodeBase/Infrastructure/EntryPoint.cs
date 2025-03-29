@@ -19,8 +19,21 @@ namespace Infrastructure
 
         private void Start()
         {
-            YG2.SwitchLanguage("en");
-            
+            string lang = YG2.lang;
+
+            switch (lang)
+            {
+                case "tr":
+                    YG2.SwitchLanguage("tr");
+                    break;
+                case "be" or "kk" or "uk" or "uz" or "ru":
+                    YG2.SwitchLanguage("ru");
+                    break;
+                default:
+                    YG2.SwitchLanguage("en");
+                    break;
+            }
+
             BindServices();
 
             if (_instance == null)
