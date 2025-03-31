@@ -76,7 +76,7 @@ namespace Gameplay.Units.Classes
 
         protected override void SearchNewTarget() => Target = SearchTarget.For(this)
                                                                           .SelectTargets(Side.Enemy)
-                                                                          .FilterBy(Strategy.OnSameLine)
+                                                                          .FilterBy(Strategy.Closest)
                                                                           .FirstOrDefault();
     }
 }

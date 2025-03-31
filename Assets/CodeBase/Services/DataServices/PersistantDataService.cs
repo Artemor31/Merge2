@@ -18,11 +18,10 @@ namespace Services.DataServices
 
         public int Coins => _progress.Coins;
         public int Gems => _progress.Gems;
-        public int Rows => _progress.OpenedRows;
-        public bool RowsAtMax => _progress.OpenedRows == 4;
-        public int Crowns => _progress.BonusCrowns;
-        public bool CrownsAtMax => _progress.BonusCrowns == 10;
-        public int MaxWave => _progress.MaxWave;
+        // public int Rows => _progress.OpenedRows;
+        // public bool RowsAtMax => _progress.OpenedRows == 4;
+        // public int Crowns => _progress.BonusCrowns;
+        // public bool CrownsAtMax => _progress.BonusCrowns == 10;
 
         private readonly PersistantProgress _progress;
         private readonly SaveService _saveService;
@@ -107,30 +106,30 @@ namespace Services.DataServices
         public bool IsOpened(Race race, Mastery mastery) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
         public bool IsOpened(Mastery mastery, Race race) => _progress.Opened.Any(p => p.Item1 == race && p.Item2 == mastery);
 
-        public bool TryUpRows()
-        {
-            if (Rows < 4)
-            {
-                _progress.OpenedRows++;
-                Save();
-                OnProgressChanged?.Invoke(_progress);
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool TryUpCrowns()
-        {
-            if (_progress.BonusCrowns < 20)
-            {
-                _progress.BonusCrowns += 4;
-                Save();
-                OnProgressChanged?.Invoke(_progress);
-                return true;
-            }
-            
-            return false;
-        }
+        // public bool TryUpRows()
+        // {
+        //     if (Rows < 4)
+        //     {
+        //         _progress.OpenedRows++;
+        //         Save();
+        //         OnProgressChanged?.Invoke(_progress);
+        //         return true;
+        //     }
+        //
+        //     return false;
+        // }
+        //
+        // public bool TryUpCrowns()
+        // {
+        //     if (_progress.BonusCrowns < 20)
+        //     {
+        //         _progress.BonusCrowns += 4;
+        //         Save();
+        //         OnProgressChanged?.Invoke(_progress);
+        //         return true;
+        //     }
+        //     
+        //     return false;
+        // }
     }
 }

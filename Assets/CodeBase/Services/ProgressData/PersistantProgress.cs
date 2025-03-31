@@ -11,8 +11,6 @@ namespace Services.ProgressData
     {
         public int Coins = 100;
         public int Gems;
-        public int OpenedRows = 1;
-        public int BonusCrowns;
         public int MaxWave;
         public int[] Races;
         public int[] Masteries;
@@ -34,11 +32,6 @@ namespace Services.ProgressData
             {
                 Races[i] = (int)uniqOpened[i].Item1;
                 Masteries[i] = (int)uniqOpened[i].Item2;
-            }
-
-            if (BonusCrowns > 20)
-            {
-                BonusCrowns = 20;
             }
         }
 

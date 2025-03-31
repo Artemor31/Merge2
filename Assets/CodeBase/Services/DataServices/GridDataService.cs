@@ -15,24 +15,18 @@ namespace Services.DataServices
         private const string StoryGridData = "StoryGridData";
         
         public List<Actor> PlayerUnits => GetPlayerUnits();
-        public Vector2Int GridSize => new(_persistantDataService.Rows, 5);
+        public Vector2Int GridSize => new(3, 5);
 
         private readonly SaveService _saveService;
-        private readonly PersistantDataService _persistantDataService;
         private GridProgress _gridProgress;
         private List<Platform> _platforms;
 
-        public GridDataService(SaveService saveService, PersistantDataService persistantDataService)
-        {
-            _saveService = saveService;
-            _persistantDataService = persistantDataService;
-        }
-
-        public ActorData ActorDataAt(int index) => 
-            _gridProgress.UnitIds.Count > index ? _gridProgress.UnitIds[index] : ActorData.None;
-        
+        public GridDataService(SaveService saveService) => _saveService = saveService;
+        public ActorData ActorDataAt(int index) => _gridProgress.UnitIds.Count > index ? _gridProgress.UnitIds[index] : ActorData.None;
         public Platform GetPlatform(int index) => _platforms[index];
-
+        public bool HasFreePlatform() => _platforms.FirstOrDefault(p => p.Free) != null;
+        public Platform RandomPlatform() => _platforms.Where(platform => platform.Free).Random();
+        
         public void RestoreData(List<Platform> platforms)
         {
             _platforms = platforms;
@@ -43,15 +37,6 @@ namespace Services.DataServices
                 _gridProgress.UnitIds.Add(ActorData.None);
         }
 
-        public bool TryGetFreePlatform(out Platform platform)
-        {
-            platform = _platforms.FirstOrDefault(p => p.Free);
-            return platform != null;
-        }
-
-        public Platform RandomPlatform() => 
-            _platforms.Where(platform => platform.Free).Random();
-
         public void Save()
         {
             for (int i = 0; i < _platforms.Count; i++)
@@ -60,12 +45,6 @@ namespace Services.DataServices
                 _gridProgress.UnitIds[i] = platform.Busy ? platform.Actor.Data : ActorData.None;
             }
             
-            _saveService.Save(StoryGridData, _gridProgress);
-        }
-
-        public void Reset()
-        {
-            _gridProgress = new GridProgress();
             _saveService.Save(StoryGridData, _gridProgress);
         }
 

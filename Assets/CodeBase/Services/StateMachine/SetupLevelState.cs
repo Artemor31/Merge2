@@ -23,13 +23,13 @@ namespace Services.StateMachine
             _windowsService.Show<GameplayPresenter>();
             _windowsService.Show<ShopPresenter>();
             _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
-            _gridLogicService.GridView.Enable(true);
+            _gridLogicService.EnableGridView(true);
             _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(true);
         }
 
         public void Exit()
         {
-            _gridLogicService.GridView.Enable(false);
+            _gridLogicService.EnableGridView(false);
             _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(false);
             
             _windowsService.Close<GameplayPresenter>();

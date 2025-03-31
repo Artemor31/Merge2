@@ -59,7 +59,7 @@ namespace Infrastructure
 
             PersistantDataService persistantDataService = new(saveService);
             GameplayDataService gameplayService = new(saveService);
-            GridDataService gridDataService = new(saveService, persistantDataService);
+            GridDataService gridDataService = new(saveService);
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
 
             GameFactory gameFactory = new(databaseProvider, assetsProvider, _windowsService, this);

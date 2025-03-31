@@ -18,10 +18,9 @@ namespace Services
         public event Action OnPlayerFieldChanged;
         public event Action<Platform> OnPlatformPressed;
         public event Action<Platform> OnPlatformReleased;
-        
-        public GridView GridView { get; private set; }
+
         public List<Actor> PlayerUnits => _dataService.PlayerUnits;
-        public bool CanAddUnit => _dataService.TryGetFreePlatform(out Platform _);
+        public bool CanAddUnit => _dataService.HasFreePlatform();
 
         private readonly IUpdateable _updateable;
         private readonly GridDataService _dataService;
@@ -30,7 +29,8 @@ namespace Services
         private readonly GameplayDataService _gameplayData;
         private readonly PersistantDataService _persistantData;
         private readonly UnitsDatabase _unitsDatabase;
-        
+
+        private GridView _gridView;
         private int _selected;
         private bool _dragging;
         private int _hovered = -1;
@@ -53,22 +53,22 @@ namespace Services
         public void CreatePlayerField()
         {
             int openedCount = _dataService.GridSize.x * _dataService.GridSize.y;
-            GridView = _gameFactory.CreateGridView(openedCount);
-            _dataService.RestoreData(GridView.Platforms.GetRange(0, openedCount));
+            _gridView = _gameFactory.CreateGridView(openedCount);
+            _dataService.RestoreData(_gridView.Platforms.GetRange(0, openedCount));
             for (int i = 0; i < openedCount; i++)
             {
-                GridView.Platforms[i].Init(i);
+                _gridView.Platforms[i].Init(i);
                 
                 ActorData data = _dataService.ActorDataAt(i);
                 if (!data.Equals(ActorData.None))
                 {
-                    _gameFactory.CreatePlayerActor(data, GridView.Platforms[i]);
+                    _gameFactory.CreatePlayerActor(data, _gridView.Platforms[i]);
                 }
             }
 
-            for (int i = 0; i < GridView.StashPlatforms.Count; i++)
+            for (int i = 0; i < _gridView.StashPlatforms.Count; i++)
             {
-                GridView.StashPlatforms[i].Init(i);
+                _gridView.StashPlatforms[i].Init(i);
             }
 
             OnPlayerFieldChanged?.Invoke();
@@ -78,10 +78,12 @@ namespace Services
         {
             _dataService.Dispose();
             
-            if (!GridView) return;
-            Object.Destroy(GridView.gameObject);
-            GridView = null;
+            if (!_gridView) return;
+            Object.Destroy(_gridView.gameObject);
+            _gridView = null;
         }
+        
+        public void EnableGridView(bool enable) => _gridView.Enable(enable);
 
         public void TryCreatePlayerUnit(int tier)
         {
@@ -102,8 +104,8 @@ namespace Services
                 _dragging = true;
                 _selected = platform.Index;
                 platform.Actor.Disable();
-                GridView.SetState(ViewState.ShowSame, platform);
-                GridView.SetState(ViewState.ShowAttackLine, platform);
+                _gridView.SetState(ViewState.ShowSame, platform);
+                _gridView.SetState(ViewState.ShowAttackLine, platform);
                 OnPlatformPressed?.Invoke(platform);
             }
         }
@@ -113,7 +115,7 @@ namespace Services
             if (_dragging)
             {
                 _hovered = platform.Index;
-                GridView.SetState(ViewState.ShowAttackLine, platform);
+                _gridView.SetState(ViewState.ShowAttackLine, platform);
             }
         }
 
@@ -125,7 +127,7 @@ namespace Services
             Platform ended = started;
             if (_cameraService.PointerUnder<SellButton>())
             {
-                Platform platform = GridView.Platforms[_selected];
+                Platform platform = _gridView.Platforms[_selected];
                 int costFor = _gameplayData.GetCostFor(platform.Actor.Data.Level);
                 _gameplayData.AddCrowns(costFor);
                 platform.Clear();
@@ -162,7 +164,7 @@ namespace Services
             _selected = 0;
             _dragging = false;
             OnPlatformReleased?.Invoke(ended);
-            GridView.SetState(ViewState.Normal, ended);
+            _gridView.SetState(ViewState.Normal, ended);
         }
 
         private void OnTick()

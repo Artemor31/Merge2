@@ -40,7 +40,6 @@ namespace Gameplay.Grid
             {
                 case ViewState.Normal:
                 {
-                    //_bufferParent.SetActive(false);
                     _gameplayContainer.Get<EnemyGrid>().Disable();
                     foreach (Platform item in _platforms)
                     {
@@ -51,7 +50,6 @@ namespace Gameplay.Grid
                 }
                 case ViewState.ShowSame:
                 {
-                    //_bufferParent.SetActive(true);
                     foreach (Platform item in _platforms)
                     {
                         if (item.Data == platform.Data && item != platform)

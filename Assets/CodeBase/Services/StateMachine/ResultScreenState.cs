@@ -123,13 +123,13 @@ namespace Services.StateMachine
             int gems = 0;
             if (isWin)
             {
-                crownsValue = Random.Range(150, 450) * (_persistantDataService.Crowns / 100);
+                crownsValue = Random.Range(150, 450);// * (_persistantDataService.Crowns / 100);
                 sumCoins = Random.Range(40, 100);
                 gems = (int)(count * 0.7f);
             }
             else if (count > 0)
             {
-                crownsValue = Random.Range(100, 200) * (_persistantDataService.Crowns / 100);
+                crownsValue = Random.Range(100, 200);// * (_persistantDataService.Crowns / 100);
                 sumCoins = count * 5;
                 gems = count;
             }

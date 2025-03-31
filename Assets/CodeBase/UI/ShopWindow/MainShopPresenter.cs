@@ -42,34 +42,34 @@ namespace UI.ShopWindow
             _buyGrid.onClick.AddListener(OpenGridClicked);
             _buyCoins.onClick.AddListener(OpenCoinsClicked);
             SetChestCost();
-            SetCrownsCost();
-            SetRowsCost();
-            UpdateCrownDescr();
-            UpdateRowsDescr();
+           // SetCrownsCost();
+          //  SetRowsCost();
+           // UpdateCrownDescr();
+           // UpdateRowsDescr();
         }
 
         public override void OnShow() => YG2.InterstitialAdvShow();
-        private void UpdateRowsDescr() => _gridDescription.text = StartGrid + _dataService.Rows;
-        private void UpdateCrownDescr() => _crownsDescription.text = StartCrowns + _dataService.Crowns;
+       // private void UpdateRowsDescr() => _gridDescription.text = StartGrid + _dataService.Rows;
+        //private void UpdateCrownDescr() => _crownsDescription.text = StartCrowns + _dataService.Crowns;
 
         private void OpenCoinsClicked()
         {
-            if (_dataService.CrownsAtMax || !_dataService.TryBuyGems(ChestCost)) return;
-            _dataService.TryUpCrowns();
-            UpdateCrownDescr();
-            SetCrownsCost();
+        //    if (_dataService.CrownsAtMax || !_dataService.TryBuyGems(ChestCost)) return;
+         //   _dataService.TryUpCrowns();
+          //  UpdateCrownDescr();
+        //    SetCrownsCost();
         }
 
-        private void SetCrownsCost() => _coinsCost.text = _dataService.CrownsAtMax ? Max : ChestCost.ToString();
-        private void SetRowsCost() => _gridCost.text = _dataService.RowsAtMax ? Max : GridUpCost().ToString();
+       // private void SetCrownsCost() => _coinsCost.text = _dataService.CrownsAtMax ? Max : ChestCost.ToString();
+       // private void SetRowsCost() => _gridCost.text = _dataService.RowsAtMax ? Max : GridUpCost().ToString();
         private void SetChestCost() => _chestCost.text = ChestCost.ToString();
 
         private void OpenGridClicked()
         {
-            if (_dataService.RowsAtMax || !_dataService.TryBuyGems(GridUpCost())) return;
-            _dataService.TryUpRows();
-            UpdateRowsDescr();
-            SetRowsCost();
+           // if (_dataService.RowsAtMax || !_dataService.TryBuyGems(GridUpCost())) return;
+          //  _dataService.TryUpRows();
+          ///  UpdateRowsDescr();
+        //    SetRowsCost();
         }
 
         private void OpenChestClicked()
@@ -125,13 +125,13 @@ namespace UI.ShopWindow
             return valueTuples.ToList();
         }
         
-        private int GridUpCost() => _dataService.Rows switch
-        {
-            1 => 100,
-            2 => 300,
-            3 => 500,
-            _ => 99999
-        };
+        // private int GridUpCost() => _dataService.Rows switch
+        // {
+        //     1 => 100,
+        //     2 => 300,
+        //     3 => 500,
+        //     _ => 99999
+        // };
         
         private string AllOpenText => YG2.lang switch
         {
