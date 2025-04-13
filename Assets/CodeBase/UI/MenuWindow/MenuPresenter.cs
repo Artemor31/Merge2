@@ -1,12 +1,9 @@
 ﻿using Infrastructure;
-using Services;
-using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
 using UI.WaveSlider;
 using UnityEngine;
 using UnityEngine.UI;
-using YG;
 
 namespace UI.MenuWindow
 {
@@ -26,33 +23,17 @@ namespace UI.MenuWindow
         public override void Init()
         {
             _gameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
+
             _storyFightButton.onClick.AddListener(PlayStoryClicked);
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
             _patchShow.onClick.AddListener(ShowPatch);
         }
 
-        public override void OnShow()
-        {
-            if (ServiceLocator.Resolve<PersistantDataService>().MaxWave <= 1 ||
-                !ServiceLocator.Resolve<TutorialService>().SeenTutor)
-            {
-                PlayStoryClicked();
-            }
-            else
-            {
-                _slider.Show();
-            }
-        }
-
+        public override void OnShow() => _slider.Show();
         private void ShowPatch() => ServiceLocator.Resolve<WindowsService>().Show<SimpleInfoWindow>();
         private void ShowHardAdsPopup() => _currencyPopup.ShowData(Currency.Gem);
         private void ShowSoftAdsPopup() => _currencyPopup.ShowData(Currency.Coin);
-        
-        private void PlayStoryClicked()
-        {
-            gameObject.SetActive(false);
-            _gameStateMachine.Enter<LoadLevelState>();
-        }
+        private void PlayStoryClicked() => _gameStateMachine.Enter<LoadLevelState>();
     }
 }

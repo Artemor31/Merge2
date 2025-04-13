@@ -32,7 +32,7 @@ namespace Services.StateMachine
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader, windowsService)},
-                {typeof(MenuState), new MenuState(windowsService)},
+                {typeof(MenuState), new MenuState(windowsService, persistantDataService, tutorialService, this)},
                 {
                     typeof(LoadLevelState),
                     new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService, gameplayData)

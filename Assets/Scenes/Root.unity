@@ -1282,8 +1282,6 @@ MonoBehaviour:
   - {fileID: 599410300}
   - {fileID: 1201330991}
   - {fileID: 2038217314}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &234513836 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8276419733453324448, guid: d529d407e12312649bdc8c854264fbcb, type: 3}

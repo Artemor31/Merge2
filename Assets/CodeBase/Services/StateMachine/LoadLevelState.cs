@@ -50,6 +50,7 @@ namespace Services.StateMachine
             _gridLogicService.CreatePlayerField();
             _waveBuilder.BuildEnemyWave(_gameplayDataService.Wave);
             _windowsService.Close<LoadingScreen>();
+            //_windowsService.Close<MenuPresenter>();
         }
     }
 }

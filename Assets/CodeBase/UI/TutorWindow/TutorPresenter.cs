@@ -5,6 +5,7 @@ using System.Linq;
 using Gameplay.Units;
 using Infrastructure;
 using Services;
+using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
 using UnityEngine;
@@ -34,14 +35,24 @@ namespace UI.TutorWindow
 
         private void StartTutorQueue()
         {
-            _finger.Disable();
-            TutorView shopButton = _tutorialService.GetItem("GameplayShop");
-            foreach (Button button in _windowService.Buttons)
-                button.interactable = shopButton.gameObject == button.gameObject;
-            _finger.PointTo(shopButton);
-            _logicService.OnPlayerFieldChanged += ShowBuffButton;
+            // fix
+            if (ServiceLocator.Resolve<GameplayDataService>().Crowns < 100)
+            {
+                ShowBuffButton();
+            }
+            else
+            {
+                TutorView shopButton = _tutorialService.GetItem("GameplayShop");
+            
+                _finger.Disable();
+                _finger.PointTo(shopButton);
+                _logicService.OnPlayerFieldChanged += ShowBuffButton;
+
+                foreach (Button button in _windowService.Buttons)
+                    button.interactable = shopButton.gameObject == button.gameObject;
+            }
         }
-        
+
         private void ShowBuffButton()
         {
             if (_logicService.PlayerUnits.Count < 2) return;
@@ -66,7 +77,7 @@ namespace UI.TutorWindow
             }
             else
             {
-                _text.ShowText(4, TextAllignment.Bottom);
+                _text.ShowText(1, TextAllignment.Bottom);
                 TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
                 TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
                 _finger.MoveBetween(currentView, currentView2);
@@ -87,6 +98,7 @@ namespace UI.TutorWindow
 
         private IEnumerator WaitForGameStart()
         {
+            _tutorialService.EndTutor();
             Type memberInfo = typeof(GameLoopState);
             while (_gameStateMachine.Current.GetType() != memberInfo)
             {
