@@ -46,7 +46,6 @@ namespace Services.ProgressData
                 
                 if (Opened.Contains(((Race)race, (Mastery)mastery)))
                 {
-                    Debug.LogError("contains = " + race + ":" + mastery);
                     continue;
                 }
                 

@@ -18,10 +18,7 @@ namespace Services.DataServices
 
         public int Coins => _progress.Coins;
         public int Gems => _progress.Gems;
-        // public int Rows => _progress.OpenedRows;
-        // public bool RowsAtMax => _progress.OpenedRows == 4;
-        // public int Crowns => _progress.BonusCrowns;
-        // public bool CrownsAtMax => _progress.BonusCrowns == 10;
+        public int MaxWave => _progress.MaxWave;
 
         private readonly PersistantProgress _progress;
         private readonly SaveService _saveService;

@@ -30,19 +30,21 @@ namespace UI.MenuWindow
             _addSoftButton.onClick.AddListener(ShowSoftAdsPopup);
             _addHardButton.onClick.AddListener(ShowHardAdsPopup);
             _patchShow.onClick.AddListener(ShowPatch);
-            
-            //_diamondsUp.onClick.AddListener(() => ServiceLocator.Resolve<PersistantDataService>().AddGems(1000));
+        }
 
-            YG2.StickyAdActivity(true);
-            if (!ServiceLocator.Resolve<TutorialService>().SeenTutor &&
-                ServiceLocator.Resolve<PersistantDataService>().Coins == 100)
+        public override void OnShow()
+        {
+            if (ServiceLocator.Resolve<PersistantDataService>().MaxWave <= 1 ||
+                !ServiceLocator.Resolve<TutorialService>().SeenTutor)
             {
-                YG2.StickyAdActivity(false);
+                PlayStoryClicked();
+            }
+            else
+            {
+                _slider.Show();
             }
         }
 
-        public override void OnShow() => _slider.Show();
-        
         private void ShowPatch() => ServiceLocator.Resolve<WindowsService>().Show<SimpleInfoWindow>();
         private void ShowHardAdsPopup() => _currencyPopup.ShowData(Currency.Gem);
         private void ShowSoftAdsPopup() => _currencyPopup.ShowData(Currency.Coin);

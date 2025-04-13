@@ -24,19 +24,20 @@ namespace Services.StateMachine
                                 BuffService buffService,
                                 UpgradeDataService upgradeDataService,
                                 PersistantDataService persistantDataService,
-                                TutorialService tutorialService,
                                 ICoroutineRunner coroutineRunner,
-                                ProjectileService projectileService, GameplayContainer gameplayContainer)
+                                ProjectileService projectileService, 
+                                GameplayContainer gameplayContainer,
+                                TutorialService tutorialService)
         {
             _states = new Dictionary<Type, IState>
             {
                 {typeof(BootstrapState), new BootstrapState(this, sceneLoader, windowsService)},
-                {typeof(MenuState), new MenuState(tutorialService, windowsService)},
+                {typeof(MenuState), new MenuState(windowsService)},
                 {
                     typeof(LoadLevelState),
                     new LoadLevelState(this, sceneLoader, waveBuilder, gridLogicService, windowsService, gameplayData)
                 },
-                {typeof(SetupLevelState), new SetupLevelState(windowsService, gridLogicService, gameplayContainer)},
+                {typeof(SetupLevelState), new SetupLevelState(windowsService, gridLogicService, gameplayContainer, tutorialService)},
                 {
                     typeof(GameLoopState),
                     new GameLoopState(this, gridDataService, gameplayData, waveBuilder, buffService, upgradeDataService,
