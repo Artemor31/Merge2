@@ -41,17 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Roslyn\2019+\RoslynLicense.txt" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Harmony\HarmonyLicense.txt" />
     <None Include="Assets\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.deps.json" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\ImmersiveVrToolsCommon\ImmersiveVRToolsCommonLicense.txt" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Roslyn\Microsoft.CSharp.dll.IMPORTANT.txt.txt" />
     <None Include="Assets\Plugins\Newtonsoft.Json AOT\Newtonsoft.Json.xml" />
     <None Include="Assets\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.xml" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.xml" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\RoslynLicense.txt" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Reflection.Metadata.xml" />
-    <None Include="Assets\Plugins\FastScriptReload\Plugins\Harmony\net48\0Harmony.xml" />
     <None Include="Assets\Plugins\NaughtyAttributes\package.json" />
     <None Include="Assets\Plugins\Newtonsoft.Json Editor\Newtonsoft.Json.deps.json" />
     <Reference Include="UnityEngine">

@@ -41,22 +41,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Collections.Immutable.FSR.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\ImmersiveVrToolsCommon\ImmersiveVRTools.Common.Editor.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\Microsoft.CodeAnalysis.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2019+\System.Threading.Tasks.Extensions.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Threading.Tasks.Extensions.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\Microsoft.CodeAnalysis.CSharp.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2019+\Microsoft.CodeAnalysis.CSharp.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Reflection.Metadata.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Harmony\net48\0Harmony.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\ImmersiveVrToolsCommon\ImmersiveVRTools.Common.Runtime.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Collections.Immutable.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2019+\Microsoft.CodeAnalysis.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2019+\System.Collections.Immutable.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\Microsoft.CSharp.dll" />
-    <Analyzer Include="C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2019+\System.Reflection.Metadata.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\UnityEditors\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
@@ -450,9 +434,6 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>C:\UnityProjects\Merge2\Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:\UnityProjects\Merge2\Assets\Plugins\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\UnityEditors\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
