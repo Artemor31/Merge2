@@ -16,7 +16,13 @@ namespace Infrastructure
         public event Action Tick;
 
         [SerializeField] private WindowsService _windowsService;
-        [SerializeField] private List<Database> _databases;
+        [SerializeField] private BuffsDatabase BuffsDatabase;
+        [SerializeField] private LevelDatabase LevelDatabase;
+        [SerializeField] private ProjectilesDatabase ProjectilesDatabase;
+        [SerializeField] private TutorTexts TutorTexts;
+        [SerializeField] private UnitsDatabase UnitsDatabase;
+        [SerializeField] private WaveRewardsDatabase WaveRewardsDatabase;
+        [SerializeField] private WavesDatabase WavesDatabase;
 
         private static EntryPoint _instance;
 
@@ -44,7 +50,7 @@ namespace Infrastructure
                 DontDestroyOnLoad(this);
                 DontDestroyOnLoad(_windowsService);
             }
-            
+
             ServiceLocator.Resolve<GameStateMachine>().Enter<BootstrapState>();
         }
 
@@ -59,30 +65,31 @@ namespace Infrastructure
             DatabaseProvider databaseProvider = new(assetsProvider);
             TutorialService tutorialService = new(saveService);
             GameplayContainer gameplayContainer = new();
-
             PersistantDataService persistantDataService = new(saveService);
             GameplayDataService gameplayService = new(saveService);
             GridDataService gridDataService = new(saveService);
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
-
             GameFactory gameFactory = new(databaseProvider, assetsProvider, _windowsService, this);
             WaveBuilder waveBuilder = new(gameFactory, databaseProvider);
-            
             BuffService buffService = new(databaseProvider);
-            GridService gridService = new(this, gridDataService, cameraService, 
-                gameFactory, databaseProvider, gameplayService, persistantDataService);
+            GridService gridService = new(this, gridDataService, cameraService, gameFactory, databaseProvider, gameplayService, persistantDataService);
             SearchTargetService searchTargetService = new(gridDataService, waveBuilder);
             ProjectileService projectileService = new(this, databaseProvider);
-
-            
-            GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder, 
-                gridDataService, gridDataService, gameplayService, 
+            GameStateMachine stateMachine = new(sceneLoader, _windowsService, waveBuilder,
+                gridDataService, gridDataService, gameplayService,
                 gridService, buffService, upgradeDataService,
                 persistantDataService, this, projectileService, gameplayContainer, tutorialService);
+            WaveRewardsService waveRewardsService = new(persistantDataService, databaseProvider, stateMachine, gameplayService, saveService, _windowsService);
+            ActorRollService actorRollService = new(UnitsDatabase, persistantDataService, gameFactory, stateMachine);
             
-            
-            WaveRewardsService waveRewardsService = new(persistantDataService, databaseProvider, stateMachine,
-                gameplayService, saveService, _windowsService);
+
+            ServiceLocator.Bind(BuffsDatabase);
+            ServiceLocator.Bind(LevelDatabase);
+            ServiceLocator.Bind(ProjectilesDatabase);
+            ServiceLocator.Bind(TutorTexts);
+            ServiceLocator.Bind(UnitsDatabase);
+            ServiceLocator.Bind(WaveRewardsDatabase);
+            ServiceLocator.Bind(WavesDatabase);
 
             ServiceLocator.Bind<ICoroutineRunner>(this);
             ServiceLocator.Bind<IUpdateable>(this);
@@ -106,11 +113,7 @@ namespace Infrastructure
             ServiceLocator.Bind(tutorialService);
             ServiceLocator.Bind(gameplayContainer);
             ServiceLocator.Bind(waveRewardsService);
-
-            foreach (Database database in _databases)
-            {
-                ServiceLocator.Bind(database);
-            }
+            ServiceLocator.Bind(actorRollService);
         }
 
         private void Update() => Tick?.Invoke();

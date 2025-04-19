@@ -35,7 +35,7 @@ namespace Services
         public void CreatePlayerActor(ActorData actorData, Platform platform) =>
             platform.Actor = CreateActor(actorData, platform.transform.position, true);
 
-        public Actor CreateEnemyActor(ActorData data, Vector3 position) => 
+        public Actor CreateActor(ActorData data, Vector3 position) => 
             CreateActor(data, position, false);
 
         private Actor CreateActor(ActorData data, Vector3 position, bool isMy)

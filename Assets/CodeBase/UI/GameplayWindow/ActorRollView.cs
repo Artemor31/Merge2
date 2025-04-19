@@ -1,4 +1,3 @@
-using System;
 using Databases;
 using Gameplay.Units;
 using Infrastructure;
@@ -22,7 +21,6 @@ namespace UI.GameplayWindow
         private BuffsDatabase _buffsDatabase;
         private GameplayDataService _gameplayService;
         private GridService _gridService;
-        private ActorData? _actorData;
         private Actor _actor;
 
         public override void Init()
@@ -33,47 +31,38 @@ namespace UI.GameplayWindow
             _buyButton.onClick.AddListener(TryBuyUnit);
         }
 
-        public void SetData(ActorData actorData, Actor actor)
+        public void SetData(Actor actor)
         {
             if (_actor != null)
             {
                 Destroy(_actor.gameObject);
             }
             
-            _actorData = actorData;
-            SetUI(actorData);
-            SetPrefab(actor);
+            _actor = actor;
+            _actor.transform.SetParent(_prefabRoot, false);
+            _actor.transform.localPosition = Vector3.zero;
+
+            ActorData data = _actor.Data;
+            _levelText.text = data.Level.ToString();
+            _cost.text = _buffsDatabase.CostFor(data.Level).ToString();
+            _race.sprite = _buffsDatabase.IconFor(data.Race);
+            _mastery.sprite = _buffsDatabase.IconFor(data.Mastery);
         }
 
-        private void TryBuyUnit()
-        {
-            int cost = _buffsDatabase.CostFor(_actorData.Value.Level);
-            if (_gridService.CanAddUnit && _gameplayService.TryBuy(cost))
-            {
-                _gridService.TryCreatePlayerUnit();
-                Hide();
-            }
-        }
-
-        private void Hide()
+        public void Hide()
         {
             _prefabRoot.gameObject.SetActive(false);
             _buyButton.interactable = false;
         }
 
-        private void SetUI(ActorData actorData)
+        private void TryBuyUnit()
         {
-            _levelText.text = actorData.Level.ToString();
-            _cost.text = _buffsDatabase.CostFor(actorData.Level).ToString();
-            _race.sprite = _buffsDatabase.IconFor(actorData.Race);
-            _mastery.sprite = _buffsDatabase.IconFor(actorData.Mastery);
-        }
-
-        private void SetPrefab(Actor actor)
-        {
-            _actor = actor;
-            actor.transform.SetParent(_prefabRoot, false);
-            actor.transform.localPosition = Vector3.zero;
+            int cost = _buffsDatabase.CostFor(_actor.Data.Level);
+            if (_gridService.CanAddUnit && _gameplayService.TryBuy(cost))
+            {
+                _gridService.TryCreatePlayerUnit();
+                Hide();
+            }
         }
     }
 }

@@ -5,48 +5,67 @@ using Gameplay.Units;
 using Infrastructure;
 using Services.DataServices;
 using Services.Infrastructure;
+using Services.StateMachine;
 using UnityEngine;
 
 namespace Services
 {
+    public class RollData
+    {
+        public readonly List<Actor> Actors;
+        public readonly Actor AdsActor;
+        public RollData(List<Actor> actors, Actor adsActor)
+        {
+            Actors = actors;
+            AdsActor = adsActor;
+        }
+    }
+    
     public class ActorRollService : IService
     {
         private const uint RollCount = 3;
         
-        private WindowsService _windowsService;
-        private UnitsDatabase _unitsDatabase;
-        private PersistantDataService _persistantData;
-        private GameFactory _gameFactory;
-        
-        public (List<ActorData> datas, List<Actor> actors) GenerateRoll()
+        private readonly UnitsDatabase _unitsDatabase;
+        private readonly PersistantDataService _persistantData;
+        private readonly GameFactory _gameFactory;
+        private readonly GameStateMachine _gameStateMachine;
+        private RollData _roll;
+
+        public ActorRollService(UnitsDatabase unitsDatabase, PersistantDataService persistantData, 
+                                GameFactory gameFactory, GameStateMachine gameStateMachine)
         {
-            var datas = CreateRoll();
-            List<Actor> actors = CreateActors(datas);
-            return (datas, actors);
+            _unitsDatabase = unitsDatabase;
+            _persistantData = persistantData;
+            _gameFactory = gameFactory;
+            _gameStateMachine = gameStateMachine;
+            _gameStateMachine.OnStateChanged += StateChanged;
         }
 
-        public (ActorData, Actor) GenerateSingleUnit()
-        {
-            ActorData data = RandomOpened();
-            return (data, _gameFactory.CreateEnemyActor(data, Vector3.zero));
-        }
+        public RollData GetRoll() => _roll ??= CreateRoll();
 
-        private List<Actor> CreateActors(List<ActorData> datas) => 
-            datas.Select(data => _gameFactory.CreateEnemyActor(data, Vector3.zero)).ToList();
-
-        private List<ActorData> CreateRoll()
+        private RollData CreateRoll()
         {
-            List<ActorData> data = new();
+            List<Actor> data = new();
             for (int i = 0; i < RollCount; i++)
             {
-                data.Add(RandomOpened());
+                ActorData randomOpened = RandomOpened();
+                Actor actor = _gameFactory.CreateActor(randomOpened, Vector3.zero);
+                data.Add(actor);
             }
 
-            return data;
+            return new RollData(data, _gameFactory.CreateActor(RandomOpened(), Vector3.zero));
+        }
+
+        private void StateChanged(IState state)
+        {
+            if (state.GetType() == typeof(SetupLevelState))
+            {
+                _roll = null;
+            }
         }
 
         private ActorData RandomOpened() => _unitsDatabase.ConfigsFor(1)
-                                                            .Where(c => _persistantData.IsOpened(c.Data))
-                                                            .Random().Data;
+                                                          .Where(c => _persistantData.IsOpened(c.Data))
+                                                          .Random().Data;
     }
 }

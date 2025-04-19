@@ -34,7 +34,7 @@ namespace Gameplay.Grid
             }
         }
         
-        public void SetState(ViewState state, Platform platform)
+        public void SetState(ViewState state, Platform selectedPlatform)
         {
             switch (state)
             {
@@ -50,18 +50,18 @@ namespace Gameplay.Grid
                 }
                 case ViewState.ShowSame:
                 {
-                    foreach (Platform item in _platforms)
+                    foreach (Platform platform in _platforms)
                     {
-                        if (item.Data == platform.Data && item != platform)
+                        if (selectedPlatform.Data.Level != 3 && platform.Data == selectedPlatform.Data && platform != selectedPlatform)
                         {
-                            item.SetViewState(ViewState.ShowSame);
+                            platform.SetViewState(ViewState.ShowSame);
                         }
                     }
 
                     break;
                 }
                 case ViewState.ShowAttackLine:
-                    _gameplayContainer.Get<EnemyGrid>().Highlinght(platform.Index % _gridDataService.GridSize.y);
+                    _gameplayContainer.Get<EnemyGrid>().Highlinght(selectedPlatform.Index % _gridDataService.GridSize.y);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);

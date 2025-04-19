@@ -42,7 +42,7 @@ namespace UI.GameplayWindow
             _windowService = ServiceLocator.Resolve<WindowsService>();
             _buffService = ServiceLocator.Resolve<BuffService>();
 
-            _buyUnit.onClick.AddListener(() => _windowService.Show<ActorRollPresenter>());
+            _buyUnit.onClick.AddListener(OpenRollWindow);
             _getUnitButton.onClick.AddListener(UnitForAdsRequested);
             StartWaveButton.onClick.AddListener(() => _stateMachine.Enter<GameLoopState>());
             ShowBuffsButton.onClick.AddListener(() => _buffPanel.gameObject.SetActive(!_buffPanel.gameObject.activeInHierarchy));
@@ -52,6 +52,12 @@ namespace UI.GameplayWindow
             _gridService.OnPlatformReleased += _ => SellButton.Hide();
             _gridService.OnPlatformPressed += PlatformPressedHandler;
             _gridService.OnPlayerFieldChanged += PlayerFieldChanged;
+        }
+
+        private void OpenRollWindow()
+        {
+            _windowService.Show<ActorRollPresenter>();
+            _windowService.Close<GameplayPresenter>();
         }
 
         public override void OnShow()
