@@ -20,6 +20,8 @@ namespace Services.StateMachine
             IsWin = isWin;
             Force = force;
         }
+        
+        public static ResultScreenData FastLose => new(false, true);
     }
 
     public class ResultScreenState : IState<ResultScreenData>
@@ -74,7 +76,6 @@ namespace Services.StateMachine
         {
             _windowsService.Close<GameCanvas>();
             _windowsService.Close<GameplayPresenter>();
-            _windowsService.Close<ShopPresenter>();
         }
 
         private IEnumerator ShowEndWindow(bool isWin, bool force)

@@ -25,8 +25,7 @@ namespace Services.StateMachine
 
         public void Enter()
         {
-            _windowsService.Show<GameplayPresenter>();
-            _windowsService.Show<ShopPresenter>();
+            //_windowsService.Show<GameplayPresenter>();
             _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
             _gridLogicService.EnableGridView(true);
             _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(true);
@@ -41,9 +40,7 @@ namespace Services.StateMachine
         {
             _gridLogicService.EnableGridView(false);
             _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(false);
-            
             _windowsService.Close<GameplayPresenter>();
-            _windowsService.Close<BuffInfoPresenter>();
         }
     }
 }

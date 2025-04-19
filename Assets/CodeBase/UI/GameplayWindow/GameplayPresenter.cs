@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Databases;
+﻿using System.Text;
 using Gameplay.Grid;
 using Infrastructure;
 using Services;
@@ -16,52 +15,52 @@ namespace UI.GameplayWindow
 {
     public class GameplayPresenter : Presenter
     {
-        [SerializeField] public Transform UnitsParent;
         [SerializeField] public Button StartWaveButton;
-        [SerializeField] public Button GreedButton;
         [SerializeField] public Button ShowBuffsButton;
         [SerializeField] public Button Close;
         [SerializeField] public TMP_Text Money;
         [SerializeField] public TMP_Text Wave;
-        [SerializeField] public BuffInfoPresenter BuffPresenter;
         [SerializeField] public SellButton SellButton;
         [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
+        [SerializeField] private Button _buyUnit;
+        [SerializeField] public Button _getUnitButton;
+        [SerializeField] private TextMeshProUGUI _buffDescription;
+        [SerializeField] private GameObject _buffPanel;
 
+        private bool _adsRequested;
         private GridService _gridService;
-        private Dictionary<UnitCard, ActorConfig> _unitCards;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
-        private UnitsDatabase _unitsDatabase;
-        private UnitCard _cardPrefab;
-        private bool _refreshed;
+        private WindowsService _windowService;
+        private BuffService _buffService;
 
         public override void Init()
         {
-            _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _stateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _gridService = ServiceLocator.Resolve<GridService>();
+            _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
+            _windowService = ServiceLocator.Resolve<WindowsService>();
+            _buffService = ServiceLocator.Resolve<BuffService>();
 
+            _buyUnit.onClick.AddListener(() => _windowService.Show<ActorRollPresenter>());
+            _getUnitButton.onClick.AddListener(UnitForAdsRequested);
             StartWaveButton.onClick.AddListener(() => _stateMachine.Enter<GameLoopState>());
-            ShowBuffsButton.onClick.AddListener(() => BuffPresenter.Show());
-            Close.onClick.AddListener(CloseClicked);
+            ShowBuffsButton.onClick.AddListener(() => _buffPanel.gameObject.SetActive(!_buffPanel.gameObject.activeInHierarchy));
+            Close.onClick.AddListener(() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(ResultScreenData.FastLose));
 
-            _gameplayService.OnCrownsChanged += OnCrownsChanged;
+            _gameplayService.OnCrownsChanged += money => Money.text = money.ToString();
+            _gridService.OnPlatformReleased += _ => SellButton.Hide();
             _gridService.OnPlatformPressed += PlatformPressedHandler;
-            _gridService.OnPlatformReleased += PlatformReleasedHandler;
-
-#if UNITY_EDITOR
-            GreedButton.onClick.AddListener(AddMoney);
-            _unitsDatabase = ServiceLocator.Resolve<DatabaseProvider>().GetDatabase<UnitsDatabase>();
-            _cardPrefab = ServiceLocator.Resolve<AssetsProvider>().Load<UnitCard>(AssetsPath.UnitCard);
-            CreatePlayerCards();
-#endif
+            _gridService.OnPlayerFieldChanged += PlayerFieldChanged;
         }
 
         public override void OnShow()
         {
             Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
-            OnCrownsChanged(_gameplayService.Crowns);
+            Money.text = _gameplayService.Crowns.ToString();
             MenuWaveProgress.Show();
+            _buffPanel.gameObject.SetActive(false);
+            _adsRequested = false;
         }
 
         private void PlatformPressedHandler(Platform platform)
@@ -71,30 +70,39 @@ namespace UI.GameplayWindow
             SellButton.Show(costFor);
         }
 
-        private void PlatformReleasedHandler(Platform platform) => SellButton.Hide();
-        private void AddMoney() => _gameplayService.AddCrowns(50);
-        private void OnCrownsChanged(int money) => Money.text = money.ToString();
-        private void CloseClicked() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(new ResultScreenData(false, true));
-
-        private void CreatePlayerCards()
+        private void UnitForAdsRequested()
         {
-            _unitCards = new Dictionary<UnitCard, ActorConfig>();
-            foreach (ActorConfig actorConfig in _unitsDatabase.Units)
-            {
-                UnitCard card = Instantiate(_cardPrefab, UnitsParent);
+            if (_gridService.CanAddUnit == false) return;
+            YG2.RewardedAdvShow(AdsId.GetUnit, GetUnitForAds);
+        }
 
-                card.Setup(actorConfig);
-                card.Button.onClick.AddListener(() => CardClicked(card));
-                _unitCards.Add(card, actorConfig);
+        private void GetUnitForAds()
+        {
+            _gridService.TryCreatePlayerUnit();
+            _getUnitButton.gameObject.SetActive(false);
+            _adsRequested = true;
+        }
+        
+        
+        private void PlayerFieldChanged()
+        {
+            if (gameObject.activeInHierarchy)
+            {
+                _buffDescription.text = CreteDescription();
             }
         }
 
-        private void CardClicked(UnitCard card)
+        private string CreteDescription()
         {
-            if (_gridService.CanAddUnit)
+            StringBuilder stringBuilder = new();
+            var buffs = _buffService.CalculateBuffs(_gridService.PlayerUnits);
+            foreach (string buff in buffs)
             {
-                _gridService.TryCreatePlayerUnit(_unitCards[card]);
+                stringBuilder.Append(buff);
+                stringBuilder.Append("\r\n");
             }
+            
+            return stringBuilder.ToString();
         }
         
         private string WaveText => YG2.lang switch

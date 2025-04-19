@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Databases;
 using Gameplay.Units;
 using Services;
 using Services.DataServices;
@@ -14,6 +16,7 @@ namespace Infrastructure
         public event Action Tick;
 
         [SerializeField] private WindowsService _windowsService;
+        [SerializeField] private List<Database> _databases;
 
         private static EntryPoint _instance;
 
@@ -103,6 +106,11 @@ namespace Infrastructure
             ServiceLocator.Bind(tutorialService);
             ServiceLocator.Bind(gameplayContainer);
             ServiceLocator.Bind(waveRewardsService);
+
+            foreach (Database database in _databases)
+            {
+                ServiceLocator.Bind(database);
+            }
         }
 
         private void Update() => Tick?.Invoke();

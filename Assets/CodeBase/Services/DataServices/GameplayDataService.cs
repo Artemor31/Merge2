@@ -53,5 +53,13 @@ namespace Services.DataServices
         }
 
         private void Save() => _saveService.Save(StoryData, _progress);
+
+        private int GetUnitCost(int level) => level switch
+        {
+            1 => 5,
+            2 => 10,
+            3 => 20,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 }

@@ -85,7 +85,7 @@ namespace Services
         
         public void EnableGridView(bool enable) => _gridView.Enable(enable);
 
-        public void TryCreatePlayerUnit(int tier)
+        public void TryCreatePlayerUnit(int tier = 1)
         {
             ActorConfig actorConfig = _unitsDatabase.ConfigsFor(tier).Where(c => _persistantData.IsOpened(c.Data)).Random();
             TryCreatePlayerUnit(actorConfig);

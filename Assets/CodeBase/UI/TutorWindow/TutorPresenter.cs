@@ -32,7 +32,7 @@ namespace UI.TutorWindow
             _logicService = ServiceLocator.Resolve<GridService>();
             _tutorialService.OnTutorRequested += StartTutorQueue;
         }
-
+        
         private void StartTutorQueue()
         {
             // fix
@@ -55,6 +55,7 @@ namespace UI.TutorWindow
 
         private void ShowBuffButton()
         {
+            UnlockButtons();
             if (_logicService.PlayerUnits.Count < 2) return;
             
             _logicService.OnPlayerFieldChanged -= ShowBuffButton;
@@ -64,7 +65,6 @@ namespace UI.TutorWindow
         private void HideBuffButton()
         {
             AwaitClickedAndHighlight("BuffButton", Step4_2WarriorsBought);
-            _text.ShowText(0, TextAllignment.Bottom);
         }
 
         private void Step4_2WarriorsBought()
@@ -77,7 +77,6 @@ namespace UI.TutorWindow
             }
             else
             {
-                _text.ShowText(1, TextAllignment.Bottom);
                 TutorView currentView = units[0].gameObject.AddComponent<TutorView>();
                 TutorView currentView2 = units[1].gameObject.AddComponent<TutorView>();
                 _finger.MoveBetween(currentView, currentView2);
@@ -87,6 +86,7 @@ namespace UI.TutorWindow
 
         private void Step5_WarriorsMerged()
         {
+            UnlockButtons();
             if (_logicService.PlayerUnits.Any(u => u.Data.Level > 1))
             {
                 _logicService.OnPlayerFieldChanged -= Step5_WarriorsMerged;
@@ -105,8 +105,8 @@ namespace UI.TutorWindow
                 yield return _waitHalfSecond;
             }
             
-            _text.Hide();
             _finger.Disable();
+            UnlockButtons();
         }
         
         private void AwaitClickedAndHighlight(string id, Action action)
@@ -116,8 +116,15 @@ namespace UI.TutorWindow
             
             foreach (Button button in _windowService.Buttons)
                 button.interactable = currentView1.gameObject == button.gameObject;
+            
             TutorView currentView = _tutorialService.GetItem(id);
             currentView.AddOneShotHandler(action);
+        }
+
+        public void UnlockButtons()
+        {
+            foreach (Button button in _windowService.Buttons)
+                button.interactable = true;
         }
     }
 }

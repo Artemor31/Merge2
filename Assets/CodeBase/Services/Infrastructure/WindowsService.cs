@@ -50,11 +50,12 @@ namespace Services.Infrastructure
             }
         }
 
-        public void Show<T>() where T : Presenter
+        public T Show<T>() where T : Presenter
         {
             Presenter presenter = _windows.First(w => w.GetType() == typeof(T));
             presenter.OnShow();
             presenter.gameObject.SetActive(true);
+            return (T)presenter;
         }
 
         public void Show<TWindow, TData>(TData data) where TWindow : Presenter where TData : WindowData

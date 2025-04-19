@@ -25,7 +25,7 @@ namespace Services.StateMachine
 
         public void Enter()
         {
-            if (_persistantDataService.MaxWave <= 1 ||
+            if (_persistantDataService.MaxWave <= 0 ||
                 !_tutorialService.SeenTutor)
             {
                 _gameStateMachine.Enter<LoadLevelState>();
