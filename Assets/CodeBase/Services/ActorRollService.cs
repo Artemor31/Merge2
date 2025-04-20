@@ -6,7 +6,6 @@ using Infrastructure;
 using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
-using UnityEngine;
 
 namespace Services
 {
@@ -49,11 +48,11 @@ namespace Services
             for (int i = 0; i < RollCount; i++)
             {
                 ActorData randomOpened = RandomOpened();
-                Actor actor = _gameFactory.CreateActor(randomOpened, Vector3.zero);
+                Actor actor = _gameFactory.CreateActorView(randomOpened);
                 data.Add(actor);
             }
 
-            return new RollData(data, _gameFactory.CreateActor(RandomOpened(), Vector3.zero));
+            return new RollData(data, _gameFactory.CreateActorView(RandomOpened()));
         }
 
         private void StateChanged(IState state)

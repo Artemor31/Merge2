@@ -16,6 +16,8 @@ namespace Gameplay.Grid
             _lines.ForEach(l => l.Disable());
         }
 
+        public void Enable() => gameObject.SetActive(true);
+        
         public void Disable() => _lines.ForEach(l => l.Disable());
 
         public void Highlinght(int line)

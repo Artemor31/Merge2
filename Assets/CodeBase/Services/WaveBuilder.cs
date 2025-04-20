@@ -46,7 +46,7 @@ namespace Services
                 if (positions.Count == 0) return;
 
                 var position = positions.Random();
-                Actor enemyActor = _factory.CreateActor(data, position);
+                Actor enemyActor = _factory.CreateEnemyActor(data, position);
                 positions.Remove(position);
                 enemyActor.transform.Rotate(new Vector3(0, 180, 0));
                 EnemyUnits.Add(enemyActor);

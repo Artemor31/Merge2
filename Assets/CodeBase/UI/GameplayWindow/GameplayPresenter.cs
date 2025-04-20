@@ -23,11 +23,9 @@ namespace UI.GameplayWindow
         [SerializeField] public SellButton SellButton;
         [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
         [SerializeField] private Button _buyUnit;
-        [SerializeField] public Button _getUnitButton;
         [SerializeField] private TextMeshProUGUI _buffDescription;
         [SerializeField] private GameObject _buffPanel;
 
-        private bool _adsRequested;
         private GridService _gridService;
         private GameplayDataService _gameplayService;
         private GameStateMachine _stateMachine;
@@ -43,7 +41,6 @@ namespace UI.GameplayWindow
             _buffService = ServiceLocator.Resolve<BuffService>();
 
             _buyUnit.onClick.AddListener(OpenRollWindow);
-            _getUnitButton.onClick.AddListener(UnitForAdsRequested);
             StartWaveButton.onClick.AddListener(() => _stateMachine.Enter<GameLoopState>());
             ShowBuffsButton.onClick.AddListener(() => _buffPanel.gameObject.SetActive(!_buffPanel.gameObject.activeInHierarchy));
             Close.onClick.AddListener(() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(ResultScreenData.FastLose));
@@ -66,7 +63,6 @@ namespace UI.GameplayWindow
             Money.text = _gameplayService.Crowns.ToString();
             MenuWaveProgress.Show();
             _buffPanel.gameObject.SetActive(false);
-            _adsRequested = false;
         }
 
         private void PlatformPressedHandler(Platform platform)
@@ -75,20 +71,6 @@ namespace UI.GameplayWindow
             int costFor = _gameplayService.GetCostFor(platform.Data.Level);
             SellButton.Show(costFor);
         }
-
-        private void UnitForAdsRequested()
-        {
-            if (_gridService.CanAddUnit == false) return;
-            YG2.RewardedAdvShow(AdsId.GetUnit, GetUnitForAds);
-        }
-
-        private void GetUnitForAds()
-        {
-            _gridService.TryCreatePlayerUnit();
-            _getUnitButton.gameObject.SetActive(false);
-            _adsRequested = true;
-        }
-        
         
         private void PlayerFieldChanged()
         {

@@ -35,8 +35,18 @@ namespace Services
         public void CreatePlayerActor(ActorData actorData, Platform platform) =>
             platform.Actor = CreateActor(actorData, platform.transform.position, true);
 
-        public Actor CreateActor(ActorData data, Vector3 position) => 
+        public Actor CreateEnemyActor(ActorData data, Vector3 position) => 
             CreateActor(data, position, false);
+
+        public Actor CreateActorView(ActorData data)
+        {
+            ActorConfig actorConfig = _unitsDatabase.ConfigFor(data);
+            Quaternion rotation = Quaternion.Euler(0, 180, 0);
+            Actor baseView = Object.Instantiate(actorConfig.ViewData.BaseView, Vector3.zero, rotation);
+            ActorSkin skin = Object.Instantiate(actorConfig.ViewData.Skin, baseView.transform);
+            baseView.Initialize(skin, data, actorConfig.Stats);
+            return baseView;
+        }
 
         private Actor CreateActor(ActorData data, Vector3 position, bool isMy)
         {

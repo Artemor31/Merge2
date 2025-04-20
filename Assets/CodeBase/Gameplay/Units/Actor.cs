@@ -29,8 +29,12 @@ namespace Gameplay.Units
         private float _actTimer;
         private Health _health;
 
-        public void Dispose()=> View.Dispose();
-        
+        public void Dispose()
+        {
+            _mover.Dispose();
+            View.Dispose();
+        }
+
         public virtual void Initialize(ActorSkin view, ActorData data, ActorStats stats)
         {
             Data = data;

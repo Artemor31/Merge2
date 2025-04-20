@@ -26,10 +26,10 @@ namespace Services.StateMachine
         public void Enter()
         {
             _windowsService.Show<GameplayPresenter>();
-            _windowsService.Show<ActorRollPresenter>();
-            //_windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
+            _windowsService.Show<GameCanvas, GameCanvasData>(new GameCanvasData(true));
+            _windowsService.Get<ActorRollPresenter>().Setup();
+            _gameplayContainer.Get<EnemyGrid>().Enable();
             _gridLogicService.EnableGridView(true);
-            _gameplayContainer.Get<EnemyGrid>().gameObject.SetActive(true);
 
             if (!_tutorialService.SeenTutor)
             {

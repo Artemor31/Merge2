@@ -18,15 +18,15 @@ namespace UI.GameplayWindow
         [SerializeField] private Button _buyButton;
         [SerializeField] private Transform _prefabRoot;
 
+        protected GridService GridService;
         private BuffsDatabase _buffsDatabase;
         private GameplayDataService _gameplayService;
-        private GridService _gridService;
         private Actor _actor;
 
         public override void Init()
         {
+            GridService = ServiceLocator.Resolve<GridService>();
             _buffsDatabase = ServiceLocator.Resolve<BuffsDatabase>();
-            _gridService = ServiceLocator.Resolve<GridService>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
             _buyButton.onClick.AddListener(TryBuyUnit);
         }
@@ -39,8 +39,11 @@ namespace UI.GameplayWindow
             }
             
             _actor = actor;
-            _actor.transform.SetParent(_prefabRoot, false);
-            _actor.transform.localPosition = Vector3.zero;
+            _actor.Dispose();
+            Transform transform1;
+            (transform1 = _actor.transform).SetParent(_prefabRoot, false);
+            transform1.localPosition = Vector3.zero;
+            transform1.localScale = Vector3.one * 120;
 
             ActorData data = _actor.Data;
             _levelText.text = data.Level.ToString();
@@ -55,12 +58,12 @@ namespace UI.GameplayWindow
             _buyButton.interactable = false;
         }
 
-        private void TryBuyUnit()
+        protected virtual void TryBuyUnit()
         {
             int cost = _buffsDatabase.CostFor(_actor.Data.Level);
-            if (_gridService.CanAddUnit && _gameplayService.TryBuy(cost))
+            if (GridService.CanAddUnit && _gameplayService.TryBuy(cost))
             {
-                _gridService.TryCreatePlayerUnit();
+                GridService.TryCreatePlayerUnit();
                 Hide();
             }
         }

@@ -36,7 +36,7 @@ namespace UI.GameplayWindow
             _adsUnit.Init();
         }
 
-        public override void OnShow()
+        public void Setup()
         {
             _canvas.worldCamera = _cameraService.CurrentCamera();
             
