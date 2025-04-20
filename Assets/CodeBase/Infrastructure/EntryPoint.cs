@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Databases;
 using Gameplay.Units;
 using Services;
@@ -80,7 +79,7 @@ namespace Infrastructure
                 gridService, buffService, upgradeDataService,
                 persistantDataService, this, projectileService, gameplayContainer, tutorialService);
             WaveRewardsService waveRewardsService = new(persistantDataService, databaseProvider, stateMachine, gameplayService, saveService, _windowsService);
-            ActorRollService actorRollService = new(UnitsDatabase, persistantDataService, gameFactory, stateMachine);
+            ActorRollService actorRollService = new(UnitsDatabase, persistantDataService, gameFactory, stateMachine, gameplayService);
             
 
             ServiceLocator.Bind(BuffsDatabase);

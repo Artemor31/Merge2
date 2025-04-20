@@ -28,19 +28,29 @@ namespace Services
         private readonly PersistantDataService _persistantData;
         private readonly GameFactory _gameFactory;
         private readonly GameStateMachine _gameStateMachine;
+        private readonly GameplayDataService _gameplayDataService;
         private RollData _roll;
 
         public ActorRollService(UnitsDatabase unitsDatabase, PersistantDataService persistantData, 
-                                GameFactory gameFactory, GameStateMachine gameStateMachine)
+                                GameFactory gameFactory, GameStateMachine gameStateMachine, GameplayDataService gameplayDataService)
         {
             _unitsDatabase = unitsDatabase;
             _persistantData = persistantData;
             _gameFactory = gameFactory;
             _gameStateMachine = gameStateMachine;
+            _gameplayDataService = gameplayDataService;
             _gameStateMachine.OnStateChanged += StateChanged;
         }
 
         public RollData GetRoll() => _roll ??= CreateRoll();
+
+        public bool TryReRoll(int cost)
+        {
+            if (_gameplayDataService.Crowns.Value > cost) return false;
+            
+            _roll = CreateRoll();
+            return true;
+        }
 
         private RollData CreateRoll()
         {

@@ -3,6 +3,7 @@ using Infrastructure;
 using Services;
 using Services.DataServices;
 using Services.Infrastructure;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +15,15 @@ namespace UI.GameplayWindow
         [SerializeField] private List<ActorRollView> _actorRollView;
         [SerializeField] private ActorRollView _adsUnit;
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private TextMeshProUGUI _crowns;
+        [SerializeField] private TextMeshProUGUI _reRollCostText;
+        [SerializeField] private Button _reRoll;
         
         private ActorRollService _service;
         private GameplayDataService _gameplayDataService;
         private WindowsService _windowService;
         private CameraService _cameraService;
+        private int _reRollCost;
 
         public override void Init()
         {
@@ -27,6 +32,7 @@ namespace UI.GameplayWindow
             _windowService = ServiceLocator.Resolve<WindowsService>();
             _cameraService = ServiceLocator.Resolve<CameraService>();
             _closeButton.onClick.AddListener(Close);
+            _reRoll.onClick.AddListener(ReRoll);
             DontDestroyOnLoad(this);
 
             foreach (ActorRollView view in _actorRollView)
@@ -39,6 +45,8 @@ namespace UI.GameplayWindow
         public void Setup()
         {
             _canvas.worldCamera = _cameraService.CurrentCamera();
+            _reRollCost = 1;
+            _reRollCostText.text = _reRollCost.ToString();
             
             RollData rollData = _service.GetRoll();
             for (int i = 0; i < _actorRollView.Count; i++)
@@ -53,6 +61,15 @@ namespace UI.GameplayWindow
             else
             {
                 _adsUnit.Hide();
+            }
+        }
+
+        private void ReRoll()
+        {
+            if (_service.TryReRoll(_reRollCost))
+            {
+                _reRollCost += 1;
+                _reRollCostText.text = _reRollCost.ToString();
             }
         }
 

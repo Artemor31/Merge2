@@ -47,7 +47,7 @@ namespace Services.StateMachine
                 return;
             }
             
-            _profit = _gameplayService.Crowns;
+            _profit = _gameplayService.Crowns.Value;
             _gridDataService.Save();
             _buffService.ApplyBuffs(_playerUnits, _waveBuilder.EnemyUnits);
             _upgradeDataService.IncrementStats(_playerUnits);
@@ -69,7 +69,7 @@ namespace Services.StateMachine
 
         public void Exit()
         {
-            _profit = _gameplayService.Crowns - _profit;
+            _profit = _gameplayService.Crowns.Value - _profit;
             foreach (Actor actor in _waveBuilder.EnemyUnits)
             {
                 actor.Died -= OnEnemyDied;

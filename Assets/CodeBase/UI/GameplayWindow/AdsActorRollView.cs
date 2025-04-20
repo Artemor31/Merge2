@@ -10,7 +10,11 @@ namespace UI.GameplayWindow
             if (GridService.CanAddUnit == false) return;
             YG2.RewardedAdvShow(AdsId.GetUnit, GetUnitForAds);
         }
-        
+
+        public override void Hide() => gameObject.SetActive(false);
+
+        protected override void Reset() => gameObject.SetActive(true);
+
         private void GetUnitForAds()
         {
             GridService.TryCreatePlayerUnit();

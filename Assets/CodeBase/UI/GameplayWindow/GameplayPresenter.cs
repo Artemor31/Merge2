@@ -45,7 +45,7 @@ namespace UI.GameplayWindow
             ShowBuffsButton.onClick.AddListener(() => _buffPanel.gameObject.SetActive(!_buffPanel.gameObject.activeInHierarchy));
             Close.onClick.AddListener(() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(ResultScreenData.FastLose));
 
-            _gameplayService.OnCrownsChanged += money => Money.text = money.ToString();
+            _gameplayService.Crowns.AddListener(Money);
             _gridService.OnPlatformReleased += _ => SellButton.Hide();
             _gridService.OnPlatformPressed += PlatformPressedHandler;
             _gridService.OnPlayerFieldChanged += PlayerFieldChanged;

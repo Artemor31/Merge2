@@ -47,12 +47,24 @@ namespace UI.GameplayWindow
 
             ActorData data = _actor.Data;
             _levelText.text = data.Level.ToString();
-            _cost.text = _buffsDatabase.CostFor(data.Level).ToString();
             _race.sprite = _buffsDatabase.IconFor(data.Race);
             _mastery.sprite = _buffsDatabase.IconFor(data.Mastery);
+
+            if (_cost)
+            {
+                _cost.text = _buffsDatabase.CostFor(data.Level).ToString();
+            }
+
+            Reset();
         }
 
-        public void Hide()
+        protected virtual void Reset()
+        {
+            _prefabRoot.gameObject.SetActive(true);
+            _buyButton.interactable = true;
+        }
+
+        public virtual void Hide()
         {
             _prefabRoot.gameObject.SetActive(false);
             _buyButton.interactable = false;
