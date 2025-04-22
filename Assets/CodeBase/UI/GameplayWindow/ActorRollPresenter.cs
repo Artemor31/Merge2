@@ -33,6 +33,7 @@ namespace UI.GameplayWindow
             _cameraService = ServiceLocator.Resolve<CameraService>();
             _closeButton.onClick.AddListener(Close);
             _reRoll.onClick.AddListener(ReRoll);
+            _gameplayDataService.Crowns.AddListener(_crowns);
             DontDestroyOnLoad(this);
 
             foreach (ActorRollView view in _actorRollView)
