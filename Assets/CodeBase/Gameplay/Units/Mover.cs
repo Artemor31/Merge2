@@ -19,7 +19,12 @@ namespace Gameplay.Units
         }
 
         public void MoveTo(Actor target) => MoveTo(target.transform.position);
-        public void Dispose() => _agent.enabled = false;
+        
+        public void Dispose()
+        {
+            if (_agent)
+                _agent.enabled = false; 
+        }
 
         public void Stop()
         {

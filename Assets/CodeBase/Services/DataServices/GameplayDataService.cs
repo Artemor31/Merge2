@@ -18,6 +18,7 @@ namespace Services.DataServices
         {
             _saveService = saveService;
             _progress = _saveService.Restore<GameplayProgress>(StoryData);
+            Crowns = new ReactiveProperty<int>(_progress.Crowns);
         }
 
         public void CompleteLevel()
@@ -29,6 +30,13 @@ namespace Services.DataServices
         public void AddCrowns(int value)
         {
             _progress.Crowns += value;
+            Save();
+            Crowns.Value = _progress.Crowns;
+        }
+
+        public void DecreaseCrowns(int value)
+        {
+            _progress.Crowns -= value;
             Save();
             Crowns.Value = _progress.Crowns;
         }

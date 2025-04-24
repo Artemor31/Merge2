@@ -4,6 +4,7 @@ using Services;
 using Services.DataServices;
 using Services.Infrastructure;
 using TMPro;
+using UI.WorldSpace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,9 +32,9 @@ namespace UI.GameplayWindow
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             _windowService = ServiceLocator.Resolve<WindowsService>();
             _cameraService = ServiceLocator.Resolve<CameraService>();
+            _gameplayDataService.Crowns.AddListener(_crowns);
             _closeButton.onClick.AddListener(Close);
             _reRoll.onClick.AddListener(ReRoll);
-            _gameplayDataService.Crowns.AddListener(_crowns);
             DontDestroyOnLoad(this);
 
             foreach (ActorRollView view in _actorRollView)
@@ -45,17 +46,25 @@ namespace UI.GameplayWindow
 
         public void Setup()
         {
-            _canvas.worldCamera = _cameraService.CurrentCamera();
-            _reRollCost = 1;
+            ResetData();
             _reRollCostText.text = _reRollCost.ToString();
-            
+            SetRollData();
+            TryShowAdsRoll();
+        }
+
+        private void SetRollData()
+        {
             RollData rollData = _service.GetRoll();
             for (int i = 0; i < _actorRollView.Count; i++)
             {
                 _actorRollView[i].SetData(rollData.Actors[i]);
             }
+        }
 
-            if (_gameplayDataService.Wave % 3 == 0)
+        private void TryShowAdsRoll()
+        {
+            RollData rollData = _service.GetRoll();
+            if (rollData.AdsActor != null)
             {
                 _adsUnit.SetData(rollData.AdsActor);
             }
@@ -65,18 +74,31 @@ namespace UI.GameplayWindow
             }
         }
 
+        private void ResetData()
+        {
+            _canvas.worldCamera = _cameraService.CurrentCamera();
+            _reRollCost = 1;
+        }
+
         private void ReRoll()
         {
             if (_service.TryReRoll(_reRollCost))
             {
                 _reRollCost += 1;
                 _reRollCostText.text = _reRollCost.ToString();
+                
+                RollData rollData = _service.GetRoll();
+                for (int i = 0; i < _actorRollView.Count; i++)
+                {
+                    _actorRollView[i].SetData(rollData.Actors[i]);
+                }
             }
         }
 
         private void Close()
         {
             _windowService.Show<GameplayPresenter>();
+            _windowService.Show<GameCanvas>();
             _windowService.Close<ActorRollPresenter>();
         }
     }

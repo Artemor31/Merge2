@@ -7,6 +7,7 @@ using Services.Infrastructure;
 using Services.StateMachine;
 using TMPro;
 using UI.WaveSlider;
+using UI.WorldSpace;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -55,12 +56,12 @@ namespace UI.GameplayWindow
         {
             _windowService.Show<ActorRollPresenter>();
             _windowService.Close<GameplayPresenter>();
+            _windowService.Close<GameCanvas>();
         }
 
         public override void OnShow()
         {
             Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
-            Money.text = _gameplayService.Crowns.ToString();
             MenuWaveProgress.Show();
             _buffPanel.gameObject.SetActive(false);
         }

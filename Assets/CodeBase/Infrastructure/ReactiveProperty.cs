@@ -12,6 +12,8 @@ namespace Infrastructure
         private readonly List<Object> _listeners = new();
         private T _value;
 
+        public ReactiveProperty(T value) => _value = value;
+
         public T Value
         {
             get => _value;

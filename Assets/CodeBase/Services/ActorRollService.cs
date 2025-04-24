@@ -46,10 +46,14 @@ namespace Services
 
         public bool TryReRoll(int cost)
         {
-            if (_gameplayDataService.Crowns.Value > cost) return false;
-            
-            _roll = CreateRoll();
-            return true;
+            if (_gameplayDataService.Crowns.Value >= cost)
+            {
+                _gameplayDataService.Crowns.Value -= cost;
+                _roll = CreateRoll();
+                return true;
+            }
+
+            return false;
         }
 
         private RollData CreateRoll()
@@ -62,12 +66,14 @@ namespace Services
                 data.Add(actor);
             }
 
-            return new RollData(data, _gameFactory.CreateActorView(RandomOpened()));
+            Actor adsActor = _gameplayDataService.Wave % 3 == 0 ? _gameFactory.CreateActorView(RandomOpened()) : null;
+            
+            return new RollData(data, adsActor);
         }
 
         private void StateChanged(IState state)
         {
-            if (state.GetType() == typeof(SetupLevelState))
+            if (state.GetType() == typeof(LoadLevelState))
             {
                 _roll = null;
             }

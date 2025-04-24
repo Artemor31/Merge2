@@ -68,6 +68,11 @@ namespace UI.GameplayWindow
         {
             _prefabRoot.gameObject.SetActive(false);
             _buyButton.interactable = false;
+            
+            if (_actor)
+            {
+                Destroy(_actor.gameObject);
+            }
         }
 
         protected virtual void TryBuyUnit()
