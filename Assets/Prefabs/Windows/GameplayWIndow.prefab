@@ -1234,7 +1234,6 @@ RectTransform:
   - {fileID: 502847329620650845}
   - {fileID: 3274453347718494156}
   - {fileID: 8898638433310216233}
-  - {fileID: 8193663612818174862}
   - {fileID: 1495040555313370978}
   - {fileID: 7168124810303403879}
   m_Father: {fileID: 0}
@@ -1312,7 +1311,6 @@ MonoBehaviour:
   SellButton: {fileID: 1860526162583733655}
   MenuWaveProgress: {fileID: 4701983534953506918}
   _buyUnit: {fileID: 6653087582349195112}
-  _getUnitButton: {fileID: 0}
   _buffDescription: {fileID: 1921126941702916202}
   _buffPanel: {fileID: 2081501524927317928}
 --- !u!114 &2045699858507471718
@@ -1874,18 +1872,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4988831292495289115}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1531981446021374568}
   - {fileID: 6844903073173746292}
-  m_Father: {fileID: 2737374870952449230}
+  m_Father: {fileID: 8898638433310216233}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -80, y: 190}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 460, y: -0.3999939}
   m_SizeDelta: {x: 140, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4696952799128299154
@@ -3449,6 +3447,7 @@ RectTransform:
   m_Children:
   - {fileID: 436201565586085721}
   - {fileID: 4300988512409191910}
+  - {fileID: 8193663612818174862}
   m_Father: {fileID: 2737374870952449230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}

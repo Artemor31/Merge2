@@ -1814,6 +1814,8 @@ MonoBehaviour:
     Currency: 2
   - Sprite: {fileID: -4080278737599844964, guid: fdd7c39b6deb3f840b5fc0e9cbc6cb00, type: 3}
     Currency: 3
+  - Sprite: {fileID: 21300000, guid: 8b85aa094f5104fc1824c61b6c142d34, type: 3}
+    Currency: 1
   _nextLevel: {fileID: 6819000147309522648}
   _showAds: {fileID: 798818148371217092}
 --- !u!1 &5229680087677392501

@@ -6068,6 +6068,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3640268123930140360, guid: f60d1c3127d764b40b0b148ea955faff, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254407316347690731, guid: f60d1c3127d764b40b0b148ea955faff, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5663594810686042054, guid: f60d1c3127d764b40b0b148ea955faff, type: 3}
       propertyPath: m_IsActive
       value: 1
