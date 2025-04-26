@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Databases;
 using Gameplay.Units;
 using Services;
@@ -22,6 +23,9 @@ namespace Infrastructure
         [SerializeField] private UnitsDatabase UnitsDatabase;
         [SerializeField] private WaveRewardsDatabase WaveRewardsDatabase;
         [SerializeField] private WavesDatabase WavesDatabase;
+        [SerializeField] private CurrencyDatabase CurrencyDatabase;
+        [SerializeField] private LevelsDatabase LevelsDatabase;
+        [SerializeField] private List<Database> _databases;
 
         private static EntryPoint _instance;
 
@@ -61,7 +65,7 @@ namespace Infrastructure
             SaveService saveService = new();
             SceneLoader sceneLoader = new(this);
             CameraService cameraService = new(sceneLoader);
-            DatabaseProvider databaseProvider = new(assetsProvider);
+            DatabaseProvider databaseProvider = new(_databases);
             TutorialService tutorialService = new(saveService);
             GameplayContainer gameplayContainer = new();
             PersistantDataService persistantDataService = new(saveService);
@@ -89,6 +93,8 @@ namespace Infrastructure
             ServiceLocator.Bind(UnitsDatabase);
             ServiceLocator.Bind(WaveRewardsDatabase);
             ServiceLocator.Bind(WavesDatabase);
+            ServiceLocator.Bind(CurrencyDatabase);
+            ServiceLocator.Bind(LevelsDatabase);
 
             ServiceLocator.Bind<ICoroutineRunner>(this);
             ServiceLocator.Bind<IUpdateable>(this);

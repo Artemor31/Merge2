@@ -8,11 +8,9 @@ namespace Services.Infrastructure
     {
         private readonly Dictionary<Type, Database> _databases;
 
-        public DatabaseProvider(AssetsProvider assetsProvider)
+        public DatabaseProvider(List<Database> databases)
         {
-            _databases = new();
-
-            var databases = assetsProvider.LoadAll<Database>(AssetsPath.DatabasesFolder);
+            _databases = new Dictionary<Type, Database>();
             foreach (var database in databases)
             {
                 database.Cache();

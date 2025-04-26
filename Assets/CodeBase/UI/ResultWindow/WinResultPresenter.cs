@@ -2,6 +2,7 @@
 using Infrastructure;
 using Services;
 using Services.StateMachine;
+using YG;
 
 namespace UI.ResultWindow
 {
@@ -12,6 +13,14 @@ namespace UI.ResultWindow
             base.OnShow();
             ServiceLocator.Resolve<GameplayContainer>().Get<Confetti>().Play();
         }
+
+        protected override string GetHeader(int level) => YG2.lang switch
+        {
+            "ru" => "Уровень пройден!",
+            "en" => "Level complete!",
+            "tr" => "Level complete!",
+            _ => "Level complete!"
+        };
 
         protected override void OnNextLevelClicked()
         {

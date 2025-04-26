@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Databases;
 using Infrastructure;
 using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -16,13 +18,15 @@ namespace UI.ResultWindow
         public int CrownsValue;
         public int CoinsValue;
         public int GemsValue;
+        public int KeysValue;
     }
 
     public abstract class BaseResultPresenter : Presenter
     {
+        [SerializeField] private CurrencyDatabase _currencyDatabase;
+        [SerializeField] private TextMeshProUGUI _header;
         [SerializeField] private Transform _rewardParent;
         [SerializeField] private CurrencyElement _prefab;
-        [SerializeField] private CurrencyPair[] _pairs;
         [SerializeField] private Button _nextLevel;
         [SerializeField] private Button _showAds;
 
@@ -50,7 +54,11 @@ namespace UI.ResultWindow
             AddReward(Currency.Crown, _resultData.CrownsValue);
             AddReward(Currency.Coin, _resultData.CoinsValue);
             AddReward(Currency.Gem, _resultData.GemsValue);
+            AddReward(Currency.Key, _resultData.KeysValue);
+            _header.text = GetHeader(_gameplayDataService.Wave);
         }
+
+        protected abstract string GetHeader(int level);
         
         protected virtual void OnNextLevelClicked()
         {
@@ -82,7 +90,11 @@ namespace UI.ResultWindow
             _resultData = new ResultData();
         }
 
-        private Sprite SpriteFor(Currency currency) => _pairs.First(p => p.Currency == currency).Sprite;
+        private Sprite SpriteFor(Currency currency)
+        {
+            return _currencyDatabase.CurrencyDatas.First(c => c.Type == currency).Sprite;
+        }
+
         private void OnShowAdsClicked() => YG2.RewardedAdvShow(AdsId.DoubleReward, AdWatched);
 
         private void AdWatched()
