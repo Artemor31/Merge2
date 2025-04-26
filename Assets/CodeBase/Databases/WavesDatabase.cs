@@ -47,5 +47,6 @@ namespace Databases
         public List<Mastery> Masteries;
         public List<Race> Races;
         public int LevelsAhead;
+        public bool HasBoss;
     }
 }
