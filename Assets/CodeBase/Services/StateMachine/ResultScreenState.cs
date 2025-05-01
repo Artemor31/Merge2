@@ -119,31 +119,31 @@ namespace Services.StateMachine
         {
             int count = _waveBuilder.EnemyUnits.Count(u => u.IsDead);
 
-            int sumCoins = 0;
-            int crownsValue = 0;
+            int coins = 0;
+            int crowns = 0;
             int gems = 0;
             if (isWin)
             {
-                crownsValue = Random.Range(150, 450);// * (_persistantDataService.Crowns / 100);
-                sumCoins = Random.Range(40, 100);
+                crowns = Random.Range(3,3);
+                coins = Random.Range(40, 100);
                 gems = (int)(count * 0.7f);
             }
             else if (count > 0)
             {
-                crownsValue = Random.Range(100, 200);// * (_persistantDataService.Crowns / 100);
-                sumCoins = count * 5;
+                crowns = Random.Range(100, 200);
+                coins = count * 5;
                 gems = count;
             }
 
-            _persistantDataService.AddCoins(sumCoins);
+            _persistantDataService.AddCoins(coins);
             _persistantDataService.AddGems(gems);
-            _gameplayService.AddCrowns(crownsValue);
+            _gameplayService.AddCrowns(crowns);
 
             return new ResultData
             {
-                CrownsValue = crownsValue,
+                CrownsValue = crowns,
                 GemsValue = gems,
-                CoinsValue = sumCoins
+                CoinsValue = coins
             };
         }
 

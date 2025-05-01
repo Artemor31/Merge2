@@ -42,7 +42,11 @@ namespace UI.ResultWindow
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             GameStateMachine = ServiceLocator.Resolve<GameStateMachine>();
             _nextLevel.onClick.AddListener(OnNextLevelClicked);
-            _showAds.onClick.AddListener(OnShowAdsClicked);
+            if (_showAds)
+            {
+                _showAds.onClick.AddListener(OnShowAdsClicked);
+            }
+
             _rewards = new List<CurrencyElement>();
         }
 
@@ -59,7 +63,7 @@ namespace UI.ResultWindow
         }
 
         protected abstract string GetHeader(int level);
-        
+
         protected virtual void OnNextLevelClicked()
         {
             gameObject.SetActive(false);
@@ -73,7 +77,7 @@ namespace UI.ResultWindow
         private void AddReward(Currency currency, int value)
         {
             if (value <= 0) return;
-            
+
             CurrencyElement element = Instantiate(_prefab, _rewardParent);
             element.SetData(SpriteFor(currency), value.ToString());
             _rewards.Add(element);
@@ -103,13 +107,6 @@ namespace UI.ResultWindow
             _persistantDataService.AddGems(_resultData.GemsValue);
             _gameplayDataService.AddCrowns(_resultData.CrownsValue);
             OnNextLevelClicked();
-        }
-
-        [Serializable]
-        public class CurrencyPair
-        {
-            public Sprite Sprite;
-            public Currency Currency;
         }
     }
 }

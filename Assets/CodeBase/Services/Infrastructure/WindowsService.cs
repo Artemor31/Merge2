@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes.Core.DrawerAttributes_SpecialCase;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +21,7 @@ namespace Services.Infrastructure
             }
         }
 
-        [Button]
+        [Sirenix.OdinInspector.Button]
         public void FindPresenters()
         {
             _windows.Clear();
@@ -36,7 +35,7 @@ namespace Services.Infrastructure
             }
         }
         
-        [Button]
+        [Sirenix.OdinInspector.Button]
         public void FindButtons()
         {
             Buttons.Clear();

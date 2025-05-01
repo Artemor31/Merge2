@@ -69,6 +69,7 @@ namespace Infrastructure
             TutorialService tutorialService = new(saveService);
             GameplayContainer gameplayContainer = new();
             PersistantDataService persistantDataService = new(saveService);
+            RewardsService rewardsService = new(persistantDataService, UnitsDatabase);
             GameplayDataService gameplayService = new(saveService);
             GridDataService gridDataService = new(saveService);
             UpgradeDataService upgradeDataService = new(persistantDataService, saveService);
@@ -119,6 +120,7 @@ namespace Infrastructure
             ServiceLocator.Bind(gameplayContainer);
             ServiceLocator.Bind(waveRewardsService);
             ServiceLocator.Bind(actorRollService);
+            ServiceLocator.Bind(rewardsService);
         }
 
         private void Update() => Tick?.Invoke();

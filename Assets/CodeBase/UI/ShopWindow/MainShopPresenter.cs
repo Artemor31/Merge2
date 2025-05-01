@@ -38,7 +38,7 @@ namespace UI.ShopWindow
             _unitsDatabase = provider.GetDatabase<UnitsDatabase>();
             _dataService = ServiceLocator.Resolve<PersistantDataService>();
             
-            _openChest.onClick.AddListener(OpenChestClicked);
+            //_openChest.onClick.AddListener(OpenChestClicked);
             _buyGrid.onClick.AddListener(OpenGridClicked);
             _buyCoins.onClick.AddListener(OpenCoinsClicked);
             SetChestCost();
@@ -72,58 +72,8 @@ namespace UI.ShopWindow
         //    SetRowsCost();
         }
 
-        private void OpenChestClicked()
-        {
-            List<(Race, Mastery)> closed = GetClosedTypes();
-            SetChestCost();
-            if (closed.Count == 0)
-            {
-                _chestResult.gameObject.SetActive(true);
-                _chestResult.SetText(AllOpenText);
-                _chestResult.SetMastery(null);
-                _chestResult.SetRace(null);
-                return;
-            }
-            
-            if (!_dataService.TryBuyGems(ChestCost)) return;
-            
-            bool inTutor = !_dataService.IsOpened(Race.Human, Mastery.Ranger);
-            (Race, Mastery) selection = inTutor ? (Race.Human, Mastery.Ranger) : GetNextType(closed);
-
-            _dataService.SetOpened(selection);
-            _chestResult.SetRace(_buffsDatabase.IconFor(selection.Item1));
-            _chestResult.SetMastery(_buffsDatabase.IconFor(selection.Item2));
-
-            string text = $"{_buffsDatabase.NameFor(selection.Item1)} {_buffsDatabase.NameFor(selection.Item2)}";
-            _chestResult.SetText(text);
-            _chestResult.gameObject.SetActive(true);
-        }
-
-        private (Race, Mastery) GetNextType(List<(Race, Mastery)> closed)
-        {
-            if (HasClosed(closed, Race.Human))
-                return closed.Last(c => c.Item1 == Race.Human);
-            if (HasClosed(closed, Race.Orc))
-                return closed.Last(c => c.Item1 == Race.Orc);
-            if (HasClosed(closed, Race.Undead))
-                return closed.Last(c => c.Item1 == Race.Undead);
-            if (HasClosed(closed, Race.Demon))
-                return closed.Last(c => c.Item1 == Race.Demon);
-
-            throw new Exception("All types opened");
-        }
         
-        private bool HasClosed(List<(Race, Mastery)> closed, Race race) => 
-            closed.Where(c => c.Item1 == race).ToList().Count != 0;
 
-        private List<(Race, Mastery)> GetClosedTypes()
-        {
-            Dictionary<Race,IEnumerable<Mastery>> allActorTypes = _unitsDatabase.AllActorTypes();
-            var selectMany = allActorTypes.SelectMany(dict => dict.Value, (keyValuePair, mastery) => new {keyValuePair, mastery});
-            var enumerable = selectMany.Where(t => !_dataService.IsOpened(t.mastery, t.keyValuePair.Key));
-            IEnumerable<(Race Key, Mastery mastery)> valueTuples = enumerable.Select(t => (t.keyValuePair.Key, t.mastery));
-            return valueTuples.ToList();
-        }
         
         // private int GridUpCost() => _dataService.Rows switch
         // {
