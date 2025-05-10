@@ -5,6 +5,7 @@ using Databases;
 using Databases.BuffConfigs;
 using Gameplay.Units;
 using Services.Infrastructure;
+using YG;
 
 namespace Services
 {
@@ -32,14 +33,14 @@ namespace Services
                 {
                     foreach (Actor actor in allies)
                     {
-                        buffConfig.Key.ApplyTo(actor);
+                        buffConfig.Key.ApplyTo(actor, buffConfig.Value);
                     }
                 }
                 else
                 {
                     foreach (Actor actor in enemies)
                     {
-                        buffConfig.Key.ApplyTo(actor);
+                        buffConfig.Key.ApplyTo(actor, buffConfig.Value);
                     }
                 }
             }
@@ -61,17 +62,29 @@ namespace Services
             {
                 if (_races[config.Race] > 1)
                 {
-                    _activeConfigs.Add(config, _races[config.Race]);
+                    _activeConfigs.Add(config, GetLevelForCount(_races[config.Race]));
                 }
 
                 if (_masteries[config.Mastery] > 1)
                 {
-                    _activeConfigs.Add(config, _masteries[config.Mastery]);
+                    _activeConfigs.Add(config, GetLevelForCount(_masteries[config.Mastery]));
                 }
             }
 
-            return _activeConfigs.Keys.Select(k => $"{k.GetDescription()}" + GetBuffArrow(_activeConfigs[k]/2, k.ForAllies));
+            foreach (BuffConfig k in _activeConfigs.Keys)
+            {
+                var config = (StatBuffConfig)k;
+                int bonusValue = (int)(config.BuffValue * _activeConfigs[k]);
+                char sign = k.ForAllies ? '+' : '-';
+                yield return $"{k.GetDescription()}" + " " + sign + " " + bonusValue;
+            }
         }
+
+        public string GetTitleString() => YG2.lang switch
+        {
+            "ru" => "Бонусы текущего отряда:\r\n",
+            _ => "Current squad bonuses:\r\n"
+        };
 
         private string GetBuffArrow(int level, bool forAllies)
         {
@@ -83,7 +96,7 @@ namespace Services
                     1 => "+",
                     2 => "++",
                     3 => "+++",
-                    _ => "+++"
+                    _ => ""
                 };
             }
 
@@ -92,9 +105,17 @@ namespace Services
                 1 => "-",
                 2 => "--",
                 3 => "---",
-                _ => "---"
+                _ => ""
             };
         }
+
+        private int GetLevelForCount(int count) => count switch
+        {
+            < 2 => 0,
+            < 4 => 1,
+            < 6 => 2,
+            _ => 3
+        };
 
         private void FillDictionary<T>(IDictionary<T, int> dict) where T : Enum
         {

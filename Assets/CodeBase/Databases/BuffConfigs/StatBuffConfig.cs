@@ -11,10 +11,10 @@ namespace Databases.BuffConfigs
         public float BuffValue;
         private WaitForSeconds _waitForSeconds;
 
-        public override void ApplyTo(Actor actor)
+        public override void ApplyTo(Actor actor, int buffLevel)
         {
             ActorStats stats = actor.Stats;
-            float value = BuffValue * actor.Data.Level;
+            float value = BuffValue * buffLevel;
             switch (BuffStat)
             {
                 case Stat.HealthMaxAdd:
@@ -25,35 +25,40 @@ namespace Databases.BuffConfigs
                     break;
                 case Stat.DamageAdd:
                     stats.Damage += stats.Damage * value;
+                    actor.Stats = stats;
                     break;
                 case Stat.CritChanceAdd:
                     stats.CritChance += value;
+                    actor.Stats = stats;
                     break;
                 case Stat.VampirismAdd:
                     stats.Vampirism += value;
+                    actor.Stats = stats;
                     break;
                 case Stat.DefenceAdd:
                     stats.Defence += value;
+                    actor.Stats = stats;
                     break;
                 case Stat.RangeAdd:
                     if (stats.Range >= 4)
                     {
                         stats.Range += value;
+                        actor.Stats = stats;
                     }
                     break;
                 case Stat.DefenceRemove:
                     stats.Defence -= value;
+                    actor.Stats = stats;
                     break;
                 case Stat.SlowEnemies:
                     stats.MoveSpeed *= 1 - value;
+                    actor.Stats = stats;
                     break;
                 case Stat.HealthRegenAdd:
                     float regen = actor.Stats.Health * value;
                     actor.StartCoroutine(HealthRegen(actor, regen));
                     break;
             }
-
-            actor.Stats = stats;
         }
 
         private IEnumerator HealthRegen(Actor actor, float regen)

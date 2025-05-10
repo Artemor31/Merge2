@@ -13,6 +13,7 @@ namespace Services.ProgressData
         public int[] Races;
         public int[] Masteries;
         public List<(Race, Mastery)> Opened = new() {(Race.Human, Mastery.Warrior)};
+        public int Keys;
 
         public override void Serialize()
         {

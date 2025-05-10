@@ -14,6 +14,7 @@ namespace Services.DataServices
         
         public event Action<int> OnCoinsChanged;
         public event Action<int> OnGemsChanged;
+        public event Action<int> OnKeysChanged;
         public event Action<PersistantProgress> OnProgressChanged;
 
         public int Coins => _progress.Coins;
@@ -84,6 +85,16 @@ namespace Services.DataServices
             OnGemsChanged?.Invoke(_progress.Gems);
             return true;
         }
+        
+        public bool TryBuyKeys(int i)
+        {
+            if (_progress.Keys < i) return false;
+
+            _progress.Keys -= i;
+            Save();
+            OnKeysChanged?.Invoke(_progress.Keys);
+            return true;
+        }
 
         private void Save()
         {
@@ -126,7 +137,9 @@ namespace Services.DataServices
         //         return true;
         //     }
         //     
+
         //     return false;
+
         // }
     }
 }

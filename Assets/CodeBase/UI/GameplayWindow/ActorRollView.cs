@@ -3,6 +3,7 @@ using Gameplay.Units;
 using Infrastructure;
 using Services;
 using Services.DataServices;
+using Services.Infrastructure;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,12 +23,14 @@ namespace UI.GameplayWindow
         private BuffsDatabase _buffsDatabase;
         private GameplayDataService _gameplayService;
         private Actor _actor;
+        private RewardsService _rewardsService;
 
         public override void Init()
         {
             GridService = ServiceLocator.Resolve<GridService>();
             _buffsDatabase = ServiceLocator.Resolve<BuffsDatabase>();
             _gameplayService = ServiceLocator.Resolve<GameplayDataService>();
+            _rewardsService = ServiceLocator.Resolve<RewardsService>();
             _buyButton.onClick.AddListener(TryBuyUnit);
         }
 
@@ -52,7 +55,7 @@ namespace UI.GameplayWindow
 
             if (_cost)
             {
-                _cost.text = _buffsDatabase.CostFor(data.Level).ToString();
+                _cost.text = _rewardsService.CostForUnit(data.Level).ToString();
             }
 
             Reset();
@@ -77,7 +80,7 @@ namespace UI.GameplayWindow
 
         protected virtual void TryBuyUnit()
         {
-            int cost = _buffsDatabase.CostFor(_actor.Data.Level);
+            int cost = _rewardsService.CostForUnit(_actor.Data.Level);
             if (GridService.CanAddUnit && _gameplayService.TryBuy(cost))
             {
                 GridService.TryCreatePlayerUnit();

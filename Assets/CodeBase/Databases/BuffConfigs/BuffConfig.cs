@@ -14,7 +14,7 @@ namespace Databases.BuffConfigs
         public string DescriptionEn;
         public string DescriptionTr;
         public bool ForAllies;
-        public abstract void ApplyTo(Actor actor);
+        public abstract void ApplyTo(Actor actor, int buffLevel);
 
         public string GetDescription() => YG2.lang switch
         {

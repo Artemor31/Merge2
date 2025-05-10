@@ -83,13 +83,6 @@ namespace UI.ShopWindow
         //     _ => 99999
         // };
         
-        private string AllOpenText => YG2.lang switch
-        {
-            "ru" => "Все типы уже открыты.\r\nЖдите обновлений!",
-            "tr" => "Tüm tipler halihazırda açık.\r\nGüncellemeleri bekleyin!",
-            _ => "All types are already open.\r\nWait for updates!"
-        };
-        
         private string StartGrid => YG2.lang switch
         {
             "ru" => "Количество рядов: ",
