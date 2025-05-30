@@ -21,7 +21,7 @@ namespace UI.InfoWindow
 
             if (isOpened)
             {
-                _name.text = raceConfig.Name;
+                _name.text = raceConfig.RoleName;
                 _description.text = raceConfig.GetDescription();
             }
             else
@@ -35,7 +35,7 @@ namespace UI.InfoWindow
 
                 if (actor.opened)
                 {
-                    presenter.SetData(actor.config.Icon, actor.config.Name, actor.config.GetDescription());
+                    presenter.SetData(actor.config.Icon, actor.config.RoleName, actor.config.GetDescription());
                 }
                 else
                 {

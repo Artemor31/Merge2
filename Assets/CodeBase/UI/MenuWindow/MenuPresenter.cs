@@ -1,7 +1,6 @@
 ﻿using Infrastructure;
 using Services.Infrastructure;
 using Services.StateMachine;
-using UI.WaveSlider;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,6 @@ namespace UI.MenuWindow
         [SerializeField] private Button _addHardButton;
         [SerializeField] private Button _addSoftButton;
         [SerializeField] private CurrencyAddPopup _currencyPopup;
-        [SerializeField] private MenuWaveProgressPresenter _slider;
         [SerializeField] private Button _diamondsUp;
         [SerializeField] private Button _patchShow;
 
@@ -30,7 +28,6 @@ namespace UI.MenuWindow
             _patchShow.onClick.AddListener(ShowPatch);
         }
 
-        public override void OnShow() => _slider.Show();
         private void ShowPatch() => ServiceLocator.Resolve<WindowsService>().Show<SimpleInfoWindow>();
         private void ShowHardAdsPopup() => _currencyPopup.ShowData(Currency.Gem);
         private void ShowSoftAdsPopup() => _currencyPopup.ShowData(Currency.Coin);

@@ -76,15 +76,9 @@ namespace Services
                 var config = (StatBuffConfig)k;
                 int bonusValue = (int)(config.BuffValue * _activeConfigs[k]);
                 char sign = k.ForAllies ? '+' : '-';
-                yield return $"{k.GetDescription()}" + " " + sign + " " + bonusValue;
+                yield return $"{config.RoleName} \r\n {k.GetDescription()}" + " " + sign + " " + bonusValue;
             }
         }
-
-        public string GetTitleString() => YG2.lang switch
-        {
-            "ru" => "Бонусы текущего отряда:\r\n",
-            _ => "Current squad bonuses:\r\n"
-        };
 
         private string GetBuffArrow(int level, bool forAllies)
         {

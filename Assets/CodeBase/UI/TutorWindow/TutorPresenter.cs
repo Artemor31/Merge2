@@ -36,7 +36,7 @@ namespace UI.TutorWindow
         private void StartTutorQueue()
         {
             // fix
-            if (ServiceLocator.Resolve<GameplayDataService>().Crowns.Value < 100)
+            if (ServiceLocator.Resolve<GameplayDataService>().Coins.Value < 100)
             {
                 ShowBuffButton();
             }

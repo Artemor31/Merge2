@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using Gameplay.Grid;
 using Infrastructure;
 using Services;
@@ -6,7 +7,6 @@ using Services.DataServices;
 using Services.Infrastructure;
 using Services.StateMachine;
 using TMPro;
-using UI.WaveSlider;
 using UI.WorldSpace;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +22,6 @@ namespace UI.GameplayWindow
         [SerializeField] public TMP_Text Money;
         [SerializeField] public TMP_Text Wave;
         [SerializeField] public SellButton SellButton;
-        [SerializeField] public MenuWaveProgressPresenter MenuWaveProgress;
         [SerializeField] private Button _buyUnit;
         [SerializeField] private TextMeshProUGUI _buffDescription;
         [SerializeField] private GameObject _buffPanel;
@@ -43,13 +42,19 @@ namespace UI.GameplayWindow
 
             _buyUnit.onClick.AddListener(OpenRollWindow);
             StartWaveButton.onClick.AddListener(() => _stateMachine.Enter<GameLoopState>());
-            ShowBuffsButton.onClick.AddListener(() => _buffPanel.gameObject.SetActive(!_buffPanel.gameObject.activeInHierarchy));
+            ShowBuffsButton.onClick.AddListener(SHowBuffs);
             Close.onClick.AddListener(() => _stateMachine.Enter<ResultScreenState, ResultScreenData>(ResultScreenData.FastLose));
 
-            _gameplayService.Crowns.AddListener(Money);
+            _gameplayService.Coins.AddListener(Money);
             _gridService.OnPlatformReleased += _ => SellButton.Hide();
             _gridService.OnPlatformPressed += PlatformPressedHandler;
             _gridService.OnPlayerFieldChanged += PlayerFieldChanged;
+        }
+
+        private void SHowBuffs()
+        {
+            CreateDescription();
+            _buffPanel.gameObject.SetActive(!_buffPanel.gameObject.activeInHierarchy);
         }
 
         private void OpenRollWindow()
@@ -62,7 +67,6 @@ namespace UI.GameplayWindow
         public override void OnShow()
         {
             Wave.text = $"{WaveText} {_gameplayService.Wave + 1}";
-            MenuWaveProgress.Show();
             _buffPanel.gameObject.SetActive(false);
         }
 
@@ -77,21 +81,23 @@ namespace UI.GameplayWindow
         {
             if (gameObject.activeInHierarchy)
             {
-                _buffDescription.text = CreteDescription();
+                CreateDescription();
             }
         }
 
-        private string CreteDescription()
+        private void CreateDescription()
         {
             StringBuilder stringBuilder = new();
-            var buffs = _buffService.CalculateBuffs(_gridService.PlayerUnits);
+            stringBuilder.Append(BuffHeader + "\r\n");
+            
+            IEnumerable<string> buffs = _buffService.CalculateBuffs(_gridService.PlayerUnits);
             foreach (string buff in buffs)
             {
                 stringBuilder.Append(buff);
                 stringBuilder.Append("\r\n");
             }
-            
-            return stringBuilder.ToString();
+
+            _buffDescription.text = stringBuilder.ToString();
         }
         
         private string WaveText => YG2.lang switch
@@ -99,6 +105,13 @@ namespace UI.GameplayWindow
             "ru" => "Волна: ",
             "tr" => "Dalga: ",
             _ => "Wave: "
+        };
+        
+        private string BuffHeader => YG2.lang switch
+        {
+            "ru" => "Бонусы отряда: ",
+            "tr" => "Takım meraklıları: ",
+            _ => "Squad buffs: "
         };
     }
 }

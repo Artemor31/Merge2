@@ -21,7 +21,6 @@ namespace Infrastructure
         [SerializeField] private ProjectilesDatabase ProjectilesDatabase;
         [SerializeField] private TutorTexts TutorTexts;
         [SerializeField] private UnitsDatabase UnitsDatabase;
-        [SerializeField] private WaveRewardsDatabase WaveRewardsDatabase;
         [SerializeField] private WavesDatabase WavesDatabase;
         [SerializeField] private CurrencyDatabase CurrencyDatabase;
         [SerializeField] private LevelsDatabase LevelsDatabase;
@@ -83,7 +82,6 @@ namespace Infrastructure
                 gridDataService, gridDataService, gameplayService,
                 gridService, buffService, upgradeDataService,
                 persistantDataService, this, projectileService, gameplayContainer, tutorialService);
-            WaveRewardsService waveRewardsService = new(persistantDataService, databaseProvider, stateMachine, gameplayService, saveService, _windowsService);
             ActorRollService actorRollService = new(UnitsDatabase, persistantDataService, gameFactory, stateMachine, gameplayService);
             
 
@@ -92,7 +90,6 @@ namespace Infrastructure
             ServiceLocator.Bind(ProjectilesDatabase);
             ServiceLocator.Bind(TutorTexts);
             ServiceLocator.Bind(UnitsDatabase);
-            ServiceLocator.Bind(WaveRewardsDatabase);
             ServiceLocator.Bind(WavesDatabase);
             ServiceLocator.Bind(CurrencyDatabase);
             ServiceLocator.Bind(LevelsDatabase);
@@ -118,7 +115,6 @@ namespace Infrastructure
             ServiceLocator.Bind(upgradeDataService);
             ServiceLocator.Bind(tutorialService);
             ServiceLocator.Bind(gameplayContainer);
-            ServiceLocator.Bind(waveRewardsService);
             ServiceLocator.Bind(actorRollService);
             ServiceLocator.Bind(rewardsService);
         }

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.GameplayWindow
+namespace UI.Chests
 {
     public class ChestOpenPresenter : Presenter
     {
@@ -12,11 +12,13 @@ namespace UI.GameplayWindow
         [SerializeField] private TextMeshProUGUI _resultText;
         private RewardsService _rewardsService;
 
-
         public override void Init()
         {
             _rewardsService = ServiceLocator.Resolve<RewardsService>();
+            _openButton.onClick.AddListener(OpenClicked);
         }
+
+        private void OpenClicked() => OpenChest();
 
         private void OpenChest()
         {

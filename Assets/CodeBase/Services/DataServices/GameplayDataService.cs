@@ -7,10 +7,10 @@ namespace Services.DataServices
 {
     public class GameplayDataService : IService
     {
-        public const string StoryData = "StoryData";
+        public const string StoryData = "MetaData";
         
         public int Wave => _progress.Wave;
-        public ReactiveProperty<int> Crowns;
+        public ReactiveProperty<int> Coins;
         private readonly SaveService _saveService;
         private GameplayProgress _progress;
 
@@ -18,7 +18,7 @@ namespace Services.DataServices
         {
             _saveService = saveService;
             _progress = _saveService.Restore<GameplayProgress>(StoryData);
-            Crowns = new ReactiveProperty<int>(_progress.Crowns);
+            Coins = new ReactiveProperty<int>(_progress.Coins);
         }
 
         public void CompleteLevel()
@@ -29,27 +29,20 @@ namespace Services.DataServices
 
         public void AddCrowns(int value)
         {
-            _progress.Crowns += value;
+            _progress.Coins += value;
             Save();
-            Crowns.Value = _progress.Crowns;
+            Coins.Value = _progress.Coins;
         }
 
-        public void DecreaseCrowns(int value)
-        {
-            _progress.Crowns -= value;
-            Save();
-            Crowns.Value = _progress.Crowns;
-        }
-        
         public int GetCostFor(int level) => level * 70;
 
         public bool TryBuy(int cost)
         {
-            if (!(_progress.Crowns >= cost)) return false;
+            if (!(_progress.Coins >= cost)) return false;
             
-            _progress.Crowns -= cost;
+            _progress.Coins -= cost;
             Save();
-            Crowns.Value = _progress.Crowns;
+            Coins.Value = _progress.Coins;
             return true;
         }
 
@@ -57,7 +50,7 @@ namespace Services.DataServices
         {
             _progress = new GameplayProgress();
             Save();
-            Crowns.Value = _progress.Crowns;
+            Coins.Value = _progress.Coins;
         }
 
         private void Save() => _saveService.Save(StoryData, _progress);

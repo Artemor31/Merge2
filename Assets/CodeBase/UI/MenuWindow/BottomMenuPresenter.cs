@@ -28,12 +28,7 @@ namespace UI.MenuWindow
         }
 
         private void OpenMain() => CloseAll();
-
-        private void OpenShop()
-        {
-            CloseAll();
-            _windowService.Show<MainShopPresenter>();
-        }
+        private void OpenShop() => CloseAll();
 
         private void OpenInfo()
         {
@@ -51,7 +46,6 @@ namespace UI.MenuWindow
         {
             _windowService.Close<InfoWindowPresenter>();
             _windowService.Close<UpgradeShopPresenter>();
-            _windowService.Close<MainShopPresenter>();
         }
     }
 }

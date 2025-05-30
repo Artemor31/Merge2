@@ -6,7 +6,7 @@ namespace Databases.BuffConfigs
 {
     public abstract class BuffConfig : ScriptableObject
     {
-        public string Name => GetBuffName();
+        public string RoleName => GetBuffName();
         public Sprite Icon;
         public Race Race;
         public Mastery Mastery;

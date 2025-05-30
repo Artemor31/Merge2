@@ -32,7 +32,7 @@ namespace UI.GameplayWindow
             _gameplayDataService = ServiceLocator.Resolve<GameplayDataService>();
             _windowService = ServiceLocator.Resolve<WindowsService>();
             _cameraService = ServiceLocator.Resolve<CameraService>();
-            _gameplayDataService.Crowns.AddListener(_crowns);
+            _gameplayDataService.Coins.AddListener(_crowns);
             _closeButton.onClick.AddListener(Close);
             _reRoll.onClick.AddListener(ReRoll);
             DontDestroyOnLoad(this);

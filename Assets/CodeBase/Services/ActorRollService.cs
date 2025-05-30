@@ -46,9 +46,9 @@ namespace Services
 
         public bool TryReRoll(int cost)
         {
-            if (_gameplayDataService.Crowns.Value >= cost)
+            if (_gameplayDataService.Coins.Value >= cost)
             {
-                _gameplayDataService.Crowns.Value -= cost;
+                _gameplayDataService.Coins.Value -= cost;
                 _roll = CreateRoll();
                 return true;
             }
